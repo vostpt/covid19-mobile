@@ -1,4 +1,4 @@
-package com.vost.covid19_mobile
+package com.vost.covid19-mobile
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

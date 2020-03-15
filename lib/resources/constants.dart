@@ -1,1 +1,1 @@
-const String BUNDLE = 'com.vost.covid19_mobile';
+const String BUNDLE = 'com.vost.covid19-mobile';

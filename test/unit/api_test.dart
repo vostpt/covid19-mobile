@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:covid19_mobile/model/sample_model.dart';
-import 'package:covid19_mobile/services/api_service.dart';
+import 'package:covid19mobile/model/sample_model.dart';
+import 'package:covid19mobile/services/api_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

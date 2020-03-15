@@ -1,8 +1,8 @@
 import 'package:covid19_mobile/model/api_response_model.dart';
 import 'package:covid19_mobile/services/api_service.dart';
-
 import 'package:covid19_mobile/ui/app.dart';
-import 'package:covid19_mobile/bloc/base_bloc.dart';
+
+import 'base_bloc.dart';
 
 class AppBloc implements Bloc {
   static const String _tag = '.AppBloc';

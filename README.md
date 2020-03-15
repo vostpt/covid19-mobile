@@ -1,4 +1,4 @@
-# Covid 19 Triage App
+# Covid 19 App
 
 ## Important notes:
 

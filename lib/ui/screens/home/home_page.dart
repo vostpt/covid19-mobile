@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Text("Covid Triage App"),
+        child: Text("Covid App"),
       ),
     );
   }

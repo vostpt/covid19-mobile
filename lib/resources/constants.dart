@@ -1,1 +1,1 @@
-const String BUNDLE = 'com.vost.covidtriage.covid19_mobile_triage';
+const String BUNDLE = 'com.vost.covid19_mobile';

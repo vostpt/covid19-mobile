@@ -5,10 +5,10 @@
  * Any copy, distribution or use is strictly prohibited, unless as otherwise expressly approved by The Roberto Giory Company
  */
 
-import 'package:covid19_mobile_triage/generated/l10n.dart';
-import 'package:covid19_mobile_triage/resources/constants.dart';
+import 'package:covid19_mobile/generated/l10n.dart';
+import 'package:covid19_mobile/resources/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:covid19_mobile_triage/ui/app.dart';
+import 'package:covid19_mobile/ui/app.dart';
 
 class APIResponse {
   static final _tag = BUNDLE + '.APIResponse';
@@ -23,7 +23,9 @@ class APIResponse {
       1234: 'someError',
     };
 
-    return errors.map((id) => errorsMap[id] != null ? errorsMap[id] : intl.defaultError).toList();
+    return errors
+        .map((id) => errorsMap[id] != null ? errorsMap[id] : intl.defaultError)
+        .toList();
   }
 
   APIResponse(this.data, this.statusCode, {this.headers, this.dioErrorType})
@@ -33,10 +35,15 @@ class APIResponse {
     logger.i(this);
   }
 
-  bool get isOk => dioErrorType == null && errors == null && statusCode >= 200 && statusCode < 400;
+  bool get isOk =>
+      dioErrorType == null &&
+      errors == null &&
+      statusCode >= 200 &&
+      statusCode < 400;
 
   bool get isNotOk => !isOk;
 
   @override
-  String toString() => '[$_tag] Code: $statusCode | Body: $data | Headers: $headers | Error: $dioErrorType';
+  String toString() =>
+      '[$_tag] Code: $statusCode | Body: $data | Headers: $headers | Error: $dioErrorType';
 }

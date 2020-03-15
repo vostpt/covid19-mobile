@@ -1,4 +1,4 @@
-package com.vost.covidtriage.covid19_mobile_triage
+package com.vost.covid19_mobile
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

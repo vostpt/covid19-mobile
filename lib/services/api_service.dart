@@ -7,8 +7,8 @@
 
 import 'dart:async';
 
-import 'package:covid19_mobile_triage/model/api_response_model.dart';
-import 'package:covid19_mobile_triage/model/sample_model.dart';
+import 'package:covid19_mobile/model/api_response_model.dart';
+import 'package:covid19_mobile/model/sample_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -50,7 +50,8 @@ class APIService {
 
     Response response;
 
-    logger.i('[$_tag] Requesting:  $resource | QueryParams: $queryParams | Body: $body | Method: ${describeEnum(type)}');
+    logger.i(
+        '[$_tag] Requesting:  $resource | QueryParams: $queryParams | Body: $body | Method: ${describeEnum(type)}');
 
     if (headers != null) {
       _client.options.headers.addAll(headers);
@@ -61,19 +62,23 @@ class APIService {
     try {
       switch (type) {
         case _RequestType.post:
-          response = await _client.post(resource, queryParameters: queryParams, data: body);
+          response = await _client.post(resource,
+              queryParameters: queryParams, data: body);
           break;
         case _RequestType.put:
-          response = await _client.put(resource, queryParameters: queryParams, data: body);
+          response = await _client.put(resource,
+              queryParameters: queryParams, data: body);
           break;
         case _RequestType.get:
           response = await _client.get(resource, queryParameters: queryParams);
           break;
         case _RequestType.patch:
-          response = await _client.patch(resource, queryParameters: queryParams, data: body);
+          response = await _client.patch(resource,
+              queryParameters: queryParams, data: body);
           break;
         case _RequestType.delete:
-          response = await _client.delete(resource, queryParameters: queryParams, data: body);
+          response = await _client.delete(resource,
+              queryParameters: queryParams, data: body);
           break;
       }
 
@@ -96,6 +101,7 @@ class APIService {
 
   /// Gets foo
   Future<APIResponse> getFoo(Foo foo) async {
-    return await _performRequest(_RequestType.post, '/path', body: foo.toJson());
+    return await _performRequest(_RequestType.post, '/path',
+        body: foo.toJson());
   }
 }

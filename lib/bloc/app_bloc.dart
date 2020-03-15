@@ -1,6 +1,6 @@
-import 'package:covid19_mobile/model/api_response_model.dart';
-import 'package:covid19_mobile/services/api_service.dart';
-import 'package:covid19_mobile/ui/app.dart';
+import 'package:covid19mobile/model/api_response_model.dart';
+import 'package:covid19mobile/services/api_service.dart';
+import 'package:covid19mobile/ui/app.dart';
 
 import 'base_bloc.dart';
 

@@ -5,10 +5,10 @@
  * Any copy, distribution or use is strictly prohibited, unless as otherwise expressly approved by The Roberto Giory Company
  */
 
-import 'package:covid19_mobile/generated/l10n.dart';
-import 'package:covid19_mobile/resources/constants.dart';
+import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/resources/constants.dart';
 import 'package:dio/dio.dart';
-import 'package:covid19_mobile/ui/app.dart';
+import 'package:covid19mobile/ui/app.dart';
 
 class APIResponse {
   static final _tag = BUNDLE + '.APIResponse';

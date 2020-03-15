@@ -7,8 +7,8 @@
 
 import 'dart:async';
 
-import 'package:covid19_mobile/model/api_response_model.dart';
-import 'package:covid19_mobile/model/sample_model.dart';
+import 'package:covid19mobile/model/api_response_model.dart';
+import 'package:covid19mobile/model/sample_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 

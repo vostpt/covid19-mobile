@@ -6,8 +6,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
+/// Used to log all the events happening
 Logger logger = Logger();
 
+/// Starting class for the project
 class CovidApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

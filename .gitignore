@@ -314,4 +314,8 @@ fabric.properties
 ### AndroidStudio Patch ###
 
 !/gradle/wrapper/gradle-wrapper.jar
+ios/Runner/GoogleService-Info.plist
+android/app/google-services.json
+android/key.jks
+android/key.properties
 .idea

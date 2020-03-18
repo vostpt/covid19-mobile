@@ -13,17 +13,14 @@ class StatisticsNumberSmall extends StatelessWidget {
       children: <Widget>[
         Card(
           color: Colors.black,
-          child: Padding(
-            padding: const EdgeInsets.all(0),
-            child: Card(
-              child: Padding(
-                padding: EdgeInsets.all(4),
-                child: Text(
-                  value.toString().toUpperCase(),
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: Text(
+                value.toString().toUpperCase(),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
                 ),
               ),
             ),

@@ -15,23 +15,24 @@ class CardNext extends StatelessWidget {
       child: Card(
         color: Colors.teal,
         child: Padding(
-          padding: EdgeInsets.all(0),
+          padding: const EdgeInsets.all(0),
           child: Card(
             child: Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Expanded(
                     child: Text(
                       text,
-                      style: TextStyle(color: Colors.teal, fontSize: 18),
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
                     ),
                   ),
                   Icon(
                     Icons.arrow_forward,
                     size: 30,
-                    color: Colors.teal,
                   )
                 ],
               ),

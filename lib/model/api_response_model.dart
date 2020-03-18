@@ -1,17 +1,10 @@
-/*
- * © copyright 2019, The Roberto Giori Company
- *
- * Information strictly confidential and exclusive property of The Roberto Giory Company
- * Any copy, distribution or use is strictly prohibited, unless as otherwise expressly approved by The Roberto Giory Company
- */
-
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:covid19mobile/ui/app.dart';
 
 class APIResponse {
-  static final _tag = BUNDLE + '.APIResponse';
+  static final _tag = '$kBundle.APIResponse';
   dynamic data;
   Headers headers;
   DioErrorType dioErrorType;

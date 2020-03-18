@@ -20,7 +20,8 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function> {
-    "defaultError" : MessageLookupByLibrary.simpleMessage("An error has occurred")
-  };
+  static _notInlinedMessages(_) => <String, Function>{
+        "defaultError":
+            MessageLookupByLibrary.simpleMessage("An error has occurred")
+      };
 }

@@ -1,1 +1,1 @@
-const String BUNDLE = 'com.vost.covid19mobile';
+const String kBundle = 'com.vost.covid19mobile';

@@ -26,7 +26,7 @@ class APIService {
   APIService._();
 
   @visibleForTesting
-  void setMockInstance(APIService instance) => _apiService = instance;
+  set setMockInstance(APIService instance) => _apiService = instance;
 
   void init([Dio client]) async {
     if (!_initialized) {

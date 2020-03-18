@@ -24,14 +24,12 @@ class CardFAQ extends StatelessWidget {
                   text,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
                       fontSize: 18),
                 ),
               ),
               Icon(
                 Icons.arrow_forward,
                 size: 30,
-                color: Colors.white,
               )
             ],
           ),

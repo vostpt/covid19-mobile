@@ -9,6 +9,7 @@ import 'dart:async';
 
 import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/model/sample_model.dart';
+import 'package:covid19mobile/services/api.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -23,13 +24,18 @@ class APIService {
   static bool _initialized = false;
   static APIService get api => _apiService;
 
+  static AbstractApi _configApi;
+
   APIService._();
 
   @visibleForTesting
   void setMockInstance(APIService instance) => _apiService = instance;
 
-  void init([Dio client]) async {
+  void init([Dio client, AbstractApi api]) async {
     if (!_initialized) {
+
+      _configApi = api ?? DevApi();
+
       _client = client ?? Dio();
       _client.options.baseUrl = '...';
       _client.options.connectTimeout = 30000;
@@ -88,6 +94,7 @@ class APIService {
         headers: response?.headers,
       );
     } on DioError catch (e) {
+
       logger.e(
           '[$_tag] Request error:  ${e.error} | Status Code: ${e.response?.statusCode} | Response: ${e.response} | Request: ${e.request?.uri} | Type: ${e.type} | Headers:${e.response?.headers?.map}');
       return APIResponse(
@@ -103,5 +110,13 @@ class APIService {
   Future<APIResponse> getFoo(Foo foo) async {
     return await _performRequest(_RequestType.post, '/path',
         body: foo.toJson());
+  }
+
+  /// Gets the updated case stats
+  Future<APIResponse> getStats() async {
+    return await _performRequest(
+        _RequestType.get,
+        _configApi.build(path: 'stats'),
+    );
   }
 }

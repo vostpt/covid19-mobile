@@ -11,13 +11,14 @@ Logger logger = Logger();
 
 /// Starting class for the project
 class CovidApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Provider<AppBloc>(
       create: (_) => AppBloc(),
       dispose: (_, bloc) => bloc.dispose(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Covid 19 App',
         localizationsDelegates: [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -29,7 +30,7 @@ class CovidApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (_) => HomePage(title: 'Covid 19 App'),
+          '/': (_) => HomePage.builder(title: 'Covid 19 App'),
         },
       ),
     );

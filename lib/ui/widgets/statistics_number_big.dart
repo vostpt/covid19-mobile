@@ -12,21 +12,26 @@ class StatisticsNumberBig extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Card(
-          color: Colors.teal,
+          color: Colors.black,
           child: Padding(
-            padding: EdgeInsets.all(8),
-            child: Text(
-              value.toString(),
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontSize: 28),
+            padding: const EdgeInsets.all(0),
+            child: Card(
+              child: Padding(
+                padding: EdgeInsets.all(4),
+                child: Text(
+                  value.toString(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 28,
+                  ),
+                ),
+              ),
             ),
           ),
         ),
         Text(
           text,
-          style: TextStyle(color: Colors.grey, fontSize: 18),
+          style: TextStyle(fontSize: 18),
         )
       ],
     );

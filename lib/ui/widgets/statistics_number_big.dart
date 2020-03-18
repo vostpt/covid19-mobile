@@ -31,7 +31,10 @@ class StatisticsNumberBig extends StatelessWidget {
         ),
         Text(
           text,
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         )
       ],
     );

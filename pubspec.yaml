@@ -25,6 +25,9 @@ dependencies:
   provider: ^4.0.4
   rxdart: ^0.23.1
 
+  # UI
+  google_fonts: ^0.3.10
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -36,5 +39,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - google_fonts/
+
 flutter_intl:
   enabled: true

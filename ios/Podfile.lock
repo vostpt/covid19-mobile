@@ -9,6 +9,15 @@ PODS:
     - FirebaseAnalytics (= 6.3.1)
   - Firebase/CoreOnly (6.20.0):
     - FirebaseCore (= 6.6.4)
+  - firebase_analytics (0.0.1):
+    - Firebase/Analytics (~> 6.0)
+    - Firebase/Core
+    - Flutter
+  - firebase_core (0.0.1):
+    - Firebase/Core
+    - Flutter
+  - firebase_core_web (0.1.0):
+    - Flutter
   - firebase_crashlytics (0.0.1):
     - Crashlytics
     - Fabric
@@ -76,7 +85,9 @@ PODS:
   - PromisesObjC (1.2.8)
 
 DEPENDENCIES:
-  - Firebase/Analytics
+  - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
+  - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
+  - firebase_core_web (from `.symlinks/plugins/firebase_core_web/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - Flutter (from `Flutter`)
 
@@ -98,6 +109,12 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  firebase_analytics:
+    :path: ".symlinks/plugins/firebase_analytics/ios"
+  firebase_core:
+    :path: ".symlinks/plugins/firebase_core/ios"
+  firebase_core_web:
+    :path: ".symlinks/plugins/firebase_core_web/ios"
   firebase_crashlytics:
     :path: ".symlinks/plugins/firebase_crashlytics/ios"
   Flutter:
@@ -107,6 +124,9 @@ SPEC CHECKSUMS:
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: fe7f74012742ab403451dd283e6909b8f1fb348a
+  firebase_analytics: dacdcfc524d722fff13dcff942f0dfa47e6be567
+  firebase_core: 0d8be0e0d14c4902953aeb5ac5d7316d1fe4b978
+  firebase_core_web: d501d8b946b60c8af265428ce483b0fff5ad52d1
   firebase_crashlytics: bd8c58df07f107cb7e1a20cb190b9a468e0a69fd
   FirebaseAnalytics: 572e467f3d977825266e8ccd52674aa3e6f47eac
   FirebaseCore: ed0a24c758a57c2b88c5efa8e6a8195e868af589
@@ -121,6 +141,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
-PODFILE CHECKSUM: 400dd61429cc6a5dcab5fb0ef8f9bb21f86a2cad
+PODFILE CHECKSUM: 083258d7f5e80b42ea9bfee905fe93049bc04c64
 
 COCOAPODS: 1.8.4

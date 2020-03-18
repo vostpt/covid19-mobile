@@ -19,7 +19,7 @@ class StatisticsNumberBig extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(4),
                 child: Text(
-                  value.toString(),
+                  value.toString().toUpperCase(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 28,

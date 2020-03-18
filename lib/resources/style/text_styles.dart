@@ -1,3 +1,4 @@
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,58 +12,82 @@ import 'package:google_fonts/google_fonts.dart';
 ///
 /// If not specified, it will defafult to [Colors.white]
 class TextStyles {
-  static TextStyle h1({Color color = Colors.white}) => GoogleFonts.lato(
+  static TextStyle h1({Color color = Covid19Colors.darkGrey}) =>
+      GoogleFonts.lato(
+          textStyle: TextStyle(
         fontWeight: FontWeight.w900,
-        height: 22.0,
+        fontSize: 22.0,
         color: color,
-      );
+      ));
 
-  static TextStyle h2({Color color = Colors.white}) => GoogleFonts.lato(
+  static TextStyle h2({Color color = Covid19Colors.darkGrey}) =>
+      GoogleFonts.lato(
+          textStyle: TextStyle(
         fontWeight: FontWeight.w900,
-        height: 18.0,
+        fontSize: 18.0,
         color: color,
-      );
+      ));
 
-  static TextStyle h4({Color color = Colors.white}) => GoogleFonts.lato(
-        fontWeight: FontWeight.w900,
-        height: 14.0,
-      );
-
-  static TextStyle h5({Color color = Colors.white}) => GoogleFonts.lato(
-        fontWeight: FontWeight.w900,
-        height: 12.0,
-      );
-
-  static TextStyle link({Color color = Colors.white}) => GoogleFonts.lato(
-        fontWeight: FontWeight.w900,
-        height: 16.0,
-      );
-
-  static TextStyle subtitle({Color color = Colors.white}) => GoogleFonts.lato(
-        fontWeight: FontWeight.w900,
-        height: 16.0,
-      );
-
-  static TextStyle tabSelected({Color color = Colors.white}) =>
+  static TextStyle h4({Color color = Covid19Colors.darkGrey}) =>
       GoogleFonts.lato(
+          textStyle: TextStyle(
         fontWeight: FontWeight.w900,
-        height: 14.0,
-      );
+        fontSize: 14.0,
+      ));
 
-  static TextStyle tabDeselected({Color color = Colors.white}) =>
+  static TextStyle h5({Color color = Covid19Colors.darkGrey}) =>
       GoogleFonts.lato(
-        fontWeight: FontWeight.normal,
-        height: 16.0,
-      );
+          textStyle: TextStyle(
+        fontWeight: FontWeight.w900,
+        fontSize: 12.0,
+        color: color,
+      ));
 
-  static TextStyle paragraphSmall({Color color = Colors.white}) =>
+  static TextStyle link({Color color = Covid19Colors.darkGrey}) =>
       GoogleFonts.lato(
-        fontWeight: FontWeight.normal,
-        height: 14.0,
-      );
+          textStyle: TextStyle(
+        fontWeight: FontWeight.w900,
+        fontSize: 16.0,
+        color: color,
+      ));
 
-  static TextStyle smallCaps({Color color = Colors.white}) => GoogleFonts.lato(
+  static TextStyle subtitle({Color color = Covid19Colors.darkGrey}) =>
+      GoogleFonts.lato(
+          textStyle: TextStyle(
+        fontWeight: FontWeight.w900,
+        fontSize: 16.0,
+        color: color,
+      ));
+
+  static TextStyle tabSelected({Color color = Covid19Colors.darkGrey}) =>
+      GoogleFonts.lato(
+          textStyle: TextStyle(
+        fontWeight: FontWeight.w900,
+        fontSize: 14.0,
+        color: color,
+      ));
+
+  static TextStyle tabDeselected({Color color = Covid19Colors.darkGrey}) =>
+      GoogleFonts.lato(
+          textStyle: TextStyle(
         fontWeight: FontWeight.normal,
-        height: 10.0,
-      );
+        fontSize: 16.0,
+        color: color,
+      ));
+
+  static TextStyle paragraphSmall({Color color = Covid19Colors.darkGrey}) =>
+      GoogleFonts.lato(
+          textStyle: TextStyle(
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+        color: color,
+      ));
+
+  static TextStyle smallCaps({Color color = Covid19Colors.darkGrey}) =>
+      GoogleFonts.lato(
+          textStyle: TextStyle(
+        fontWeight: FontWeight.normal,
+        fontSize: 10.0,
+        color: color,
+      ));
 }

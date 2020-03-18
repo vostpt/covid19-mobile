@@ -17,6 +17,7 @@ class CardNext extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(0),
           child: Card(
+            color: Colors.white,
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Row(
@@ -24,7 +25,7 @@ class CardNext extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      text,
+                      text.toUpperCase(),
                       style: TextStyle(
                         fontSize: 18,
                       ),

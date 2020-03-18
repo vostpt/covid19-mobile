@@ -13,17 +13,14 @@ class StatisticsNumberBig extends StatelessWidget {
       children: <Widget>[
         Card(
           color: Colors.black,
-          child: Padding(
-            padding: const EdgeInsets.all(0),
-            child: Card(
-              child: Padding(
-                padding: EdgeInsets.all(4),
-                child: Text(
-                  value.toString().toUpperCase(),
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 28,
-                  ),
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: Text(
+                value.toString().toUpperCase(),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 28,
                 ),
               ),
             ),
@@ -31,10 +28,7 @@ class StatisticsNumberBig extends StatelessWidget {
         ),
         Text(
           text,
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(fontSize: 18),
         )
       ],
     );

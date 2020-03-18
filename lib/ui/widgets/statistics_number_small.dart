@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 
 class StatisticsNumberSmall extends StatelessWidget {
-  ///number displayed
   final int value;
-
-  ///text displayed
   final String text;
 
-  ///Widget StatisticsNumberSmall requires value and text
   StatisticsNumberSmall(this.value, this.text);
 
   @override
@@ -15,13 +11,30 @@ class StatisticsNumberSmall extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Text(
-          value.toString(),
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+        Card(
+          color: Colors.black,
+          child: Padding(
+            padding: const EdgeInsets.all(0),
+            child: Card(
+              child: Padding(
+                padding: EdgeInsets.all(4),
+                child: Text(
+                  value.toString().toUpperCase(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
         Text(
           text,
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
         )
       ],
     );

@@ -16,8 +16,8 @@ import 'package:flutter/material.dart';
 
 /// Creates a [MeasuresModel] Provider for updating UI for
 class MeasuresProvider with ChangeNotifier {
-  String _id;
-  String get id => _id;
+  int _id;
+  int get id => _id;
 
   String _author;
   String get author => _author;

@@ -20,7 +20,7 @@ part 'measures_model.g.dart';
 class MeasuresModel {
   /// ID of the measure publication ppost
   @JsonKey(name: 'ID')
-  final String id;
+  final int id;
 
   /// Author of this mmeasure information
   @JsonKey(name: 'post_author')

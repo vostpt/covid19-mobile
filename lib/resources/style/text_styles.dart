@@ -56,6 +56,7 @@ class TextStyles {
         color: color,
       ));
 
+  // This style is named "link" in Figma and Zepplin
   static TextStyle button({Color color = Covid19Colors.darkGrey}) =>
       GoogleFonts.lato(
           textStyle: TextStyle(

@@ -127,4 +127,12 @@ class APIService {
       '/stats',
     );
   }
+
+  /// Gets the updated measures information
+  Future<APIResponse> getMeasures() async {
+    return await _performRequest(
+      _RequestType.get,
+      '/measures',
+    );
+  }
 }

@@ -11,14 +11,13 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:covid19mobile/ui/app.dart';
 
 class APIResponse {
-  static final _tag = BUNDLE + '.APIResponse';
+  static final _tag = '$kBundle.APIResponse';
   dynamic data;
   Headers headers;
   DioErrorType dioErrorType;

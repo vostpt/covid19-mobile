@@ -20,4 +20,5 @@ class MockDio extends Mock implements Dio {}
 
 class MockBaseOptions extends Mock implements BaseOptions {}
 
-class MockDefaultHttpClientAdapter extends Mock implements DefaultHttpClientAdapter {}
+class MockDefaultHttpClientAdapter extends Mock
+    implements DefaultHttpClientAdapter {}

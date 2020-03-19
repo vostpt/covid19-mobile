@@ -43,7 +43,7 @@ class CovidApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (_) => HomePage.builder(title: 'Covid 19 App'),
+          '/': (_) => HomePage(title: 'Covid 19 App').builder,
         },
       ),
     );

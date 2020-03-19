@@ -28,9 +28,18 @@ matrix:
     - git clone https://github.com/flutter/flutter.git -b stable --depth 1
     before_install:
     - yes | sdkmanager "platforms;android-28"
+    - openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./android/key.properties.enc -out ./android/key.properties
+    - openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./android/keystore.enc -d -a -out ./android/app/key.jks
+    - openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./android/app/google-services.json.enc -d -out ./android/app/google-services.json
     script:
     - "./flutter/bin/flutter build apk"
     - flutter/bin/flutter test test
+    deploy:
+      skip_cleanup: true
+      provider: script
+      script: ./deploy_script_android.sh
+      on:
+        branch: staging
 
   - os: osx
     osx_image: xcode11.3
@@ -45,12 +54,21 @@ matrix:
     - brew install ideviceinstaller
     - brew install ios-deploy
     - git clone https://github.com/flutter/flutter.git -b stable --depth 1
+    before_install:
+    - openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./ios/Runner/GoogleService-Info.plist.enc -out ./ios/Runner/GoogleService-Info.plist
     script:
+    - flutter/bin/flutter precache
     - flutter/bin/flutter pub get
-    - gem install cocoapods
-    - (cd ios; rm -rf Pods; rm Podfile.lock) || true
-    - flutter/bin/flutter build ios --debug --no-codesign
+    - sudo gem install cocoapods -v 1.7.5
+    - (cd ios; pod deintegrate; rm -rf Pods; rm Podfile.lock; pod install;) || true
     - flutter/bin/flutter test test
+    - flutter/bin/flutter build ios --debug --no-codesign
+    deploy:
+      skip_cleanup: true
+      provider: script
+      script: ./deploy_script_ios.sh
+      on:
+        branch: staging
 
 cache:
   directories:

@@ -54,21 +54,6 @@ void main() {
       when(options.headers).thenReturn({});
     });
 
-    test(' performs login with a valid user', () async {
-      final Foo fooModel = Foo('teste', 10);
-
-      when(client.post('/path'))
-          .thenAnswer((_) => Future.value(Response(statusCode: HttpStatus.ok)));
-      await api.getFoo(fooModel);
-
-      verify(
-        client.post('/path', data: {
-          'someString': fooModel.someString,
-          'myInt': fooModel.someInt,
-        }),
-      ).called(1);
-    });
-
     test(' performs a get stats', () async {
 
       final statsModel = StatsModel("10", "1", "1", "5", "3");

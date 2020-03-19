@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 
 /// Creates a Provider for updating UI
 class StatsProvider with ChangeNotifier {
-
   String _recovered = "0";
   String get recovered => _recovered;
 
@@ -40,5 +39,4 @@ class StatsProvider with ChangeNotifier {
     _deaths = stats.deaths;
     notifyListeners();
   }
-
 }

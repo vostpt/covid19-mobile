@@ -18,7 +18,6 @@ part 'stats_model.g.dart';
 /// Stats Model
 @JsonSerializable(includeIfNull: false)
 class StatsModel {
-
   /// Recovered total cases
   @JsonKey(name: 'recuperados')
   final String recovered;
@@ -43,13 +42,8 @@ class StatsModel {
   ///
   /// All properties are mandatory
   ///
-  StatsModel(
-      this.recovered,
-      this.confirmed,
-      this.suspected,
-      this.awaitingResults,
-      this.deaths
-  );
+  StatsModel(this.recovered, this.confirmed, this.suspected,
+      this.awaitingResults, this.deaths);
 
   /// Mapper from Json to Model
   factory StatsModel.fromJson(Map<String, dynamic> json) =>

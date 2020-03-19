@@ -17,6 +17,10 @@ import '../ui/app.dart';
 
 enum _RequestType { post, get, put, patch, delete }
 
+/// Main APIService
+///
+/// This will create a singleton instance
+///
 class APIService {
   static const String _tag = '.APIService';
   static APIService _apiService = APIService._();
@@ -37,7 +41,7 @@ class APIService {
       _configApi = api ?? DevApi();
 
       _client = client ?? Dio();
-      _client.options.baseUrl = '...';
+      _client.options.baseUrl = _configApi.build();
       _client.options.connectTimeout = 30000;
       _initialized = true;
     }
@@ -116,7 +120,7 @@ class APIService {
   Future<APIResponse> getStats() async {
     return await _performRequest(
         _RequestType.get,
-        _configApi.build(path: 'stats'),
+        '/stats',
     );
   }
 }

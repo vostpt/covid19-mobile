@@ -7,24 +7,28 @@ import '../../../bloc/app_bloc.dart';
 import '../../../bloc/base_bloc.dart';
 import '../../app.dart';
 
+/// Creates an HomePage extending [BasePage]
+/// that is a StatefulWidget
 class HomePage extends BasePage {
+
+  /// Home page view
   HomePage({Key key, this.title}) : super(key: key);
 
+  /// Title of the page view
   final String title;
 
   @override
   _HomePageState createState() => _HomePageState();
 
-  static builder({String title}) {
+  @override
+  Widget get builder =>
+      MultiProvider(
+          providers: [
+            ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider())
+          ],
+          child: HomePage(title: title)
+      );
 
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider())
-      ],
-      child: HomePage(title: title)
-    );
-
-  }
 }
 
 class _HomePageState extends BaseState<HomePage, AppBloc> {

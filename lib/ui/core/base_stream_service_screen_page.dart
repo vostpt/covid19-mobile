@@ -14,6 +14,20 @@ abstract class BasePage extends StatefulWidget {
   ///
   /// [key] is optional
   BasePage({Key key}) : super(key: key);
+
+  /// Builder to instantiate other widgets on top of this one
+  ///
+  /// A practical use case could be adding a Provider
+  ///
+  /// ex:
+  ///   @override
+  ///   get builder => MultiProvider(
+  ///      providers: [
+  ///         ChangeNotifierProvider<Provider>.value(value: Provider())
+  ///      ],
+  ///      child: Widget()
+  ///   );
+  Widget get builder;
 }
 
 /// BaseStreamServiceScreenPage receives an [Bloc] instance
@@ -96,9 +110,6 @@ abstract class BaseState<Page extends BasePage, B extends Bloc>
     _dispose();
     super.dispose();
   }
-
-  @override
-  Widget build(BuildContext context);
 
 }
 

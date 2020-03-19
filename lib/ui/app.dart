@@ -1,5 +1,6 @@
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/resources/style/themes.dart';
 import 'package:covid19mobile/ui/screens/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -24,9 +25,7 @@ class CovidApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: Themes.defaultAppTheme,
         initialRoute: '/',
         routes: {
           '/': (_) => HomePage(title: 'Covid 19 App'),

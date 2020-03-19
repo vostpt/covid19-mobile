@@ -43,7 +43,7 @@ class TextStyles {
         color: color,
       ));
 
-  static TextStyle link({Color color = Covid19Colors.darkGrey}) =>
+  static TextStyle button({Color color = Covid19Colors.darkGrey}) =>
       GoogleFonts.lato(
           textStyle: TextStyle(
         fontWeight: FontWeight.w900,
@@ -80,6 +80,14 @@ class TextStyles {
           textStyle: TextStyle(
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
+        color: color,
+      ));
+
+  static TextStyle paragraphNormal({Color color = Covid19Colors.darkGrey}) =>
+      GoogleFonts.lato(
+          textStyle: TextStyle(
+        fontWeight: FontWeight.normal,
+        fontSize: 16.0,
         color: color,
       ));
 

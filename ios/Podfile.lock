@@ -65,14 +65,20 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - path_provider (0.0.1):
+    - Flutter
+  - path_provider_macos (0.0.1):
+    - Flutter
   - PromisesObjC (1.2.8)
 
 DEPENDENCIES:
   - Firebase/Analytics
   - Flutter (from `Flutter`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -89,6 +95,10 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+  path_provider_macos:
+    :path: ".symlinks/plugins/path_provider_macos/ios"
 
 SPEC CHECKSUMS:
   Firebase: fe7f74012742ab403451dd283e6909b8f1fb348a
@@ -103,8 +113,10 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: 32f75fbe904c82772fcbb6b6bd4525bfb6f2a862
   GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  path_provider: fb74bd0465e96b594bb3b5088ee4a4e7bb1f2a9d
+  path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
 PODFILE CHECKSUM: 400dd61429cc6a5dcab5fb0ef8f9bb21f86a2cad
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.7.1

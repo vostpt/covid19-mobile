@@ -14,7 +14,6 @@
 
 import '../model/stats_model.dart';
 
-
 abstract class Bloc {
 
   /// Dispose Bloc instance

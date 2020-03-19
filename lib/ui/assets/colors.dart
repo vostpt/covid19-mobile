@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -12,6 +10,8 @@ import 'package:flutter/widgets.dart';
 ///
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+import 'package:flutter/widgets.dart';
 
 /// Style colors for this project, to be use widely in the project
 class Covid19Colors {

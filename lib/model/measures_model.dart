@@ -155,9 +155,9 @@ class MeasuresModel {
     this.links,
   });
 
-  /// Mapper from Json to Model
-  factory MeasuresModel.fromJson(Map<String, dynamic> json) =>
-      _$MeasuresModelFromJson(json);
+  static List<MeasuresModel> fromJson(List<Map<String, dynamic>> json) {
+    return json.map(_$MeasuresModelFromJson).toList();
+  }
 
   /// Maps Model to Json
   Map<String, dynamic> toJson() => _$MeasuresModelToJson(this);

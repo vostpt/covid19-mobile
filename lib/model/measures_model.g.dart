@@ -8,7 +8,7 @@ part of 'measures_model.dart';
 
 MeasuresModel _$MeasuresModelFromJson(Map<String, dynamic> json) {
   return MeasuresModel(
-    id: json['ID'] as String,
+    id: json['ID'] as int,
     author: json['post_author'] as String,
     date: json['post_date'] as String,
     postDateGmt: json['post_date_gmt'] as String,

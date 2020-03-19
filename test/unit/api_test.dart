@@ -11,7 +11,6 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
 import 'dart:io';
 
 import 'package:covid19mobile/model/api_response_model.dart';
@@ -25,7 +24,6 @@ import 'package:mockito/mockito.dart';
 import 'mocks.dart';
 
 void main() {
-
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('API Service Test', () {
@@ -54,38 +52,17 @@ void main() {
       when(options.headers).thenReturn({});
     });
 
-    test(' performs login with a valid user', () async {
-      final Foo fooModel = Foo('teste', 10);
-
-      when(client.post('/path'))
-          .thenAnswer((_) => Future.value(Response(statusCode: HttpStatus.ok)));
-      await api.getFoo(fooModel);
-
-      verify(
-        client.post('/path', data: {
-          'someString': fooModel.someString,
-          'myInt': fooModel.someInt,
-        }),
-      ).called(1);
-    });
-
     test(' performs a get stats', () async {
-      final statsModel = StatsModel(
-        "10", "1", "1", "5", "3"
-      );
+      final statsModel = StatsModel("10", "1", "1", "5", "3");
 
-      when(client.get('/stats'))
-          .thenAnswer((_) => Future.value(
-          Response(
-              statusCode: HttpStatus.ok,
-              data: {
-                  "recuperados": "10",
-                  "confirmados": "1",
-                  "suspeitos": "1",
-                  "aguardar_resultados": "5",
-                  "obitos": "3"
-                }
-          )));
+      when(client.get('/stats')).thenAnswer(
+          (_) => Future.value(Response(statusCode: HttpStatus.ok, data: {
+                "recuperados": "10",
+                "confirmados": "1",
+                "suspeitos": "1",
+                "aguardar_resultados": "5",
+                "obitos": "3"
+              })));
 
       /// Verify if is same instance
       var response = await api.getStats();
@@ -110,7 +87,6 @@ void main() {
       expect(responseModel.awaitingResults, statsModel.awaitingResults);
       expect(responseModel.suspected, statsModel.suspected);
       expect(responseModel.deaths, statsModel.deaths);
-
     });
   });
 }

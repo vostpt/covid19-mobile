@@ -227,20 +227,21 @@ void main() {
       expect(response, isInstanceOf<APIResponse>());
 
       /// Verify json to model
-      var responseModelList = MeasuresModel.fromJson(response.data);
-      expect(responseModelList, isNotNull);
-      expect(responseModelList.length, 2);
-
-      var responseModel = responseModelList.first;
+      var listResponseModel = MeasuresModel.fromJson(response.data);
+      expect(listResponseModel, isNotNull);
+      expect(listResponseModel.length, 2);
 
       /// Verify model to json
-      var responseModeltoJson = responseModel.toJson();
+      var responseModeltoJson =
+          listResponseModel.map((model) => model.toJson());
       expect(responseModeltoJson, isNotNull);
 
       /// Call API
       verify(
         client.get('/measures'),
       ).called(1);
+
+      var responseModel = listResponseModel.first;
 
       expect(responseModel.id, measuresModel.id);
       expect(responseModel.author, measuresModel.author);

@@ -76,4 +76,5 @@ class RemoteWorkResultStream
   /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [Lst<RemoteWorkModel>] instance list
   RemoteWorkResultStream({this.state, this.model});
+
 }

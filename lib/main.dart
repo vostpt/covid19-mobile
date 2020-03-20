@@ -16,6 +16,7 @@ import 'package:covid19mobile/ui/app.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
+
 void main() {
 
   var enableInDevMode = true;

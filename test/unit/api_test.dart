@@ -143,5 +143,41 @@ void main() {
 
 
     });
+
+    test(' performs a get Post RemoteWork', () async {
+      final postType = PostType(PostTypes.remoteWork);
+
+      final statsModel = RemoteWorkModel(
+          "escolas",
+          "",
+          "",
+          ""
+      );
+
+      when(client.get(postType.getRequestType()))
+          .thenAnswer((_) => Future.value(
+          Response(
+              statusCode: HttpStatus.ok,
+              data: {
+                "tipo": "escolas",
+                "formacao_em_portugues": "",
+                "como_aceder": "",
+                "suporte_tecnico": "",
+              }
+          )));
+
+      /// Verify if is same instance
+      var response = await api.getPosts<RemoteWorkModel>(postType);
+      expect(response, isInstanceOf<APIResponse>());
+
+      expect(response.data, isNotNull);
+
+      /// call api
+      verify(
+        client.get(postType.getRequestType()),
+      ).called(1);
+
+
+    });
   });
 }

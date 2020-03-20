@@ -15,9 +15,20 @@ import 'dart:async';
 import 'package:covid19mobile/ui/app.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 
-void main() {
+void main() async {
+
+  /// This is the glue that binds the framework to the Flutter engine.
+  WidgetsFlutterBinding.ensureInitialized();
+
+  /// Get App directory to be used in Hive
+  var dir = await getApplicationDocumentsDirectory();
+
+  /// Initialize the Hive
+  Hive.init(dir.path);
 
   var enableInDevMode = true;
 

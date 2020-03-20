@@ -15,10 +15,13 @@
 import 'package:covid19mobile/ui/assets/dimensions.dart';
 import 'package:flutter/material.dart';
 
+import '../assets/colors.dart';
+
 class Separator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Divider(
+      color: Covid19Colors.green,
       endIndent: identMargin,
       indent: identMargin,
       thickness: 2.0,

@@ -17,7 +17,7 @@ import 'package:dio/dio.dart';
 import 'package:covid19mobile/ui/app.dart';
 
 class APIResponse {
-  static final _tag = '$kBundle.APIResponse';
+  static final _tag = '$bundle.APIResponse';
   dynamic data;
   Headers headers;
   DioErrorType dioErrorType;

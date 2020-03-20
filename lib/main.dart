@@ -16,9 +16,7 @@ import 'package:covid19mobile/ui/app.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
-
 void main() {
-
   var enableInDevMode = true;
 
   /// Set `enableInDevMode` to true to see reports while in debug mode
@@ -31,21 +29,16 @@ void main() {
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
   runZoned<Future<void>>(() async {
-
     /// Run main app
     runApp(CovidApp());
-
-    }, onError: (e, s) {
-
+  }, onError: (e, s) {
     /// Register and sends error
     Crashlytics.instance.recordError(e, s);
 
     /// for debug:
-    if(enableInDevMode) {
+    if (enableInDevMode) {
       logger.e('[Error]: ${e.toString()}');
       logger.e('[Stacktrace]: ${s.toString()}');
     }
-
   });
-
 }

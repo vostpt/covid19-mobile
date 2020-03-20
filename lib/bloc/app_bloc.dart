@@ -21,7 +21,7 @@ import 'package:rxdart/subjects.dart';
 
 import 'base_bloc.dart';
 
-class AppBloc implements Bloc  {
+class AppBloc implements Bloc {
   static const String _tag = '.AppBloc';
 
   StreamController onStream = BehaviorSubject<ResultStream>();
@@ -47,10 +47,8 @@ class AppBloc implements Bloc  {
       logger.i('[$_tag] everything went ok!');
 
       onStream.sink.add(StatsResultStream(
-        model: StatsModel.fromJson(response.data),
-        state: StateStream.success
-      ));
-
+          model: StatsModel.fromJson(response.data),
+          state: StateStream.success));
     } else {
       logger.e('[$_tag] oops...');
       // throw some error

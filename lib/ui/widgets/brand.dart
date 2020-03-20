@@ -24,7 +24,6 @@ class Brand extends StatelessWidget {
           TextSpan(
             text: '#COVID19',
             style: TextStyle(
-              fontWeight: FontWeight.bold,
               color: Covid19Colors.red,
               fontSize: 24.0,
             ),
@@ -32,7 +31,6 @@ class Brand extends StatelessWidget {
           TextSpan(
             text: 'PT',
             style: TextStyle(
-              fontWeight: FontWeight.bold,
               color: Covid19Colors.green,
               fontSize: 24.0,
             ),

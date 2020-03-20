@@ -36,6 +36,12 @@ class VideoModel extends BasePostModel {
   @JsonKey(name: 'thumbnail')
   final String thumbnail;
 
+  String getVideoUrl() {
+    var regex = RegExp(r'(?<=src=").*?(?=[?"])');
+    var videoUrl = regex.firstMatch(video)?.group(0);
+    return videoUrl?.replaceAll("\\", "");
+  }
+
   /// Model constructor
   ///
   /// All properties are mandatory

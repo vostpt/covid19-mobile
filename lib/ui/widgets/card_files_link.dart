@@ -12,6 +12,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -28,7 +29,7 @@ class CardFilesLink extends StatelessWidget {
         _launchUrl(link);
       },
       child: Card(
-        color: Colors.teal,
+        color: Covid19Colors.green,
         child: Card(
           color: Colors.white,
           child: Padding(
@@ -38,8 +39,9 @@ class CardFilesLink extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: Text(
-                    text.length > 15 ? text.substring(0, 15) + "..." : text,
+                    text,
                     style: TextStyle(
+                      color: Covid19Colors.green,
                       fontSize: 18,
                     ),
                   ),
@@ -47,6 +49,7 @@ class CardFilesLink extends StatelessWidget {
                 Icon(
                   Icons.arrow_forward,
                   size: 30,
+                  color: Covid19Colors.green,
                 )
               ],
             ),

@@ -197,7 +197,8 @@ void main() {
         postMimeType: "",
         commentCount: "0",
         filter: "raw",
-        video: "video",
+        video:
+            "<iframe title=\"Apoio ao Cliente\" width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/vjSgGxuv8UQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
         description: "descricao",
         thumbnail: "thumbnail",
       );
@@ -233,7 +234,8 @@ void main() {
               "post_mime_type": "",
               "comment_count": "0",
               "filter": "raw",
-              "video": "video",
+              "video":
+                  "<iframe title=\"Apoio ao Cliente\" width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/vjSgGxuv8UQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
               "descricao": "descricao",
               "thumbnail": "thumbnail",
             },
@@ -265,7 +267,8 @@ void main() {
               "post_mime_type": "",
               "comment_count": "0",
               "filter": "raw",
-              "video": "video",
+              "video":
+                  "<iframe title=\"Apoio ao Cliente\" width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/vjSgGxuv8UQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
               "descricao": "descricao",
               "thumbnail": "thumbnail",
             }
@@ -323,6 +326,11 @@ void main() {
       expect(responseModel.video, videoModel.video);
       expect(responseModel.description, videoModel.description);
       expect(responseModel.thumbnail, videoModel.thumbnail);
+
+      String expectedUrl =
+          "https://www.youtube.com/embed/vjSgGxuv8UQ";
+
+      expect(responseModel.getVideoUrl(), expectedUrl);
     });
   });
 }

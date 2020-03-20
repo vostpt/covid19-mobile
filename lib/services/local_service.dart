@@ -13,7 +13,6 @@
 
 import 'package:covid19mobile/ui/app.dart';
 import 'package:hive/hive.dart';
-
 import 'local/local_data_source.dart';
 
 /// Main LocalStorageService

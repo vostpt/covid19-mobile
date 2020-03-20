@@ -31,21 +31,16 @@ void main() {
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
   runZoned<Future<void>>(() async {
-
     /// Run main app
     runApp(CovidApp());
-
-    }, onError: (e, s) {
-
+  }, onError: (e, s) {
     /// Register and sends error
     Crashlytics.instance.recordError(e, s);
 
     /// for debug:
-    if(enableInDevMode) {
+    if (enableInDevMode) {
       logger.e('[Error]: ${e.toString()}');
       logger.e('[Stacktrace]: ${s.toString()}');
     }
-
   });
-
 }

@@ -18,10 +18,8 @@ import 'package:provider/provider.dart';
 
 import '../../bloc/base_bloc.dart';
 
-
 /// Base abstract class that extends [StatefulWidget]
 abstract class BasePage extends StatefulWidget {
-
   /// Class Constructor
   ///
   /// [key] is optional
@@ -63,7 +61,7 @@ mixin BaseStreamServiceScreenPage<B extends Bloc> {
   StreamSubscription get streamSubscription => _streamSubscription;
 
   void _listen(Bloc bloc) {
-    if(onStateListener == null) {
+    if (onStateListener == null) {
       return;
     }
     _streamSubscription = onStateListener.listen(onStateResultListener);
@@ -98,9 +96,7 @@ mixin BaseStreamServiceScreenPage<B extends Bloc> {
 ///   updates to use the new instance of the Provider
 ///
 abstract class BaseState<Page extends BasePage, B extends Bloc>
-    extends State<Page>
-    with BaseStreamServiceScreenPage<B>{
-
+    extends State<Page> with BaseStreamServiceScreenPage<B> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -122,6 +118,4 @@ abstract class BaseState<Page extends BasePage, B extends Bloc>
     _dispose();
     super.dispose();
   }
-
 }
-

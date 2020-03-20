@@ -1,3 +1,5 @@
+import 'package:covid19mobile/providers/faq_provider.dart';
+import 'package:covid19mobile/providers/remote_work_provider.dart';
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -35,7 +37,10 @@ class HomePage extends BasePage {
 
   @override
   Widget get builder => MultiProvider(providers: [
-        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider())
+        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider()),
+        ChangeNotifierProvider<RemoteWorkProvider>.value(value: RemoteWorkProvider()),
+        ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider())
+
       ], child: HomePage(title: title));
 }
 
@@ -68,6 +73,9 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
 
     /// Get RemoteWork Posts
     bloc.geRemoteWork();
+
+    /// Get Faq Posts
+    bloc.getFaqs();
   }
 
   @override
@@ -77,6 +85,14 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
   void onStateResultListener(ResultStream result) {
     if (result is StatsResultStream) {
       Provider.of<StatsProvider>(context, listen: false).setStats(result.model);
+    }
+
+    if (result is RemoteWorkResultStream) {
+      Provider.of<RemoteWorkProvider>(context, listen: false).setRemoteWork(result.model);
+    }
+
+    if (result is FaqResultStream) {
+      Provider.of<FaqProvider>(context, listen: false).setFaqs(result.model);
     }
   }
 }

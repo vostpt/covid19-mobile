@@ -1,3 +1,5 @@
+import 'package:covid19mobile/model/faq_model.dart';
+
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -76,5 +78,24 @@ class RemoteWorkResultStream
   /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [Lst<RemoteWorkModel>] instance list
   RemoteWorkResultStream({this.state, this.model});
+
+}
+
+
+/// The ResultStream instance for requesting the remote work posts
+///
+/// [FaqResultStream] is extended from [ResultStream]
+class FaqResultStream
+    extends ResultStream<StateStream, List<FaqModel>>{
+
+  @override
+  List<FaqModel> model;
+
+  @override
+  StateStream state;
+
+  /// Constructor to set the [state], a [StateStream] instance
+  /// and [model] a [Lst<RemoteWorkModel>] instance list
+  FaqResultStream({this.state, this.model});
 
 }

@@ -14,6 +14,7 @@
 import 'dart:io';
 
 import 'package:covid19mobile/model/api_response_model.dart';
+import 'package:covid19mobile/model/faq_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/sample_model.dart';
@@ -144,14 +145,34 @@ void main() {
 
     });
 
-    test(' performs a get Post RemoteWork', () async {
-      final postType = PostType(PostTypes.remoteWork);
+    test(' performs a get Post Faqs', () async {
+      final postType = PostType(PostTypes.faq);
 
-      final statsModel = RemoteWorkModel(
-          "escolas",
+      final faqModel = FaqModel(
+          10,
+          "pergunta",
+          "resposta",
           "",
           "",
-          ""
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          1,
+          "",
+          1,
+          "",
+          "",
+          "",
+          "",
       );
 
       when(client.get(postType.getRequestType()))
@@ -159,15 +180,14 @@ void main() {
           Response(
               statusCode: HttpStatus.ok,
               data: {
-                "tipo": "escolas",
-                "formacao_em_portugues": "",
-                "como_aceder": "",
-                "suporte_tecnico": "",
+                "ID": 10,
+                "pergunta": "escolas",
+                "questao": "",
               }
           )));
 
       /// Verify if is same instance
-      var response = await api.getPosts<RemoteWorkModel>(postType);
+      var response = await api.getPosts<FaqModel>(postType);
       expect(response, isInstanceOf<APIResponse>());
 
       expect(response.data, isNotNull);
@@ -176,7 +196,6 @@ void main() {
       verify(
         client.get(postType.getRequestType()),
       ).called(1);
-
 
     });
   });

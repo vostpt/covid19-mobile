@@ -37,7 +37,7 @@ class APIResponse {
   APIResponse(this.data, this.statusCode, {this.headers, this.dioErrorType})
       : errors = headers != null && headers['errorKey'] != null
             ? [] // Decode errors to [errors]
-            : [] {
+            : null {
     logger.i(this);
   }
 

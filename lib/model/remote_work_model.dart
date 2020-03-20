@@ -13,6 +13,8 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'base_post_model.dart';
+
 part 'remote_work_model.g.dart';
 
 /// RemoteWork Model
@@ -22,8 +24,7 @@ part 'remote_work_model.g.dart';
 /// RemoteWorkModel assigned typeId 2
 ///
 @JsonSerializable(includeIfNull: false)
-class RemoteWorkModel {
-  ///TODO: add generic Post fields
+class RemoteWorkModel extends BasePostModel{
 
   /// Remote work types
   /// ex:
@@ -33,6 +34,13 @@ class RemoteWorkModel {
   ///   Organizations -> organizacoes
   @JsonKey(name: 'tipo')
   final String remoteWorkType;
+
+  @JsonKey(name: 'post_title')
+  final String postTitle;
+
+  /// This will have the content
+  @JsonKey(name: 'descricao')
+  final String description;
 
   /// If this in a training in Portuguese
   @JsonKey(name: 'formacao_em_portugues')
@@ -53,10 +61,15 @@ class RemoteWorkModel {
   /// All Fields are mandatory
   ///
   RemoteWorkModel(
-    this.remoteWorkType,
-    this.trainingInPortuguese,
-    this.howToAccess,
-    this.technicalSupportUri,
+      int id,
+      this.postTitle,
+      this.remoteWorkType,
+      this.description,
+      this.trainingInPortuguese,
+      this.howToAccess,
+      this.technicalSupportUri,
+  ) : super(
+      id: id
   );
 
   /// Mapper from Json to Model

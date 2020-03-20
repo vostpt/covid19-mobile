@@ -97,29 +97,70 @@ void main() {
     test(' performs a get Post RemoteWork', () async {
       final postType = PostType(PostTypes.remoteWork);
 
-      final statsModel = RemoteWorkModel("escolas", "", "", "");
-
-      when(client.get(postType.getRequestType())).thenAnswer(
-        (_) => Future.value(
-          Response(statusCode: HttpStatus.ok, data: {
-            "tipo": "escolas",
-            "formacao_em_portugues": "",
-            "como_aceder": "",
-            "suporte_tecnico": "",
-          }),
-        ),
+      final model1 = RemoteWorkModel(
+        10,
+        "title",
+        "escolas",
+        "some description",
+        "",
+        "",
+        "",
       );
+      final model2 = RemoteWorkModel(
+        10,
+        "title",
+        "escolas",
+        "some description",
+        "",
+        "",
+        "",
+      );
+
+      final jsonData1 = {
+        "ID": 10,
+        "post_title": "title",
+        "tipo": "escolas",
+        "descricao": "some description",
+        "formacao_em_portugues": "",
+        "como_aceder": "",
+        "suporte_tecnico": "",
+      };
+      final jsonData2 = {
+        "ID": 10,
+        "post_title": "title",
+        "tipo": "escolas",
+        "descricao": "some description",
+        "formacao_em_portugues": "",
+        "como_aceder": "",
+        "suporte_tecnico": "",
+      };
+
+      when(client.get(postType.getRequestType())).thenAnswer((_) =>
+          Future.value(Response(
+              statusCode: HttpStatus.ok, data: [jsonData1, jsonData2])));
 
       /// Verify if is same instance
       var response = await api.getPosts<RemoteWorkModel>(postType);
       expect(response, isInstanceOf<APIResponse>());
-
       expect(response.data, isNotNull);
 
       /// call api
       verify(
         client.get(postType.getRequestType()),
       ).called(1);
+
+      final data = response.data.cast<Map<String, dynamic>>();
+      expect(data, isNotNull);
+
+      List<RemoteWorkModel> data2 = data
+          .map<RemoteWorkModel>((json) => RemoteWorkModel.fromJson(json))
+          .toList();
+      expect(data2, isNotNull);
+      expect(data2.length, 2);
+
+      expect(data2[0].id, model1.id);
+      expect(data2[1].id, model2.id);
+
     });
 
     test(' performs a get measures', () async {
@@ -270,6 +311,7 @@ void main() {
       expect(responseModel.filter, measuresModel.filter);
       expect(responseModel.documents, measuresModel.documents);
       expect(responseModel.links, measuresModel.links);
+
     });
   });
 }

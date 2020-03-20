@@ -11,7 +11,6 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 
@@ -25,7 +24,6 @@ import '../../app.dart';
 /// Creates an HomePage extending [BasePage]
 /// that is a StatefulWidget
 class HomePage extends BasePage {
-
   /// Home page view
   HomePage({Key key, this.title}) : super(key: key);
 
@@ -36,22 +34,14 @@ class HomePage extends BasePage {
   _HomePageState createState() => _HomePageState();
 
   @override
-  Widget get builder =>
-      MultiProvider(
-          providers: [
-            ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider())
-          ],
-          child: HomePage(title: title)
-      );
-
+  Widget get builder => MultiProvider(providers: [
+        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider())
+      ], child: HomePage(title: title));
 }
 
 class _HomePageState extends BaseState<HomePage, AppBloc> {
-
-
   @override
   Widget build(BuildContext context) {
-
     var stats = Provider.of<StatsProvider>(context);
     logger.i('[StatsProvider] $stats!');
 
@@ -80,11 +70,8 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
 
   @override
   void onStateResultListener(ResultStream result) {
-    if(result is StatsResultStream) {
-
-      Provider
-          .of<StatsProvider>(context, listen: false)
-          .setStats(result.model);
+    if (result is StatsResultStream) {
+      Provider.of<StatsProvider>(context, listen: false).setStats(result.model);
     }
   }
 }

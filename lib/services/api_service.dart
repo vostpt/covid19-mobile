@@ -43,7 +43,6 @@ class APIService {
 
   void init([Dio client, AbstractApi api]) async {
     if (!_initialized) {
-
       _configApi = api ?? DevApi();
 
       _client = client ?? Dio();
@@ -104,7 +103,6 @@ class APIService {
         headers: response?.headers,
       );
     } on DioError catch (e) {
-
       logger.e(
           '[$_tag] Request error:  ${e.error} | Status Code: ${e.response?.statusCode} | Response: ${e.response} | Request: ${e.request?.uri} | Type: ${e.type} | Headers:${e.response?.headers?.map}');
       return APIResponse(
@@ -125,8 +123,8 @@ class APIService {
   /// Gets the updated case stats
   Future<APIResponse> getStats() async {
     return await _performRequest(
-        _RequestType.get,
-        '/stats',
+      _RequestType.get,
+      '/stats',
     );
   }
 }

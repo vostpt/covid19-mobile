@@ -14,6 +14,8 @@
 import 'dart:async';
 
 import 'package:covid19mobile/model/api_response_model.dart';
+import 'package:covid19mobile/model/post_type.dart';
+import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/services/api_service.dart';
 import 'package:covid19mobile/ui/app.dart';
@@ -54,6 +56,62 @@ class AppBloc implements Bloc  {
     } else {
       logger.e('[$_tag] oops...');
       // throw some error
+    }
+  }
+
+  void geRemoteWork() async {
+
+    final postType = PostType(PostTypes.remoteWork);
+
+    getPosts<RemoteWorkModel>(postType, cacheKey: "RemoteWorkModel");
+  }
+
+  void getPosts<T>(PostType postType,
+      {bool cache = true, String cacheKey = "key"}) async {
+
+    final APIResponse response = await APIService.api.getPosts<T>(postType);
+    if (response.isOk) {
+      logger.i('[$_tag] everything went ok!');
+
+      /// Cast the response to Map key -> value
+      final data = response.data.cast<Map<String, dynamic>>();
+
+      var results = parseData<T>(postType, data);
+
+      if(cache) {
+        /// TODO: cache results
+      }
+
+      onStream.sink.add(RemoteWorkResultStream(
+          model: results,
+          state: StateStream.success
+      ));
+
+    } else {
+      logger.e('[$_tag] oops...');
+      // throw some error
+    }
+
+  }
+
+  /// Parse the json map into each corresponding Post Model
+  ///
+  /// Both [postType] and [data] are mandatory
+  ///
+  /// Then returns the parsed data
+  parseData<T>(PostType postType, dynamic data) {
+
+    switch (postType.postTypes) {
+      case PostTypes.measures:
+      // TODO: Handle this case.
+        break;
+      case PostTypes.remoteWork:
+      /// Data converted to a Map now we need to convert each entry
+        return data.map<T>((json) =>
+        /// into a [RemoteWorkModel] instance and save into a List
+        RemoteWorkModel.fromJson(json)).toList();
+
+        break;
     }
   }
 

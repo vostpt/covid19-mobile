@@ -19,6 +19,7 @@ dependencies:
   # Services
   dio: ^3.0.9
   logger: ^0.8.3
+  url_launcher: ^5.4.2
 
   # App
   cupertino_icons: ^0.1.2
@@ -34,7 +35,6 @@ dependencies:
 
   # UI
   google_fonts: ^0.3.10
-
 
 dev_dependencies:
   flutter_test:

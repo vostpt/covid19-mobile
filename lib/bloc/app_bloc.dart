@@ -95,11 +95,11 @@ class AppBloc implements Bloc {
       }
 
       return results;
+
     } else {
       logger.e('[$_tag] oops...');
       // throw some error
     }
-
     return null;
   }
 
@@ -129,6 +129,13 @@ class AppBloc implements Bloc {
 
             /// into a [RemoteWorkModel] instance and save into a List
             FaqModel.fromJson(json)).toList();
+
+        break;
+      case PostTypes.faq:
+      /// Data converted to a Map now we need to convert each entry
+        return data.map<T>((json) =>
+        /// into a [RemoteWorkModel] instance and save into a List
+        FaqModel.fromJson(json)).toList();
 
         break;
     }

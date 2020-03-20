@@ -11,7 +11,6 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/model/faq_model.dart';
@@ -182,6 +181,7 @@ void main() {
       final model2 = FaqModel.fromJson(json);
       expect(model2, isNotNull);
       expect(model2, isInstanceOf<FaqModel>());
+
     });
 
   });

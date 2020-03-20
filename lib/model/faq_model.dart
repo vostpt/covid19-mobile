@@ -1,3 +1,4 @@
+
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -12,6 +13,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:json_annotation/json_annotation.dart';
+
 import 'base_post_model.dart';
 
 part 'faq_model.g.dart';
@@ -24,6 +26,7 @@ part 'faq_model.g.dart';
 ///
 @JsonSerializable(includeIfNull: false)
 class FaqModel extends BasePostModel {
+
   /// Question
   @JsonKey(name: 'pergunta')
   final String question;
@@ -92,4 +95,5 @@ class FaqModel extends BasePostModel {
 
   /// Maps Model to Json
   Map<String, dynamic> toJson() => _$FaqModelToJson(this);
+
 }

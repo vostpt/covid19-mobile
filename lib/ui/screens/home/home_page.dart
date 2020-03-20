@@ -11,6 +11,8 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:covid19mobile/providers/faq_provider.dart';
+import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 
@@ -35,7 +37,10 @@ class HomePage extends BasePage {
 
   @override
   Widget get builder => MultiProvider(providers: [
-        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider())
+        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider()),
+        ChangeNotifierProvider<RemoteWorkProvider>.value(
+            value: RemoteWorkProvider()),
+        ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider())
       ], child: HomePage(title: title));
 }
 
@@ -67,6 +72,9 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
 
     /// Get RemoteWork Posts
     bloc.geRemoteWork();
+
+    /// Get Faq Posts
+    bloc.getFaqs();
   }
 
   @override
@@ -76,6 +84,15 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
   void onStateResultListener(ResultStream result) {
     if (result is StatsResultStream) {
       Provider.of<StatsProvider>(context, listen: false).setStats(result.model);
+    }
+
+    if (result is RemoteWorkResultStream) {
+      Provider.of<RemoteWorkProvider>(context, listen: false)
+          .setRemoteWork(result.model);
+    }
+
+    if (result is FaqResultStream) {
+      Provider.of<FaqProvider>(context, listen: false).setFaqs(result.model);
     }
   }
 }

@@ -1,7 +1,5 @@
-
 /// Abstract API class
 abstract class AbstractApi {
-
   /// API ex:
   /// https://dev-covid19.vost.pt/wp-json/vost/v1/stats
 
@@ -39,10 +37,9 @@ class _ConfigApi implements AbstractApi {
 
   @override
   String build({String path = ""}) {
-
     var base = "$scheme://$host/$baseApi/$apiVersion";
 
-    if(path.isNotEmpty) {
+    if (path.isNotEmpty) {
       return "$base/$path";
     }
 
@@ -55,8 +52,6 @@ class DevApi extends _ConfigApi {}
 
 /// Production API Configuration
 class ProductionApi extends _ConfigApi {
-
   @override
   String get host => "<replace_for_production>";
-
 }

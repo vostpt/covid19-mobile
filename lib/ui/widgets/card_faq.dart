@@ -36,9 +36,7 @@ class CardFAQ extends StatelessWidget {
               Expanded(
                 child: Text(
                   text,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
               ),
               Icon(

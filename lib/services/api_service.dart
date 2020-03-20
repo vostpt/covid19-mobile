@@ -136,5 +136,4 @@ class APIService {
       postType.getRequestType(),
     );
   }
-
 }

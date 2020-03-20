@@ -11,6 +11,8 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+
+import '../model/remote_work_model.dart';
 import '../model/stats_model.dart';
 
 abstract class Bloc {
@@ -57,4 +59,21 @@ class StatsResultStream extends ResultStream<StateStream, StatsModel> {
   /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [StatsModel] instance
   StatsResultStream({this.state, this.model});
+}
+
+/// The ResultStream instance for requesting the remote work posts
+///
+/// [RemoteWorkResultStream] is extended from [ResultStream]
+class RemoteWorkResultStream
+    extends ResultStream<StateStream, List<RemoteWorkModel>>{
+
+  @override
+  List<RemoteWorkModel> model;
+
+  @override
+  StateStream state;
+
+  /// Constructor to set the [state], a [StateStream] instance
+  /// and [model] a [Lst<RemoteWorkModel>] instance list
+  RemoteWorkResultStream({this.state, this.model});
 }

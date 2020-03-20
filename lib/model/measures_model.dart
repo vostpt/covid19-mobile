@@ -12,28 +12,13 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:covid19mobile/model/base_post_model.dart';
 
 part 'measures_model.g.dart';
 
 /// Measures Model
 @JsonSerializable(includeIfNull: false)
-class MeasuresModel {
-  /// ID of the measure publication ppost
-  @JsonKey(name: 'ID')
-  final int id;
-
-  /// Author of this mmeasure information
-  @JsonKey(name: 'post_author')
-  final String author;
-
-  /// Publication time
-  @JsonKey(name: 'post_date')
-  final String date;
-
-  /// Publication time in GMT
-  @JsonKey(name: 'post_date_gmt')
-  final String postDateGmt;
-
+class MeasuresModel extends BasePostModel {
   /// Content information of this measure
   @JsonKey(name: 'post_content')
   final String postContent;
@@ -41,78 +26,6 @@ class MeasuresModel {
   /// Title information of this measure
   @JsonKey(name: 'post_title')
   final String postTitle;
-
-  /// Shortened information about this measure
-  @JsonKey(name: 'post_excerpt')
-  final String postExcerpt;
-
-  /// Status of the measure post
-  @JsonKey(name: 'post_status')
-  final String postStatus;
-
-  /// Status of the comments for this measure post
-  @JsonKey(name: 'comment_status')
-  final String commentStatus;
-
-  /// Status of the ping of this measure post
-  @JsonKey(name: 'ping_status')
-  final String pingStatus;
-
-  /// Passowrd hash for this post if exists
-  @JsonKey(name: 'post_password')
-  final String postPassword;
-
-  /// Name of the publication measure
-  @JsonKey(name: 'post_name')
-  final String postName;
-
-  /// Ping post
-  @JsonKey(name: 'to_ping')
-  final String toPing;
-
-  /// If this post was pinged
-  @JsonKey(name: 'pinged')
-  final String pinged;
-
-  /// When whas the ping modified
-  @JsonKey(name: 'post_modified')
-  final String postModified;
-
-  /// Date for when post was modified in GMT
-  @JsonKey(name: 'post_modified_gmt')
-  final String postModifiedGMT;
-
-  /// The post filtered by string
-  @JsonKey(name: 'post_content_filtered')
-  final String postContentFiltered;
-
-  /// What is the post parent, if exists
-  @JsonKey(name: 'post_parent')
-  final int postParent;
-
-  /// Unique URL identifier of this post
-  @JsonKey(name: 'guid')
-  final String guid;
-
-  /// Order in the menu if needed
-  @JsonKey(name: 'menu_order')
-  final int menuOrder;
-
-  /// Post type
-  @JsonKey(name: 'post_type')
-  final String postType;
-
-  /// PostMIME Type
-  @JsonKey(name: 'post_mime_type')
-  final String postMimeType;
-
-  /// Number of comments the post has
-  @JsonKey(name: 'comment_count')
-  final String commentCount;
-
-  /// What is the filter
-  @JsonKey(name: 'filter')
-  final String filter;
 
   /// If it has documents attached
   @JsonKey(name: 'documentos')
@@ -127,33 +40,55 @@ class MeasuresModel {
   /// All properties are mandatory
   ///
   MeasuresModel({
-    this.id,
-    this.author,
-    this.date,
-    this.postDateGmt,
     this.postContent,
     this.postTitle,
-    this.postExcerpt,
-    this.postStatus,
-    this.commentStatus,
-    this.pingStatus,
-    this.postPassword,
-    this.postName,
-    this.toPing,
-    this.pinged,
-    this.postModified,
-    this.postModifiedGMT,
-    this.postContentFiltered,
-    this.postParent,
-    this.guid,
-    this.menuOrder,
-    this.postType,
-    this.postMimeType,
-    this.commentCount,
-    this.filter,
     this.documents,
     this.links,
-  });
+    int id,
+    String author,
+    String date,
+    String postDateGmt,
+    String postExcerpt,
+    String postStatus,
+    String commentStatus,
+    String pingStatus,
+    String postPassword,
+    String postName,
+    String toPing,
+    String pinged,
+    String postModified,
+    String postModifiedGMT,
+    String postContentFiltered,
+    int postParent,
+    String guid,
+    int menuOrder,
+    String postType,
+    String postMimeType,
+    String commentCount,
+    String filter,
+  }) : super(
+            id: id,
+            author: author,
+            date: date,
+            postDateGmt: postDateGmt,
+            postExcerpt: postExcerpt,
+            postStatus: postStatus,
+            commentStatus: commentStatus,
+            pingStatus: pingStatus,
+            postPassword: postPassword,
+            postName: postName,
+            toPing: toPing,
+            pinged: pinged,
+            postModified: postModified,
+            postModifiedGMT: postModifiedGMT,
+            postContentFiltered: postContentFiltered,
+            postParent: postParent,
+            guid: guid,
+            menuOrder: menuOrder,
+            postType: postType,
+            postMimeType: postMimeType,
+            commentCount: commentCount,
+            filter: filter);
 
   static List<MeasuresModel> fromJson(List<Map<String, dynamic>> json) {
     return json.map(_$MeasuresModelFromJson).toList();

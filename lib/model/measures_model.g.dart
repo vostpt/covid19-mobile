@@ -8,12 +8,14 @@ part of 'measures_model.dart';
 
 MeasuresModel _$MeasuresModelFromJson(Map<String, dynamic> json) {
   return MeasuresModel(
+    postContent: json['post_content'] as String,
+    postTitle: json['post_title'] as String,
+    documents: json['documentos'] as bool,
+    links: json['links'] as bool,
     id: json['ID'] as int,
     author: json['post_author'] as String,
     date: json['post_date'] as String,
     postDateGmt: json['post_date_gmt'] as String,
-    postContent: json['post_content'] as String,
-    postTitle: json['post_title'] as String,
     postExcerpt: json['post_excerpt'] as String,
     postStatus: json['post_status'] as String,
     commentStatus: json['comment_status'] as String,
@@ -32,8 +34,6 @@ MeasuresModel _$MeasuresModelFromJson(Map<String, dynamic> json) {
     postMimeType: json['post_mime_type'] as String,
     commentCount: json['comment_count'] as String,
     filter: json['filter'] as String,
-    documents: json['documentos'] as bool,
-    links: json['links'] as bool,
   );
 }
 
@@ -50,8 +50,6 @@ Map<String, dynamic> _$MeasuresModelToJson(MeasuresModel instance) {
   writeNotNull('post_author', instance.author);
   writeNotNull('post_date', instance.date);
   writeNotNull('post_date_gmt', instance.postDateGmt);
-  writeNotNull('post_content', instance.postContent);
-  writeNotNull('post_title', instance.postTitle);
   writeNotNull('post_excerpt', instance.postExcerpt);
   writeNotNull('post_status', instance.postStatus);
   writeNotNull('comment_status', instance.commentStatus);
@@ -70,6 +68,8 @@ Map<String, dynamic> _$MeasuresModelToJson(MeasuresModel instance) {
   writeNotNull('post_mime_type', instance.postMimeType);
   writeNotNull('comment_count', instance.commentCount);
   writeNotNull('filter', instance.filter);
+  writeNotNull('post_content', instance.postContent);
+  writeNotNull('post_title', instance.postTitle);
   writeNotNull('documentos', instance.documents);
   writeNotNull('links', instance.links);
   return val;

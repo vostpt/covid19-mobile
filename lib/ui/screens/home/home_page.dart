@@ -12,6 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/providers/stats_provider.dart';
+import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 
 import 'package:flutter/material.dart';
@@ -35,7 +36,12 @@ class HomePage extends BasePage {
 
   @override
   Widget get builder => MultiProvider(providers: [
-        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider())
+        ChangeNotifierProvider<StatsProvider>.value(
+          value: StatsProvider(),
+        ),
+        ChangeNotifierProvider<VideosProvider>.value(
+          value: VideosProvider(),
+        ),
       ], child: HomePage(title: title));
 }
 
@@ -62,12 +68,14 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
 
   @override
   void initBloc(AppBloc bloc) {
-
     /// Get Case Stats
     bloc.getStats();
 
     /// Get RemoteWork Posts
     bloc.geRemoteWork();
+
+    /// Get Videos Posts
+    bloc.getVideos();
   }
 
   @override

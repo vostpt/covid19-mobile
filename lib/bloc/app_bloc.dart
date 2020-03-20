@@ -17,6 +17,7 @@ import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
+import 'package:covid19mobile/model/video_model.dart';
 import 'package:covid19mobile/services/api_service.dart';
 import 'package:covid19mobile/ui/app.dart';
 import 'package:rxdart/subjects.dart';
@@ -58,15 +59,19 @@ class AppBloc implements Bloc {
   }
 
   void geRemoteWork() async {
-
     final postType = PostType(PostTypes.remoteWork);
 
     getPosts<RemoteWorkModel>(postType, cacheKey: "RemoteWorkModel");
   }
 
+  void getVideos() async {
+    final postType = PostType(PostTypes.videos);
+
+    getPosts<VideoModel>(postType, cacheKey: "VideoModel");
+  }
+
   void getPosts<T>(PostType postType,
       {bool cache = true, String cacheKey = "key"}) async {
-
     final APIResponse response = await APIService.api.getPosts<T>(postType);
     if (response.isOk) {
       logger.i('[$_tag] everything went ok!');
@@ -76,20 +81,27 @@ class AppBloc implements Bloc {
 
       var results = parseData<T>(postType, data);
 
-      if(cache) {
+      if (cache) {
         /// TODO: cache results
       }
 
-      onStream.sink.add(RemoteWorkResultStream(
-          model: results,
-          state: StateStream.success
-      ));
-
+      switch (postType.postTypes) {
+        case PostTypes.measures:
+          // TODO: Handle this case.
+          break;
+        case PostTypes.remoteWork:
+          onStream.sink.add(RemoteWorkResultStream(
+              model: results, state: StateStream.success));
+          break;
+        case PostTypes.videos:
+          onStream.sink.add(
+              VideosResultStream(model: results, state: StateStream.success));
+          break;
+      }
     } else {
       logger.e('[$_tag] oops...');
       // throw some error
     }
-
   }
 
   /// Parse the json map into each corresponding Post Model
@@ -98,18 +110,26 @@ class AppBloc implements Bloc {
   ///
   /// Then returns the parsed data
   parseData<T>(PostType postType, dynamic data) {
-
     switch (postType.postTypes) {
       case PostTypes.measures:
-      // TODO: Handle this case.
+        // TODO: Handle this case.
         break;
       case PostTypes.remoteWork:
-      /// Data converted to a Map now we need to convert each entry
+
+        /// Data converted to a Map now we need to convert each entry
         return data.map<T>((json) =>
-        /// into a [RemoteWorkModel] instance and save into a List
-        RemoteWorkModel.fromJson(json)).toList();
+
+            /// into a [RemoteWorkModel] instance and save into a List
+            RemoteWorkModel.fromJson(json)).toList();
 
         break;
+      case PostTypes.videos:
+
+        /// Data converted to a Map now we need to convert each entry
+        return data.map<T>((json) =>
+
+            /// into a [VideoModel] instance and save into a List
+            VideoModel.fromJson(json)).toList();
     }
   }
 

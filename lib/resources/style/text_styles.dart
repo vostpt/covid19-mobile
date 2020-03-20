@@ -1,3 +1,16 @@
+///     This program is free software: you can redistribute it and/or modify
+///    it under the terms of the GNU General Public License as published by
+///    the Free Software Foundation, either version 3 of the License, or
+///    (at your option) any later version.
+///
+///    This program is distributed in the hope that it will be useful,
+///    but WITHOUT ANY WARRANTY; without even the implied warranty of
+///    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+///    GNU General Public License for more details.
+///
+///    You should have received a copy of the GNU General Public License
+///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,7 +56,8 @@ class TextStyles {
         color: color,
       ));
 
-  static TextStyle link({Color color = Covid19Colors.darkGrey}) =>
+  // This style is named "link" in Figma and Zepplin
+  static TextStyle button({Color color = Covid19Colors.darkGrey}) =>
       GoogleFonts.lato(
           textStyle: TextStyle(
         fontWeight: FontWeight.w900,
@@ -80,6 +94,14 @@ class TextStyles {
           textStyle: TextStyle(
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
+        color: color,
+      ));
+
+  static TextStyle paragraphNormal({Color color = Covid19Colors.darkGrey}) =>
+      GoogleFonts.lato(
+          textStyle: TextStyle(
+        fontWeight: FontWeight.normal,
+        fontSize: 16.0,
         color: color,
       ));
 

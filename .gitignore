@@ -319,3 +319,9 @@ android/app/google-services.json
 android/key.jks
 android/key.properties
 .idea
+
+
+# Project Specific
+
+## VSCode Snippets
+!licensenotice.code-snippets

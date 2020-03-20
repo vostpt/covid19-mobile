@@ -38,8 +38,8 @@ dependencies:
   google_fonts: 0.3.10
 
   # Hive to cache data
-  hive: ^1.4.1+1
-  hive_flutter: ^0.3.0+2
+  hive: 1.4.1+1
+  hive_flutter: 0.3.0+2
 
 
 dev_dependencies:

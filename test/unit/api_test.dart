@@ -14,6 +14,8 @@
 import 'dart:io';
 
 import 'package:covid19mobile/model/api_response_model.dart';
+import 'package:covid19mobile/model/post_type.dart';
+import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/sample_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/services/api_service.dart';
@@ -68,6 +70,7 @@ void main() {
     });
 
     test(' performs a get stats', () async {
+
       final statsModel = StatsModel("10", "1", "1", "5", "3");
 
       when(client.get('/stats')).thenAnswer(
@@ -77,7 +80,8 @@ void main() {
                 "suspeitos": "1",
                 "aguardar_resultados": "5",
                 "obitos": "3"
-              })));
+              }
+          )));
 
       /// Verify if is same instance
       var response = await api.getStats();
@@ -102,6 +106,78 @@ void main() {
       expect(responseModel.awaitingResults, statsModel.awaitingResults);
       expect(responseModel.suspected, statsModel.suspected);
       expect(responseModel.deaths, statsModel.deaths);
+    });
+
+    test(' performs a get Post RemoteWork', () async {
+      final postType = PostType(PostTypes.remoteWork);
+
+      final statsModel = RemoteWorkModel(
+          "escolas",
+          "",
+          "",
+          ""
+      );
+
+      when(client.get(postType.getRequestType()))
+          .thenAnswer((_) => Future.value(
+          Response(
+              statusCode: HttpStatus.ok,
+              data: {
+                "tipo": "escolas",
+                "formacao_em_portugues": "",
+                "como_aceder": "",
+                "suporte_tecnico": "",
+              }
+          )));
+
+      /// Verify if is same instance
+      var response = await api.getPosts<RemoteWorkModel>(postType);
+      expect(response, isInstanceOf<APIResponse>());
+
+      expect(response.data, isNotNull);
+
+      /// call api
+      verify(
+        client.get(postType.getRequestType()),
+      ).called(1);
+
+
+    });
+
+    test(' performs a get Post RemoteWork', () async {
+      final postType = PostType(PostTypes.remoteWork);
+
+      final statsModel = RemoteWorkModel(
+          "escolas",
+          "",
+          "",
+          ""
+      );
+
+      when(client.get(postType.getRequestType()))
+          .thenAnswer((_) => Future.value(
+          Response(
+              statusCode: HttpStatus.ok,
+              data: {
+                "tipo": "escolas",
+                "formacao_em_portugues": "",
+                "como_aceder": "",
+                "suporte_tecnico": "",
+              }
+          )));
+
+      /// Verify if is same instance
+      var response = await api.getPosts<RemoteWorkModel>(postType);
+      expect(response, isInstanceOf<APIResponse>());
+
+      expect(response.data, isNotNull);
+
+      /// call api
+      verify(
+        client.get(postType.getRequestType()),
+      ).called(1);
+
+
     });
   });
 }

@@ -26,6 +26,7 @@ class HeaderBack extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
           child: Text(
             text.toUpperCase(),
+            style: Theme.of(context).textTheme.display2,
           ),
         ),
       ],

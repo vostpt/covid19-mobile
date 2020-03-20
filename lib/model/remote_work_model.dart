@@ -15,7 +15,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'remote_work_model.g.dart';
 
-
 /// RemoteWork Model
 ///
 /// This model uses Hive to be ready to save it to cache
@@ -24,7 +23,6 @@ part 'remote_work_model.g.dart';
 ///
 @JsonSerializable(includeIfNull: false)
 class RemoteWorkModel {
-
   ///TODO: add generic Post fields
 
   /// Remote work types
@@ -55,10 +53,10 @@ class RemoteWorkModel {
   /// All Fields are mandatory
   ///
   RemoteWorkModel(
-      this.remoteWorkType,
-      this.trainingInPortuguese,
-      this.howToAccess,
-      this.technicalSupportUri,
+    this.remoteWorkType,
+    this.trainingInPortuguese,
+    this.howToAccess,
+    this.technicalSupportUri,
   );
 
   /// Mapper from Json to Model
@@ -67,5 +65,4 @@ class RemoteWorkModel {
 
   /// Maps Model to Json
   Map<String, dynamic> toJson() => _$RemoteWorkModelToJson(this);
-
 }

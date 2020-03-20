@@ -58,7 +58,6 @@ class AppBloc implements Bloc {
   }
 
   void geRemoteWork() async {
-
     final postType = PostType(PostTypes.remoteWork);
 
     getPosts<RemoteWorkModel>(postType, cacheKey: "RemoteWorkModel");
@@ -66,7 +65,6 @@ class AppBloc implements Bloc {
 
   void getPosts<T>(PostType postType,
       {bool cache = true, String cacheKey = "key"}) async {
-
     final APIResponse response = await APIService.api.getPosts<T>(postType);
     if (response.isOk) {
       logger.i('[$_tag] everything went ok!');
@@ -76,20 +74,16 @@ class AppBloc implements Bloc {
 
       var results = parseData<T>(postType, data);
 
-      if(cache) {
+      if (cache) {
         /// TODO: cache results
       }
 
-      onStream.sink.add(RemoteWorkResultStream(
-          model: results,
-          state: StateStream.success
-      ));
-
+      onStream.sink.add(
+          RemoteWorkResultStream(model: results, state: StateStream.success));
     } else {
       logger.e('[$_tag] oops...');
       // throw some error
     }
-
   }
 
   /// Parse the json map into each corresponding Post Model
@@ -98,16 +92,17 @@ class AppBloc implements Bloc {
   ///
   /// Then returns the parsed data
   parseData<T>(PostType postType, dynamic data) {
-
     switch (postType.postTypes) {
       case PostTypes.measures:
-      // TODO: Handle this case.
+        // TODO: Handle this case.
         break;
       case PostTypes.remoteWork:
-      /// Data converted to a Map now we need to convert each entry
+
+        /// Data converted to a Map now we need to convert each entry
         return data.map<T>((json) =>
-        /// into a [RemoteWorkModel] instance and save into a List
-        RemoteWorkModel.fromJson(json)).toList();
+
+            /// into a [RemoteWorkModel] instance and save into a List
+            RemoteWorkModel.fromJson(json)).toList();
 
         break;
     }

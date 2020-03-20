@@ -109,7 +109,7 @@ abstract class BasePostModel {
   @JsonKey(name: 'ping_status')
   final String pingStatus;
 
-  /// Passowrd hash for this post if exists
+  /// Password hash for this post if exists
   @JsonKey(name: 'post_password')
   final String postPassword;
 
@@ -157,7 +157,7 @@ abstract class BasePostModel {
   @JsonKey(name: 'post_mime_type')
   final String postMimeType;
 
-  /// Number of comments the post has
+  /// Number ƒof comments the post has
   @JsonKey(name: 'comment_count')
   final String commentCount;
 

@@ -13,6 +13,8 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+import 'base_post_model.dart';
+
 part 'remote_work_model.g.dart';
 
 /// RemoteWork Model
@@ -22,8 +24,7 @@ part 'remote_work_model.g.dart';
 /// RemoteWorkModel assigned typeId 2
 ///
 @JsonSerializable(includeIfNull: false)
-class RemoteWorkModel {
-  ///TODO: add generic Post fields
+class RemoteWorkModel extends BasePostModel{
 
   /// Remote work types
   /// ex:
@@ -33,6 +34,13 @@ class RemoteWorkModel {
   ///   Organizations -> organizacoes
   @JsonKey(name: 'tipo')
   final String remoteWorkType;
+
+  @JsonKey(name: 'post_title')
+  final String postTitle;
+
+  /// This will have the content
+  @JsonKey(name: 'descricao')
+  final String description;
 
   /// If this in a training in Portuguese
   @JsonKey(name: 'formacao_em_portugues')
@@ -53,10 +61,57 @@ class RemoteWorkModel {
   /// All Fields are mandatory
   ///
   RemoteWorkModel(
-    this.remoteWorkType,
-    this.trainingInPortuguese,
-    this.howToAccess,
-    this.technicalSupportUri,
+      int id,
+      this.postTitle,
+      this.remoteWorkType,
+      this.description,
+      this.trainingInPortuguese,
+      this.howToAccess,
+      this.technicalSupportUri,
+      String author,
+      String date,
+      String postDateGmt,
+      String postExcerpt,
+      String postStatus,
+      String commentStatus,
+      String pingStatus,
+      String postPassword,
+      String postName,
+      String toPing,
+      String pinged,
+      String postModified,
+      String postModifiedGMT,
+      String postContentFiltered,
+      int postParent,
+      String guid,
+      int menuOrder,
+      String postType,
+      String postMimeType,
+      String commentCount,
+      String filter,
+  ) : super(
+      id: id,
+      author: author,
+      date: date,
+      postDateGmt: postDateGmt,
+      postExcerpt: postExcerpt,
+      postStatus: postStatus,
+      commentStatus: commentStatus,
+      pingStatus: pingStatus,
+      postPassword: postPassword,
+      postName: postName,
+      toPing: toPing,
+      pinged: pinged,
+      postModified: postModified,
+      postModifiedGMT: postModifiedGMT,
+      postContentFiltered: postContentFiltered,
+      postParent: postParent,
+      guid: guid,
+      menuOrder: menuOrder,
+      postType: postType,
+      postMimeType: postMimeType,
+      commentCount: commentCount,
+      filter: filter,
   );
 
   /// Mapper from Json to Model

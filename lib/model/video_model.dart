@@ -40,7 +40,7 @@ class VideoModel extends BasePostModel {
   ///
   /// All properties are mandatory
   ///
-  VideoModel(
+  VideoModel({
     int id,
     String author,
     String date,
@@ -63,11 +63,11 @@ class VideoModel extends BasePostModel {
     String postMimeType,
     String commentCount,
     String filter,
-    this.postTitle, // Class property
-    this.video, // Class property
-    this.description, // Class property
+    this.postTitle, 
+    this.video, 
+    this.description, 
     this.thumbnail,
-  ) // Class property
+  }) 
   : super(
           id: id,
           author: author,

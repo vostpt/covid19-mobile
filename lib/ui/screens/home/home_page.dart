@@ -17,6 +17,7 @@ import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
+import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 
 import 'package:flutter/material.dart';
@@ -43,7 +44,10 @@ class HomePage extends BasePage {
         ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider()),
         ChangeNotifierProvider<RemoteWorkProvider>.value(
             value: RemoteWorkProvider()),
-        ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider())
+        ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider()),
+        ChangeNotifierProvider<VideosProvider>.value(
+          value: VideosProvider(),
+        ),
       ], child: HomePage(title: title));
 }
 
@@ -78,6 +82,8 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
 
     /// Get Faq Posts
     bloc.getFaqs();
+    /// Get Videos Posts
+    bloc.getVideos();
   }
 
   @override

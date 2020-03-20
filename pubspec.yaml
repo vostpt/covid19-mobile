@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: 0.1.2
   provider: 4.0.4
   rxdart: 0.23.1
+  path_provider: 1.4.4
 
   # Firebase
   firebase_core: 0.4.0+9
@@ -36,6 +37,11 @@ dependencies:
   # UI
   google_fonts: 0.3.10
 
+  # Hive to cache data
+  hive: ^1.4.1+1
+  hive_flutter: ^0.3.0+2
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -44,6 +50,7 @@ dev_dependencies:
   mockito: 4.1.1
   build_runner: 1.8.0
   json_serializable: 3.2.5
+  hive_generator: 0.7.0+2
 
 flutter:
   uses-material-design: true

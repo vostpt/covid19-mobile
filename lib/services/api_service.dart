@@ -14,6 +14,7 @@
 import 'dart:async';
 
 import 'package:covid19mobile/model/api_response_model.dart';
+import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/sample_model.dart';
 import 'package:covid19mobile/services/api.dart';
 import 'package:dio/dio.dart';
@@ -127,4 +128,13 @@ class APIService {
       '/stats',
     );
   }
+
+  /// Gets the posts accordingly by [postType]
+  Future<APIResponse> getPosts<T>(PostType postType) async {
+    return await _performRequest(
+      _RequestType.get,
+      postType.getRequestType(),
+    );
+  }
+
 }

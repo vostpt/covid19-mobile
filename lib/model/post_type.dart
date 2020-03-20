@@ -11,6 +11,24 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-void main() {
-  // Empty by design
+/// Post types
+enum PostTypes { measures, remoteWork, }
+
+class PostType {
+  final PostTypes postTypes;
+
+  PostType(this.postTypes);
+
+  String getRequestType() {
+    switch (postTypes) {
+      case PostTypes.measures:
+        return '/measures';
+        break;
+      case PostTypes.remoteWork:
+        return '/remote_work';
+        break;
+      default:
+        return '';
+    }
+  }
 }

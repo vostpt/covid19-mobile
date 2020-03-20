@@ -11,7 +11,6 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
 import '../model/remote_work_model.dart';
 import '../model/stats_model.dart';
 
@@ -65,8 +64,7 @@ class StatsResultStream extends ResultStream<StateStream, StatsModel> {
 ///
 /// [RemoteWorkResultStream] is extended from [ResultStream]
 class RemoteWorkResultStream
-    extends ResultStream<StateStream, List<RemoteWorkModel>>{
-
+    extends ResultStream<StateStream, List<RemoteWorkModel>> {
   @override
   List<RemoteWorkModel> model;
 
@@ -76,5 +74,4 @@ class RemoteWorkResultStream
   /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [Lst<RemoteWorkModel>] instance list
   RemoteWorkResultStream({this.state, this.model});
-
 }

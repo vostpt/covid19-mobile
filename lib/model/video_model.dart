@@ -63,12 +63,11 @@ class VideoModel extends BasePostModel {
     String postMimeType,
     String commentCount,
     String filter,
-    this.postTitle, 
-    this.video, 
-    this.description, 
+    this.postTitle,
+    this.video,
+    this.description,
     this.thumbnail,
-  }) 
-  : super(
+  }) : super(
           id: id,
           author: author,
           date: date,

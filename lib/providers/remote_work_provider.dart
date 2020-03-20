@@ -15,7 +15,6 @@ import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:flutter/material.dart';
 
 class RemoteWorkProvider extends ChangeNotifier {
-
   List<RemoteWorkModel> _remoteWorks;
 
   List<RemoteWorkModel> get remoteWorks => _remoteWorks;

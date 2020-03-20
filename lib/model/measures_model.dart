@@ -14,6 +14,7 @@ import 'package:covid19mobile/model/base_post_model.dart';
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:covid19mobile/model/base_post_model.dart';
 
 part 'measures_model.g.dart';
 

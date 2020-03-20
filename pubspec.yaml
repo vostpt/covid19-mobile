@@ -25,6 +25,17 @@ dependencies:
   provider: ^4.0.4
   rxdart: ^0.23.1
 
+  # Firebase
+  firebase_core: ^0.4.0+9
+  # For the FlutterFire plugin for Google Analytics
+  firebase_analytics: ^5.0.2
+  # Firebase Crashlytics
+  firebase_crashlytics: ^0.1.3+3
+
+  # UI
+  google_fonts: ^0.3.10
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -36,5 +47,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - google_fonts/
+
 flutter_intl:
   enabled: true

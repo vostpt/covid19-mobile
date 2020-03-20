@@ -1,45 +1,43 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'remote_work_model.dart';
+part of 'measures_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-RemoteWorkModel _$RemoteWorkModelFromJson(Map<String, dynamic> json) {
-  return RemoteWorkModel(
-    json['ID'] as int,
-    json['post_title'] as String,
-    json['tipo'] as String,
-    json['descricao'] as String,
-    json['formacao_em_portugues'] as String,
-    json['como_aceder'] as String,
-    json['suporte_tecnico'] as String,
-    json['post_author'] as String,
-    json['post_date'] as String,
-    json['post_date_gmt'] as String,
-    json['post_excerpt'] as String,
-    json['post_status'] as String,
-    json['comment_status'] as String,
-    json['ping_status'] as String,
-    json['post_password'] as String,
-    json['post_name'] as String,
-    json['to_ping'] as String,
-    json['pinged'] as String,
-    json['post_modified'] as String,
-    json['post_modified_gmt'] as String,
-    json['post_content_filtered'] as String,
-    json['post_parent'] as int,
-    json['guid'] as String,
-    json['menu_order'] as int,
-    json['post_type'] as String,
-    json['post_mime_type'] as String,
-    json['comment_count'] as String,
-    json['filter'] as String,
+MeasuresModel _$MeasuresModelFromJson(Map<String, dynamic> json) {
+  return MeasuresModel(
+    postContent: json['post_content'] as String,
+    postTitle: json['post_title'] as String,
+    documents: json['documentos'] as bool,
+    links: json['links'] as bool,
+    id: json['ID'] as int,
+    author: json['post_author'] as String,
+    date: json['post_date'] as String,
+    postDateGmt: json['post_date_gmt'] as String,
+    postExcerpt: json['post_excerpt'] as String,
+    postStatus: json['post_status'] as String,
+    commentStatus: json['comment_status'] as String,
+    pingStatus: json['ping_status'] as String,
+    postPassword: json['post_password'] as String,
+    postName: json['post_name'] as String,
+    toPing: json['to_ping'] as String,
+    pinged: json['pinged'] as String,
+    postModified: json['post_modified'] as String,
+    postModifiedGMT: json['post_modified_gmt'] as String,
+    postContentFiltered: json['post_content_filtered'] as String,
+    postParent: json['post_parent'] as int,
+    guid: json['guid'] as String,
+    menuOrder: json['menu_order'] as int,
+    postType: json['post_type'] as String,
+    postMimeType: json['post_mime_type'] as String,
+    commentCount: json['comment_count'] as String,
+    filter: json['filter'] as String,
   );
 }
 
-Map<String, dynamic> _$RemoteWorkModelToJson(RemoteWorkModel instance) {
+Map<String, dynamic> _$MeasuresModelToJson(MeasuresModel instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -70,11 +68,9 @@ Map<String, dynamic> _$RemoteWorkModelToJson(RemoteWorkModel instance) {
   writeNotNull('post_mime_type', instance.postMimeType);
   writeNotNull('comment_count', instance.commentCount);
   writeNotNull('filter', instance.filter);
-  writeNotNull('tipo', instance.remoteWorkType);
+  writeNotNull('post_content', instance.postContent);
   writeNotNull('post_title', instance.postTitle);
-  writeNotNull('descricao', instance.description);
-  writeNotNull('formacao_em_portugues', instance.trainingInPortuguese);
-  writeNotNull('como_aceder', instance.howToAccess);
-  writeNotNull('suporte_tecnico', instance.technicalSupportUri);
+  writeNotNull('documentos', instance.documents);
+  writeNotNull('links', instance.links);
   return val;
 }

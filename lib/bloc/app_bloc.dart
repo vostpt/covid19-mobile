@@ -14,6 +14,7 @@
 import 'dart:async';
 
 import 'package:covid19mobile/model/api_response_model.dart';
+import 'package:covid19mobile/model/faq_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
@@ -61,7 +62,12 @@ class AppBloc implements Bloc {
   void geRemoteWork() async {
     final postType = PostType(PostTypes.remoteWork);
 
-    getPosts<RemoteWorkModel>(postType, cacheKey: "RemoteWorkModel");
+    var results =
+        await getPosts<RemoteWorkModel>(postType, cacheKey: "RemoteWorkModel");
+
+    onStream.sink.add(RemoteWorkResultStream(
+        model: results,
+        state: results != null ? StateStream.success : StateStream.fail));
   }
 
   void getVideos() async {
@@ -69,8 +75,18 @@ class AppBloc implements Bloc {
 
     getPosts<VideoModel>(postType, cacheKey: "VideoModel");
   }
+  
+  void getFaqs() async {
+    final postType = PostType(PostTypes.faq);
 
-  void getPosts<T>(PostType postType,
+    var results = await getPosts<FaqModel>(postType, cacheKey: "FaqModel");
+
+    onStream.sink.add(FaqResultStream(
+        model: results,
+        state: results != null ? StateStream.success : StateStream.fail));
+  }
+
+  Future<List<T>> getPosts<T>(PostType postType,
       {bool cache = true, String cacheKey = "key"}) async {
     final APIResponse response = await APIService.api.getPosts<T>(postType);
     if (response.isOk) {
@@ -85,23 +101,13 @@ class AppBloc implements Bloc {
         /// TODO: cache results
       }
 
-      switch (postType.postTypes) {
-        case PostTypes.measures:
-          // TODO: Handle this case.
-          break;
-        case PostTypes.remoteWork:
-          onStream.sink.add(RemoteWorkResultStream(
-              model: results, state: StateStream.success));
-          break;
-        case PostTypes.videos:
-          onStream.sink.add(
-              VideosResultStream(model: results, state: StateStream.success));
-          break;
-      }
+      return results;
+
     } else {
       logger.e('[$_tag] oops...');
       // throw some error
     }
+    return null;
   }
 
   /// Parse the json map into each corresponding Post Model
@@ -121,6 +127,22 @@ class AppBloc implements Bloc {
 
             /// into a [RemoteWorkModel] instance and save into a List
             RemoteWorkModel.fromJson(json)).toList();
+
+        break;
+      case PostTypes.faq:
+
+        /// Data converted to a Map now we need to convert each entry
+        return data.map<T>((json) =>
+
+            /// into a [RemoteWorkModel] instance and save into a List
+            FaqModel.fromJson(json)).toList();
+
+        break;
+      case PostTypes.faq:
+      /// Data converted to a Map now we need to convert each entry
+        return data.map<T>((json) =>
+        /// into a [RemoteWorkModel] instance and save into a List
+        FaqModel.fromJson(json)).toList();
 
         break;
       case PostTypes.videos:

@@ -1,3 +1,4 @@
+
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -15,7 +16,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'base_post_model.dart';
 
-part 'remote_work_model.g.dart';
+part 'faq_model.g.dart';
 
 /// RemoteWork Model
 ///
@@ -24,49 +25,24 @@ part 'remote_work_model.g.dart';
 /// RemoteWorkModel assigned typeId 2
 ///
 @JsonSerializable(includeIfNull: false)
-class RemoteWorkModel extends BasePostModel {
-  /// Remote work types
-  /// ex:
-  ///   School -> escolas
-  ///   Citizen -> cidadaos
-  ///   Support -> suporte
-  ///   Organizations -> organizacoes
-  @JsonKey(name: 'tipo')
-  final String remoteWorkType;
+class FaqModel extends BasePostModel {
 
-  @JsonKey(name: 'post_title')
-  final String postTitle;
+  /// Question
+  @JsonKey(name: 'pergunta')
+  final String question;
 
-  /// This will have the content
-  @JsonKey(name: 'descricao')
-  final String description;
-
-  /// If this in a training in Portuguese
-  @JsonKey(name: 'formacao_em_portugues')
-  final String trainingInPortuguese;
-
-  /// How to access
-  ///
-  /// Informs how and the method to access this RemoteWork
-  @JsonKey(name: 'como_aceder')
-  final String howToAccess;
-
-  /// Support Uri
-  @JsonKey(name: 'suporte_tecnico')
-  final String technicalSupportUri;
+  /// Answer
+  @JsonKey(name: 'resposta')
+  final String answer;
 
   /// Constructor
   ///
   /// All Fields are mandatory
   ///
-  RemoteWorkModel(
+  FaqModel(
     int id,
-    this.postTitle,
-    this.remoteWorkType,
-    this.description,
-    this.trainingInPortuguese,
-    this.howToAccess,
-    this.technicalSupportUri,
+    this.question,
+    this.answer,
     String author,
     String date,
     String postDateGmt,
@@ -114,9 +90,10 @@ class RemoteWorkModel extends BasePostModel {
         );
 
   /// Mapper from Json to Model
-  factory RemoteWorkModel.fromJson(Map<String, dynamic> json) =>
-      _$RemoteWorkModelFromJson(json);
+  factory FaqModel.fromJson(Map<String, dynamic> json) =>
+      _$FaqModelFromJson(json);
 
   /// Maps Model to Json
-  Map<String, dynamic> toJson() => _$RemoteWorkModelToJson(this);
+  Map<String, dynamic> toJson() => _$FaqModelToJson(this);
+
 }

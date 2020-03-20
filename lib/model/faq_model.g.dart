@@ -1,20 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'remote_work_model.dart';
+part of 'faq_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-RemoteWorkModel _$RemoteWorkModelFromJson(Map<String, dynamic> json) {
-  return RemoteWorkModel(
+FaqModel _$FaqModelFromJson(Map<String, dynamic> json) {
+  return FaqModel(
     json['ID'] as int,
-    json['post_title'] as String,
-    json['tipo'] as String,
-    json['descricao'] as String,
-    json['formacao_em_portugues'] as String,
-    json['como_aceder'] as String,
-    json['suporte_tecnico'] as String,
+    json['pergunta'] as String,
+    json['resposta'] as String,
     json['post_author'] as String,
     json['post_date'] as String,
     json['post_date_gmt'] as String,
@@ -39,7 +35,7 @@ RemoteWorkModel _$RemoteWorkModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$RemoteWorkModelToJson(RemoteWorkModel instance) {
+Map<String, dynamic> _$FaqModelToJson(FaqModel instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -70,11 +66,7 @@ Map<String, dynamic> _$RemoteWorkModelToJson(RemoteWorkModel instance) {
   writeNotNull('post_mime_type', instance.postMimeType);
   writeNotNull('comment_count', instance.commentCount);
   writeNotNull('filter', instance.filter);
-  writeNotNull('tipo', instance.remoteWorkType);
-  writeNotNull('post_title', instance.postTitle);
-  writeNotNull('descricao', instance.description);
-  writeNotNull('formacao_em_portugues', instance.trainingInPortuguese);
-  writeNotNull('como_aceder', instance.howToAccess);
-  writeNotNull('suporte_tecnico', instance.technicalSupportUri);
+  writeNotNull('pergunta', instance.question);
+  writeNotNull('resposta', instance.answer);
   return val;
 }

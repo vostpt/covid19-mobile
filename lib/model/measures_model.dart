@@ -12,61 +12,35 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:covid19mobile/model/base_post_model.dart';
 
-import 'base_post_model.dart';
+part 'measures_model.g.dart';
 
-part 'remote_work_model.g.dart';
-
-/// RemoteWork Model
-///
-/// This model uses Hive to be ready to save it to cache
-///
-/// RemoteWorkModel assigned typeId 2
-///
+/// Measures Model
 @JsonSerializable(includeIfNull: false)
-class RemoteWorkModel extends BasePostModel {
-  /// Remote work types
-  /// ex:
-  ///   School -> escolas
-  ///   Citizen -> cidadaos
-  ///   Support -> suporte
-  ///   Organizations -> organizacoes
-  @JsonKey(name: 'tipo')
-  final String remoteWorkType;
+class MeasuresModel extends BasePostModel {
+  /// Content information of this measure
+  @JsonKey(name: 'post_content')
+  final String postContent;
 
+  /// Title information of this measure
   @JsonKey(name: 'post_title')
   final String postTitle;
 
-  /// This will have the content
-  @JsonKey(name: 'descricao')
-  final String description;
+  /// If it has documents attached
+  @JsonKey(name: 'documentos')
+  final bool documents;
 
-  /// If this in a training in Portuguese
-  @JsonKey(name: 'formacao_em_portugues')
-  final String trainingInPortuguese;
+  /// If it has links attached
+  @JsonKey(name: 'links')
+  final bool links;
 
-  /// How to access
+  /// Model constructor
   ///
-  /// Informs how and the method to access this RemoteWork
-  @JsonKey(name: 'como_aceder')
-  final String howToAccess;
-
-  /// Support Uri
-  @JsonKey(name: 'suporte_tecnico')
-  final String technicalSupportUri;
-
-  /// Constructor
+  /// All properties are mandatory
   ///
-  /// All Fields are mandatory
-  ///
-  RemoteWorkModel(
+  MeasuresModel({
     int id,
-    this.postTitle,
-    this.remoteWorkType,
-    this.description,
-    this.trainingInPortuguese,
-    this.howToAccess,
-    this.technicalSupportUri,
     String author,
     String date,
     String postDateGmt,
@@ -88,7 +62,11 @@ class RemoteWorkModel extends BasePostModel {
     String postMimeType,
     String commentCount,
     String filter,
-  ) : super(
+    this.postContent,
+    this.postTitle,
+    this.documents,
+    this.links,
+  }) : super(
           id: id,
           author: author,
           date: date,
@@ -113,10 +91,10 @@ class RemoteWorkModel extends BasePostModel {
           filter: filter,
         );
 
-  /// Mapper from Json to Model
-  factory RemoteWorkModel.fromJson(Map<String, dynamic> json) =>
-      _$RemoteWorkModelFromJson(json);
+  static List<MeasuresModel> fromJson(List<Map<String, dynamic>> json) {
+    return json.map(_$MeasuresModelFromJson).toList();
+  }
 
   /// Maps Model to Json
-  Map<String, dynamic> toJson() => _$RemoteWorkModelToJson(this);
+  Map<String, dynamic> toJson() => _$MeasuresModelToJson(this);
 }

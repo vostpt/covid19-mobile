@@ -17,7 +17,7 @@ import 'package:dio/dio.dart';
 import 'package:covid19mobile/ui/app.dart';
 
 class APIResponse {
-  static final _tag = '$kBundle.APIResponse';
+  static final _tag = '$bundle.APIResponse';
   dynamic data;
   Headers headers;
   DioErrorType dioErrorType;
@@ -37,7 +37,7 @@ class APIResponse {
   APIResponse(this.data, this.statusCode, {this.headers, this.dioErrorType})
       : errors = headers != null && headers['errorKey'] != null
             ? [] // Decode errors to [errors]
-            : [] {
+            : null {
     logger.i(this);
   }
 

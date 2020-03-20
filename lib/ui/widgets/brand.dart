@@ -12,6 +12,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 
 class Brand extends StatelessWidget {
@@ -24,7 +25,7 @@ class Brand extends StatelessWidget {
             text: '#COVID19',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.red,
+              color: Covid19Colors.red,
               fontSize: 24.0,
             ),
           ),
@@ -32,7 +33,7 @@ class Brand extends StatelessWidget {
             text: 'PT',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.green,
+              color: Covid19Colors.green,
               fontSize: 24.0,
             ),
           ),

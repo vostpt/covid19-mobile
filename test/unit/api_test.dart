@@ -203,8 +203,6 @@ void main() {
       expect(data2[0].id, model1.id);
       expect(data2[1].id, model2.id);
 
-
-
     });
 
     test(' performs a get measures', () async {

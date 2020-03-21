@@ -58,5 +58,6 @@ class Themes {
     accentColor: colorPrimary,
     textTheme: defaultTextTheme,
     unselectedWidgetColor: colorPrimary,
+    scaffoldBackgroundColor: Colors.white,
   );
 }

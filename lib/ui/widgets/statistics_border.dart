@@ -13,11 +13,11 @@
 
 import 'package:flutter/material.dart';
 
-class ButtonBackground extends StatelessWidget {
+class StatisticsBorder extends StatelessWidget {
   final Color color;
-  final Widget child;
+  final Text text;
 
-  const ButtonBackground({Key key, this.color, this.child}) : super(key: key);
+  const StatisticsBorder({Key key, this.color, this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,13 @@ class ButtonBackground extends StatelessWidget {
         borderRadius: BorderRadius.all(
           Radius.circular(4.0),
         ),
-        color: color,
+        border: Border.all(
+          color: color,
+          width: 2.0,
+        ),
       ),
-      padding: EdgeInsets.all(16.0),
-      child: child,
+      padding: EdgeInsets.all(4.0),
+      child: text,
     );
   }
 }

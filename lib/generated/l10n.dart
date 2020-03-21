@@ -118,6 +118,15 @@ class S {
       args: [],
     );
   }
+
+  String get faqPageResponsableEntity {
+    return Intl.message(
+      'Entidade Responsável',
+      name: 'faqPageResponsableEntity',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

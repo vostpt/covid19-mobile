@@ -49,6 +49,9 @@ class CovidApp extends StatelessWidget {
           '/': (_) => HomePage(title: 'Covid 19 App').builder,
           routeStatistics: (_) => StatisticsPage().builder,
           routeFaqs: (_) => FaqsPage(title: 'Perguntas Frequentes').builder,
+          routeFaqs: (context) => FaqsPage(
+                title: 'Perguntas Frequentes',
+              ).builder,
         },
       ),
     );

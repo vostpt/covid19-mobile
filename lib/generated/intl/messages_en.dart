@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "checkDetails" : MessageLookupByLibrary.simpleMessage("Ver detalhes"),
     "defaultError" : MessageLookupByLibrary.simpleMessage("An error has occurred"),
+    "faqPageResponsableEntity" : MessageLookupByLibrary.simpleMessage("Entidade Responsável"),
     "homePageConfirmedCases" : MessageLookupByLibrary.simpleMessage("Casos confirmados de COVID-19 em Portugal"),
     "lastUpdated" : MessageLookupByLibrary.simpleMessage("Última actualização: "),
     "statisticsPageAwaitingResults" : MessageLookupByLibrary.simpleMessage("Aguardar Resultados"),

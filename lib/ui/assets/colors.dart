@@ -56,5 +56,4 @@ class Covid19Colors {
 
   /// For use in list separator
   static const Color lightGreyLight = Color(0xffeceef0);
-
 }

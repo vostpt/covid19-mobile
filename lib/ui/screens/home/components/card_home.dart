@@ -19,19 +19,26 @@ import 'package:flutter/material.dart';
 class CardHome extends StatelessWidget {
   final String text;
   final VoidCallback callback;
+  final Color backgroundColor;
+  final Color textColor;
 
   const CardHome({
     Key key,
     @required this.text,
     @required this.callback,
-  }) : super(key: key);
+    Color backgroundColor,
+    Color textColor,
+  }) :
+        backgroundColor = backgroundColor ?? Covid19Colors.lightGrey,
+        textColor = textColor ?? Covid19Colors.darkGrey,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: callback,
       child: ButtonBackground(
-        color: Covid19Colors.lightGrey,
+        color: backgroundColor,
         child: Row(
           children: <Widget>[
             Expanded(
@@ -40,11 +47,12 @@ class CardHome extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .display2
-                    .copyWith(color: Covid19Colors.darkGrey),
+                    .copyWith(color: textColor),
               ),
             ),
             Icon(
               Icons.arrow_forward,
+              color: textColor,
             )
           ],
         ),

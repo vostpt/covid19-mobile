@@ -1,3 +1,4 @@
+import 'package:covid19mobile/generated/l10n.dart';
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -15,10 +16,13 @@ import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
+import 'package:covid19mobile/ui/screens/home/components/card_home.dart';
+import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -72,6 +76,13 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
             StatisticsButton(
               callback: () => Navigator.of(context).pushNamed(routeStatistics),
             ),
+            const SizedBox(height: 8,),
+            CardHome(
+              text: S.of(context).contactsPageTitle,
+              callback: () => Navigator.of(context).pushNamed(routeContacts),
+              backgroundColor: Covid19Colors.green,
+              textColor: Covid19Colors.white
+            )
           ],
         ),
       ),

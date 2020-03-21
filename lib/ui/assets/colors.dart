@@ -27,6 +27,9 @@ class Covid19Colors {
   /// For certain letter colors
   static const Color darkGrey = Color(0xff404040);
 
+  /// For certain letter colors
+  static const Color darkGreyLight = Color(0xff2d2d2e);
+
   /// Mostly used in backgrounds
   static const Color grey = Color(0xffbcbcbc);
 
@@ -50,4 +53,8 @@ class Covid19Colors {
 
   /// Stats grey
   static const Color statsGrey = Color(0xffeceef0);
+
+  /// Contact Card Background Color grey
+  static const Color contactCardBackgroundGrey = Color(0xffeceef0);
+
 }

@@ -19,13 +19,16 @@ class Accordion extends StatelessWidget {
     this.title,
     this.children,
     this.onExpansionChanged,
+    this.withBorder = true,
     this.initiallyExpanded = false,
   }) : super(key: key);
 
   final String title;
-  final bool initiallyExpanded;
   final List<Widget> children;
   final Function(bool) onExpansionChanged;
+
+  final bool initiallyExpanded;
+  final bool withBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +41,16 @@ class Accordion extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         margin: const EdgeInsets.symmetric(horizontal: 15.0),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Theme.of(context).primaryColor,
-          ),
-          borderRadius: BorderRadius.circular(3.0),
-        ),
+        decoration: withBorder
+            ? BoxDecoration(
+                border: Border.all(
+                  color: Theme.of(context).primaryColor,
+                ),
+                borderRadius: BorderRadius.circular(3.0),
+              )
+            : null,
         child: ListTileTheme(
           contentPadding: EdgeInsets.zero,
-          iconColor: Theme.of(context).primaryColor,
           child: ExpansionTile(
             title: Text(
               title,
@@ -58,7 +62,10 @@ class Accordion extends StatelessWidget {
                 ?.map(
                   (child) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: child,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: child,
+                    ),
                   ),
                 )
                 ?.toList(),

@@ -55,7 +55,7 @@ class Themes {
     brightness: Brightness.light,
     fontFamily: "Lato",
     primaryColor: colorPrimary,
-    accentColor: colorAccent,
+    accentColor: colorPrimary,
     textTheme: defaultTextTheme,
     unselectedWidgetColor: colorPrimary,
   );

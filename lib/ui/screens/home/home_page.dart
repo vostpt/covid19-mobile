@@ -16,6 +16,7 @@ import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

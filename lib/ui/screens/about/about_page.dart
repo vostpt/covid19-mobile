@@ -134,7 +134,7 @@ class AboutPage extends StatelessWidget {
                         _SocialMediaImage(
                           assetName: socialYoutube,
                           width: size.width * 0.125,
-                          url: "",
+                          url: "https://www.youtube.com/channel/UCOE-JsBcVf4__OlrsiW59EQ",
                         ),
                         const SizedBox(
                           width: 18.0,
@@ -142,7 +142,7 @@ class AboutPage extends StatelessWidget {
                         _SocialMediaImage(
                           assetName: socialTwitter,
                           width: size.width * 0.125,
-                          url: "",
+                          url: "https://twitter.com/govpt",
                         ),
                       ],
                     ),

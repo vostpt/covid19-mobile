@@ -114,11 +114,11 @@ class TextStyles {
         color: color,
       ));
 
-  static TextStyle smallCaps({Color color = Covid19Colors.darkGrey}) =>
+  static TextStyle smallCaps({Color color = Covid19Colors.grey}) =>
       GoogleFonts.lato(
           textStyle: TextStyle(
         fontWeight: FontWeight.normal,
-        fontSize: 10.0,
+        fontSize: 15.0,
         color: color,
       ));
 }

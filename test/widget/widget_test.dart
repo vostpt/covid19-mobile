@@ -11,20 +11,24 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/ui/screens/home/components/accordion.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'package:covid19mobile/ui/screens/home/components/accordion.dart';
+
 import 'widget_test_utils.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   group('Widget: Accordion Widget', () {
-    testWidgets('has empty text title, should throw an exception', (tester) async {
+    testWidgets('has empty text title, should throw an exception',
+        (tester) async {
       await tester.pumpWidget(Accordion());
       expect(tester.takeException(), isInstanceOf<AssertionError>());
     });
 
-    testWidgets('has title and children, should render properly with a border', (tester) async {
+    testWidgets('has title and children, should render properly with a border',
+        (tester) async {
       await tester.pumpWithEnvironment(Accordion(
         title: 'Foo',
         children: <Widget>[Text('Some child')],
@@ -41,7 +45,8 @@ void main() {
       expect(find.byType(Text), findsNWidgets(2));
     });
 
-    testWidgets('has title and children, should render without a border', (tester) async {
+    testWidgets('has title and children, should render without a border',
+        (tester) async {
       await tester.pumpWithEnvironment(Accordion(
         title: 'Foo',
         withBorder: false,

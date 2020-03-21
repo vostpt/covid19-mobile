@@ -59,7 +59,9 @@ class CardVideo extends StatelessWidget {
               child: Icon(
                 Icons.play_circle_filled,
                 size: 48.0,
-                color: onPressed == null ? Theme.of(context).textTheme.button.color : Theme.of(context).disabledColor,
+                color: onPressed == null
+                    ? Theme.of(context).textTheme.button.color
+                    : Theme.of(context).disabledColor,
               ),
             ),
           ),
@@ -68,7 +70,8 @@ class CardVideo extends StatelessWidget {
               alignment: labelAlignment,
               child: Text(
                 label,
-                style: TextStyles.subtitle(color: Colors.white).copyWith(shadows: [
+                style:
+                    TextStyles.subtitle(color: Colors.white).copyWith(shadows: [
                   const Shadow(
                     offset: Offset(0.0, 1.0),
                     blurRadius: 3.0,

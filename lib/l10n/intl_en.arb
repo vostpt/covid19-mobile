@@ -8,5 +8,7 @@
   "statisticsPageDataLabel": "Dados DGS via ESRI Portugal",
   "lastUpdated": "Última actualização: ",
   "checkDetails": "Ver detalhes",
-  "homePageConfirmedCases": "Casos confirmados de COVID-19 em Portugal"
+  "homePageConfirmedCases": "Casos confirmados de COVID-19 em Portugal",
+  "measuresPageMeasures": "Medidas Excecionais",
+  "measuresHomepageButton": "Medidas excecionais de resposta À COVID-19"
 }

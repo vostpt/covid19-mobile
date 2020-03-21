@@ -11,14 +11,15 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import 'package:covid19mobile/providers/faq_provider.dart';
+import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
-import 'package:covid19mobile/resources/constants.dart';
-import 'package:covid19mobile/providers/faq_provider.dart';
-import 'package:covid19mobile/providers/remote_work_provider.dart';
+import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
+import 'package:covid19mobile/generated/l10n.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,12 +43,20 @@ class HomePage extends BasePage {
 
   @override
   Widget get builder => MultiProvider(providers: [
-        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider()),
+        ChangeNotifierProvider<StatsProvider>.value(
+          value: StatsProvider(),
+        ),
         ChangeNotifierProvider<RemoteWorkProvider>.value(
-            value: RemoteWorkProvider()),
-        ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider()),
+          value: RemoteWorkProvider(),
+        ),
+        ChangeNotifierProvider<FaqProvider>.value(
+          value: FaqProvider(),
+        ),
         ChangeNotifierProvider<VideosProvider>.value(
           value: VideosProvider(),
+        ),
+        ChangeNotifierProvider<MeasuresProvider>.value(
+          value: MeasuresProvider(),
         ),
       ], child: HomePage(title: title));
 }
@@ -58,22 +67,39 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     var stats = Provider.of<StatsProvider>(context);
     logger.i('[StatsProvider] $stats!');
 
+    List<Widget> content = [
+      Container(
+        height: 100,
+      ),
+      StatisticsButton(
+        callback: () => Navigator.of(context).pushNamed(routeStatistics),
+      ),
+      CardBorderArrow(
+        borderColor: Covid19Colors.grey,
+        text: S.of(context).measuresHomepageButton,
+        callback: () {
+          Navigator.pushNamed(context, routeMeasures);
+        },
+        textColor: Covid19Colors.darkGrey,
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: Container(
         margin: EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            Center(
-              child: Text("Covid App"),
-            ),
-            StatisticsButton(
-              callback: () => Navigator.of(context).pushNamed(routeStatistics),
-            ),
-          ],
-        ),
+        child: ListView.separated(
+            itemBuilder: (_, index) {
+              return content[index];
+            },
+            separatorBuilder: (_, __) {
+              return Container(
+                height: 8,
+              );
+            },
+            itemCount: content.length),
       ),
     );
   }
@@ -95,6 +121,10 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     /// Get Videos Posts
     ///
     bloc.getVideos();
+
+    /// Get Measures
+    ///
+    bloc.getMeasures();
   }
 
   @override
@@ -118,6 +148,11 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     if (result is VideosResultStream) {
       Provider.of<VideosProvider>(context, listen: false)
           .setVideos(result.model);
+    }
+
+    if (result is MeasuresResultStream) {
+      Provider.of<MeasuresProvider>(context, listen: false)
+          .setMeasures(result.model);
     }
   }
 }

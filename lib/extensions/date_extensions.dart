@@ -10,29 +10,12 @@
 ///
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-import 'package:flutter/material.dart';
 
-class ButtonBorderBackground extends StatelessWidget {
-  final Color color;
-  final Widget child;
-
-  const ButtonBorderBackground({Key key, this.color, this.child})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(4.0),
-        ),
-        border: Border.all(
-          color: color,
-          width: 2.0,
-        ),
-      ),
-      padding: EdgeInsets.all(16.0),
-      child: child,
-    );
+/// Capitalize the first letter of a String
+/// Source:
+/// https://stackoverflow.com/questions/29628989/how-to-capitalize-the-first-letter-of-a-string-in-dart
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${substring(1)}";
   }
 }

@@ -86,7 +86,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                           .textTheme
                           .display1
                           .copyWith(color: Covid19Colors.darkGrey),
-                      text: S.of(context).statisticsPageConfirmed.toUpperCase().toUpperCase(),
+                      text: S.of(context).statisticsPageConfirmed.toUpperCase(),
                       textStyle: Theme.of(context)
                           .textTheme
                           .display4
@@ -147,7 +147,10 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                           .textTheme
                           .display1
                           .copyWith(color: Covid19Colors.darkGrey),
-                      text: S.of(context).statisticsPageAwaitingResults.toUpperCase(),
+                      text: S
+                          .of(context)
+                          .statisticsPageAwaitingResults
+                          .toUpperCase(),
                       textStyle: Theme.of(context)
                           .textTheme
                           .display4
@@ -161,7 +164,8 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
               height: _itemsMargin,
             ),
             Container(
-              child: Text("${S.of(context).lastUpdated.toUpperCase()}${stats.lastUpdated}",
+              child: Text(
+                  "${S.of(context).lastUpdated.toUpperCase()}${stats.lastUpdated}",
                   style: Theme.of(context)
                       .textTheme
                       .subtitle
@@ -171,9 +175,9 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
               height: _itemsMargin,
             ),
             SafeArea(
-                          child: Text(S.of(context).statisticsPageDataLabel.toUpperCase(),
-                  style:
-                      TextStyles.subtitle(color: Theme.of(context).primaryColor)),
+              child: Text(S.of(context).statisticsPageDataLabel.toUpperCase(),
+                  style: TextStyles.subtitle(
+                      color: Theme.of(context).primaryColor)),
             ),
           ],
         ),

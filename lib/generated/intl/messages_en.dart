@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "contactsPageSSNumberText" : MessageLookupByLibrary.simpleMessage("Linha Segurança Social para esclarecimentos sobre assistência a familiares, baixas e quarentena."),
     "contactsPageTitle" : MessageLookupByLibrary.simpleMessage("Contactos úteis"),
     "defaultError" : MessageLookupByLibrary.simpleMessage("An error has occurred"),
+    "faqPageResponsableEntity" : MessageLookupByLibrary.simpleMessage("Entidade Responsável"),
     "homePageConfirmedCases" : MessageLookupByLibrary.simpleMessage("Casos confirmados de COVID-19 em Portugal"),
     "lastUpdated" : MessageLookupByLibrary.simpleMessage("Última actualização: "),
     "statisticsPageAwaitingResults" : MessageLookupByLibrary.simpleMessage("Aguardar Resultados"),

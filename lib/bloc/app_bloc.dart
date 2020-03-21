@@ -145,6 +145,7 @@ class AppBloc implements Bloc {
             /// into a [VideoModel] instance and save into a List
             VideoModel.fromJson(json)).toList();
 
+
         break;
     }
   }

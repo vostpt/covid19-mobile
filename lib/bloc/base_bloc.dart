@@ -1,3 +1,5 @@
+import 'package:covid19mobile/model/video_model.dart';
+
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -75,6 +77,21 @@ class RemoteWorkResultStream
   /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [Lst<RemoteWorkModel>] instance list
   RemoteWorkResultStream({this.state, this.model});
+}
+
+/// The ResultStream instance for requesting the remote work posts
+///
+/// [VideosResultStream] is extended from [ResultStream]
+class VideosResultStream extends ResultStream<StateStream, List<VideoModel>> {
+  @override
+  List<VideoModel> model;
+
+  @override
+  StateStream state;
+
+  /// Constructor to set the [state], a [StateStream] instance
+  /// and [model] a [Lst<VideoModel>] instance list
+  VideosResultStream({this.state, this.model});
 }
 
 /// The ResultStream instance for requesting the remote work posts

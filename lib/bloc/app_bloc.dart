@@ -18,6 +18,7 @@ import 'package:covid19mobile/model/faq_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
+import 'package:covid19mobile/model/video_model.dart';
 import 'package:covid19mobile/services/api_service.dart';
 import 'package:covid19mobile/ui/app.dart';
 import 'package:rxdart/subjects.dart';
@@ -69,6 +70,12 @@ class AppBloc implements Bloc {
         state: results != null ? StateStream.success : StateStream.fail));
   }
 
+  void getVideos() async {
+    final postType = PostType(PostTypes.videos);
+
+    getPosts<VideoModel>(postType, cacheKey: "VideoModel");
+  }
+  
   void getFaqs() async {
     final postType = PostType(PostTypes.faq);
 
@@ -139,6 +146,15 @@ class AppBloc implements Bloc {
             FaqModel.fromJson(json)).toList();
 
         break;
+      case PostTypes.videos:
+
+        /// Data converted to a Map now we need to convert each entry
+        return data.map<T>((json) =>
+
+            /// into a [VideoModel] instance and save into a List
+            VideoModel.fromJson(json)).toList();
+
+            break;
     }
   }
 

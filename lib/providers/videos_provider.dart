@@ -11,35 +11,16 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-/// Post types
-enum PostTypes {
-  measures,
-  remoteWork,
-  videos,
-  faq,
-}
+import 'package:covid19mobile/model/video_model.dart';
+import 'package:flutter/material.dart';
 
-class PostType {
-  final PostTypes postTypes;
+class VideosProvider extends ChangeNotifier {
+  List<VideoModel> _remoteWorks;
 
-  PostType(this.postTypes);
+  List<VideoModel> get remoteWorks => _remoteWorks;
 
-  String getRequestType() {
-    switch (postTypes) {
-      case PostTypes.measures:
-        return '/measures';
-      case PostTypes.remoteWork:
-        return '/remote_work';
-      case PostTypes.videos:
-        return '/videos';
-        break;
-      case PostTypes.faq:
-        return '/faqs';
-        break;
-      case PostTypes.videos:
-        return '/videos';
-      default:
-        return '';
-    }
+  void setVideos(List<VideoModel> values) {
+    _remoteWorks = values;
+    notifyListeners();
   }
 }

@@ -71,16 +71,19 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
   @override
   void initBloc(AppBloc bloc) {
     /// Get Case Stats
+    ///
     bloc.getStats();
 
     /// Get RemoteWork Posts
+    ///
     bloc.geRemoteWork();
 
-    /// Get Videos Posts
-    bloc.getVideos();
     /// Get Faq Posts
+    ///
     bloc.getFaqs();
+
     /// Get Videos Posts
+    ///
     bloc.getVideos();
   }
 
@@ -103,7 +106,8 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     }
 
     if (result is VideosResultStream) {
-      Provider.of<VideosProvider>(context, listen: false).setVideos(result.model);
+      Provider.of<VideosProvider>(context, listen: false)
+          .setVideos(result.model);
     }
   }
 }

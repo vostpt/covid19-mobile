@@ -33,6 +33,9 @@ class PostType {
       case PostTypes.videos:
         return '/videos';
         break;
+      case PostTypes.videos:
+        return '/videos';
+        break;
       case PostTypes.faq:
         return '/faqs';
         break;

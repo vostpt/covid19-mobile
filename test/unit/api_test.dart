@@ -259,7 +259,6 @@ void main() {
               "guid":
                   "https:\/\/dev-covid19.vost.pt\/?post_type=measure&#038;p=270",
               "menu_order": 0,
-              "post_title": "title",
               "post_mime_type": "",
               "comment_count": "0",
               "filter": "raw",
@@ -323,12 +322,55 @@ void main() {
       expect(responseModel.description, videoModel.description);
       expect(responseModel.thumbnail, videoModel.thumbnail);
 
-      String expectedUrl =
-          "https://www.youtube.com/embed/vjSgGxuv8UQ";
+      String expectedUrl = "https://www.youtube.com/embed/vjSgGxuv8UQ";
 
       expect(responseModel.getVideoUrl(), expectedUrl);
     });
 
+    test(' performs a get Post Faqs', () async {
+      final postType = PostType(PostTypes.faq);
+
+      final faqModel = FaqModel(
+        10,
+        "pergunta",
+        "resposta",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        1,
+        "",
+        1,
+        "",
+        "",
+        "",
+        "",
+      );
+
+      when(client.get(postType.getRequestType())).thenAnswer(
+        (_) => Future.value(
+          Response(
+            statusCode: HttpStatus.ok,
+            data: {
+              "ID": 10,
+              "pergunta": "escolas",
+              "questao": "",
+            },
+          ),
+        ),
+      );
+    });
     test(' performs a get videos', () async {
       final videoModel = VideoModel(
         id: 269,
@@ -420,7 +462,6 @@ void main() {
               "guid":
                   "https:\/\/dev-covid19.vost.pt\/?post_type=measure&#038;p=270",
               "menu_order": 0,
-              "post_title": "title",
               "post_mime_type": "",
               "comment_count": "0",
               "filter": "raw",
@@ -484,8 +525,7 @@ void main() {
       expect(responseModel.description, videoModel.description);
       expect(responseModel.thumbnail, videoModel.thumbnail);
 
-      String expectedUrl =
-          "https://www.youtube.com/embed/vjSgGxuv8UQ";
+      String expectedUrl = "https://www.youtube.com/embed/vjSgGxuv8UQ";
 
       expect(responseModel.getVideoUrl(), expectedUrl);
     });

@@ -33,5 +33,7 @@
   "screenAboutHashtag": "#EstamosOn",
   "screenAboutBuilt": "Esta app foi construída com o apoio da VOST PT e Flutter Portugal",
   "screenAboutFooter1": "#COVID19PT - 2020 VOSTPT - Voluntários Digitais em Situações de Emergências para Portugal.",
-  "screenAboutFooter2": "Este site e seus materiais encontram-se sob uma licença Creative Commons CC BY-NC-SA: Atribuição-Não Comercial-Compartilha Igual."
+  "screenAboutFooter2": "Este site e seus materiais encontram-se sob uma licença Creative Commons CC BY-NC-SA: Atribuição-Não Comercial-Compartilha Igual.",
+  "screenAboutButtonReport": "Reportar Problema",
+  "screenAboutButtonOpenSource": "Licenças Open-Source"
 }

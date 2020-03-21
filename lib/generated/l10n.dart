@@ -343,6 +343,24 @@ class S {
       args: [],
     );
   }
+
+  String get screenAboutButtonReport {
+    return Intl.message(
+      'Reportar Problema',
+      name: 'screenAboutButtonReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get screenAboutButtonOpenSource {
+    return Intl.message(
+      'Licenças Open-Source',
+      name: 'screenAboutButtonOpenSource',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

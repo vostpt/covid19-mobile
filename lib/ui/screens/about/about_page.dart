@@ -1,6 +1,7 @@
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/assets/images.dart';
+import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
 import 'package:covid19mobile/utils/launch_url.dart';
 import 'package:flutter/material.dart';
 
@@ -92,6 +93,22 @@ class AboutPage extends StatelessWidget {
                           color: Covid19Colors.darkGrey,
                         ),
                     textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(
+                    height: 22.0,
+                  ),
+                  CardBorderArrow(
+                    text: S.of(context).screenAboutButtonReport,
+                    callback: () => print("yey"),
+                    textColor: Covid19Colors.darkGrey,
+                    borderColor: Covid19Colors.grey,
+                  ),
+                  const _TextMargin(),
+                  CardBorderArrow(
+                    text: S.of(context).screenAboutButtonOpenSource,
+                    callback: () => print("yey"),
+                    textColor: Covid19Colors.darkGrey,
+                    borderColor: Covid19Colors.grey,
                   ),
                 ],
               ),

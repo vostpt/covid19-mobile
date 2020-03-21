@@ -1,3 +1,4 @@
+import 'package:covid19mobile/generated/l10n.dart';
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -41,12 +42,12 @@ class StatisticsButton extends StatelessWidget {
                           .display2
                           .copyWith(color: Colors.white)),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8.0,
                 ),
                 Expanded(
                   child: Text(
-                    "Casos confirmados de COVID-19 em Portugal".toUpperCase(),
+                   S.of(context).homePageConfirmedCases.toUpperCase(),
                     style: Theme.of(context)
                         .textTheme
                         .display2
@@ -55,13 +56,13 @@ class StatisticsButton extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
             Row(
               children: <Widget>[
                 Text(
-                  "Ver detalhes",
+                  S.of(context).checkDetails,
                   style: Theme.of(context)
                       .textTheme
                       .button

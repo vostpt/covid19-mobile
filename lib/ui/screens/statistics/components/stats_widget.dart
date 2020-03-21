@@ -48,7 +48,7 @@ class StatsWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8.0,
           ),
           Text(

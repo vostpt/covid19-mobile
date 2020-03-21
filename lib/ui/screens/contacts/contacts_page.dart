@@ -20,50 +20,46 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactsPage extends StatefulWidget {
-
   @override
   _ContactsPageState createState() => _ContactsPageState();
 }
 
 class _ContactsPageState extends State<ContactsPage> {
-
   final List<ContactModel> _contacts = <ContactModel>[];
 
   @override
   Widget build(BuildContext context) {
-
-    if(_contacts.isEmpty) {
+    if (_contacts.isEmpty) {
       _initContacts();
     }
 
     return Scaffold(
-        appBar: AppBar(
-          iconTheme:
-          Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
-          title: Text(
-            S.of(context).contactsPageTitle.toUpperCase(),
-            style: Theme.of(context)
-                .textTheme
-                .display2
-                .copyWith(color: Covid19Colors.darkGreyLight),
-          ),
-          backgroundColor: Colors.white,
-          elevation: 0.0,
+      appBar: AppBar(
+        iconTheme:
+            Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
+        title: Text(
+          S.of(context).contactsPageTitle.toUpperCase(),
+          style: Theme.of(context)
+              .textTheme
+              .display2
+              .copyWith(color: Covid19Colors.darkGreyLight),
         ),
-        body: Container(
-          margin: EdgeInsets.all(12.0),
-          child: ListView.builder(
-              itemCount: _contacts.length,
-              itemBuilder: (context, index) {
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+      ),
+      body: Container(
+        margin: EdgeInsets.all(12.0),
+        child: ListView.builder(
+            itemCount: _contacts.length,
+            itemBuilder: (context, index) {
+              var contact = _contacts[index];
 
-                var contact = _contacts[index];
-
-                return ContactCard(
-                  contact: contact,
-                  onTap: _onContactTap,
-                );
-          }),
-        ),
+              return ContactCard(
+                contact: contact,
+                onTap: _onContactTap,
+              );
+            }),
+      ),
     );
   }
 
@@ -73,49 +69,41 @@ class _ContactsPageState extends State<ContactsPage> {
           contactType: ContactType.phone,
           title: S.of(context).contactsPageSNSNumber,
           description: S.of(context).contactsPageSNSNumberText,
-          icon: SvgIcons.phoneSvg
-      ))
+          icon: SvgIcons.phoneSvg))
       ..add(ContactModel(
           contactType: ContactType.phone,
           title: S.of(context).contactsPageSSNumber,
           description: S.of(context).contactsPageSSNumberText,
-          icon: SvgIcons.phoneSvg
-      ))
+          icon: SvgIcons.phoneSvg))
       ..add(ContactModel(
           contactType: ContactType.phone,
           title: S.of(context).contactsPageMNENumber,
           description: S.of(context).contactsPageMNENumberText,
-          icon: SvgIcons.phoneSvg
-      ))
+          icon: SvgIcons.phoneSvg))
       ..add(ContactModel(
           contactType: ContactType.link,
           title: S.of(context).contactsPageMSWeb,
           description: S.of(context).contactsPageMSWebText,
           icon: SvgIcons.linkSvg,
-          textSize: 18
-      ))
+          textSize: 18))
       ..add(ContactModel(
           contactType: ContactType.email,
           title: S.of(context).contactsPageSNSEmail,
           description: S.of(context).contactsPageSNSEmailText,
           icon: SvgIcons.emailSvg,
-          textSize: 18
-      ))
+          textSize: 18))
       ..add(ContactModel(
           contactType: ContactType.email,
           title: S.of(context).contactsPageMNEEmail,
           description: S.of(context).contactsPageMNEEmailText,
           icon: SvgIcons.emailSvg,
-          textSize: 18
-      ));
+          textSize: 18));
   }
 
   _onContactTap(ContactModel contact) {
-
     print(contact.title);
 
-    switch(contact.contactType) {
-
+    switch (contact.contactType) {
       case ContactType.phone:
         _launch("tel: ${contact.title}");
         break;
@@ -137,4 +125,3 @@ class _ContactsPageState extends State<ContactsPage> {
     }
   }
 }
-

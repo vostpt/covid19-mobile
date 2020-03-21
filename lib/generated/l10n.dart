@@ -379,6 +379,24 @@ class S {
       args: [],
     );
   }
+
+  String get measuresPageMeasures {
+    return Intl.message(
+      'Medidas Excecionais',
+      name: 'measuresPageMeasures',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get measuresHomepageButton {
+    return Intl.message(
+      'Medidas excecionais de resposta À COVID-19',
+      name: 'measuresHomepageButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

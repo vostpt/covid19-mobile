@@ -15,6 +15,7 @@ import 'dart:async';
 
 import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/model/faq_model.dart';
+import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
@@ -65,9 +66,11 @@ class AppBloc implements Bloc {
     var results =
         await getPosts<RemoteWorkModel>(postType, cacheKey: "RemoteWorkModel");
 
-    onStream.sink.add(RemoteWorkResultStream(
-        model: results,
-        state: results != null ? StateStream.success : StateStream.fail));
+    onStream.sink.add(
+      RemoteWorkResultStream(
+          model: results,
+          state: results != null ? StateStream.success : StateStream.fail),
+    );
   }
 
   void getVideos() async {
@@ -80,14 +83,29 @@ class AppBloc implements Bloc {
         state: results != null ? StateStream.success : StateStream.fail));
   }
 
+  void getMeasures() async {
+    final postType = PostType(PostTypes.measures);
+
+    var results =
+        await getPosts<MeasureModel>(postType, cacheKey: "MeasureModel");
+
+    onStream.sink.add(
+      MeasuresResultStream(
+          model: results,
+          state: results != null ? StateStream.success : StateStream.fail),
+    );
+  }
+
   void getFaqs() async {
     final postType = PostType(PostTypes.faq);
 
     var results = await getPosts<FaqModel>(postType, cacheKey: "FaqModel");
 
-    onStream.sink.add(FaqResultStream(
-        model: results,
-        state: results != null ? StateStream.success : StateStream.fail));
+    onStream.sink.add(
+      FaqResultStream(
+          model: results,
+          state: results != null ? StateStream.success : StateStream.fail),
+    );
   }
 
   Future<List<T>> getPosts<T>(PostType postType,
@@ -121,7 +139,13 @@ class AppBloc implements Bloc {
   parseData<T>(PostType postType, dynamic data) {
     switch (postType.postTypes) {
       case PostTypes.measures:
-        // TODO: Handle this case.
+
+        /// Data converted to a Map now we need to convert each entry
+        return data.map<T>((json) =>
+
+            /// into a [MeasureModel] instance and save into a List
+            MeasureModel.fromJson(json)).toList();
+
         break;
       case PostTypes.remoteWork:
 

@@ -23,6 +23,7 @@ import 'package:covid19mobile/ui/screens/home/home_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
 import 'package:covid19mobile/ui/screens/video_player/video_player_page.dart';
 import 'package:covid19mobile/ui/screens/videos/videos_page.dart';
+import 'package:covid19mobile/ui/screens/measures/measures_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logger/logger.dart';
@@ -56,6 +57,8 @@ class CovidApp extends StatelessWidget {
           routeVideos: (_) => VideosPage(title: 'Vídeos').builder,
           routeAbout: (_) => AboutPage(),
           routeVideoPlayer: (_) => VideoPlayerPage(),
+          routeMeasures: (_) =>
+              MeasuresPage(title: 'Medidas Excecionais').builder
         },
       ),
     );

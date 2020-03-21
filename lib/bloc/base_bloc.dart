@@ -1,5 +1,3 @@
-import 'package:covid19mobile/model/video_model.dart';
-
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -14,8 +12,10 @@ import 'package:covid19mobile/model/video_model.dart';
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import '../model/faq_model.dart';
+import '../model/measure_model.dart';
 import '../model/remote_work_model.dart';
 import '../model/stats_model.dart';
+import '../model/video_model.dart';
 
 abstract class Bloc {
   /// Dispose Bloc instance
@@ -75,7 +75,7 @@ class RemoteWorkResultStream
   StateStream state;
 
   /// Constructor to set the [state], a [StateStream] instance
-  /// and [model] a [Lst<RemoteWorkModel>] instance list
+  /// and [model] a [List<RemoteWorkModel>] instance list
   RemoteWorkResultStream({this.state, this.model});
 }
 
@@ -90,7 +90,7 @@ class VideosResultStream extends ResultStream<StateStream, List<VideoModel>> {
   StateStream state;
 
   /// Constructor to set the [state], a [StateStream] instance
-  /// and [model] a [Lst<VideoModel>] instance list
+  /// and [model] a [List<VideoModel>] instance list
   VideosResultStream({this.state, this.model});
 }
 
@@ -105,6 +105,22 @@ class FaqResultStream extends ResultStream<StateStream, List<FaqModel>> {
   StateStream state;
 
   /// Constructor to set the [state], a [StateStream] instance
-  /// and [model] a [Lst<FaqModel>] instance list
+  /// and [model] a [List<FaqModel>] instance list
   FaqResultStream({this.state, this.model});
+}
+
+/// The ResultStream instance for requesting the remote work posts
+///
+/// [FaqResultStream] is extended from [ResultStream]
+class MeasuresResultStream
+    extends ResultStream<StateStream, List<MeasureModel>> {
+  @override
+  List<MeasureModel> model;
+
+  @override
+  StateStream state;
+
+  /// Constructor to set the [state], a [StateStream] instance
+  /// and [model] a [Lst<MeasuresModel>] instance list
+  MeasuresResultStream({this.state, this.model});
 }

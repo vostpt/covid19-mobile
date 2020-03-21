@@ -12,7 +12,6 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
 
 import 'button_border_background.dart';
 

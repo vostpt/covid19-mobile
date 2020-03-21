@@ -26,5 +26,10 @@ class ContactModel {
 
   double textSize;
 
-  ContactModel({this.contactType, this.title, this.description, this.icon, this.textSize = 28.0});
+  ContactModel(
+      {this.contactType,
+      this.title,
+      this.description,
+      this.icon,
+      this.textSize = 28.0});
 }

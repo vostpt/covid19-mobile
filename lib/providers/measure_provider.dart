@@ -11,9 +11,21 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/model/measures_model.dart';
+import 'package:covid19mobile/model/measure_model.dart';
 import 'package:flutter/material.dart';
 
+class MeasuresProvider extends ChangeNotifier {
+  List<MeasureModel> _measures;
+
+  List<MeasureModel> get measures => _measures;
+
+  void setMeasures(List<MeasureModel> values) {
+    _measures = values;
+    notifyListeners();
+  }
+}
+
+/*
 /// Creates a [MeasuresModel] Provider for updating UI for
 class MeasuresProvider with ChangeNotifier {
   int _id;
@@ -94,7 +106,7 @@ class MeasuresProvider with ChangeNotifier {
   bool _links;
   bool get links => _links;
 
-  setMeasures(MeasuresModel measures) {
+  setMeasures(MeasureModel measures) {
     _id = measures.id;
     _author = measures.author;
     _date = measures.date;
@@ -124,3 +136,5 @@ class MeasuresProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+*/

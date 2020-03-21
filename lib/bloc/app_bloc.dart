@@ -70,6 +70,12 @@ class AppBloc implements Bloc {
         state: results != null ? StateStream.success : StateStream.fail));
   }
 
+  void getVideos() async {
+    final postType = PostType(PostTypes.videos);
+
+    getPosts<VideoModel>(postType, cacheKey: "VideoModel");
+  }
+  
   void getFaqs() async {
     final postType = PostType(PostTypes.faq);
 

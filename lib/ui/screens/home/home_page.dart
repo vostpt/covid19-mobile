@@ -10,7 +10,6 @@
 ///
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
@@ -77,6 +76,8 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     /// Get RemoteWork Posts
     bloc.geRemoteWork();
 
+    /// Get Videos Posts
+    bloc.getVideos();
     /// Get Faq Posts
     bloc.getFaqs();
     /// Get Videos Posts

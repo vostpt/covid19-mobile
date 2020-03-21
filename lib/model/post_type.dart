@@ -15,6 +15,7 @@
 enum PostTypes {
   measures,
   remoteWork,
+  videos,
   faq,
   videos,
 }
@@ -30,6 +31,8 @@ class PostType {
         return '/measures';
       case PostTypes.remoteWork:
         return '/remote_work';
+      case PostTypes.videos:
+        return '/videos';
         break;
       case PostTypes.faq:
         return '/faqs';

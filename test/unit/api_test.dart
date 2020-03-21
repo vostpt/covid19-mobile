@@ -96,8 +96,6 @@ void main() {
     test(' performs a get Post RemoteWork', () async {
       final postType = PostType(PostTypes.remoteWork);
 
-      final statsModel = RemoteWorkModel("escolas", "", "", "");
-
       when(client.get(postType.getRequestType())).thenAnswer(
           (_) => Future.value(Response(statusCode: HttpStatus.ok, data: {
                 "tipo": "escolas",
@@ -149,8 +147,6 @@ void main() {
         documents: false,
         links: false,
       );
-
-      final statsModel = RemoteWorkModel("escolas", "", "", "");
 
       when(client.get(postType.getRequestType())).thenAnswer(
           (_) => Future.value(Response(statusCode: HttpStatus.ok, data: {

@@ -11,16 +11,16 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/model/faq_model.dart';
+import 'package:covid19mobile/model/video_model.dart';
 import 'package:flutter/material.dart';
 
-class FaqProvider extends ChangeNotifier {
-  List<FaqModel> _faqs;
+class VideosProvider extends ChangeNotifier {
+  List<VideoModel> _remoteWorks;
 
-  List<FaqModel> get faqs => _faqs;
+  List<VideoModel> get remoteWorks => _remoteWorks;
 
-  void setFaqs(List<FaqModel> values) {
-    _faqs = values;
+  void setVideos(List<VideoModel> values) {
+    _remoteWorks = values;
     notifyListeners();
   }
 }

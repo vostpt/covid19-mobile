@@ -11,16 +11,19 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/model/faq_model.dart';
 import 'package:flutter/material.dart';
+import 'brand.dart';
 
-class FaqProvider extends ChangeNotifier {
-  List<FaqModel> _faqs;
-
-  List<FaqModel> get faqs => _faqs;
-
-  void setFaqs(List<FaqModel> values) {
-    _faqs = values;
-    notifyListeners();
+class HeaderMain extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Brand(),
+        ),
+      ],
+    );
   }
 }

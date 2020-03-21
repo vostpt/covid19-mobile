@@ -1,3 +1,5 @@
+import 'package:covid19mobile/model/base_post_model.dart';
+
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -13,39 +15,39 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'base_post_model.dart';
+part 'video_model.g.dart';
 
-part 'faq_model.g.dart';
-
-/// RemoteWork Model
-///
-/// This model uses Hive to be ready to save it to cache
-///
-/// RemoteWorkModel assigned typeId 2
-///
+/// Stats Model
 @JsonSerializable(includeIfNull: false)
-class FaqModel extends BasePostModel {
-  /// Question
-  @JsonKey(name: 'pergunta')
-  final String question;
+class VideoModel extends BasePostModel {
+  /// Recovered total cases
+  @JsonKey(name: 'post_title')
+  final String postTitle;
 
-  /// Answer
-  @JsonKey(name: 'resposta')
-  final String answer;
+  /// Confirmed total cases
+  @JsonKey(name: 'video')
+  final String video;
 
-  /// Responsable Entity
-  @JsonKey(name: 'entidade_responsavel')
-  final String responsableEntity;
+  /// Suspected total cases
+  @JsonKey(name: 'descricao')
+  final String description;
 
-  /// Constructor
+  /// Cases awaiting for results
+  @JsonKey(name: 'thumbnail')
+  final String thumbnail;
+
+  String getVideoUrl() {
+    var regex = RegExp(r'(?<=src=").*?(?=[?"])');
+    var videoUrl = regex.firstMatch(video)?.group(0);
+    return videoUrl?.replaceAll("\\", "");
+  }
+
+  /// Model constructor
   ///
-  /// All Fields are mandatory
+  /// All properties are mandatory
   ///
-  FaqModel(
+  VideoModel({
     int id,
-    this.question,
-    this.answer,
-    this.responsableEntity,
     String author,
     String date,
     String postDateGmt,
@@ -67,7 +69,11 @@ class FaqModel extends BasePostModel {
     String postMimeType,
     String commentCount,
     String filter,
-  ) : super(
+    this.postTitle,
+    this.video,
+    this.description,
+    this.thumbnail,
+  }) : super(
           id: id,
           author: author,
           date: date,
@@ -93,9 +99,9 @@ class FaqModel extends BasePostModel {
         );
 
   /// Mapper from Json to Model
-  factory FaqModel.fromJson(Map<String, dynamic> json) =>
-      _$FaqModelFromJson(json);
+  factory VideoModel.fromJson(Map<String, dynamic> json) =>
+      _$VideoModelFromJson(json);
 
   /// Maps Model to Json
-  Map<String, dynamic> toJson() => _$FaqModelToJson(this);
+  Map<String, dynamic> toJson() => _$VideoModelToJson(this);
 }

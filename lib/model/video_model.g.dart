@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'measures_model.dart';
+part of 'video_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-MeasuresModel _$MeasuresModelFromJson(Map<String, dynamic> json) {
-  return MeasuresModel(
+VideoModel _$VideoModelFromJson(Map<String, dynamic> json) {
+  return VideoModel(
     id: json['ID'] as int,
     author: json['post_author'] as String,
     date: json['post_date'] as String,
@@ -30,14 +30,14 @@ MeasuresModel _$MeasuresModelFromJson(Map<String, dynamic> json) {
     postMimeType: json['post_mime_type'] as String,
     commentCount: json['comment_count'] as String,
     filter: json['filter'] as String,
-    postContent: json['post_content'] as String,
     postTitle: json['post_title'] as String,
-    documents: json['documentos'] as bool,
-    links: json['links'] as bool,
+    video: json['video'] as String,
+    description: json['descricao'] as String,
+    thumbnail: json['thumbnail'] as String,
   );
 }
 
-Map<String, dynamic> _$MeasuresModelToJson(MeasuresModel instance) {
+Map<String, dynamic> _$VideoModelToJson(VideoModel instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -68,9 +68,9 @@ Map<String, dynamic> _$MeasuresModelToJson(MeasuresModel instance) {
   writeNotNull('post_mime_type', instance.postMimeType);
   writeNotNull('comment_count', instance.commentCount);
   writeNotNull('filter', instance.filter);
-  writeNotNull('post_content', instance.postContent);
   writeNotNull('post_title', instance.postTitle);
-  writeNotNull('documentos', instance.documents);
-  writeNotNull('links', instance.links);
+  writeNotNull('video', instance.video);
+  writeNotNull('descricao', instance.description);
+  writeNotNull('thumbnail', instance.thumbnail);
   return val;
 }

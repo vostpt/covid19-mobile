@@ -38,6 +38,10 @@ class StatsModel {
   @JsonKey(name: 'obitos')
   final String deaths;
 
+  /// Recovered total cases
+  @JsonKey(name: 'data_atualizacao')
+  final String lastUpdated;
+
   /// Model constructor
   ///
   /// All properties are mandatory
@@ -48,6 +52,7 @@ class StatsModel {
     this.suspected,
     this.awaitingResults,
     this.deaths,
+    this.lastUpdated
   );
 
   /// Mapper from Json to Model

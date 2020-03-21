@@ -10,19 +10,18 @@ import 'intl/messages_all.dart';
 
 class S {
   S(this.localeName);
-
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+  
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final String name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       return S(localeName);
     });
-  }
+  } 
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
@@ -34,6 +33,87 @@ class S {
     return Intl.message(
       'An error has occurred',
       name: 'defaultError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageStatistics {
+    return Intl.message(
+      'Estatísticas',
+      name: 'statisticsPageStatistics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageConfirmed {
+    return Intl.message(
+      'Confirmados',
+      name: 'statisticsPageConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageRecovered {
+    return Intl.message(
+      'Recuperações',
+      name: 'statisticsPageRecovered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageSuspects {
+    return Intl.message(
+      'Suspeitos',
+      name: 'statisticsPageSuspects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageAwaitingResults {
+    return Intl.message(
+      'Aguardar Resultados',
+      name: 'statisticsPageAwaitingResults',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageDataLabel {
+    return Intl.message(
+      'Dados DGS via ESRI Portugal',
+      name: 'statisticsPageDataLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get lastUpdated {
+    return Intl.message(
+      'Última actualização: ',
+      name: 'lastUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get checkDetails {
+    return Intl.message(
+      'Ver detalhes',
+      name: 'checkDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get homePageConfirmedCases {
+    return Intl.message(
+      'Casos confirmados de COVID-19 em Portugal',
+      name: 'homePageConfirmedCases',
       desc: '',
       args: [],
     );

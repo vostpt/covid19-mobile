@@ -31,12 +31,16 @@ class StatsProvider extends ChangeNotifier {
   String _deaths = "0";
   String get deaths => _deaths;
 
+  String _lastUpdated = "N/A";
+  String get lastUpdated => _lastUpdated;
+
   setStats(StatsModel stats) {
     _recovered = stats.recovered;
     _confirmed = stats.confirmed;
     _suspected = stats.suspected;
     _awaitingResults = stats.awaitingResults;
     _deaths = stats.deaths;
+    _lastUpdated = stats.lastUpdated;
     notifyListeners();
   }
 }

@@ -20,8 +20,16 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function>{
-        "defaultError":
-            MessageLookupByLibrary.simpleMessage("An error has occurred")
-      };
+  static _notInlinedMessages(_) => <String, Function> {
+    "checkDetails" : MessageLookupByLibrary.simpleMessage("Ver detalhes"),
+    "defaultError" : MessageLookupByLibrary.simpleMessage("An error has occurred"),
+    "homePageConfirmedCases" : MessageLookupByLibrary.simpleMessage("Casos confirmados de COVID-19 em Portugal"),
+    "lastUpdated" : MessageLookupByLibrary.simpleMessage("Última actualização: "),
+    "statisticsPageAwaitingResults" : MessageLookupByLibrary.simpleMessage("Aguardar Resultados"),
+    "statisticsPageConfirmed" : MessageLookupByLibrary.simpleMessage("Confirmados"),
+    "statisticsPageDataLabel" : MessageLookupByLibrary.simpleMessage("Dados DGS via ESRI Portugal"),
+    "statisticsPageRecovered" : MessageLookupByLibrary.simpleMessage("Recuperações"),
+    "statisticsPageStatistics" : MessageLookupByLibrary.simpleMessage("Estatísticas"),
+    "statisticsPageSuspects" : MessageLookupByLibrary.simpleMessage("Suspeitos")
+  };
 }

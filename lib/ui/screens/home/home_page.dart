@@ -14,9 +14,11 @@ import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
-import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
+import 'package:covid19mobile/resources/constants.dart';
+import 'package:covid19mobile/providers/faq_provider.dart';
+import 'package:covid19mobile/providers/remote_work_provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +26,7 @@ import 'package:provider/provider.dart';
 import '../../../bloc/app_bloc.dart';
 import '../../../bloc/base_bloc.dart';
 import '../../app.dart';
-import 'components/card_home.dart';
+import 'components/statistics_button.dart';
 
 /// Creates an HomePage extending [BasePage]
 /// that is a StatefulWidget
@@ -60,22 +62,18 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: <Widget>[
-          Center(
-            child: Text("Covid App"),
-          ),
-          Text("Confirmados: ${stats.confirmed}"),
-          CardHome(
-              text: "Medidas Excecionais de Resposta ao COVID-19",
-              callback: () => print("yey")),
-          CardBorderArrow(
-            text: "Discotecas",
-            borderColor: Covid19Colors.grey,
-            textColor: Covid19Colors.green,
-            callback: () => print("yey"),
-          ),
-        ],
+      body: Container(
+        margin: EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            Center(
+              child: Text("Covid App"),
+            ),
+            StatisticsButton(
+              callback: () => Navigator.of(context).pushNamed(routeStatistics),
+            ),
+          ],
+        ),
       ),
     );
   }

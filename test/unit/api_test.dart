@@ -57,16 +57,20 @@ void main() {
     });
 
     test(' performs a get stats', () async {
-      final statsModel = StatsModel("10", "1", "1", "5", "3");
+      final statsModel = StatsModel("10", "1", "1", "5", "3", "5 Fev");
 
       when(client.get('/stats')).thenAnswer(
-          (_) => Future.value(Response(statusCode: HttpStatus.ok, data: {
-                "recuperados": "10",
-                "confirmados": "1",
-                "suspeitos": "1",
-                "aguardar_resultados": "5",
-                "obitos": "3"
-              })));
+        (_) => Future.value(
+          Response(statusCode: HttpStatus.ok, data: {
+            "recuperados": "10",
+            "confirmados": "1",
+            "suspeitos": "1",
+            "aguardar_resultados": "5",
+            "obitos": "3",
+            "data_atualizacao": "5 Fev",
+          }),
+        ),
+      );
 
       /// Verify if is same instance
       var response = await api.getStats();
@@ -91,6 +95,7 @@ void main() {
       expect(responseModel.awaitingResults, statsModel.awaitingResults);
       expect(responseModel.suspected, statsModel.suspected);
       expect(responseModel.deaths, statsModel.deaths);
+      expect(responseModel.lastUpdated, statsModel.lastUpdated);
     });
 
     test(' performs a get Post RemoteWork', () async {
@@ -149,68 +154,16 @@ void main() {
       );
 
       when(client.get(postType.getRequestType())).thenAnswer(
-          (_) => Future.value(Response(statusCode: HttpStatus.ok, data: {
-                "tipo": "escolas",
-                "formacao_em_portugues": "",
-                "como_aceder": "",
-                "suporte_tecnico": "",
-              })));
-
-      /// Verify if is same instance
-      var response = await api.getPosts<FaqModel>(postType);
-      expect(response, isInstanceOf<APIResponse>());
-
-      expect(response.data, isNotNull);
-
-      /// call api
-      verify(
-        client.get(postType.getRequestType()),
-      ).called(1);
-    });
-
-    test(' performs a get videos', () async {
-      final videoModel = VideoModel(
-        id: 269,
-        author: "18",
-        date: "2020-03-18 00:52:14",
-        postDateGmt: "2020-03-18 00:52:14",
-        postTitle: "Medidas extraordinárias de apoio às Artes",
-        postExcerpt: "",
-        postStatus: "publish",
-        commentStatus: "closed",
-        pingStatus: "closed",
-        postPassword: "",
-        postName: "medidas-extraordinaras-de-apoio-as-artes",
-        toPing: "",
-        pinged: "",
-        postModified: "2020-03-19 15:08:09",
-        postModifiedGMT: "2020-03-19 15:08:09",
-        postContentFiltered: "",
-        postParent: 0,
-        guid: "https://dev-covid19.vost.pt/?post_type=measure&#038;p=269",
-        menuOrder: 0,
-        postType: "measure",
-        postMimeType: "",
-        commentCount: "0",
-        filter: "raw",
-        video:
-            "<iframe title=\"Apoio ao Cliente\" width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/vjSgGxuv8UQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
-        description: "descricao",
-        thumbnail: "thumbnail",
-      );
-
-      when(client.get('/videos')).thenAnswer(
         (_) => Future.value(
-          (Response(statusCode: HttpStatus.ok, data: [
+          Response(statusCode: HttpStatus.ok, data: [
             {
               "ID": 269,
               "post_author": "18",
               "post_date": "2020-03-18 00:52:14",
               "post_date_gmt": "2020-03-18 00:52:14",
               "post_content":
-                  "<span style=\"font-weight: 400;\">J\u00e1 foram aprovadas importantes medidas em Conselho de Ministros para apoiar empresas, associa\u00e7\u00f5es, cooperativas e profissionais independentes. Toda a informa\u00e7\u00e3o sobre estas medidas est\u00e1 dispon\u00edvel neste site.\u00a0<\/span>\r\n\r\n<span style=\"font-weight: 400;\">Estamos a trabalhar para identificar e concretiza mais medidas de apoio \u00e0s entidades de cria\u00e7\u00e3o art\u00edsticas, aos artistas e aos t\u00e9cnicos.<\/span>\r\n\r\n<span style=\"font-weight: 400;\">Est\u00e1 dispon\u00edvel a conta de email <\/span><a href=\"mailto:cultura.covid19@mc.gov.pt\"><b>cultura.covid19@mc.gov.pt<\/b><\/a><span style=\"font-weight: 400;\"> para dar reposta \u00e0s d\u00favidas do setor sobre todas as medidas de apoio.<\/span>",
-              "post_title":
-                  "Medidas extraordin\u00e1rias de apoio \u00e0s Artes",
+                  "<span style=\"font-weight: 400;\">Já foram aprovadas importantes medidas em Conselho de Ministros para apoiar empresas, associações, cooperativas e profissionais independentes. Toda a informação sobre estas medidas está disponível neste site. </span>\r\n\r\n<span style=\"font-weight: 400;\">Estamos a trabalhar para identificar e concretiza mais medidas de apoio às entidades de criação artísticas, aos artistas e aos técnicos.</span>\r\n\r\n<span style=\"font-weight: 400;\">Está disponível a conta de email </span><a href=\"mailto:cultura.covid19@mc.gov.pt\"><b>cultura.covid19@mc.gov.pt</b></a><span style=\"font-weight: 400;\"> para dar reposta às dúvidas do setor sobre todas as medidas de apoio.</span>",
+              "post_title": "Medidas extraordinárias de apoio às Artes",
               "post_excerpt": "",
               "post_status": "publish",
               "comment_status": "closed",
@@ -219,21 +172,19 @@ void main() {
               "post_name": "medidas-extraordinaras-de-apoio-as-artes",
               "to_ping": "",
               "pinged": "",
-              "post_modified": "2020-03-19 15:08:09",
-              "post_modified_gmt": "2020-03-19 15:08:09",
+              "post_modified": "2020-03-20 11:15:11",
+              "post_modified_gmt": "2020-03-20 11:15:11",
               "post_content_filtered": "",
               "post_parent": 0,
               "guid":
-                  "https:\/\/dev-covid19.vost.pt\/?post_type=measure&#038;p=269",
+                  "https://dev-covid19.vost.pt/?post_type=measure&#038;p=269",
               "menu_order": 0,
               "post_type": "measure",
               "post_mime_type": "",
               "comment_count": "0",
               "filter": "raw",
-              "video":
-                  "<iframe title=\"Apoio ao Cliente\" width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/vjSgGxuv8UQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
-              "descricao": "descricao",
-              "thumbnail": "thumbnail",
+              "documentos": false,
+              "links": false
             },
             {
               "ID": 270,
@@ -257,74 +208,18 @@ void main() {
               "post_content_filtered": "",
               "post_parent": 0,
               "guid":
-                  "https:\/\/dev-covid19.vost.pt\/?post_type=measure&#038;p=270",
+                  "https://dev-covid19.vost.pt/?post_type=measure&#038;p=270",
               "menu_order": 0,
+              "post_type": "measure",
               "post_mime_type": "",
               "comment_count": "0",
               "filter": "raw",
-              "video":
-                  "<iframe title=\"Apoio ao Cliente\" width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/vjSgGxuv8UQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
-              "descricao": "descricao",
-              "thumbnail": "thumbnail",
+              "documentos": false,
+              "links": false
             }
-          ])),
+          ]),
         ),
       );
-
-      /// Verify if is same instance
-      var response = await api.getPosts<VideoModel>(PostType(PostTypes.videos));
-      expect(response, isInstanceOf<APIResponse>());
-
-      /// Verify json to model
-      var listResponseModel = response.data
-          .map<VideoModel>((json) => VideoModel.fromJson(json))
-          .toList();
-      expect(listResponseModel, isNotNull);
-      expect(listResponseModel, isInstanceOf<List>());
-      expect(listResponseModel.length, 2);
-
-      /// Verify model to json
-      var responseModeltoJson =
-          listResponseModel.map((model) => model.toJson());
-      expect(responseModeltoJson, isNotNull);
-
-      /// Call API
-      verify(
-        client.get('/videos'),
-      ).called(1);
-
-      VideoModel responseModel = listResponseModel.first;
-
-      expect(responseModel.id, videoModel.id);
-      expect(responseModel.author, videoModel.author);
-      expect(responseModel.date, videoModel.date);
-      expect(responseModel.postDateGmt, videoModel.postDateGmt);
-      expect(responseModel.postTitle, videoModel.postTitle);
-      expect(responseModel.postExcerpt, videoModel.postExcerpt);
-      expect(responseModel.postStatus, videoModel.postStatus);
-      expect(responseModel.commentStatus, videoModel.commentStatus);
-      expect(responseModel.pingStatus, videoModel.pingStatus);
-      expect(responseModel.postPassword, videoModel.postPassword);
-      expect(responseModel.postName, videoModel.postName);
-      expect(responseModel.toPing, videoModel.toPing);
-      expect(responseModel.pinged, videoModel.pinged);
-      expect(responseModel.postModified, videoModel.postModified);
-      expect(responseModel.postModifiedGMT, videoModel.postModifiedGMT);
-      expect(responseModel.postContentFiltered, videoModel.postContentFiltered);
-      expect(responseModel.postParent, videoModel.postParent);
-      expect(responseModel.guid, videoModel.guid);
-      expect(responseModel.menuOrder, videoModel.menuOrder);
-      expect(responseModel.postType, videoModel.postType);
-      expect(responseModel.postMimeType, videoModel.postMimeType);
-      expect(responseModel.commentCount, videoModel.commentCount);
-      expect(responseModel.filter, videoModel.filter);
-      expect(responseModel.video, videoModel.video);
-      expect(responseModel.description, videoModel.description);
-      expect(responseModel.thumbnail, videoModel.thumbnail);
-
-      String expectedUrl = "https://www.youtube.com/embed/vjSgGxuv8UQ";
-
-      expect(responseModel.getVideoUrl(), expectedUrl);
     });
 
     test(' performs a get Post Faqs', () async {
@@ -371,6 +266,7 @@ void main() {
         ),
       );
     });
+
     test(' performs a get videos', () async {
       final videoModel = VideoModel(
         id: 269,

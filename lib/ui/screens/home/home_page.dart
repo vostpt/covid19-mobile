@@ -14,7 +14,9 @@ import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
+import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -67,6 +69,12 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
           CardHome(
               text: "Medidas Excecionais de Resposta ao COVID-19",
               callback: () => print("yey")),
+          CardBorderArrow(
+            text: "Discotecas",
+            borderColor: Covid19Colors.grey,
+            textColor: Covid19Colors.green,
+            callback: () => print("yey"),
+          ),
         ],
       ),
     );

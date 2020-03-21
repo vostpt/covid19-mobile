@@ -42,7 +42,7 @@ class CovidApp extends StatelessWidget {
         theme: Themes.defaultAppTheme,
         initialRoute: '/',
         routes: {
-          '/': (_) => AboutPage(),
+          '/': (_) => HomePage(title: 'Covid 19 App').builder,
         },
       ),
     );

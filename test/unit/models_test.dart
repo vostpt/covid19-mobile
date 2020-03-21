@@ -21,7 +21,7 @@ void main() {
   group('Models Test', () {
     test(' Stats Model', () async {
       /// Create model
-      final statsModel = StatsModel("10", "1", "1", "5", "3");
+      final statsModel = StatsModel("10", "1", "1", "5", "3", "5 Fev");
 
       /// Validate properties
       expect(statsModel.recovered, "10");
@@ -29,6 +29,7 @@ void main() {
       expect(statsModel.suspected, "1");
       expect(statsModel.awaitingResults, "5");
       expect(statsModel.deaths, "3");
+      expect(statsModel.lastUpdated, "5 Fev");
 
       /// Check Model instance and type
       expect(statsModel, isNotNull);

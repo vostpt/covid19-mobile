@@ -57,7 +57,7 @@ void main() {
     });
 
     test(' performs a get stats', () async {
-      final statsModel = StatsModel("10", "1", "1", "5", "3");
+      final statsModel = StatsModel("10", "1", "1", "5", "3", "5 Fev");
 
       when(client.get('/stats')).thenAnswer(
         (_) => Future.value(
@@ -66,7 +66,8 @@ void main() {
             "confirmados": "1",
             "suspeitos": "1",
             "aguardar_resultados": "5",
-            "obitos": "3"
+            "obitos": "3",
+            "data_atualizacao": "5 Fev",
           }),
         ),
       );
@@ -94,6 +95,7 @@ void main() {
       expect(responseModel.awaitingResults, statsModel.awaitingResults);
       expect(responseModel.suspected, statsModel.suspected);
       expect(responseModel.deaths, statsModel.deaths);
+      expect(responseModel.lastUpdated, statsModel.lastUpdated);
     });
 
     test(' performs a get Post RemoteWork', () async {

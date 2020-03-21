@@ -160,17 +160,21 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
             const SizedBox(
               height: _itemsMargin,
             ),
-            Text("${S.of(context).lastUpdated.toUpperCase()} XX",
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle
-                    .copyWith(color: Covid19Colors.grey)),
+            Container(
+              child: Text("${S.of(context).lastUpdated.toUpperCase()}${stats.lastUpdated}",
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle
+                      .copyWith(color: Covid19Colors.grey)),
+            ),
             const SizedBox(
               height: _itemsMargin,
             ),
-            Text(S.of(context).statisticsPageDataLabel.toUpperCase(),
-                style:
-                    TextStyles.subtitle(color: Theme.of(context).primaryColor)),
+            SafeArea(
+                          child: Text(S.of(context).statisticsPageDataLabel.toUpperCase(),
+                  style:
+                      TextStyles.subtitle(color: Theme.of(context).primaryColor)),
+            ),
           ],
         ),
       ),

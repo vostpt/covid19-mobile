@@ -13,6 +13,7 @@ StatsModel _$StatsModelFromJson(Map<String, dynamic> json) {
     json['suspeitos'] as String,
     json['aguardar_resultados'] as String,
     json['obitos'] as String,
+    json['data_atualizacao'] as String,
   );
 }
 
@@ -30,5 +31,6 @@ Map<String, dynamic> _$StatsModelToJson(StatsModel instance) {
   writeNotNull('suspeitos', instance.suspected);
   writeNotNull('aguardar_resultados', instance.awaitingResults);
   writeNotNull('obitos', instance.deaths);
+  writeNotNull('data_atualizacao', instance.lastUpdated);
   return val;
 }

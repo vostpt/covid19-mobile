@@ -15,7 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 extension Environment on WidgetTester {
-  Future<void> pumpWithEnvironment(Widget subjectToBeTested) async => await pumpWidget(MaterialApp(
+  Future<void> pumpWithEnvironment(Widget subjectToBeTested) async =>
+      await pumpWidget(MaterialApp(
         home: Scaffold(body: subjectToBeTested),
       ));
 }

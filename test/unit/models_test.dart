@@ -18,11 +18,8 @@ import 'package:covid19mobile/model/faq_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-
   group('Models Test', () {
-
     test(' Stats Model', () async {
-
       /// Create model
       final statsModel = StatsModel("10", "1", "1", "5", "3");
 
@@ -53,7 +50,6 @@ void main() {
       final model = StatsModel.fromJson(json);
       expect(model, isNotNull);
       expect(model, isInstanceOf<StatsModel>());
-
     });
 
     test(' Measues Model', () async {
@@ -61,7 +57,6 @@ void main() {
     });
 
     test(' RemoteWork Model', () async {
-
       /// Create model
       final model = RemoteWorkModel(
         10,
@@ -125,16 +120,15 @@ void main() {
       final model2 = RemoteWorkModel.fromJson(json);
       expect(model2, isNotNull);
       expect(model2, isInstanceOf<RemoteWorkModel>());
-
     });
 
     test(' Faqs Model', () async {
-
       /// Create model
       final model = FaqModel(
         10,
         "pergunta",
         "questao",
+        "infarmed",
         "",
         "",
         "",
@@ -162,6 +156,7 @@ void main() {
       expect(model.id, 10);
       expect(model.question, "pergunta");
       expect(model.answer, "questao");
+      expect(model.responsableEntity, "infarmed");
 
       /// Check Model instance and type
       expect(model, isNotNull);
@@ -177,13 +172,11 @@ void main() {
         "ID": 10,
         "question": "pergunta",
         "answer": "questao",
+        "entidade_responsavel": "infarmed",
       };
       final model2 = FaqModel.fromJson(json);
       expect(model2, isNotNull);
       expect(model2, isInstanceOf<FaqModel>());
-
     });
-
   });
-
 }

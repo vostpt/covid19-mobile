@@ -11,6 +11,11 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-void main() {
-  // Empty by design
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+extension Environment on WidgetTester {
+  Future<void> pumpWithEnvironment(Widget subjectToBeTested) async => await pumpWidget(MaterialApp(
+        home: Scaffold(body: subjectToBeTested),
+      ));
 }

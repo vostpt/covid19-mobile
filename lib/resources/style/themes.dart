@@ -57,5 +57,6 @@ class Themes {
     primaryColor: colorPrimary,
     accentColor: colorAccent,
     textTheme: defaultTextTheme,
+    unselectedWidgetColor: colorPrimary,
   );
 }

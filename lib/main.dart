@@ -12,11 +12,13 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:async';
+import 'package:covid19mobile/services/messaging_service.dart';
 import 'package:covid19mobile/ui/app.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   var enableInDevMode = true;
 
   /// Set `enableInDevMode` to true to see reports while in debug mode
@@ -27,6 +29,9 @@ void main() {
 
   /// Pass all uncaught errors from the framework to Crashlytics.
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
+
+  /// Init Firebase messaging service
+  MessagingService.init();
 
   runZoned<Future<void>>(() async {
     /// Run main app

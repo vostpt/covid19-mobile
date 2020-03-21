@@ -28,9 +28,10 @@ class PostType {
     switch (postTypes) {
       case PostTypes.measures:
         return '/measures';
-        break;
       case PostTypes.remoteWork:
         return '/remote_work';
+      case PostTypes.videos:
+        return '/videos';
         break;
       case PostTypes.videos:
         return '/videos';

@@ -209,7 +209,8 @@ void main() {
               "post_date_gmt": "2020-03-18 00:52:14",
               "post_content":
                   "<span style=\"font-weight: 400;\">J\u00e1 foram aprovadas importantes medidas em Conselho de Ministros para apoiar empresas, associa\u00e7\u00f5es, cooperativas e profissionais independentes. Toda a informa\u00e7\u00e3o sobre estas medidas est\u00e1 dispon\u00edvel neste site.\u00a0<\/span>\r\n\r\n<span style=\"font-weight: 400;\">Estamos a trabalhar para identificar e concretiza mais medidas de apoio \u00e0s entidades de cria\u00e7\u00e3o art\u00edsticas, aos artistas e aos t\u00e9cnicos.<\/span>\r\n\r\n<span style=\"font-weight: 400;\">Est\u00e1 dispon\u00edvel a conta de email <\/span><a href=\"mailto:cultura.covid19@mc.gov.pt\"><b>cultura.covid19@mc.gov.pt<\/b><\/a><span style=\"font-weight: 400;\"> para dar reposta \u00e0s d\u00favidas do setor sobre todas as medidas de apoio.<\/span>",
-              "post_title": "Medidas extraordinárias de apoio às Artes",
+              "post_title":
+                  "Medidas extraordin\u00e1rias de apoio \u00e0s Artes",
               "post_excerpt": "",
               "post_status": "publish",
               "comment_status": "closed",

@@ -137,13 +137,13 @@ class AppBloc implements Bloc {
             FaqModel.fromJson(json)).toList();
 
         break;
-      case PostTypes.faq:
+      case PostTypes.videos:
 
         /// Data converted to a Map now we need to convert each entry
         return data.map<T>((json) =>
 
-            /// into a [RemoteWorkModel] instance and save into a List
-            FaqModel.fromJson(json)).toList();
+            /// into a [VideoModel] instance and save into a List
+            VideoModel.fromJson(json)).toList();
 
         break;
       case PostTypes.videos:

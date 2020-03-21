@@ -71,16 +71,20 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
   @override
   void initBloc(AppBloc bloc) {
     /// Get Case Stats
+    ///
     bloc.getStats();
 
     /// Get RemoteWork Posts
+    ///
     bloc.geRemoteWork();
 
-    /// Get Videos Posts
-    bloc.getVideos();
-
     /// Get Faq Posts
+    ///
     bloc.getFaqs();
+
+    /// Get Videos Posts
+    ///
+    bloc.getVideos();
   }
 
   @override

@@ -14,3 +14,5 @@
 const String bundle = 'com.vost.covid19mobile';
 
 const String routeStatistics = "statistics";
+
+const String routeFaqs = "faqs";

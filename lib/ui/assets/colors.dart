@@ -50,4 +50,11 @@ class Covid19Colors {
 
   /// Stats grey
   static const Color statsGrey = Color(0xffeceef0);
+
+  /// For certain letter colors
+  static const Color darkGreyLight = Color(0xff2d2d2e);
+
+  /// For use in list separator
+  static const Color lightGreyLight = Color(0xffeceef0);
+
 }

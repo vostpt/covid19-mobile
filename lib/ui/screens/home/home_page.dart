@@ -56,7 +56,7 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
   @override
   Widget build(BuildContext context) {
     var stats = Provider.of<StatsProvider>(context);
-    logger.i('[StatsProvider] $stats!');
+    logger.i('[StatsProvider] $stats! - ${stats.hashCode}');
 
     return Scaffold(
       appBar: AppBar(

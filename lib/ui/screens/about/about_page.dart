@@ -216,7 +216,7 @@ class _SocialMediaImage extends StatelessWidget {
     return GestureDetector(
       onTap: () => launchURL(url),
       child: Image.asset(
-        socialTwitter,
+        assetName,
         width: width,
       ),
     );

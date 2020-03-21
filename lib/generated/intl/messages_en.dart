@@ -21,6 +21,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "defaultError" : MessageLookupByLibrary.simpleMessage("An error has occurred")
+    "defaultError" : MessageLookupByLibrary.simpleMessage("An error has occurred"),
+    "lastUpdated" : MessageLookupByLibrary.simpleMessage("Última actualização: "),
+    "statisticsPageAwaitingResults" : MessageLookupByLibrary.simpleMessage("Aguardar Resultados"),
+    "statisticsPageConfirmed" : MessageLookupByLibrary.simpleMessage("Confirmados"),
+    "statisticsPageDataLabel" : MessageLookupByLibrary.simpleMessage("Dados DGS via ESRI Portugal"),
+    "statisticsPageRecovered" : MessageLookupByLibrary.simpleMessage("Recuperações"),
+    "statisticsPageStatistics" : MessageLookupByLibrary.simpleMessage("Estatísticas"),
+    "statisticsPageSuspects" : MessageLookupByLibrary.simpleMessage("Suspeitos")
   };
 }

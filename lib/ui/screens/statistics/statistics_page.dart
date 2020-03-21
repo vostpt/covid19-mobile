@@ -13,6 +13,7 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
+import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/resources/style/themes.dart';
@@ -43,7 +44,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
         iconTheme:
             Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
         title: Text(
-          "Estatísticas".toUpperCase(),
+          S.of(context).statisticsPageStatistics.toUpperCase(),
           style: Theme.of(context)
               .textTheme
               .display2
@@ -64,7 +65,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                 number: stats.confirmed,
                 numberStyle:
                     TextStyles.statisticsBig(color: Covid19Colors.darkGrey),
-                text: "Confirmados".toUpperCase(),
+                text: S.of(context).statisticsPageConfirmed.toUpperCase(),
                 textStyle: Theme.of(context)
                     .textTheme
                     .display1
@@ -86,7 +87,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                           .textTheme
                           .display1
                           .copyWith(color: Covid19Colors.darkGrey),
-                      text: "Recuperações".toUpperCase(),
+                      text: S.of(context).statisticsPageConfirmed.toUpperCase().toUpperCase(),
                       textStyle: Theme.of(context)
                           .textTheme
                           .display4
@@ -129,7 +130,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                           .textTheme
                           .display1
                           .copyWith(color: Covid19Colors.darkGrey),
-                      text: "Suspeitos".toUpperCase(),
+                      text: S.of(context).statisticsPageSuspects.toUpperCase(),
                       textStyle: Theme.of(context)
                           .textTheme
                           .display4
@@ -147,7 +148,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                           .textTheme
                           .display1
                           .copyWith(color: Covid19Colors.darkGrey),
-                      text: "Aguardar Resultados".toUpperCase(),
+                      text: S.of(context).statisticsPageAwaitingResults.toUpperCase(),
                       textStyle: Theme.of(context)
                           .textTheme
                           .display4
@@ -160,7 +161,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
             SizedBox(
               height: _itemsMargin,
             ),
-            Text("Última actualização: XX",
+            Text("${S.of(context).lastUpdated.toUpperCase()} XX",
                 style: Theme.of(context)
                     .textTheme
                     .subtitle
@@ -168,7 +169,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
             SizedBox(
               height: _itemsMargin,
             ),
-            Text("Dados DGS via ESRI Portugal",
+            Text(S.of(context).statisticsPageDataLabel.toUpperCase(),
                 style:
                     TextStyles.subtitle(color: Theme.of(context).primaryColor)),
           ],

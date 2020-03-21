@@ -1,3 +1,10 @@
 {
-    "defaultError": "An error has occurred"
+  "defaultError": "An error has occurred",
+  "statisticsPageStatistics": "Estatísticas",
+  "statisticsPageConfirmed": "Confirmados",
+  "statisticsPageRecovered": "Recuperações",
+  "statisticsPageSuspects": "Suspeitos",
+  "statisticsPageAwaitingResults": "Aguardar Resultados",
+  "statisticsPageDataLabel": "Dados DGS via ESRI Portugal",
+  "lastUpdated": "Última actualização: "
 }

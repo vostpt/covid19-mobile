@@ -1,4 +1,4 @@
-///     This program is free software: you can redistribute it and/or modify
+///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
 ///    (at your option) any later version.
@@ -11,15 +11,11 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-const String bundle = 'com.vost.covid19mobile';
-
-const String routeStatistics = "statistics";
-const String routeContacts = "contacts";
-const String routeFaqs = "faqs";
-const String routeAbout = "about";
-const String routeVideos = "videos";
-const String routeVideoPlayer = "videos/player";
-const String routeRemoteWork = "remoteWork";
-const String routeRemoteWorkDetails = "remoteWork/details";
-const String routeNotifications = "notifications";
-const String routeMeasures = "measures";
+/// Capitalize the first letter of a String
+/// Source:
+/// https://stackoverflow.com/questions/29628989/how-to-capitalize-the-first-letter-of-a-string-in-dart
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${substring(1)}";
+  }
+}

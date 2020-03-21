@@ -10,25 +10,96 @@ import 'intl/messages_all.dart';
 
 class S {
   S(this.localeName);
-
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+  
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final String name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       return S(localeName);
     });
-  }
+  } 
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
 
   final String localeName;
+
+  String get defaultError {
+    return Intl.message(
+      'An error has occurred',
+      name: 'defaultError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageStatistics {
+    return Intl.message(
+      'Estatísticas',
+      name: 'statisticsPageStatistics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageConfirmed {
+    return Intl.message(
+      'Confirmados',
+      name: 'statisticsPageConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageRecovered {
+    return Intl.message(
+      'Recuperações',
+      name: 'statisticsPageRecovered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageSuspects {
+    return Intl.message(
+      'Suspeitos',
+      name: 'statisticsPageSuspects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageAwaitingResults {
+    return Intl.message(
+      'Aguardar Resultados',
+      name: 'statisticsPageAwaitingResults',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageDataLabel {
+    return Intl.message(
+      'Dados DGS via ESRI Portugal',
+      name: 'statisticsPageDataLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get lastUpdated {
+    return Intl.message(
+      'Última actualização: ',
+      name: 'lastUpdated',
+      desc: '',
+      args: [],
+    );
+  }
 
   String get checkDetails {
     return Intl.message(
@@ -39,19 +110,55 @@ class S {
     );
   }
 
-  String get contactsPageMNEEmail {
+  String get homePageConfirmedCases {
     return Intl.message(
-      'covid19@mne.pt',
-      name: 'contactsPageMNEEmail',
+      'Casos confirmados de COVID-19 em Portugal',
+      name: 'homePageConfirmedCases',
       desc: '',
       args: [],
     );
   }
 
-  String get contactsPageMNEEmailText {
+  String get contactsPageTitle {
     return Intl.message(
-      'Canal do Ministério dos Negócios Estrangeiros de emergência aos portugueses em viagem.',
-      name: 'contactsPageMNEEmailText',
+      'Contactos úteis',
+      name: 'contactsPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageSNSNumber {
+    return Intl.message(
+      '808 24 24 24',
+      name: 'contactsPageSNSNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageSNSNumberText {
+    return Intl.message(
+      'Linha SNS 24 para esclarecimentos de diagnóstico médico.',
+      name: 'contactsPageSNSNumberText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageSSNumber {
+    return Intl.message(
+      '300 502 502',
+      name: 'contactsPageSSNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageSSNumberText {
+    return Intl.message(
+      'Linha Segurança Social para esclarecimentos sobre assistência a familiares, baixas e quarentena.',
+      name: 'contactsPageSSNumberText',
       desc: '',
       args: [],
     );
@@ -111,55 +218,19 @@ class S {
     );
   }
 
-  String get contactsPageSNSNumber {
+  String get contactsPageMNEEmail {
     return Intl.message(
-      '808 24 24 24',
-      name: 'contactsPageSNSNumber',
+      'covid19@mne.pt',
+      name: 'contactsPageMNEEmail',
       desc: '',
       args: [],
     );
   }
 
-  String get contactsPageSNSNumberText {
+  String get contactsPageMNEEmailText {
     return Intl.message(
-      'Linha SNS 24 para esclarecimentos de diagnóstico médico.',
-      name: 'contactsPageSNSNumberText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get contactsPageSSNumber {
-    return Intl.message(
-      '300 502 502',
-      name: 'contactsPageSSNumber',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get contactsPageSSNumberText {
-    return Intl.message(
-      'Linha Segurança Social para esclarecimentos sobre assistência a familiares, baixas e quarentena.',
-      name: 'contactsPageSSNumberText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get contactsPageTitle {
-    return Intl.message(
-      'Contactos úteis',
-      name: 'contactsPageTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get defaultError {
-    return Intl.message(
-      'An error has occurred',
-      name: 'defaultError',
+      'Canal do Ministério dos Negócios Estrangeiros de emergência aos portugueses em viagem.',
+      name: 'contactsPageMNEEmailText',
       desc: '',
       args: [],
     );
@@ -183,100 +254,10 @@ class S {
     );
   }
 
-  String get homePageConfirmedCases {
+  String get screenAboutTitle {
     return Intl.message(
-      'Casos confirmados de COVID-19 em Portugal',
-      name: 'homePageConfirmedCases',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get lastUpdated {
-    return Intl.message(
-      'Última actualização: ',
-      name: 'lastUpdated',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get notificationsPageDescription {
-    return Intl.message(
-      'Que notificações vai receber?\nInformações importantes sobre atualização dos dados constantes nesta aplicação e avisos/alertas das entidades oficiais.',
-      name: 'notificationsPageDescription',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get notificationsPageReceiveNotifcations {
-    return Intl.message(
-      'Notificações',
-      name: 'notificationsPageReceiveNotifcations',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get notificationsPageReceiveStats {
-    return Intl.message(
-      'Estatísticas',
-      name: 'notificationsPageReceiveStats',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get notificationsPageReceiveMeasures {
-    return Intl.message(
-      'Medidas do Governo',
-      name: 'notificationsPageReceiveMeasures',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get notificationsPageReceiveQuestions {
-    return Intl.message(
-      'Perguntas Frequentes',
-      name: 'notificationsPageReceiveQuestions',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get notificationsPageReceiveOther {
-    return Intl.message(
-      'Outras',
-      name: 'notificationsPageReceiveOther',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get notificationsPagePermissionsMissing {
-    return Intl.message(
-      'Por favor, conceda permissões de notificação.',
-      name: 'notificationsPagePermissionsMissing',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get notificationsPageOpenSettings {
-    return Intl.message(
-      'Abrir definições',
-      name: 'notificationsPageOpenSettings',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get screenAboutBuilt {
-    return Intl.message(
-      'Esta app foi construída com o apoio da VOST PT e Flutter Portugal',
-      name: 'screenAboutBuilt',
+      'Sobre',
+      name: 'screenAboutTitle',
       desc: '',
       args: [],
     );
@@ -327,6 +308,24 @@ class S {
     );
   }
 
+  String get screenAboutHashtag {
+    return Intl.message(
+      '#EstamosOn',
+      name: 'screenAboutHashtag',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get screenAboutBuilt {
+    return Intl.message(
+      'Esta app foi construída com o apoio da VOST PT e Flutter Portugal',
+      name: 'screenAboutBuilt',
+      desc: '',
+      args: [],
+    );
+  }
+
   String get screenAboutFooter1 {
     return Intl.message(
       '#COVID19PT - 2020 VOSTPT - Voluntários Digitais em Situações de Emergências para Portugal.',
@@ -340,87 +339,6 @@ class S {
     return Intl.message(
       'Este site e seus materiais encontram-se sob uma licença Creative Commons CC BY-NC-SA: Atribuição-Não Comercial-Compartilha Igual.',
       name: 'screenAboutFooter2',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get screenAboutHashtag {
-    return Intl.message(
-      '#EstamosOn',
-      name: 'screenAboutHashtag',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get screenAboutTitle {
-    return Intl.message(
-      'Sobre',
-      name: 'screenAboutTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get screenNotificationsTitle {
-    return Intl.message(
-      'Notificações',
-      name: 'screenNotificationsTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get statisticsPageAwaitingResults {
-    return Intl.message(
-      'Aguardar Resultados',
-      name: 'statisticsPageAwaitingResults',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get statisticsPageConfirmed {
-    return Intl.message(
-      'Confirmados',
-      name: 'statisticsPageConfirmed',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get statisticsPageDataLabel {
-    return Intl.message(
-      'Dados DGS via ESRI Portugal',
-      name: 'statisticsPageDataLabel',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get statisticsPageRecovered {
-    return Intl.message(
-      'Recuperações',
-      name: 'statisticsPageRecovered',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get statisticsPageStatistics {
-    return Intl.message(
-      'Estatísticas',
-      name: 'statisticsPageStatistics',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get statisticsPageSuspects {
-    return Intl.message(
-      'Suspeitos',
-      name: 'statisticsPageSuspects',
       desc: '',
       args: [],
     );
@@ -462,10 +380,19 @@ class S {
     );
   }
 
-  String get screenRemoteWorkTitle {
+  String get measuresPageMeasures {
     return Intl.message(
-      'Teletrabalho',
-      name: 'screenRemoteWorkTitle',
+      'Medidas Excecionais',
+      name: 'measuresPageMeasures',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get measuresHomepageButton {
+    return Intl.message(
+      'Medidas excecionais de resposta À COVID-19',
+      name: 'measuresHomepageButton',
       desc: '',
       args: [],
     );

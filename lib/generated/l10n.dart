@@ -37,6 +37,69 @@ class S {
       args: [],
     );
   }
+
+  String get statisticsPageStatistics {
+    return Intl.message(
+      'Estatísticas',
+      name: 'statisticsPageStatistics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageConfirmed {
+    return Intl.message(
+      'Confirmados',
+      name: 'statisticsPageConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageRecovered {
+    return Intl.message(
+      'Recuperações',
+      name: 'statisticsPageRecovered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageSuspects {
+    return Intl.message(
+      'Suspeitos',
+      name: 'statisticsPageSuspects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageAwaitingResults {
+    return Intl.message(
+      'Aguardar Resultados',
+      name: 'statisticsPageAwaitingResults',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageDataLabel {
+    return Intl.message(
+      'Dados DGS via ESRI Portugal',
+      name: 'statisticsPageDataLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get lastUpdated {
+    return Intl.message(
+      'Última actualização: ',
+      name: 'lastUpdated',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -11,6 +11,19 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-void main() {
-  // Empty by design
+import 'package:flutter/material.dart';
+import 'brand.dart';
+
+class HeaderMain extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Brand(),
+        ),
+      ],
+    );
+  }
 }

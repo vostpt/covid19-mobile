@@ -362,6 +362,7 @@ void main() {
         10,
         "pergunta",
         "resposta",
+        "infarmed",
         "",
         "",
         "",
@@ -390,6 +391,7 @@ void main() {
                 "ID": 10,
                 "pergunta": "escolas",
                 "questao": "",
+                "entidade_responsavel" : "infarmed",
               })));
 
       /// Verify if is same instance

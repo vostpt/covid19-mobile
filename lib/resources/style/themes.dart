@@ -52,10 +52,12 @@ class Themes {
       ));
 
   static ThemeData defaultAppTheme = ThemeData(
-      brightness: Brightness.light,
-      fontFamily: "Lato",
-      primaryColor: colorPrimary,
-      accentColor: colorAccent,
-      textTheme: defaultTextTheme,
-      scaffoldBackgroundColor: Colors.white);
+    brightness: Brightness.light,
+    fontFamily: "Lato",
+    primaryColor: colorPrimary,
+    accentColor: colorAccent,
+    textTheme: defaultTextTheme,
+    unselectedWidgetColor: colorPrimary,
+    scaffoldBackgroundColor: Colors.white,
+  );
 }

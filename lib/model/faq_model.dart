@@ -33,6 +33,10 @@ class FaqModel extends BasePostModel {
   @JsonKey(name: 'resposta')
   final String answer;
 
+  /// Responsable Entity
+  @JsonKey(name: 'entidade_responsavel')
+  final String responsableEntity;
+
   /// Constructor
   ///
   /// All Fields are mandatory
@@ -41,6 +45,7 @@ class FaqModel extends BasePostModel {
     int id,
     this.question,
     this.answer,
+    this.responsableEntity,
     String author,
     String date,
     String postDateGmt,

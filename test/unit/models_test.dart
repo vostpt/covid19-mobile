@@ -128,6 +128,7 @@ void main() {
         10,
         "pergunta",
         "questao",
+        "infarmed",
         "",
         "",
         "",
@@ -155,6 +156,7 @@ void main() {
       expect(model.id, 10);
       expect(model.question, "pergunta");
       expect(model.answer, "questao");
+      expect(model.responsableEntity, "infarmed");
 
       /// Check Model instance and type
       expect(model, isNotNull);
@@ -170,6 +172,7 @@ void main() {
         "ID": 10,
         "question": "pergunta",
         "answer": "questao",
+        "entidade_responsavel": "infarmed",
       };
       final model2 = FaqModel.fromJson(json);
       expect(model2, isNotNull);

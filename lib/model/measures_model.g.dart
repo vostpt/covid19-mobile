@@ -8,10 +8,6 @@ part of 'measures_model.dart';
 
 MeasuresModel _$MeasuresModelFromJson(Map<String, dynamic> json) {
   return MeasuresModel(
-    postContent: json['post_content'] as String,
-    postTitle: json['post_title'] as String,
-    documents: json['documentos'] as bool,
-    links: json['links'] as bool,
     id: json['ID'] as int,
     author: json['post_author'] as String,
     date: json['post_date'] as String,
@@ -34,6 +30,10 @@ MeasuresModel _$MeasuresModelFromJson(Map<String, dynamic> json) {
     postMimeType: json['post_mime_type'] as String,
     commentCount: json['comment_count'] as String,
     filter: json['filter'] as String,
+    postContent: json['post_content'] as String,
+    postTitle: json['post_title'] as String,
+    documents: json['documentos'] as bool,
+    links: json['links'] as bool,
   );
 }
 

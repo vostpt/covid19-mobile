@@ -1,4 +1,4 @@
-///     This program is free software: you can redistribute it and/or modify
+///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
 ///    (at your option) any later version.
@@ -11,6 +11,25 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-const String bundle = 'com.vost.covid19mobile';
+import 'package:flutter/material.dart';
 
-const String routeStatistics = "statistics";
+class ButtonBackground extends StatelessWidget {
+  final Color color;
+  final Widget child;
+
+  const ButtonBackground({Key key, this.color, this.child}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(4.0),
+        ),
+        color: color,
+      ),
+      padding: EdgeInsets.all(16.0),
+      child: child,
+    );
+  }
+}

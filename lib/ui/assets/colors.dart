@@ -35,4 +35,19 @@ class Covid19Colors {
 
   /// Used less but equaly importante
   static const Color blue = Color(0xff1e66de);
+
+  /// Stats blue
+  static const Color statsBlue = Color(0xffd7e5fa);
+
+  /// Stats green
+  static const Color statsGreen = Color(0xffe5f5e3);
+
+  /// Stats red
+  static const Color statsRed = Color(0xfff9e8e6);
+
+  /// Stats yellow
+  static const Color statsYellow = Color(0xfffaecd8);
+
+  /// Stats grey
+  static const Color statsGrey = Color(0xffeceef0);
 }

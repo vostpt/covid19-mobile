@@ -17,7 +17,6 @@ enum PostTypes {
   remoteWork,
   videos,
   faq,
-  videos,
 }
 
 class PostType {

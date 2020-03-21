@@ -86,13 +86,6 @@ class AppBloc implements Bloc {
         state: results != null ? StateStream.success : StateStream.fail));
   }
 
-  
-  void getVideos() async {
-    final postType = PostType(PostTypes.videos);
-
-    getPosts<VideoModel>(postType, cacheKey: "VideoModel");
-  }
-
   Future<List<T>> getPosts<T>(PostType postType,
       {bool cache = true, String cacheKey = "key"}) async {
     final APIResponse response = await APIService.api.getPosts<T>(postType);
@@ -160,6 +153,8 @@ class AppBloc implements Bloc {
 
             /// into a [VideoModel] instance and save into a List
             VideoModel.fromJson(json)).toList();
+
+            break;
     }
   }
 

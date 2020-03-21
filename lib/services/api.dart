@@ -53,5 +53,5 @@ class DevApi extends _ConfigApi {}
 /// Production API Configuration
 class ProductionApi extends _ConfigApi {
   @override
-  String get host => "<replace_for_production>";
+  String get host => "covid19estamoson.gov.pt";
 }

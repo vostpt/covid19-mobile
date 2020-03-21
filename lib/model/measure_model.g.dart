@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'measures_model.dart';
+part of 'measure_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-MeasuresModel _$MeasuresModelFromJson(Map<String, dynamic> json) {
-  return MeasuresModel(
+MeasureModel _$MeasureModelFromJson(Map<String, dynamic> json) {
+  return MeasureModel(
     id: json['ID'] as int,
     author: json['post_author'] as String,
     date: json['post_date'] as String,
@@ -33,11 +33,10 @@ MeasuresModel _$MeasuresModelFromJson(Map<String, dynamic> json) {
     postContent: json['post_content'] as String,
     postTitle: json['post_title'] as String,
     documents: json['documentos'] as bool,
-    links: json['links'] as bool,
   );
 }
 
-Map<String, dynamic> _$MeasuresModelToJson(MeasuresModel instance) {
+Map<String, dynamic> _$MeasureModelToJson(MeasureModel instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -71,6 +70,5 @@ Map<String, dynamic> _$MeasuresModelToJson(MeasuresModel instance) {
   writeNotNull('post_content', instance.postContent);
   writeNotNull('post_title', instance.postTitle);
   writeNotNull('documentos', instance.documents);
-  writeNotNull('links', instance.links);
   return val;
 }

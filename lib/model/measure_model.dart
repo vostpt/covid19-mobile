@@ -14,11 +14,11 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:covid19mobile/model/base_post_model.dart';
 
-part 'measures_model.g.dart';
+part 'measure_model.g.dart';
 
 /// Measures Model
 @JsonSerializable(includeIfNull: false)
-class MeasuresModel extends BasePostModel {
+class MeasureModel extends BasePostModel {
   /// Content information of this measure
   @JsonKey(name: 'post_content')
   final String postContent;
@@ -32,14 +32,14 @@ class MeasuresModel extends BasePostModel {
   final bool documents;
 
   /// If it has links attached
-  @JsonKey(name: 'links')
-  final bool links;
+  // @JsonKey(name: 'links')
+  // final bool links;
 
   /// Model constructor
   ///
   /// All properties are mandatory
   ///
-  MeasuresModel({
+  MeasureModel({
     int id,
     String author,
     String date,
@@ -65,7 +65,7 @@ class MeasuresModel extends BasePostModel {
     this.postContent,
     this.postTitle,
     this.documents,
-    this.links,
+    // this.links,
   }) : super(
           id: id,
           author: author,
@@ -91,10 +91,10 @@ class MeasuresModel extends BasePostModel {
           filter: filter,
         );
 
-  static List<MeasuresModel> fromJson(List<Map<String, dynamic>> json) {
-    return json.map(_$MeasuresModelFromJson).toList();
-  }
+  /// Mapper from Json to Model
+  factory MeasureModel.fromJson(Map<String, dynamic> json) =>
+      _$MeasureModelFromJson(json);
 
   /// Maps Model to Json
-  Map<String, dynamic> toJson() => _$MeasuresModelToJson(this);
+  Map<String, dynamic> toJson() => _$MeasureModelToJson(this);
 }

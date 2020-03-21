@@ -12,6 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
+import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
@@ -19,6 +20,8 @@ import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/home/components/card_home.dart';
+import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
+import 'package:covid19mobile/generated/l10n.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,12 +45,20 @@ class HomePage extends BasePage {
 
   @override
   Widget get builder => MultiProvider(providers: [
-        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider()),
+        ChangeNotifierProvider<StatsProvider>.value(
+          value: StatsProvider(),
+        ),
         ChangeNotifierProvider<RemoteWorkProvider>.value(
-            value: RemoteWorkProvider()),
-        ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider()),
+          value: RemoteWorkProvider(),
+        ),
+        ChangeNotifierProvider<FaqProvider>.value(
+          value: FaqProvider(),
+        ),
         ChangeNotifierProvider<VideosProvider>.value(
           value: VideosProvider(),
+        ),
+        ChangeNotifierProvider<MeasuresProvider>.value(
+          value: MeasuresProvider(),
         ),
       ], child: HomePage(title: title));
 }
@@ -86,6 +97,13 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
             ),
             const SizedBox(
               height: 8,
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            CardHome(
+              text: S.of(context).measuresHomepageButton.toUpperCase(),
+              callback: () => Navigator.of(context).pushNamed(routeMeasures),
             ),
             CardHome(
               text: S.of(context).faqPageTitle.toUpperCase(),
@@ -130,6 +148,10 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     /// Get Videos Posts
     ///
     bloc.getVideos();
+
+    /// Get Measures
+    ///
+    bloc.getMeasures();
   }
 
   @override
@@ -153,6 +175,11 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     if (result is VideosResultStream) {
       Provider.of<VideosProvider>(context, listen: false)
           .setVideos(result.model);
+    }
+
+    if (result is MeasuresResultStream) {
+      Provider.of<MeasuresProvider>(context, listen: false)
+          .setMeasures(result.model);
     }
   }
 }

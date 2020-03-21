@@ -21,6 +21,7 @@ import 'package:covid19mobile/ui/screens/faqs/faqs_page.dart';
 import 'package:covid19mobile/ui/screens/about/about_page.dart';
 import 'package:covid19mobile/ui/screens/home/home_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
+import 'package:covid19mobile/ui/screens/measures/measures_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logger/logger.dart';
@@ -52,6 +53,8 @@ class CovidApp extends StatelessWidget {
           routeContacts: (_) => ContactsPage(),
           routeFaqs: (_) => FaqsPage(title: 'Perguntas Frequentes').builder,
           routeAbout: (_) => AboutPage(),
+          routeMeasures: (_) =>
+              MeasuresPage(title: 'Medidas Excecionais').builder
         },
       ),
     );

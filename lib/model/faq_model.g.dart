@@ -11,6 +11,7 @@ FaqModel _$FaqModelFromJson(Map<String, dynamic> json) {
     json['ID'] as int,
     json['pergunta'] as String,
     json['resposta'] as String,
+    json['entidade_responsavel'] as String,
     json['post_author'] as String,
     json['post_date'] as String,
     json['post_date_gmt'] as String,
@@ -68,5 +69,6 @@ Map<String, dynamic> _$FaqModelToJson(FaqModel instance) {
   writeNotNull('filter', instance.filter);
   writeNotNull('pergunta', instance.question);
   writeNotNull('resposta', instance.answer);
+  writeNotNull('entidade_responsavel', instance.responsableEntity);
   return val;
 }

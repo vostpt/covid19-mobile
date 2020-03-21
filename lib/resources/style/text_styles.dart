@@ -44,6 +44,7 @@ class TextStyles {
   static TextStyle h4({Color color = Covid19Colors.darkGrey}) =>
       GoogleFonts.lato(
           textStyle: TextStyle(
+            color: color,
         fontWeight: FontWeight.w900,
         fontSize: 14.0,
       ));

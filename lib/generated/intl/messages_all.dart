@@ -46,7 +46,6 @@ Future<bool> initializeMessages(String localeName) async {
   return new Future.value(true);
 }
 
-// ignore_for_file: avoid_catches_without_on_clauses
 bool _messagesExistFor(String locale) {
   try {
     return _findExact(locale) != null;

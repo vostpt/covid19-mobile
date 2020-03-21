@@ -25,6 +25,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("An error has occurred"),
         "screenAboutBuilt": MessageLookupByLibrary.simpleMessage(
             "Esta app foi construída com o apoio da VOST PT e Flutter Portugal"),
+        "screenAboutButtonOpenSource":
+            MessageLookupByLibrary.simpleMessage("Licenças Open-Source"),
+        "screenAboutButtonReport":
+            MessageLookupByLibrary.simpleMessage("Reportar Problema"),
         "screenAboutContent1": MessageLookupByLibrary.simpleMessage(
             "Esta App pretende ser um guia prático para apoiar cidadãos, famílias e empresas no combate aos efeitos causados pelo COVID-19. Aqui poderá encontrar toda a informação e conhecer os apoios a que tem direito."),
         "screenAboutContent2": MessageLookupByLibrary.simpleMessage(

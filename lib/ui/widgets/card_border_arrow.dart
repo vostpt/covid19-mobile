@@ -14,7 +14,6 @@
 import 'package:flutter/material.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 
-
 import 'button_border_background.dart';
 
 class CardBorderArrow extends StatelessWidget {
@@ -48,10 +47,7 @@ class CardBorderArrow extends StatelessWidget {
                     .copyWith(color: textColor),
               ),
             ),
-            Icon(
-              Icons.arrow_forward,
-              color: textColor
-            )
+            Icon(Icons.arrow_forward, color: textColor)
           ],
         ),
       ),

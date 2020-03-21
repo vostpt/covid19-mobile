@@ -19,7 +19,7 @@ class VideosProvider extends ChangeNotifier {
 
   List<VideoModel> get remoteWorks => _remoteWorks;
 
-  void setRemoteWork(List<VideoModel> values) {
+  void setVideos(List<VideoModel> values) {
     _remoteWorks = values;
     notifyListeners();
   }

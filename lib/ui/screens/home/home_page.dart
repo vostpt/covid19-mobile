@@ -1,6 +1,3 @@
-import 'package:covid19mobile/providers/faq_provider.dart';
-import 'package:covid19mobile/providers/remote_work_provider.dart';
-
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -102,6 +99,10 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
 
     if (result is FaqResultStream) {
       Provider.of<FaqProvider>(context, listen: false).setFaqs(result.model);
+    }
+
+    if (result is VideosResultStream) {
+      Provider.of<VideosProvider>(context, listen: false).setVideos(result.model);
     }
   }
 }

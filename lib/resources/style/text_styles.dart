@@ -25,6 +25,14 @@ import 'package:google_fonts/google_fonts.dart';
 ///
 /// If not specified, it will defafult to [Colors.white]
 class TextStyles {
+  static TextStyle statisticsBig({Color color = Covid19Colors.darkGrey}) =>
+      GoogleFonts.lato(
+          textStyle: TextStyle(
+        fontWeight: FontWeight.w900,
+        fontSize: 38.0,
+        color: color,
+      ));
+
   static TextStyle h1({Color color = Covid19Colors.darkGrey}) =>
       GoogleFonts.lato(
           textStyle: TextStyle(

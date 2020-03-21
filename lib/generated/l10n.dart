@@ -127,6 +127,15 @@ class S {
       args: [],
     );
   }
+
+  String get faqPageTitle {
+    return Intl.message(
+      'Perguntas Frequentes',
+      name: 'faqPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

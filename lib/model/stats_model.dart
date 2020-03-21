@@ -46,14 +46,8 @@ class StatsModel {
   ///
   /// All properties are mandatory
   ///
-  StatsModel(
-    this.recovered,
-    this.confirmed,
-    this.suspected,
-    this.awaitingResults,
-    this.deaths,
-    this.lastUpdated
-  );
+  StatsModel(this.recovered, this.confirmed, this.suspected,
+      this.awaitingResults, this.deaths, this.lastUpdated);
 
   /// Mapper from Json to Model
   factory StatsModel.fromJson(Map<String, dynamic> json) =>

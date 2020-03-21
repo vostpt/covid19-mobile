@@ -22,7 +22,6 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 
-
 /// Used to log all the events happening
 Logger logger = Logger();
 

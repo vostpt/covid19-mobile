@@ -10,25 +10,8 @@
 ///
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-import 'package:flutter/material.dart';
 
-class ButtonBackground extends StatelessWidget {
-  final Color color;
-  final Widget child;
-
-  const ButtonBackground({Key key, this.color, this.child}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(4.0),
-        ),
-        color: color,
-      ),
-      padding: EdgeInsets.all(16.0),
-      child: child,
-    );
-  }
-}
+const String imageCcIcons = "assets/cc_icons.png";
+const String logoRepublica = "assets/logo_rep_blica.png";
+const String socialTwitter = "assets/social_twitter.png";
+const String socialYoutube = "assets/social_youtube.png";

@@ -22,6 +22,25 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
         "defaultError":
-            MessageLookupByLibrary.simpleMessage("An error has occurred")
+            MessageLookupByLibrary.simpleMessage("An error has occurred"),
+        "screenAboutBuilt": MessageLookupByLibrary.simpleMessage(
+            "Esta app foi construída com o apoio da VOST PT e Flutter Portugal"),
+        "screenAboutContent1": MessageLookupByLibrary.simpleMessage(
+            "Esta App pretende ser um guia prático para apoiar cidadãos, famílias e empresas no combate aos efeitos causados pelo COVID-19. Aqui poderá encontrar toda a informação e conhecer os apoios a que tem direito."),
+        "screenAboutContent2": MessageLookupByLibrary.simpleMessage(
+            "Consulte as boas práticas e as recomendações das autoridades de Saúde, conheça os melhores conselhos para trabalhar a partir de casa e saiba como recorrer aos serviços públicos sem ter de se deslocar."),
+        "screenAboutContent3": MessageLookupByLibrary.simpleMessage(
+            "Poderá ainda ficar a conhecer as medidas excecionais adotadas pelo Governo em cada área governativa e acompanhar as evoluções do estado epidemiológico do País. Está também disponível para consulta a legislação especificamente aprovada, bem como as diferentes comunicações do Governo nesta matéria."),
+        "screenAboutContent4": MessageLookupByLibrary.simpleMessage(
+            "Além destas informações, pode aceder à lista completa dos contactos de emergência criados pelos diversos serviços públicos para que, de forma simples e eficiente, encontre a resposta que procura."),
+        "screenAboutContent5": MessageLookupByLibrary.simpleMessage(
+            "Juntos venceremos este vírus."),
+        "screenAboutFooter1": MessageLookupByLibrary.simpleMessage(
+            "#COVID19PT - 2020 VOSTPT - Voluntários Digitais em Situações de Emergências para Portugal."),
+        "screenAboutFooter2": MessageLookupByLibrary.simpleMessage(
+            "Este site e seus materiais encontram-se sob uma licença Creative Commons CC BY-NC-SA: Atribuição-Não Comercial-Compartilha Igual."),
+        "screenAboutHashtag":
+            MessageLookupByLibrary.simpleMessage("#EstamosOn"),
+        "screenAboutTitle": MessageLookupByLibrary.simpleMessage("Sobre")
       };
 }

@@ -17,7 +17,6 @@ import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
-import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/assets/images.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
@@ -49,6 +48,23 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
   Widget build(BuildContext context) {
     var stats = Provider.of<StatsProvider>(context);
     logger.i('[StatsProvider] $stats! - ${stats.hashCode}');
+
+    List<Widget> content = [
+      Container(
+        height: 100,
+      ),
+      StatisticsButton(
+        callback: () => Navigator.of(context).pushNamed(routeStatistics),
+      ),
+      CardBorderArrow(
+        borderColor: Covid19Colors.grey,
+        text: S.of(context).measuresHomepageButton,
+        callback: () {
+          Navigator.pushNamed(context, routeMeasures);
+        },
+        textColor: Covid19Colors.darkGrey,
+      ),
+    ];
 
     return Scaffold(
       body: Container(

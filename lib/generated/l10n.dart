@@ -254,24 +254,6 @@ class S {
     );
   }
 
-  String get screenAboutButtonReport {
-    return Intl.message(
-      'Reportar Problema',
-      name: 'screenAboutButtonReport',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get screenAboutButtonOpenSource {
-    return Intl.message(
-      'Licenças Open-Source',
-      name: 'screenAboutButtonOpenSource',
-      desc: '',
-      args: [],
-    );
-  }
-
   String get screenAboutTitle {
     return Intl.message(
       'Sobre',
@@ -357,6 +339,24 @@ class S {
     return Intl.message(
       'Este site e seus materiais encontram-se sob uma licença Creative Commons CC BY-NC-SA: Atribuição-Não Comercial-Compartilha Igual.',
       name: 'screenAboutFooter2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get screenAboutButtonReport {
+    return Intl.message(
+      'Reportar Problema',
+      name: 'screenAboutButtonReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get screenAboutButtonOpenSource {
+    return Intl.message(
+      'Licenças Open-Source',
+      name: 'screenAboutButtonOpenSource',
       desc: '',
       args: [],
     );

@@ -22,6 +22,7 @@ import 'package:provider/provider.dart';
 import '../../../bloc/app_bloc.dart';
 import '../../../bloc/base_bloc.dart';
 import '../../app.dart';
+import 'components/card_home.dart';
 
 /// Creates an HomePage extending [BasePage]
 /// that is a StatefulWidget
@@ -63,6 +64,9 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
             child: Text("Covid App"),
           ),
           Text("Confirmados: ${stats.confirmed}"),
+          CardHome(
+              text: "Medidas Excecionais de Resposta ao COVID-19",
+              callback: () => print("yey")),
         ],
       ),
     );

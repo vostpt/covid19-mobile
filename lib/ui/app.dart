@@ -23,7 +23,7 @@ import 'package:provider/provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 
 /// Used to log all the events happening
-final Logger logger = Logger();
+final Logger logger = Logger(printer: PrettyPrinter(methodCount: 0));
 
 /// Starting class for the project
 class CovidApp extends StatelessWidget {

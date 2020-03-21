@@ -52,14 +52,12 @@ linter:
 
     # DESIGN
     - use_to_and_as_if_applicable # prefer
-    - avoid_classes_with_only_static_members # avoid
     - prefer_mixin
     - prefer_final_fields # prefer
     - use_setters_to_change_properties
     - avoid_returning_null # avoid
     - avoid_returning_this # avoid
     #- prefer_typing_uninitialized_variables # consider
-    - avoid_types_on_closure_parameters # avoid
     - avoid_return_types_on_setters # avoid
     - prefer_generic_function_type_aliases
     - avoid_private_typedef_functions # prefer

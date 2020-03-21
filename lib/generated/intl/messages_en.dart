@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "contactsPageTitle" : MessageLookupByLibrary.simpleMessage("Contactos úteis"),
     "defaultError" : MessageLookupByLibrary.simpleMessage("An error has occurred"),
     "faqPageResponsableEntity" : MessageLookupByLibrary.simpleMessage("Entidade Responsável"),
+    "faqPageTitle" : MessageLookupByLibrary.simpleMessage("Perguntas Frequentes"),
     "homePageConfirmedCases" : MessageLookupByLibrary.simpleMessage("Casos confirmados de COVID-19 em Portugal"),
     "lastUpdated" : MessageLookupByLibrary.simpleMessage("Última actualização: "),
     "statisticsPageAwaitingResults" : MessageLookupByLibrary.simpleMessage("Aguardar Resultados"),

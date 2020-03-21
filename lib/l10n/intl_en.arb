@@ -22,5 +22,6 @@
   "contactsPageSNSEmailText": "Canal SNS 24 para esclarecimentos de dúvidas. Não utilizar para diagnóstico médico.",
   "contactsPageMNEEmail": "covid19@mne.pt",
   "contactsPageMNEEmailText": "Canal do Ministério dos Negócios Estrangeiros de emergência aos portugueses em viagem.",
-  "faqPageResponsableEntity": "Entidade Responsável"
+  "faqPageResponsableEntity": "Entidade Responsável",
+  "faqPageTitle": "Perguntas Frequentes"
 }

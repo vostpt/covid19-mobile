@@ -41,7 +41,6 @@ class FaqsPage extends BasePage {
 }
 
 class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
-
   /// For the initial list of faqs
   List<FaqModel> _faqs;
 
@@ -57,7 +56,6 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
 
     var totalSize = 0.0;
     for (int i = from, j = 0; i >= j; i--) {
-
       /// Gets the widget key
       var gKey = expands[i];
 
@@ -161,7 +159,6 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
   @override
   void onStateResultListener(ResultStream result) {
     if (result is FaqResultStream) {
-
       /// Updates faqs list on the provider
       Provider.of<FaqProvider>(context, listen: false).setFaqs(result.model);
 

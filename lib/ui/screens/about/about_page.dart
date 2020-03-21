@@ -134,7 +134,8 @@ class AboutPage extends StatelessWidget {
                         _SocialMediaImage(
                           assetName: socialYoutube,
                           width: size.width * 0.125,
-                          url: "https://www.youtube.com/channel/UCOE-JsBcVf4__OlrsiW59EQ",
+                          url:
+                              "https://www.youtube.com/channel/UCOE-JsBcVf4__OlrsiW59EQ",
                         ),
                         const SizedBox(
                           width: 18.0,

@@ -16,7 +16,6 @@ import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
-import 'package:covid19mobile/resources/style/themes.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/stats_widget.dart';

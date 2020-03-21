@@ -71,7 +71,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                     .copyWith(color: Covid19Colors.darkGrey),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: _itemsMargin,
             ),
             Expanded(
@@ -93,7 +93,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                           .copyWith(color: Covid19Colors.darkGrey),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: _itemsMargin,
                   ),
                   Expanded(
@@ -114,7 +114,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: _itemsMargin,
             ),
             Expanded(
@@ -136,7 +136,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                           .copyWith(color: Covid19Colors.darkGrey),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: _itemsMargin,
                   ),
                   Expanded(
@@ -157,7 +157,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: _itemsMargin,
             ),
             Text("${S.of(context).lastUpdated.toUpperCase()} XX",
@@ -165,7 +165,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                     .textTheme
                     .subtitle
                     .copyWith(color: Covid19Colors.grey)),
-            SizedBox(
+            const SizedBox(
               height: _itemsMargin,
             ),
             Text(S.of(context).statisticsPageDataLabel.toUpperCase(),

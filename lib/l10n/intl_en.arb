@@ -6,5 +6,7 @@
   "statisticsPageSuspects": "Suspeitos",
   "statisticsPageAwaitingResults": "Aguardar Resultados",
   "statisticsPageDataLabel": "Dados DGS via ESRI Portugal",
-  "lastUpdated": "Última actualização: "
+  "lastUpdated": "Última actualização: ",
+  "checkDetails": "Ver detalhes",
+  "homePageConfirmedCases": "Casos confirmados de COVID-19 em Portugal"
 }

@@ -100,6 +100,24 @@ class S {
       args: [],
     );
   }
+
+  String get checkDetails {
+    return Intl.message(
+      'Ver detalhes',
+      name: 'checkDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get homePageConfirmedCases {
+    return Intl.message(
+      'Casos confirmados de COVID-19 em Portugal',
+      name: 'homePageConfirmedCases',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

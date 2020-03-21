@@ -13,15 +13,16 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
+
 import 'package:covid19mobile/resources/style/themes.dart';
 import 'package:covid19mobile/ui/screens/contacts/contacts_page.dart';
+import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/screens/home/home_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
-import 'package:covid19mobile/resources/constants.dart';
 
 /// Used to log all the events happening
 final Logger logger = Logger(printer: PrettyPrinter(methodCount: 0));
@@ -47,6 +48,7 @@ class CovidApp extends StatelessWidget {
           '/': (_) => HomePage(title: 'Covid 19 App').builder,
           routeStatistics: (_) => StatisticsPage().builder,
           routeContacts: (_) => ContactsPage(),
+          routeFaqs: (_) => FaqsPage(title: 'Perguntas Frequentes').builder,
         },
       ),
     );

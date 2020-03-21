@@ -15,7 +15,7 @@ import 'package:covid19mobile/model/faq_model.dart';
 import 'package:flutter/material.dart';
 
 class FaqProvider extends ChangeNotifier {
-  List<FaqModel> _faqs;
+  List<FaqModel> _faqs = [];
 
   List<FaqModel> get faqs => _faqs;
 

@@ -96,15 +96,16 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
             const SizedBox(
               height: 8,
             ),
-            StatisticsButton(
-              callback: () => Navigator.of(context).pushNamed(routeStatistics),
+            CardHome(
+              text: S.of(context).faqPageTitle.toUpperCase(),
+              callback: () => Navigator.of(context).pushNamed(routeFaqs),
             ),
             const SizedBox(
               height: 8,
             ),
             CardHome(
-              text: S.of(context).faqPageTitle.toUpperCase(),
-              callback: () => Navigator.of(context).pushNamed(routeFaqs),
+              text: S.of(context).screenAboutTitle.toUpperCase(),
+              callback: () => Navigator.of(context).pushNamed(routeAbout),
             )
           ],
         ),

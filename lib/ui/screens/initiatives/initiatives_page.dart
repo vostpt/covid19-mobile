@@ -19,6 +19,7 @@ import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/home/components/accordion.dart';
+import 'package:covid19mobile/ui/widgets/initiatives_item.dart';
 import 'package:covid19mobile/ui/widgets/separator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -100,22 +101,12 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
 
               return Container(
                 padding: EdgeInsets.only(top: 16, bottom: 18, left: 12),
-                child: Accordion(
-                  key: expands[index],
-                  withBorder: false,
-                  title: "",
+                child: InitiativesItem(
+                  title: _initiatives[index].title,
+                  body: _initiatives[index].content,
                   onExpansionChanged: (value) {
-                    if (value && index > 0) {
-                      /// Calculates the height to scroll to position
-                      var size = _getSize(index);
-                      scrollController.animateTo(size,
-                          duration: Duration(milliseconds: 1250),
-                          curve: Curves.fastLinearToSlowEaseIn);
-                    }
+
                   },
-                  children: <Widget>[
-                    Text(""),
-                  ],
                 ),
               );
             },

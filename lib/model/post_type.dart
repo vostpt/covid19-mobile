@@ -43,7 +43,7 @@ class PostType {
       case PostTypes.videos:
         return '/videos';
       case PostTypes.initiatives:
-        return '/measures?categories=7';
+        return '/measures?categories=6';
       default:
         return '';
     }

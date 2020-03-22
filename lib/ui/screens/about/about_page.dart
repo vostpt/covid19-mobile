@@ -94,7 +94,7 @@ class AboutPage extends StatelessWidget {
                         ),
                     textAlign: TextAlign.left,
                   ),
-                  const SizedBox(
+                  /*const SizedBox(
                     height: 22.0,
                   ),
                   CardBorderArrow(
@@ -102,7 +102,7 @@ class AboutPage extends StatelessWidget {
                     callback: () => print("yey"),
                     textColor: Covid19Colors.darkGrey,
                     borderColor: Covid19Colors.grey,
-                  ),
+                  ),*/
                   const _TextMargin(),
                   CardBorderArrow(
                     text: S.of(context).screenAboutButtonOpenSource,

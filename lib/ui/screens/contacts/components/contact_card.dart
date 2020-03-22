@@ -35,16 +35,19 @@ class ContactCard extends StatelessWidget {
     return Theme(
       data: Theme.of(context).copyWith(
         dividerColor: Colors.transparent,
+        splashColor: Covid19Colors.green,
       ),
       child: SingleChildScrollView(
-        child: Container(
-          color: Covid19Colors.contactCardBackgroundGrey,
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          margin: const EdgeInsets.symmetric(vertical: 4.0),
-          child: ListTileTheme(
-            contentPadding: EdgeInsets.zero,
+        child: ListTileTheme(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Card(
+            margin: const EdgeInsets.symmetric(vertical: 4.0),
+            color: Covid19Colors.contactCardBackgroundGrey,
+            elevation: 0.0,
             child: ListTile(
-              contentPadding: EdgeInsets.only(top: 8, bottom: 8),
+              contentPadding: EdgeInsets.only(
+                  left: 12, right: 12,
+                  top: 12, bottom: 12),
               onTap: () => onTap(contact),
               title: Text(
                 contact.title,

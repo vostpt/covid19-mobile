@@ -111,16 +111,18 @@ class _ContactsPageState extends State<ContactsPage> {
   }
 
   _onContactTap(ContactModel contact) {
-
-    print(contact.title);
-
     switch(contact.contactType) {
-
       case ContactType.phone:
         _launch("tel: ${contact.title}");
         break;
       case ContactType.link:
-        _launch(contact.title);
+
+        var urlToOpen = contact.title;
+        if(!(contact.title.startsWith("https://") || contact.title.startsWith("http://"))) {
+          urlToOpen = "https://${contact.title}";
+        }
+
+        _launch(urlToOpen);
         break;
       case ContactType.email:
         _launch("mailto: ${contact.title}");

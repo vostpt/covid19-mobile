@@ -121,9 +121,10 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
                   const SizedBox(
                     height: 8,
                   ),
-                  CardBorderArrow(
+                  CardHome(
                     text: S.of(context).screenAboutTitle.toUpperCase(),
                     callback: () => Navigator.of(context).pushNamed(routeAbout),
+                    backgroundColor: Colors.transparent,
                     textColor: Covid19Colors.darkGrey,
                     borderColor: Covid19Colors.lightGrey,
                   ),

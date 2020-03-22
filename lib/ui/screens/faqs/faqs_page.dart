@@ -22,7 +22,9 @@ import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/home/components/accordion.dart';
 import 'package:covid19mobile/ui/widgets/separator.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
 
 class FaqsPage extends BasePage {
   /// Faqs page view
@@ -48,7 +50,13 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
   final ScrollController scrollController = ScrollController();
 
   /// Store the rows index key for calculating the height dynamically
-  Map<int, GlobalKey> expands = <int, GlobalKey>{};
+  /// Using a Key that can be changed so that on SetState will rebuild the
+  /// ListView and collapse the ones that need to be collapsed
+  Map<int, Key> expands = <int, Key>{};
+  Map<int, GlobalKey> expandKeys = <int, GlobalKey>{};
+
+  /// Store the rows index key for calculating the height dynamically
+  Map<int, bool> isExpanded = <int, bool>{};
 
   /// Gets the top value from the element position - 1
   _getSize(int index) {
@@ -57,7 +65,7 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
     var totalSize = 0.0;
     for (int i = from, j = 0; i >= j; i--) {
       /// Gets the widget key
-      var gKey = expands[i];
+      var gKey = expandKeys[i];
 
       /// In case the context is no longer available skip
       if (gKey.currentContext == null) {
@@ -98,49 +106,53 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
         elevation: 0.0,
       ),
       body: Container(
-        child: ListView.separated(
-            controller: scrollController,
-            itemBuilder: (context, index) {
-              expands.putIfAbsent(index, () => GlobalKey());
+        child: Scrollbar(
+          child: ListView.separated(
+              controller: scrollController,
+              itemBuilder: (context, index) {
+                if(isExpanded.length != _faqs.length) {
+                  isExpanded.putIfAbsent(index, () => false);
+                }
+                if(expandKeys.length != _faqs.length) {
+                  expandKeys.putIfAbsent(index, () => GlobalKey());
+                }
+                if(expands.length != _faqs.length) {
+                  expands.putIfAbsent(index, () => Key("${index}_${isExpanded[index]}"));
+                }
 
-              return Container(
-                padding: EdgeInsets.only(top: 16, bottom: 18, left: 12),
-                child: Accordion(
-                  key: expands[index],
-                  withBorder: false,
-                  title: _faqs[index].question,
-                  onExpansionChanged: (value) {
-                    if (value && index > 0) {
-                      /// Calculates the height to scroll to position
-                      var size = _getSize(index);
-                      scrollController.animateTo(size,
-                          duration: Duration(milliseconds: 1250),
-                          curve: Curves.fastLinearToSlowEaseIn);
-                    }
-                  },
-                  children: <Widget>[
-                    Text(_faqs[index].answer),
-                    Text.rich(TextSpan(
-                      text: '${S.of(context).faqPageResponsableEntity}: ',
-                      style: TextStyles.h3(),
-                      children: <InlineSpan>[
-                        TextSpan(
-                          text: "${_faqs[index].responsableEntity}",
-                          style: TextStyles.texCustom(size: 16)
-                              .copyWith(fontWeight: FontWeight.w100),
-                        ),
-                      ],
-                    )),
-                  ],
-                ),
-              );
-            },
-            separatorBuilder: (_, __) {
-              return ListSeparator(
-                color: Covid19Colors.lightGreyLight,
-              );
-            },
-            itemCount: _faqs != null ? _faqs.length : 0),
+                return Container(
+                  key: expandKeys[index],
+                  padding: EdgeInsets.only(top: 16, bottom: 18, left: 12),
+                  child: Accordion(
+                    key: expands[index],
+                    withBorder: false,
+                    initiallyExpanded: isExpanded[index],
+                    title: _faqs[index].question,
+                    onExpansionChanged: (value) => _onExpansionChanged(value, index),
+                    children: <Widget>[
+                      Text(_faqs[index].answer),
+                      Text.rich(TextSpan(
+                        text: '${S.of(context).faqPageResponsableEntity}: ',
+                        style: TextStyles.h3(),
+                        children: <InlineSpan>[
+                          TextSpan(
+                            text: "${_faqs[index].responsableEntity}",
+                            style: TextStyles.texCustom(size: 16)
+                                .copyWith(fontWeight: FontWeight.w100),
+                          ),
+                        ],
+                      )),
+                    ],
+                  ),
+                );
+              },
+              separatorBuilder: (_, __) {
+                return ListSeparator(
+                  color: Covid19Colors.lightGreyLight,
+                );
+              },
+              itemCount: _faqs != null ? _faqs.length : 0),
+        ),
       ),
     );
   }
@@ -165,5 +177,34 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
       /// Updates faqs list
       _faqs = result.model;
     }
+  }
+
+  _onExpansionChanged(value, index) {
+
+    isExpanded[index] = value;
+    expands[index] = Key("${index}_${isExpanded[index]}");
+
+    expands.forEach((i, value) {
+      if(i != index) {
+        if(isExpanded[i]) {
+          isExpanded[i] = false;
+          expands[i] = Key("${i}_${isExpanded[i]}");
+        }
+      }
+    });
+    setState(() {
+      Future.delayed(Duration(milliseconds: 100), () {
+        if (value && index > 0) {
+
+          /// Calculates the height to scroll to position
+          var size = _getSize(index);
+
+          scrollController.animateTo(size,
+              duration: Duration(milliseconds: 2550),
+              curve: Curves.fastLinearToSlowEaseIn);
+        }
+      });
+    });
+
   }
 }

@@ -69,8 +69,6 @@ class _VideosPageState extends BaseState<VideosPage, AppBloc> {
           widget.title.toUpperCase(),
           style: TextStyles.h2(color: Covid19Colors.darkGreyLight),
         ),
-        backgroundColor: Colors.white,
-        elevation: 0.0,
       ),
       body: Container(
         child: ListView.separated(

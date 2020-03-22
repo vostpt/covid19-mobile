@@ -35,7 +35,7 @@ class Themes {
       display2: TextStyles.h2(
         color: colorPrimary,
       ),
-      display3: TextStyles.h2(
+      display3: TextStyles.h3(
         color: colorText,
       ),
       display4: TextStyles.h4(

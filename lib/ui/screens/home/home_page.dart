@@ -22,12 +22,7 @@ import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/assets/images.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/home/components/card_home.dart';
-import 'package:covid19mobile/ui/widgets/button_border_background.dart';
 import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
-import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
-import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
-import 'package:covid19mobile/generated/l10n.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -75,23 +70,6 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     var stats = Provider.of<StatsProvider>(context);
     logger.i('[StatsProvider] $stats! - ${stats.hashCode}');
 
-    List<Widget> content = [
-      Container(
-        height: 100,
-      ),
-      StatisticsButton(
-        callback: () => Navigator.of(context).pushNamed(routeStatistics),
-      ),
-      CardBorderArrow(
-        borderColor: Covid19Colors.grey,
-        text: S.of(context).measuresHomepageButton,
-        callback: () {
-          Navigator.pushNamed(context, routeMeasures);
-        },
-        textColor: Covid19Colors.darkGrey,
-      ),
-    ];
-
     return Scaffold(
       body: Container(
         margin: EdgeInsets.all(16.0),
@@ -131,6 +109,22 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
             CardHome(
               text: S.of(context).measuresHomepageButton.toUpperCase(),
               callback: () => Navigator.of(context).pushNamed(routeMeasures),
+            ),
+            CardHome(
+              text: S.of(context).faqPageTitle.toUpperCase(),
+              callback: () => Navigator.of(context).pushNamed(routeFaqs),
+              backgroundColor: Covid19Colors.green,
+              textColor: Covid19Colors.white,
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            CardHome(
+              text: S.of(context).screenAboutTitle.toUpperCase(),
+              callback: () => Navigator.of(context).pushNamed(routeAbout),
+            ),
+            const SizedBox(
+              height: 8,
             ),
             CardHome(
               text: S.of(context).faqPageTitle.toUpperCase(),

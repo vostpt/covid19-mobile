@@ -12,12 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 /// Post types
-enum PostTypes {
-  measures,
-  remoteWork,
-  videos,
-  faq,
-}
+enum PostTypes { measures, remoteWork, videos, faq, initiatives }
 
 class PostType {
   final PostTypes postTypes;
@@ -41,6 +36,8 @@ class PostType {
         break;
       case PostTypes.videos:
         return '/videos';
+      case PostTypes.initiatives:
+        return '/measures?categories=6';
       default:
         return '';
     }

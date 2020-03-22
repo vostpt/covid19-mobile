@@ -15,6 +15,7 @@ import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/notifications_provider.dart';
+import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
@@ -26,6 +27,7 @@ import 'package:covid19mobile/ui/screens/faqs/faqs_page.dart';
 import 'package:covid19mobile/ui/screens/about/about_page.dart';
 import 'package:covid19mobile/ui/screens/home/home_page.dart';
 import 'package:covid19mobile/ui/screens/notifications/notifications_page.dart';
+import 'package:covid19mobile/ui/screens/initiatives/initiatives_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work/remote_work_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work_details/remote_work_details.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
@@ -54,6 +56,9 @@ class CovidApp extends StatelessWidget {
         ChangeNotifierProvider<VideosProvider>.value(
           value: VideosProvider(),
         ),
+        ChangeNotifierProvider<InitiativesProvider>.value(
+          value: InitiativesProvider(),
+        ),
         ChangeNotifierProvider<NotificationsProvider>.value(
           value: NotificationsProvider(),
         ),
@@ -79,6 +84,8 @@ class CovidApp extends StatelessWidget {
           routeVideos: (_) => VideosPage(title: 'Vídeos'),
           routeAbout: (_) => AboutPage(),
           routeVideoPlayer: (_) => VideoPlayerPage(),
+          routeInitiatives: (context) =>
+              InitiativesPage(title: S.of(context).initiativesPageTitle),
           routeNotifications: (_) => NotificationsPage(),
           routeMeasures: (_) =>
               MeasuresPage(title: 'Medidas Excecionais')

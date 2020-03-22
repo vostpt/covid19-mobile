@@ -13,6 +13,7 @@
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/measure_provider.dart';
+import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
@@ -52,23 +53,6 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     var stats = Provider.of<StatsProvider>(context);
     logger.i('[StatsProvider] $stats! - ${stats.hashCode}');
 
-    List<Widget> content = [
-      Container(
-        height: 100,
-      ),
-      StatisticsButton(
-        callback: () => Navigator.of(context).pushNamed(routeStatistics),
-      ),
-      CardBorderArrow(
-        borderColor: Covid19Colors.grey,
-        text: S.of(context).measuresHomepageButton,
-        callback: () {
-          Navigator.pushNamed(context, routeMeasures);
-        },
-        textColor: Covid19Colors.darkGrey,
-      ),
-    ];
-
     return Scaffold(
       body: Container(
         margin: EdgeInsets.all(16.0),
@@ -103,6 +87,14 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
                     text: S.of(context).screenRemoteWorkTitle.toUpperCase(),
                     callback: () =>
                         Navigator.of(context).pushNamed(routeRemoteWork),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  CardHome(
+                    text: S.of(context).initiativesPageTitle,
+                    callback: () =>
+                        Navigator.of(context).pushNamed(routeInitiatives),
                   ),
                   const SizedBox(
                     height: 8,
@@ -181,6 +173,9 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     /// Get Measures
     ///
     bloc.getMeasures();
+    /// Get Initiatives Posts
+    ///
+    bloc.getInitiatives();
   }
 
   @override
@@ -209,6 +204,11 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     if (result is MeasuresResultStream) {
       Provider.of<MeasuresProvider>(context, listen: false)
           .setMeasures(result.model);
+    } 
+    
+    if (result is InitiativeResultStream) {
+      Provider.of<InitiativesProvider>(context, listen: false)
+          .setInitiatives(result.model);
     }
   }
 }

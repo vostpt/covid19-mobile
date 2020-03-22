@@ -1,3 +1,6 @@
+import 'package:covid19mobile/model/initiative_model.dart';
+import 'package:covid19mobile/model/video_model.dart';
+
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -119,8 +122,20 @@ class MeasuresResultStream
 
   @override
   StateStream state;
-
-  /// Constructor to set the [state], a [StateStream] instance
+ /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [Lst<MeasuresModel>] instance list
   MeasuresResultStream({this.state, this.model});
+
+    }
+/// [InitiativeResultStream] is extended from [ResultStream]
+class InitiativeResultStream
+    extends ResultStream<StateStream, List<InitiativeModel>> {
+  @override
+  List<InitiativeModel> model;
+
+  @override
+  StateStream state;
+
+  /// and [model] a [Lst<InitiativeModel>] instance list
+  InitiativeResultStream({this.state, this.model});
 }

@@ -20,6 +20,8 @@ import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/screens/faqs/faqs_page.dart';
 import 'package:covid19mobile/ui/screens/about/about_page.dart';
 import 'package:covid19mobile/ui/screens/home/home_page.dart';
+import 'package:covid19mobile/ui/screens/remote_work/remote_work_page.dart';
+import 'package:covid19mobile/ui/screens/remote_work_details/remote_work_details.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
 import 'package:covid19mobile/ui/screens/video_player/video_player_page.dart';
 import 'package:covid19mobile/ui/screens/videos/videos_page.dart';
@@ -52,8 +54,10 @@ class CovidApp extends StatelessWidget {
           '/': (_) => HomePage(title: 'Covid 19 App').builder,
           routeStatistics: (_) => StatisticsPage().builder,
           routeContacts: (_) => ContactsPage(),
+          routeRemoteWork: (context) => RemoteWorkPage(title: S.of(context).screenRemoteWorkTitle).builder,
+          routeRemoteWorkDetails: (context) => RemoteWorkDetails(),
           routeFaqs: (_) => FaqsPage(title: 'Perguntas Frequentes').builder,
-          routeVideos: (_) => VideosPage(title: 'Vídeos').builder,
+          routeVideos: (context) => VideosPage(title: S.of(context).screenRemoteWorkTitle).builder,
           routeAbout: (_) => AboutPage(),
           routeVideoPlayer: (_) => VideoPlayerPage(),
         },

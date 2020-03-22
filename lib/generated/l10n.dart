@@ -379,6 +379,15 @@ class S {
       args: [],
     );
   }
+
+  String get screenRemoteWorkTitle {
+    return Intl.message(
+      'Teletrabalho',
+      name: 'screenRemoteWorkTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

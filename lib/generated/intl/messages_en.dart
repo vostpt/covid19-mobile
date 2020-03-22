@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "screenAboutFooter2" : MessageLookupByLibrary.simpleMessage("Este site e seus materiais encontram-se sob uma licença Creative Commons CC BY-NC-SA: Atribuição-Não Comercial-Compartilha Igual."),
     "screenAboutHashtag" : MessageLookupByLibrary.simpleMessage("#EstamosOn"),
     "screenAboutTitle" : MessageLookupByLibrary.simpleMessage("Sobre"),
+    "screenRemoteWorkTitle" : MessageLookupByLibrary.simpleMessage("Teletrabalho"),
     "screenVideosTitle" : MessageLookupByLibrary.simpleMessage("Vídeos"),
     "statisticsPageAwaitingResults" : MessageLookupByLibrary.simpleMessage("Aguardar Resultados"),
     "statisticsPageConfirmed" : MessageLookupByLibrary.simpleMessage("Confirmados"),

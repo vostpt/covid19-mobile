@@ -19,3 +19,5 @@ const String routeFaqs = "faqs";
 const String routeAbout = "about";
 const String routeVideos = "videos";
 const String routeVideoPlayer = "videos/player";
+const String routeRemoteWork = "remoteWork";
+const String routeRemoteWorkDetails = "remoteWork/details";

@@ -12,13 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 /// Post types
-enum PostTypes {
-  measures,
-  remoteWork,
-  videos,
-  faq,
-  initiatives
-}
+enum PostTypes { measures, remoteWork, videos, faq, initiatives }
 
 class PostType {
   final PostTypes postTypes;

@@ -94,7 +94,8 @@ class AppBloc implements Bloc {
   void getInitiatives() async {
     final postType = PostType(PostTypes.initiatives);
 
-    var results = await getPosts<InitiativeModel>(postType, cacheKey: "InitiativeModel");
+    var results =
+        await getPosts<InitiativeModel>(postType, cacheKey: "InitiativeModel");
 
     onStream.sink.add(InitiativeResultStream(
         model: results,

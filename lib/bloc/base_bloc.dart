@@ -113,7 +113,8 @@ class FaqResultStream extends ResultStream<StateStream, List<FaqModel>> {
 /// The ResultStream instance for requesting the remote work posts
 ///
 /// [InitiativeResultStream] is extended from [ResultStream]
-class InitiativeResultStream extends ResultStream<StateStream, List<InitiativeModel>> {
+class InitiativeResultStream
+    extends ResultStream<StateStream, List<InitiativeModel>> {
   @override
   List<InitiativeModel> model;
 

@@ -83,7 +83,8 @@ class CovidApp extends StatelessWidget {
           routeVideos: (_) => VideosPage(title: 'Vídeos'),
           routeAbout: (_) => AboutPage(),
           routeVideoPlayer: (_) => VideoPlayerPage(),
-          routeInitiatives: (context) => InitiativesPage(title: S.of(context).initiativesPageTitle),
+          routeInitiatives: (context) =>
+              InitiativesPage(title: S.of(context).initiativesPageTitle),
           routeNotifications: (_) => NotificationsPage(),
         },
       ),

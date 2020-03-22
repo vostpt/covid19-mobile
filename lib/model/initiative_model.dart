@@ -21,7 +21,6 @@ part 'initiative_model.g.dart';
 ///
 @JsonSerializable(includeIfNull: false)
 class InitiativeModel extends BasePostModel {
-
   /// Title
   @JsonKey(name: 'post_title')
   final String title;

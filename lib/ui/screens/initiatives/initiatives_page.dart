@@ -33,7 +33,6 @@ class InitiativesPage extends BasePage {
 
   @override
   _InitiativesPageState createState() => _InitiativesPageState();
-
 }
 
 class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
@@ -85,7 +84,7 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
     return Scaffold(
       appBar: AppBar(
         iconTheme:
-        Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
+            Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
         title: Text(
           widget.title.toUpperCase(),
           style: TextStyles.h2(color: Covid19Colors.darkGreyLight),
@@ -104,9 +103,7 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
                 child: InitiativesItem(
                   title: _initiatives[index].title,
                   body: _initiatives[index].content,
-                  onExpansionChanged: (value) {
-
-                  },
+                  onExpansionChanged: (value) {},
                 ),
               );
             },
@@ -135,7 +132,8 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
   void onStateResultListener(ResultStream result) {
     if (result is InitiativeResultStream) {
       /// Updates faqs list on the provider
-      Provider.of<InitiativesProvider>(context, listen: false).setInitiatives(result.model);
+      Provider.of<InitiativesProvider>(context, listen: false)
+          .setInitiatives(result.model);
 
       /// Updates faqs list
       _initiatives = result.model;

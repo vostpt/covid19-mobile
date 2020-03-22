@@ -77,7 +77,7 @@ class _NotificationsPageState extends State<NotificationsPage>
     return Scaffold(
       appBar: AppBar(
         iconTheme:
-          Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
+            Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
         title: Text(
           S.of(context).screenNotificationsTitle.toUpperCase(),
           style: TextStyles.h2(color: Covid19Colors.darkGreyLight),

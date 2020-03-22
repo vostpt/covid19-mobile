@@ -101,7 +101,6 @@ class _ContactsPageState extends State<ContactsPage> {
   }
 
   _onContactTap(ContactModel contact) {
-
     switch (contact.contactType) {
       case ContactType.phone:
         _launch("tel: ${contact.title}");

@@ -66,7 +66,7 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
                 width: MediaQuery.of(context).size.width * 0.4,
               ),
             ),
-             const SizedBox(
+            const SizedBox(
               height: 16.0,
             ),
             Text(
@@ -78,85 +78,90 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
             const SizedBox(
               height: 24.0,
             ),
-            SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  StatisticsButton(
-                    callback: () =>
-                        Navigator.of(context).pushNamed(routeStatistics),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  CardHome(
-                    text: S.of(context).measuresHomepageButton.toUpperCase(),
-                    callback: () =>
-                        Navigator.of(context).pushNamed(routeMeasures),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  CardHome(
-                    text: S.of(context).screenRemoteWorkTitle.toUpperCase(),
-                    callback: () =>
-                        Navigator.of(context).pushNamed(routeRemoteWork),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  CardHome(
-                    text: S.of(context).initiativesPageTitle,
-                    callback: () =>
-                        Navigator.of(context).pushNamed(routeInitiatives),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  CardHome(
-                    text: S.of(context).faqPageTitle.toUpperCase(),
-                    callback: () => Navigator.of(context).pushNamed(routeFaqs),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  CardHome(
-                    text: S.of(context).screenVideosTitle.toUpperCase(),
-                    callback: () =>
-                        Navigator.of(context).pushNamed(routeVideos),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  CardHome(
-                    text: S.of(context).contactsPageTitle,
-                    callback: () =>
-                        Navigator.of(context).pushNamed(routeContacts),
-                    backgroundColor: Covid19Colors.green,
-                    textColor: Covid19Colors.white,
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  CardBorderArrow(
-                    text: S.of(context).screenNotificationsTitle.toUpperCase(),
-                    callback: () =>
-                        Navigator.of(context).pushNamed(routeNotifications),
-                    textColor: Covid19Colors.darkGrey,
-                    borderColor: Covid19Colors.lightGrey,
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  CardBorderArrow(
-                    text: S.of(context).screenAboutTitle.toUpperCase(),
-                    callback: () => Navigator.of(context).pushNamed(routeAbout),
-                    textColor: Covid19Colors.darkGrey,
-                    borderColor: Covid19Colors.lightGrey,
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                ],
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    StatisticsButton(
+                      callback: () =>
+                          Navigator.of(context).pushNamed(routeStatistics),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CardHome(
+                      text: S.of(context).measuresHomepageButton.toUpperCase(),
+                      callback: () =>
+                          Navigator.of(context).pushNamed(routeMeasures),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CardHome(
+                      text: S.of(context).screenRemoteWorkTitle.toUpperCase(),
+                      callback: () =>
+                          Navigator.of(context).pushNamed(routeRemoteWork),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CardHome(
+                      text: S.of(context).initiativesPageTitle,
+                      callback: () =>
+                          Navigator.of(context).pushNamed(routeInitiatives),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CardHome(
+                      text: S.of(context).faqPageTitle.toUpperCase(),
+                      callback: () =>
+                          Navigator.of(context).pushNamed(routeFaqs),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CardHome(
+                      text: S.of(context).screenVideosTitle.toUpperCase(),
+                      callback: () =>
+                          Navigator.of(context).pushNamed(routeVideos),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CardHome(
+                      text: S.of(context).contactsPageTitle,
+                      callback: () =>
+                          Navigator.of(context).pushNamed(routeContacts),
+                      backgroundColor: Covid19Colors.green,
+                      textColor: Covid19Colors.white,
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CardBorderArrow(
+                      text:
+                          S.of(context).screenNotificationsTitle.toUpperCase(),
+                      callback: () =>
+                          Navigator.of(context).pushNamed(routeNotifications),
+                      textColor: Covid19Colors.darkGrey,
+                      borderColor: Covid19Colors.lightGrey,
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CardBorderArrow(
+                      text: S.of(context).screenAboutTitle.toUpperCase(),
+                      callback: () =>
+                          Navigator.of(context).pushNamed(routeAbout),
+                      textColor: Covid19Colors.darkGrey,
+                      borderColor: Covid19Colors.lightGrey,
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -186,6 +191,7 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     /// Get Measures
     ///
     bloc.getMeasures();
+
     /// Get Initiatives Posts
     ///
     bloc.getInitiatives();
@@ -217,8 +223,8 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     if (result is MeasuresResultStream) {
       Provider.of<MeasuresProvider>(context, listen: false)
           .setMeasures(result.model);
-    } 
-    
+    }
+
     if (result is InitiativeResultStream) {
       Provider.of<InitiativesProvider>(context, listen: false)
           .setInitiatives(result.model);

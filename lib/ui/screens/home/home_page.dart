@@ -18,6 +18,7 @@ import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
+import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/assets/images.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
@@ -64,6 +65,18 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
                 logoEstamosOn,
                 width: MediaQuery.of(context).size.width * 0.4,
               ),
+            ),
+             const SizedBox(
+              height: 16.0,
+            ),
+            Text(
+              S.of(context).homePageTitle.toUpperCase(),
+              style: TextStyles.subtitle(
+                color: Covid19Colors.red,
+              ),
+            ),
+            const SizedBox(
+              height: 24.0,
             ),
             SingleChildScrollView(
               child: Column(

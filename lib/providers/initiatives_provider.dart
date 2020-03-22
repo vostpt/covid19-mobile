@@ -11,16 +11,16 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-const String bundle = 'com.vost.covid19mobile';
+import 'package:covid19mobile/model/initiative_model.dart';
+import 'package:flutter/material.dart';
 
-const String routeStatistics = "statistics";
-const String routeContacts = "contacts";
-const String routeFaqs = "faqs";
-const String routeAbout = "about";
-const String routeVideos = "videos";
-const String routeVideoPlayer = "videos/player";
-const String routeRemoteWork = "remoteWork";
-const String routeRemoteWorkDetails = "remoteWork/details";
-const String routeNotifications = "notifications";
-const String routeInitiatives = "initiatives";
+class InitiativesProvider extends ChangeNotifier {
+  List<InitiativeModel> _initiatives;
 
+  List<InitiativeModel> get initiatives => _initiatives;
+
+  void setInitiatives(List<InitiativeModel> values) {
+    _initiatives = values;
+    notifyListeners();
+  }
+}

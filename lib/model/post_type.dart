@@ -17,6 +17,7 @@ enum PostTypes {
   remoteWork,
   videos,
   faq,
+  initiatives
 }
 
 class PostType {
@@ -41,6 +42,8 @@ class PostType {
         break;
       case PostTypes.videos:
         return '/videos';
+      case PostTypes.initiatives:
+        return '/measures?categories=7';
       default:
         return '';
     }

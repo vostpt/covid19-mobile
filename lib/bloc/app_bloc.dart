@@ -15,6 +15,7 @@ import 'dart:async';
 
 import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/model/faq_model.dart';
+import 'package:covid19mobile/model/initiative_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
@@ -86,6 +87,16 @@ class AppBloc implements Bloc {
     var results = await getPosts<FaqModel>(postType, cacheKey: "FaqModel");
 
     onStream.sink.add(FaqResultStream(
+        model: results,
+        state: results != null ? StateStream.success : StateStream.fail));
+  }
+
+  void getInitiatives() async {
+    final postType = PostType(PostTypes.initiatives);
+
+    var results = await getPosts<InitiativeModel>(postType, cacheKey: "InitiativeModel");
+
+    onStream.sink.add(InitiativeResultStream(
         model: results,
         state: results != null ? StateStream.success : StateStream.fail));
   }

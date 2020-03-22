@@ -26,6 +26,7 @@ import 'package:covid19mobile/ui/screens/faqs/faqs_page.dart';
 import 'package:covid19mobile/ui/screens/about/about_page.dart';
 import 'package:covid19mobile/ui/screens/home/home_page.dart';
 import 'package:covid19mobile/ui/screens/notifications/notifications_page.dart';
+import 'package:covid19mobile/ui/screens/initiatives/initiatives_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work/remote_work_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work_details/remote_work_details.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';

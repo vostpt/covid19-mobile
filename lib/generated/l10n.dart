@@ -370,6 +370,15 @@ class S {
       args: [],
     );
   }
+
+  String get screenVideosTitle {
+    return Intl.message(
+      'Vídeos',
+      name: 'screenVideosTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

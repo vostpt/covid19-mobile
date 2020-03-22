@@ -31,9 +31,9 @@ class CardVideo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100.0,
+      height: 144.0,
       margin: const EdgeInsets.all(5.0),
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(18.0),
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4.0),
@@ -45,6 +45,14 @@ class CardVideo extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
+          Container(
+            width: 38.0,
+            height: 38.0,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
           ButtonTheme(
             minWidth: 0.0,
             shape: const CircleBorder(),
@@ -59,7 +67,7 @@ class CardVideo extends StatelessWidget {
               child: Icon(
                 Icons.play_circle_filled,
                 size: 48.0,
-                color: onPressed == null
+                color: onPressed != null
                     ? Theme.of(context).textTheme.button.color
                     : Theme.of(context).disabledColor,
               ),

@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 class VideosProvider extends ChangeNotifier {
   List<VideoModel> _remoteWorks;
 
-  List<VideoModel> get remoteWorks => _remoteWorks;
+  List<VideoModel> get videos => _remoteWorks;
 
   void setVideos(List<VideoModel> values) {
     _remoteWorks = values;

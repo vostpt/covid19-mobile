@@ -18,6 +18,7 @@ import 'package:covid19mobile/model/faq_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
+import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/app.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
@@ -73,14 +74,14 @@ class _VideosPageState extends BaseState<VideosPage, AppBloc> {
       ),
       body: Container(
         child: ListView.separated(
-            itemBuilder: (context, index) =>
-              CardVideo(
-                backgroundUrl: _videos[index].thumbnail,
-                label: _videos[index].postTitle,
-                onPressed: () => print("yey"),
-                labelAlignment: Alignment.topLeft,
-              )
-            ,
+            itemBuilder: (context, index) => CardVideo(
+                  backgroundUrl: _videos[index].thumbnail,
+                  label: _videos[index].postTitle,
+                  onPressed: () => Navigator.of(context).pushNamed(
+                      routeVideoPlayer,
+                      arguments: _videos[index].getVideoId()),
+                  labelAlignment: Alignment.topLeft,
+                ),
             separatorBuilder: (_, __) {
               return const SizedBox(
                 height: 12.0,
@@ -106,7 +107,8 @@ class _VideosPageState extends BaseState<VideosPage, AppBloc> {
   void onStateResultListener(ResultStream result) {
     if (result is VideosResultStream) {
       /// Updates faqs list on the provider
-      Provider.of<VideosProvider>(context, listen: false).setVideos(result.model);
+      Provider.of<VideosProvider>(context, listen: false)
+          .setVideos(result.model);
 
       /// Updates videos list
       _videos = result.model;

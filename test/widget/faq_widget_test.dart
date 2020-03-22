@@ -18,18 +18,17 @@ import 'widget_test_utils.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  group('Widget: Accordion Widget', () {
-    testWidgets('has empty text title, should throw an exception',
-        (tester) async {
-      await tester.pumpWidget(Accordion());
-      expect(tester.takeException(), isInstanceOf<AssertionError>());
-    });
-
-    testWidgets('has title and children, should render properly with a border',
+  group('Widget: Faq Accordion Widget', () {
+    testWidgets(
+        'Faq title, text and Entity, should render properly without border',
         (tester) async {
       await tester.pumpWithEnvironment(Accordion(
+        withBorder: false,
         title: 'Foo',
-        children: <Widget>[Text('Some child')],
+        children: <Widget>[
+          Text('Some child'),
+          Text('Entity'),
+        ],
       ));
 
       // Check collapsed (only title is showing) and has border
@@ -37,31 +36,13 @@ void main() {
       expect(find.byType(Text), findsOneWidget);
       expect(find.byType(DecoratedBox), findsWidgets);
 
-      // Check expanded (is expanded and 2 texts are rendered, both title and content)
+      final Accordion accordion = tester.firstWidget(find.byType(Accordion));
+      expect(accordion.withBorder, false);
+
+      // Check expanded (is expanded and 3 texts are rendered, both title and content)
       await tester.tap(find.byType(ExpansionTile));
       await tester.pumpAndSettle();
-      expect(find.byType(Text), findsNWidgets(2));
-    });
-
-    testWidgets('has title and children, should render without a border',
-        (tester) async {
-      await tester.pumpWithEnvironment(Accordion(
-        title: 'Foo',
-        withBorder: false,
-        children: <Widget>[Text('Some child')],
-      ));
-
-      // Check collapsed (only title is showing)
-      expect(find.byType(Accordion), findsOneWidget);
-      expect(find.byType(Text), findsOneWidget);
-
-      // Check expanded (is expanded and 2 texts are rendered, both title and content)
-      await tester.tap(find.byType(ExpansionTile));
-      await tester.pumpAndSettle();
-      expect(find.byType(Text), findsNWidgets(2));
-
-      // Check if no decoration is being applied (border)
-      expect(find.byType(BoxDecoration), findsNothing);
+      expect(find.byType(Text), findsNWidgets(3));
     });
   });
 }

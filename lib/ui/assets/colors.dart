@@ -57,4 +57,6 @@ class Covid19Colors {
   /// Contact Card Background Color grey
   static const Color contactCardBackgroundGrey = Color(0xffeceef0);
 
+  /// For use in list separator
+  static const Color lightGreyLight = Color(0xffeceef0);
 }

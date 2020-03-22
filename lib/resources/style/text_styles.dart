@@ -49,6 +49,14 @@ class TextStyles {
         color: color,
       ));
 
+  static TextStyle h3({Color color = Covid19Colors.darkGrey}) =>
+      GoogleFonts.lato(
+          textStyle: TextStyle(
+        fontWeight: FontWeight.w900,
+        fontSize: 16.0,
+        color: color,
+      ));
+
   static TextStyle h4({Color color = Covid19Colors.darkGrey}) =>
       GoogleFonts.lato(
           textStyle: TextStyle(
@@ -119,6 +127,15 @@ class TextStyles {
           textStyle: TextStyle(
         fontWeight: FontWeight.normal,
         fontSize: 10.0,
+        color: color,
+      ));
+
+  static TextStyle texCustom(
+          {Color color = Covid19Colors.darkGrey, double size = 14.0}) =>
+      GoogleFonts.lato(
+          textStyle: TextStyle(
+        fontWeight: FontWeight.normal,
+        fontSize: size,
         color: color,
       ));
 }

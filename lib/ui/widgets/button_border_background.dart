@@ -16,7 +16,8 @@ class ButtonBorderBackground extends StatelessWidget {
   final Color color;
   final Widget child;
 
-  const ButtonBorderBackground({Key key, this.color, this.child}) : super(key: key);
+  const ButtonBorderBackground({Key key, this.color, this.child})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,10 @@ class ButtonBorderBackground extends StatelessWidget {
         borderRadius: BorderRadius.all(
           Radius.circular(4.0),
         ),
-        border: Border.all(color: color, width: 2.0,),
+        border: Border.all(
+          color: color,
+          width: 2.0,
+        ),
       ),
       padding: EdgeInsets.all(16.0),
       child: child,

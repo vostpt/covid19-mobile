@@ -13,19 +13,13 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
-import 'package:covid19mobile/generated/l10n.dart';
-import 'package:covid19mobile/model/faq_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
-import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
-import 'package:covid19mobile/ui/app.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
-import 'package:covid19mobile/ui/screens/home/components/accordion.dart';
 import 'package:covid19mobile/ui/widgets/card_video.dart';
-import 'package:covid19mobile/ui/widgets/separator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

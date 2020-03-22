@@ -21,9 +21,7 @@ import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/assets/images.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/home/components/card_home.dart';
-import 'package:covid19mobile/ui/widgets/button_border_background.dart';
 import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -43,9 +41,6 @@ class HomePage extends BasePage {
 
   @override
   _HomePageState createState() => _HomePageState();
-
-  @override
-  Widget get builder => null;
 }
 
 class _HomePageState extends BaseState<HomePage, AppBloc> {
@@ -117,6 +112,16 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
                         Navigator.of(context).pushNamed(routeContacts),
                     backgroundColor: Covid19Colors.green,
                     textColor: Covid19Colors.white,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  CardBorderArrow(
+                    text: S.of(context).screenNotificationsTitle.toUpperCase(),
+                    callback: () =>
+                        Navigator.of(context).pushNamed(routeNotifications),
+                    textColor: Covid19Colors.darkGrey,
+                    borderColor: Covid19Colors.lightGrey,
                   ),
                   const SizedBox(
                     height: 8,

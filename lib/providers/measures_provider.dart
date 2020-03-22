@@ -15,7 +15,7 @@ import 'package:covid19mobile/model/measures_model.dart';
 import 'package:flutter/material.dart';
 
 /// Creates a [MeasuresModel] Provider for updating UI for
-class MeasuresProvider with ChangeNotifier {
+class MeasuresProvider extends ChangeNotifier {
   int _id;
   int get id => _id;
 

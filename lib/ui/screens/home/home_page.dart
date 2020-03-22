@@ -104,6 +104,14 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
                     height: 8,
                   ),
                   CardHome(
+                    text: S.of(context).screenVideosTitle.toUpperCase(),
+                    callback: () =>
+                        Navigator.of(context).pushNamed(routeVideos),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  CardHome(
                     text: S.of(context).contactsPageTitle,
                     callback: () =>
                         Navigator.of(context).pushNamed(routeContacts),

@@ -42,6 +42,12 @@ class VideoModel extends BasePostModel {
     return videoUrl?.replaceAll("\\", "");
   }
 
+  String getVideoId() {
+    var videoUrl = getVideoUrl();
+    Uri uri = Uri.parse(videoUrl);
+    return uri.pathSegments.last;
+  }
+
   /// Model constructor
   ///
   /// All properties are mandatory

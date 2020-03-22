@@ -73,7 +73,11 @@ class AppBloc implements Bloc {
   void getVideos() async {
     final postType = PostType(PostTypes.videos);
 
-    getPosts<VideoModel>(postType, cacheKey: "VideoModel");
+    var results = await getPosts<VideoModel>(postType, cacheKey: "VideoModel");
+
+    onStream.sink.add(VideosResultStream(
+        model: results,
+        state: results != null ? StateStream.success : StateStream.fail));
   }
 
   void getFaqs() async {

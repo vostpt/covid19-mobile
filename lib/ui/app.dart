@@ -14,6 +14,7 @@
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
+import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/notifications_provider.dart';
 import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
@@ -33,6 +34,7 @@ import 'package:covid19mobile/ui/screens/remote_work_details/remote_work_details
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
 import 'package:covid19mobile/ui/screens/video_player/video_player_page.dart';
 import 'package:covid19mobile/ui/screens/videos/videos_page.dart';
+import 'package:covid19mobile/ui/screens/measures/measures_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logger/logger.dart';
@@ -61,6 +63,9 @@ class CovidApp extends StatelessWidget {
         ChangeNotifierProvider<NotificationsProvider>.value(
           value: NotificationsProvider(),
         ),
+        ChangeNotifierProvider<MeasuresProvider>.value(
+          value: MeasuresProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'Covid 19 App',
@@ -86,6 +91,8 @@ class CovidApp extends StatelessWidget {
           routeInitiatives: (context) =>
               InitiativesPage(title: S.of(context).initiativesPageTitle),
           routeNotifications: (_) => NotificationsPage(),
+          routeMeasures: (_) =>
+              MeasuresPage(title: 'Medidas Excecionais')
         },
       ),
     );

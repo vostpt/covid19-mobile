@@ -12,8 +12,8 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/generated/l10n.dart';
-import 'package:covid19mobile/ui/app.dart';
 import 'package:dio/dio.dart';
+import 'package:covid19mobile/ui/app.dart';
 
 const String bundle = 'com.vost.covid19mobile';
 

@@ -15,9 +15,10 @@ import 'dart:io';
 
 import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/model/faq_model.dart';
-import 'package:covid19mobile/model/measures_model.dart';
+import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
+import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
 import 'package:covid19mobile/services/api_service.dart';
@@ -123,7 +124,7 @@ void main() {
     test(' performs a get measures', () async {
       final postType = PostType(PostTypes.measures);
 
-      final measuresModel = MeasuresModel(
+      final measureModel = MeasureModel(
         id: 269,
         author: "18",
         date: "2020-03-18 00:52:14",
@@ -150,7 +151,6 @@ void main() {
         commentCount: "0",
         filter: "raw",
         documents: false,
-        links: false,
       );
 
       when(client.get(postType.getRequestType())).thenAnswer(
@@ -192,9 +192,8 @@ void main() {
               "post_date": "2020-03-18 00:51:16",
               "post_date_gmt": "2020-03-18 00:51:16",
               "post_content":
-                  "<b>Medidas de apoio no \u00e2mbito do Programa Mar 2020<\/b>\r\n\r\n<span style=\"font-weight: 400;\">Tendo em vista minimizar os impactos econ\u00f3mico-financeiros da situa\u00e7\u00e3o epidemiol\u00f3gica do novo coronav\u00edrus \u2013 Covid-19, o Minist\u00e9rio do Mar adotou um conjunto de medidas excecionais de apoio \u00e0s empresas e outras entidades benefici\u00e1rias do Programa Operacional Mar 2020.<\/span>\r\n<ul>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">De modo a agilizar a realiza\u00e7\u00e3o de pagamentos, foram adotadas as seguintes medidas excecionais:<\/span><\/li>\r\n<\/ul>\r\n<ol>\r\n \t<li style=\"list-style-type: none;\">\r\n<ol>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">Sempre que, por motivos n\u00e3o imput\u00e1veis \u00e0s empresas e demais entidades privadas benefici\u00e1rias do programa, n\u00e3o seja poss\u00edvel a valida\u00e7\u00e3o do pedido de pagamento, no prazo de 20 dias \u00fateis contados da data da respetiva submiss\u00e3o pelo benefici\u00e1rio, o pedido \u00e9 liquidado a t\u00edtulo de adiantamento;<\/span><\/li>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">Os pedidos de pagamento validados nos termos da al\u00ednea anterior s\u00e3o pagos at\u00e9 ao valor m\u00e1ximo de 70% do apoio p\u00fablico que lhe corresponda, com periodicidade semanal;<\/span><\/li>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">Passa a ser poss\u00edvel aos benefici\u00e1rios do programa submeter pedidos de pagamento com base em despesa faturada, mas ainda n\u00e3o paga pelo benefici\u00e1rio, sendo esta considerada para pagamento a t\u00edtulo de adiantamento, desde que a soma dos adiantamentos j\u00e1 realizados e n\u00e3o justificados com despesa submetida e validada n\u00e3o ultrapasse os 50% da despesa p\u00fablica aprovada para cada projeto;<\/span><\/li>\r\n<\/ol>\r\n<\/li>\r\n<\/ol>\r\n&nbsp;\r\n<ul>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">S\u00e3o eleg\u00edveis para reembolso as despesas comprovadamente suportadas pelos benefici\u00e1rios em iniciativas ou a\u00e7\u00f5es canceladas ou adiadas por raz\u00f5es relacionadas com o COVID-19, previstas em projetos aprovados.<\/span><\/li>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">Em complemento ao referido no ponto anterior, n\u00e3o s\u00e3o penalizados os projetos que, devido aos impactos negativos decorrentes do COVID-19, n\u00e3o atinjam o or\u00e7amento aprovado e a plena execu\u00e7\u00e3o financeira prevista na concretiza\u00e7\u00e3o de a\u00e7\u00f5es ou metas, podendo ser encerrados como conclu\u00eddos desde que n\u00e3o ponham em causa o alcance dos objetivos para os quais a opera\u00e7\u00e3o foi aprovada.<\/span><\/li>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">Sempre que necess\u00e1rio, quando o prazo contratualmente definido para a conclus\u00e3o do projeto tiver por refer\u00eancia o ano de 2020, esta data \u00e9 objeto de alargamento, para 2021 e em prazo compat\u00edvel com a finaliza\u00e7\u00e3o da sua execu\u00e7\u00e3o f\u00edsico-financeira.<\/span><\/li>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">\u00c9 autorizada a apresenta\u00e7\u00e3o de um maior n\u00famero de pedidos de pagamento, para al\u00e9m do limite estabelecido na medida de flexibiliza\u00e7\u00e3o j\u00e1 adotada em finais de 2019, que permite a submiss\u00e3o de at\u00e9 10 pedidos de pagamento em cada projeto.<\/span><\/li>\r\n<\/ul>",
-              "post_title":
-                  "Medidas de apoio no \u00e2mbito do Programa Mar 2020",
+                  "<b>Medidas de apoio no âmbito do Programa Mar 2020</b>\r\n\r\n<span style=\"font-weight: 400;\">Tendo em vista minimizar os impactos económico-financeiros da situação epidemiológica do novo coronavírus – Covid-19, o Ministério do Mar adotou um conjunto de medidas excecionais de apoio às empresas e outras entidades beneficiárias do Programa Operacional Mar 2020.</span>\r\n<ul>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">De modo a agilizar a realização de pagamentos, foram adotadas as seguintes medidas excecionais:</span></li>\r\n</ul>\r\n<ol>\r\n \t<li style=\"list-style-type: none;\">\r\n<ol>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">Sempre que, por motivos não imputáveis às empresas e demais entidades privadas beneficiárias do programa, não seja possível a validação do pedido de pagamento, no prazo de 20 dias úteis contados da data da respetiva submissão pelo beneficiário, o pedido é liquidado a título de adiantamento;</span></li>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">Os pedidos de pagamento validados nos termos da alínea anterior são pagos até ao valor máximo de 70% do apoio público que lhe corresponda, com periodicidade semanal;</span></li>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">Passa a ser possível aos beneficiários do programa submeter pedidos de pagamento com base em despesa faturada, mas ainda não paga pelo beneficiário, sendo esta considerada para pagamento a título de adiantamento, desde que a soma dos adiantamentos já realizados e não justificados com despesa submetida e validada não ultrapasse os 50% da despesa pública aprovada para cada projeto;</span></li>\r\n</ol>\r\n</li>\r\n</ol>\r\n&nbsp;\r\n<ul>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">São elegíveis para reembolso as despesas comprovadamente suportadas pelos beneficiários em iniciativas ou ações canceladas ou adiadas por razões relacionadas com o COVID-19, previstas em projetos aprovados.</span></li>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">Em complemento ao referido no ponto anterior, não são penalizados os projetos que, devido aos impactos negativos decorrentes do COVID-19, não atinjam o orçamento aprovado e a plena execução financeira prevista na concretização de ações ou metas, podendo ser encerrados como concluídos desde que não ponham em causa o alcance dos objetivos para os quais a operação foi aprovada.</span></li>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">Sempre que necessário, quando o prazo contratualmente definido para a conclusão do projeto tiver por referência o ano de 2020, esta data é objeto de alargamento, para 2021 e em prazo compatível com a finalização da sua execução físico-financeira.</span></li>\r\n \t<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">É autorizada a apresentação de um maior número de pedidos de pagamento, para além do limite estabelecido na medida de flexibilização já adotada em finais de 2019, que permite a submissão de até 10 pedidos de pagamento em cada projeto.</span></li>\r\n</ul>",
+              "post_title": "Medidas de apoio no âmbito do Programa Mar 2020",
               "post_excerpt": "",
               "post_status": "publish",
               "comment_status": "closed",
@@ -220,51 +219,57 @@ void main() {
           ]),
         ),
       );
-    });
 
-    test(' performs a get Post Faqs', () async {
-      final postType = PostType(PostTypes.faq);
+      /// Verify if is same instance
+      var response = await api.getPosts<MeasureModel>(postType);
+      expect(response, isInstanceOf<APIResponse>());
 
-      final faqModel = FaqModel(
-        10,
-        "pergunta",
-        "resposta",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        1,
-        "",
-        1,
-        "",
-        "",
-        "",
-        "",
-      );
+      /// Verify json to model
+      List<MeasureModel> listResponseModel = response.data
+          .map<MeasureModel>((json) => MeasureModel.fromJson(json))
+          .toList();
+      expect(listResponseModel, isNotNull);
+      expect(listResponseModel, isInstanceOf<List>());
+      expect(listResponseModel.length, 2);
 
-      when(client.get(postType.getRequestType())).thenAnswer(
-        (_) => Future.value(
-          Response(
-            statusCode: HttpStatus.ok,
-            data: {
-              "ID": 10,
-              "pergunta": "escolas",
-              "questao": "",
-            },
-          ),
-        ),
-      );
+      /// Verify model to json
+      var responseModeltoJson =
+          listResponseModel.map((model) => model.toJson());
+      expect(responseModeltoJson, isNotNull);
+
+      /// call api
+      verify(
+        client.get(postType.getRequestType()),
+      ).called(1);
+
+      MeasureModel responseModel = listResponseModel.first;
+
+      expect(responseModel.id, measureModel.id);
+      expect(responseModel.author, measureModel.author);
+      expect(responseModel.date, measureModel.date);
+      expect(responseModel.postDateGmt, measureModel.postDateGmt);
+      expect(responseModel.postContent, measureModel.postContent);
+      expect(responseModel.postTitle, measureModel.postTitle);
+      expect(responseModel.postExcerpt, measureModel.postExcerpt);
+      expect(responseModel.postStatus, measureModel.postStatus);
+      expect(responseModel.commentStatus, measureModel.commentStatus);
+      expect(responseModel.pingStatus, measureModel.pingStatus);
+      expect(responseModel.postPassword, measureModel.postPassword);
+      expect(responseModel.postName, measureModel.postName);
+      expect(responseModel.toPing, measureModel.toPing);
+      expect(responseModel.pinged, measureModel.pinged);
+      expect(responseModel.postModified, measureModel.postModified);
+      expect(responseModel.postModifiedGMT, measureModel.postModifiedGMT);
+      expect(
+          responseModel.postContentFiltered, measureModel.postContentFiltered);
+      expect(responseModel.postParent, measureModel.postParent);
+      expect(responseModel.guid, measureModel.guid);
+      expect(responseModel.menuOrder, measureModel.menuOrder);
+      expect(responseModel.postType, measureModel.postType);
+      expect(responseModel.postMimeType, measureModel.postMimeType);
+      expect(responseModel.commentCount, measureModel.commentCount);
+      expect(responseModel.filter, measureModel.filter);
+      expect(responseModel.documents, measureModel.documents);
     });
 
     test(' performs a get videos', () async {
@@ -424,6 +429,51 @@ void main() {
       String expectedUrl = "https://www.youtube.com/embed/vjSgGxuv8UQ";
 
       expect(responseModel.getVideoUrl(), expectedUrl);
+    });
+
+    test(' performs a get Post Faqs', () async {
+      final postType = PostType(PostTypes.faq);
+
+      final faqModel = FaqModel(
+        10,
+        "pergunta",
+        "resposta",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        1,
+        "",
+        1,
+        "",
+        "",
+        "",
+        "",
+      );
+
+      when(client.get(postType.getRequestType())).thenAnswer(
+        (_) => Future.value(
+          Response(
+            statusCode: HttpStatus.ok,
+            data: {
+              "ID": 10,
+              "pergunta": "escolas",
+              "questao": "",
+            },
+          ),
+        ),
+      );
     });
   });
 }

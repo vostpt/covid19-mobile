@@ -11,9 +11,11 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/ui/screens/home/components/accordion.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'package:covid19mobile/ui/screens/home/components/accordion.dart';
+
 import 'widget_test_utils.dart';
 
 void main() {

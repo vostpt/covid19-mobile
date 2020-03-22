@@ -13,6 +13,7 @@
 
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/ui/assets/dimensions.dart';
 import 'package:flutter/material.dart';
 
 /// List of ThemeData and TextTheme to be used in the app
@@ -59,5 +60,14 @@ class Themes {
     textTheme: defaultTextTheme,
     unselectedWidgetColor: colorPrimary,
     scaffoldBackgroundColor: Colors.white,
+    tabBarTheme: TabBarTheme(
+      labelColor: Covid19Colors.green,
+      unselectedLabelColor: Covid19Colors.darkGrey,
+      indicator: UnderlineTabIndicator(
+        borderSide:
+            BorderSide(width: tabIndicatorWeight, color: Covid19Colors.green),
+        insets: EdgeInsets.fromLTRB(tabIndicatorMagin, 0, tabIndicatorMagin, 0),
+      ),
+    ),
   );
 }

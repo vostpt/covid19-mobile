@@ -23,12 +23,12 @@ part 'initiative_model.g.dart';
 class InitiativeModel extends BasePostModel {
 
   /// Title
-  @JsonKey(name: 'title')
-  final RenderedContentModel title;
+  @JsonKey(name: 'post_title')
+  final String title;
 
   /// Content
-  @JsonKey(name: 'content')
-  final RenderedContentModel content;
+  @JsonKey(name: 'post_content')
+  final String content;
 
   /// Constructor
   ///
@@ -90,20 +90,4 @@ class InitiativeModel extends BasePostModel {
 
   /// Maps Model to Json
   Map<String, dynamic> toJson() => _$InitiativeModelToJson(this);
-}
-
-@JsonSerializable(includeIfNull: false)
-class RenderedContentModel {
-
-  String rendered;
-
-  RenderedContentModel({this.rendered});
-
-  /// Mapper from Json to Model
-  factory RenderedContentModel.fromJson(Map<String, dynamic> json) =>
-      _$RenderedContentModelFromJson(json);
-
-  /// Maps Model to Json
-  Map<String, dynamic> toJson() => _$RenderedContentModelToJson(this);
-
 }

@@ -161,6 +161,14 @@ class AppBloc implements Bloc {
             VideoModel.fromJson(json)).toList();
 
         break;
+      case PostTypes.initiatives:
+
+        /// Data converted to a Map now we need to convert each entry
+        return data.map<T>((json) =>
+
+            /// into a [VideoModel] instance and save into a List
+            InitiativeModel.fromJson(json)).toList();
+        break;
     }
   }
 

@@ -101,7 +101,6 @@ class _ContactsPageState extends State<ContactsPage> {
   }
 
   _onContactTap(ContactModel contact) {
-    print(contact.title);
 
     switch (contact.contactType) {
       case ContactType.phone:
@@ -117,7 +116,6 @@ class _ContactsPageState extends State<ContactsPage> {
   }
 
   _launch(String url) async {
-    print(url);
     if (await canLaunch(url)) {
       await launch(url);
     } else {

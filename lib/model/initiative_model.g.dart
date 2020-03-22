@@ -9,13 +9,8 @@ part of 'initiative_model.dart';
 InitiativeModel _$InitiativeModelFromJson(Map<String, dynamic> json) {
   return InitiativeModel(
     json['ID'] as int,
-    json['title'] == null
-        ? null
-        : RenderedContentModel.fromJson(json['title'] as Map<String, dynamic>),
-    json['content'] == null
-        ? null
-        : RenderedContentModel.fromJson(
-            json['content'] as Map<String, dynamic>),
+    json['post_title'] as String,
+    json['post_content'] as String,
     json['post_author'] as String,
     json['post_date'] as String,
     json['post_date_gmt'] as String,
@@ -71,27 +66,7 @@ Map<String, dynamic> _$InitiativeModelToJson(InitiativeModel instance) {
   writeNotNull('post_mime_type', instance.postMimeType);
   writeNotNull('comment_count', instance.commentCount);
   writeNotNull('filter', instance.filter);
-  writeNotNull('title', instance.title);
-  writeNotNull('content', instance.content);
-  return val;
-}
-
-RenderedContentModel _$RenderedContentModelFromJson(Map<String, dynamic> json) {
-  return RenderedContentModel(
-    rendered: json['rendered'] as String,
-  );
-}
-
-Map<String, dynamic> _$RenderedContentModelToJson(
-    RenderedContentModel instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('rendered', instance.rendered);
+  writeNotNull('post_title', instance.title);
+  writeNotNull('post_content', instance.content);
   return val;
 }

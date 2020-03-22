@@ -33,10 +33,6 @@ class InitiativesPage extends BasePage {
   @override
   _InitiativesPageState createState() => _InitiativesPageState();
 
-  @override
-  // TODO: implement builder
-  Widget get builder => null;
-
 }
 
 class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
@@ -107,7 +103,7 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
                 child: Accordion(
                   key: expands[index],
                   withBorder: false,
-                  title: _initiatives[index].title.rendered,
+                  title: "",
                   onExpansionChanged: (value) {
                     if (value && index > 0) {
                       /// Calculates the height to scroll to position
@@ -118,7 +114,7 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
                     }
                   },
                   children: <Widget>[
-                    Text(_initiatives[index].content.rendered),
+                    Text(""),
                   ],
                 ),
               );

@@ -17,7 +17,6 @@ import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
-import 'package:covid19mobile/ui/app.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
@@ -33,12 +32,6 @@ class RemoteWorkPage extends BasePage {
 
   @override
   _RemoteWorkState createState() => _RemoteWorkState();
-
-  @override
-  Widget get builder => MultiProvider(providers: [
-        ChangeNotifierProvider<RemoteWorkProvider>.value(
-            value: RemoteWorkProvider()),
-      ], child: RemoteWorkPage(title: title));
 }
 
 class _RemoteWorkState extends BaseState<RemoteWorkPage, AppBloc> {

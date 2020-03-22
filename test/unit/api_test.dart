@@ -15,9 +15,9 @@ import 'dart:io';
 
 import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/model/faq_model.dart';
+import 'package:covid19mobile/model/measures_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
-import 'package:covid19mobile/model/measures_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
 import 'package:covid19mobile/services/api_service.dart';

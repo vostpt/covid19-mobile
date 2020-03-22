@@ -60,6 +60,23 @@ class MessageLookup extends MessageLookupByLibrary {
             "Resposta de Portugal ao Covid-19"),
         "lastUpdated":
             MessageLookupByLibrary.simpleMessage("Última actualização: "),
+        "notificationsPageDescription": MessageLookupByLibrary.simpleMessage(
+            "Que notificações vai receber?\nInformações importantes sobre atualização dos dados constantes nesta aplicação e avisos/alertas das entidades oficiais."),
+        "notificationsPageOpenSettings":
+            MessageLookupByLibrary.simpleMessage("Abrir definições"),
+        "notificationsPagePermissionsMissing":
+            MessageLookupByLibrary.simpleMessage(
+                "Por favor, conceda permissões de notificação."),
+        "notificationsPageReceiveMeasures":
+            MessageLookupByLibrary.simpleMessage("Medidas do Governo"),
+        "notificationsPageReceiveNotifcations":
+            MessageLookupByLibrary.simpleMessage("Notificações"),
+        "notificationsPageReceiveOther":
+            MessageLookupByLibrary.simpleMessage("Outras"),
+        "notificationsPageReceiveQuestions":
+            MessageLookupByLibrary.simpleMessage("Perguntas Frequentes"),
+        "notificationsPageReceiveStats":
+            MessageLookupByLibrary.simpleMessage("Estatísticas"),
         "screenAboutBuilt": MessageLookupByLibrary.simpleMessage(
             "Esta app foi construída com o apoio da VOST PT e Flutter Portugal"),
         "screenAboutButtonOpenSource":
@@ -83,6 +100,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenAboutHashtag":
             MessageLookupByLibrary.simpleMessage("#EstamosOn"),
         "screenAboutTitle": MessageLookupByLibrary.simpleMessage("Sobre"),
+        "screenNotificationsTitle":
+            MessageLookupByLibrary.simpleMessage("Notificações"),
         "screenRemoteWorkTitle":
             MessageLookupByLibrary.simpleMessage("Teletrabalho"),
         "screenVideosTitle": MessageLookupByLibrary.simpleMessage("Vídeos"),

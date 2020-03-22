@@ -14,6 +14,7 @@
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
+import 'package:covid19mobile/providers/notifications_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
@@ -24,6 +25,7 @@ import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/screens/faqs/faqs_page.dart';
 import 'package:covid19mobile/ui/screens/about/about_page.dart';
 import 'package:covid19mobile/ui/screens/home/home_page.dart';
+import 'package:covid19mobile/ui/screens/notifications/notifications_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work/remote_work_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work_details/remote_work_details.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
@@ -42,38 +44,43 @@ class CovidApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          Provider<AppBloc>.value(value: AppBloc()),
-          ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider()),
-          ChangeNotifierProvider<RemoteWorkProvider>.value(
-              value: RemoteWorkProvider()),
-          ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider()),
-          ChangeNotifierProvider<VideosProvider>.value(
-            value: VideosProvider(),
-          ),
+      providers: [
+        Provider<AppBloc>.value(value: AppBloc()),
+        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider()),
+        ChangeNotifierProvider<RemoteWorkProvider>.value(
+            value: RemoteWorkProvider()),
+        ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider()),
+        ChangeNotifierProvider<VideosProvider>.value(
+          value: VideosProvider(),
+        ),
+        ChangeNotifierProvider<NotificationsProvider>.value(
+          value: NotificationsProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Covid 19 App',
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
         ],
-        child: MaterialApp(
-          title: 'Covid 19 App',
-          localizationsDelegates: [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          theme: Themes.defaultAppTheme,
-          initialRoute: '/',
-          routes: {
-            '/': (_) => HomePage(title: 'Covid 19 App'),
-            routeStatistics: (_) => StatisticsPage(),
-            routeContacts: (_) => ContactsPage(),
-            routeRemoteWork: (context) =>
-                RemoteWorkPage(title: S.of(context).screenRemoteWorkTitle),
-            routeRemoteWorkDetails: (context) => RemoteWorkDetails(),
-            routeFaqs: (_) => FaqsPage(title: 'Perguntas Frequentes'),
-            routeVideos: (_) => VideosPage(title: 'Vídeos'),
-            routeAbout: (_) => AboutPage(),
-            routeVideoPlayer: (_) => VideoPlayerPage(),
-          },
-        ));
+        theme: Themes.defaultAppTheme,
+        initialRoute: '/',
+        routes: {
+          '/': (_) => HomePage(title: 'Covid 19 App'),
+          routeStatistics: (_) => StatisticsPage(),
+          routeContacts: (_) => ContactsPage(),
+          routeRemoteWork: (context) =>
+              RemoteWorkPage(title: S.of(context).screenRemoteWorkTitle),
+          routeRemoteWorkDetails: (context) => RemoteWorkDetails(),
+          routeFaqs: (_) => FaqsPage(title: 'Perguntas Frequentes'),
+          routeVideos: (_) => VideosPage(title: 'Vídeos'),
+          routeAbout: (_) => AboutPage(),
+          routeVideoPlayer: (_) => VideoPlayerPage(),
+          routeNotifications: (_) => NotificationsPage(),
+        },
+      ),
+    );
   }
 }

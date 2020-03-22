@@ -53,6 +53,14 @@ class Themes {
       ));
 
   static ThemeData defaultAppTheme = ThemeData(
+    appBarTheme: AppBarTheme(
+      color: Colors.white,
+      elevation: 0.0,
+      textTheme: defaultTextTheme,
+      iconTheme: IconThemeData(
+        color: Colors.black,
+      ),
+    ),
     brightness: Brightness.light,
     fontFamily: "Lato",
     primaryColor: colorPrimary,
@@ -60,10 +68,6 @@ class Themes {
     textTheme: defaultTextTheme,
     unselectedWidgetColor: colorPrimary,
     scaffoldBackgroundColor: Colors.white,
-    appBarTheme: AppBarTheme(
-      color: Colors.white,
-      elevation: 0.0,
-    ),
     tabBarTheme: TabBarTheme(
       labelColor: Covid19Colors.green,
       unselectedLabelColor: Covid19Colors.darkGrey,

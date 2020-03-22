@@ -1,3 +1,5 @@
+import 'package:covid19mobile/ui/assets/colors.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -17,11 +19,15 @@ class ButtonBackground extends StatelessWidget {
   final Color color;
   final Widget child;
 
-  const ButtonBackground({Key key, this.color, this.child}) : super(key: key);
+  const ButtonBackground({
+    Key key,
+    this.color,
+    this.child,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Ink(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(4.0),

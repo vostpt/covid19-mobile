@@ -21,3 +21,4 @@ const String routeVideos = "videos";
 const String routeVideoPlayer = "videos/player";
 const String routeRemoteWork = "remoteWork";
 const String routeRemoteWorkDetails = "remoteWork/details";
+const String routeNotifications = "notifications";

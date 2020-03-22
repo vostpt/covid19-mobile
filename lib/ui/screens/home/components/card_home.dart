@@ -34,7 +34,7 @@ class CardHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: callback,
       child: ButtonBackground(
         color: backgroundColor,

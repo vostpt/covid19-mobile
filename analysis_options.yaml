@@ -47,12 +47,10 @@ linter:
     - unnecessary_new
     - unnecessary_const
     - avoid_catches_without_on_clauses # avoid
-    - avoid_catching_errors
     - use_rethrow_when_possible
 
     # DESIGN
     - use_to_and_as_if_applicable # prefer
-    - prefer_mixin
     - prefer_final_fields # prefer
     - use_setters_to_change_properties
     - avoid_returning_null # avoid

@@ -10,6 +10,7 @@
 ///
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
@@ -18,7 +19,6 @@ import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/home/components/card_home.dart';
-import 'package:covid19mobile/generated/l10n.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -93,6 +93,19 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
               backgroundColor: Covid19Colors.green,
               textColor: Covid19Colors.white,
             ),
+            const SizedBox(
+              height: 8,
+            ),
+            StatisticsButton(
+              callback: () => Navigator.of(context).pushNamed(routeStatistics),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            CardHome(
+              text: S.of(context).faqPageTitle.toUpperCase(),
+              callback: () => Navigator.of(context).pushNamed(routeFaqs),
+            )
           ],
         ),
       ),

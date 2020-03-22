@@ -17,6 +17,7 @@ import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/resources/style/themes.dart';
 import 'package:covid19mobile/ui/screens/contacts/contacts_page.dart';
 import 'package:covid19mobile/resources/constants.dart';
+import 'package:covid19mobile/ui/screens/faqs/faqs_page.dart';
 import 'package:covid19mobile/ui/screens/home/home_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
 import 'package:flutter/material.dart';

@@ -47,8 +47,8 @@ class MeasureDetail extends StatelessWidget {
               Container(
                 height: 15,
               ),
-              if (measure.parseBody() != null) ...[
-                measure.parseBody(),
+              if (measure.parseBody(context) != null) ...[
+                measure.parseBody(context),
               ],
             ],
           ),

@@ -13,6 +13,7 @@
 
 import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/utils/launch_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:html/dom.dart' as dom;
@@ -46,26 +47,15 @@ extension HtmlParsing on MeasureModel {
     }
   }
 
-  Html parseBody() {
+  Html parseBody(BuildContext context) {
     if (postContent != null) {
       return Html(
-        useRichText: false,
         data: postContent,
-        linkStyle: const TextStyle(color: Covid19Colors.darkGrey),
-        customRender: (node, children) {
-          if (node is dom.Element) {
-            switch (node.localName) {
-              case "span":
-                if (node.nextElementSibling != null &&
-                    node.nextElementSibling.localName != "a") {
-                  return Text("${node.text}\n");
-                } else {
-                  return Text(node.text);
-                }
-            }
-          }
-          return null;
-        },
+        onLinkTap: launchURL,
+            linkStyle: Theme.of(context)
+                .textTheme
+                .body1
+                .copyWith(color: Theme.of(context).primaryColor),
       );
     } else {
       return null;

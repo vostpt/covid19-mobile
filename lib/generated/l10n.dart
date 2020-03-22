@@ -470,6 +470,15 @@ class S {
       args: [],
     );
   }
+
+  String get initiativesPageTitle {
+    return Intl.message(
+      'Iniciativas',
+      name: 'initiativesPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

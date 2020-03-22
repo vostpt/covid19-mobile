@@ -12,6 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
+import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
@@ -92,6 +93,14 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
                     height: 8,
                   ),
                   CardHome(
+                    text: S.of(context).initiativesPageTitle,
+                    callback: () =>
+                        Navigator.of(context).pushNamed(routeInitiatives),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  CardHome(
                     text: S.of(context).faqPageTitle.toUpperCase(),
                     callback: () => Navigator.of(context).pushNamed(routeFaqs),
                   ),
@@ -161,6 +170,10 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     /// Get Videos Posts
     ///
     bloc.getVideos();
+
+    /// Get Initiatives Posts
+    ///
+    bloc.getInitiatives();
   }
 
   @override
@@ -184,6 +197,11 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     if (result is VideosResultStream) {
       Provider.of<VideosProvider>(context, listen: false)
           .setVideos(result.model);
+    }
+
+    if (result is InitiativeResultStream) {
+      Provider.of<InitiativesProvider>(context, listen: false)
+          .setInitiatives(result.model);
     }
   }
 }

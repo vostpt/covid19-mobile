@@ -58,6 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Casos confirmados de COVID-19 em Portugal"),
         "homePageTitle": MessageLookupByLibrary.simpleMessage(
             "Resposta de Portugal ao Covid-19"),
+        "initiativesPageTitle":
+            MessageLookupByLibrary.simpleMessage("Iniciativas"),
         "lastUpdated":
             MessageLookupByLibrary.simpleMessage("Última actualização: "),
         "notificationsPageDescription": MessageLookupByLibrary.simpleMessage(

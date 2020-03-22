@@ -1,3 +1,4 @@
+import 'package:covid19mobile/model/initiative_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
 
 ///     This program is free software: you can redistribute it and/or modify
@@ -107,4 +108,20 @@ class FaqResultStream extends ResultStream<StateStream, List<FaqModel>> {
   /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [Lst<FaqModel>] instance list
   FaqResultStream({this.state, this.model});
+}
+
+/// The ResultStream instance for requesting the remote work posts
+///
+/// [InitiativeResultStream] is extended from [ResultStream]
+class InitiativeResultStream
+    extends ResultStream<StateStream, List<InitiativeModel>> {
+  @override
+  List<InitiativeModel> model;
+
+  @override
+  StateStream state;
+
+  /// Constructor to set the [state], a [StateStream] instance
+  /// and [model] a [Lst<InitiativeModel>] instance list
+  InitiativeResultStream({this.state, this.model});
 }

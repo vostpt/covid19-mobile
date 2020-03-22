@@ -14,11 +14,8 @@
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
-<<<<<<< HEAD
 import 'package:covid19mobile/providers/notifications_provider.dart';
-=======
 import 'package:covid19mobile/providers/initiatives_provider.dart';
->>>>>>> initiatives
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';

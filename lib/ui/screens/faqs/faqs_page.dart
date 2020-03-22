@@ -33,11 +33,6 @@ class FaqsPage extends BasePage {
 
   @override
   _FaqsPageState createState() => _FaqsPageState();
-
-  @override
-  Widget get builder => MultiProvider(providers: [
-        ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider()),
-      ], child: FaqsPage(title: title));
 }
 
 class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {

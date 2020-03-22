@@ -27,11 +27,6 @@ const _itemsMargin = 8.0;
 class StatisticsPage extends BasePage {
   @override
   _StatisticsPageState createState() => _StatisticsPageState();
-
-  @override
-  Widget get builder => MultiProvider(providers: [
-        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider())
-      ], child: StatisticsPage());
 }
 
 class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {

@@ -28,8 +28,7 @@ class CardHome extends StatelessWidget {
     @required this.callback,
     Color backgroundColor,
     Color textColor,
-  }) :
-        backgroundColor = backgroundColor ?? Covid19Colors.lightGrey,
+  })  : backgroundColor = backgroundColor ?? Covid19Colors.lightGrey,
         textColor = textColor ?? Covid19Colors.darkGrey,
         super(key: key);
 

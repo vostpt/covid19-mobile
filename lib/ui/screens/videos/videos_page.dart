@@ -38,11 +38,6 @@ class VideosPage extends BasePage {
 
   @override
   _VideosPageState createState() => _VideosPageState();
-
-  @override
-  Widget get builder => MultiProvider(providers: [
-        ChangeNotifierProvider<VideosProvider>.value(value: VideosProvider()),
-      ], child: VideosPage(title: title));
 }
 
 class _VideosPageState extends BaseState<VideosPage, AppBloc> {

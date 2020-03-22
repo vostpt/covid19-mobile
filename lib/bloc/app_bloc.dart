@@ -96,20 +96,6 @@ class AppBloc implements Bloc {
     );
   }
 
-  void getMeasures() async {
-    final postType = PostType(PostTypes.measures);
-
-
-    var results =
-        await getPosts<MeasureModel>(postType, cacheKey: "MeasureModel");
-
-    onStream.sink.add(
-      MeasuresResultStream(
-          model: results,
-          state: results != null ? StateStream.success : StateStream.fail),
-    );
-  }
-
   void getFaqs() async {
     final postType = PostType(PostTypes.faq);
 

@@ -61,6 +61,13 @@ class _NotificationsPageState extends State<NotificationsPage>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    Provider.of<NotificationsProvider>(context, listen: false)
+        .checkInitialStatus();
+  }
+
+  @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     switch (state) {
       case AppLifecycleState.resumed:

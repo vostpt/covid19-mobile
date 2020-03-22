@@ -31,6 +31,7 @@ matrix:
     - openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./android/key.properties.enc -out ./android/key.properties
     - openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./android/keystore.enc -d -a -out ./android/app/key.jks
     - openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./android/app/google-services.json.enc -d -out ./android/app/google-services.json
+    - chmod +x deploy_script_android.sh
     script:
     - "./flutter/bin/flutter build apk"
     - flutter/bin/flutter test test
@@ -54,6 +55,7 @@ matrix:
     - brew install ideviceinstaller
     - brew install ios-deploy
     - git clone https://github.com/flutter/flutter.git -b stable --depth 1
+    - chmod +x deploy_script_ios.sh
     before_install:
     - openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./ios/Runner/GoogleService-Info.plist.enc -out ./ios/Runner/GoogleService-Info.plist
     script:

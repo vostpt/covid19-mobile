@@ -27,7 +27,7 @@ enum Channel {
 class NotificationsProvider extends ChangeNotifier {
   NotificationsModel notifications = NotificationsModel();
 
-  NotificationsProvider() {
+  void checkInitialStatus() {
     notifications = NotificationsModel(
         general: MessagingService.notificationsEnabledForApp);
   }

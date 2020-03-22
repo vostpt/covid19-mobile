@@ -31,8 +31,8 @@ class CardVideo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-          onTap: onPressed,
-          child: Container(
+      onTap: onPressed,
+      child: Container(
         height: 144.0,
         margin: const EdgeInsets.all(5.0),
         padding: const EdgeInsets.all(18.0),
@@ -80,8 +80,8 @@ class CardVideo extends StatelessWidget {
                 alignment: labelAlignment,
                 child: Text(
                   label,
-                  style:
-                      TextStyles.subtitle(color: Colors.white).copyWith(shadows: [
+                  style: TextStyles.subtitle(color: Colors.white)
+                      .copyWith(shadows: [
                     const Shadow(
                       offset: Offset(0.0, 1.0),
                       blurRadius: 3.0,

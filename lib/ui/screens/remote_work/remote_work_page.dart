@@ -13,49 +13,48 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
-import 'package:covid19mobile/generated/l10n.dart';
-import 'package:covid19mobile/model/faq_model.dart';
-import 'package:covid19mobile/model/video_model.dart';
-import 'package:covid19mobile/providers/faq_provider.dart';
-import 'package:covid19mobile/providers/videos_provider.dart';
+import 'package:covid19mobile/model/remote_work_model.dart';
+import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/app.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
-import 'package:covid19mobile/ui/screens/home/components/accordion.dart';
-import 'package:covid19mobile/ui/widgets/card_video.dart';
-import 'package:covid19mobile/ui/widgets/separator.dart';
+import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class VideosPage extends BasePage {
+class RemoteWorkPage extends BasePage {
   /// Faqs page view
-  VideosPage({Key key, this.title}) : super(key: key);
+  RemoteWorkPage({Key key, this.title}) : super(key: key);
 
   /// Title of the page view
   final String title;
 
   @override
-  _VideosPageState createState() => _VideosPageState();
+  _RemoteWorkState createState() => _RemoteWorkState();
+
+  @override
+  Widget get builder => MultiProvider(providers: [
+        ChangeNotifierProvider<RemoteWorkProvider>.value(
+            value: RemoteWorkProvider()),
+      ], child: RemoteWorkPage(title: title));
 }
 
-class _VideosPageState extends BaseState<VideosPage, AppBloc> {
+class _RemoteWorkState extends BaseState<RemoteWorkPage, AppBloc> {
   /// For the initial list of faqs
-  List<VideoModel> _videos = [];
+  List<RemoteWorkModel> _remoteWorks = [];
 
   @override
   Widget build(BuildContext context) {
     /// TODO: in case of slow connection show loading?
-
     /// Gets all faqs from the Provider or the Modal Route arguments
     ///
     /// If pushing from home and faqs have initial data
     /// In case of no initial data reverts to fetch faqs
     /// and update with the Provider
-    _videos = Provider.of<VideosProvider>(context).videos ??
+    _remoteWorks = Provider.of<RemoteWorkProvider>(context).remoteWorks ??
         ModalRoute.of(context).settings.arguments;
-
     return Scaffold(
       appBar: AppBar(
         iconTheme:
@@ -66,30 +65,32 @@ class _VideosPageState extends BaseState<VideosPage, AppBloc> {
         ),
       ),
       body: Container(
+        margin: EdgeInsets.all(16.0),
         child: ListView.separated(
-            itemBuilder: (context, index) => CardVideo(
-                  backgroundUrl: _videos[index].thumbnail,
-                  label: _videos[index].postTitle,
-                  onPressed: () => Navigator.of(context).pushNamed(
-                      routeVideoPlayer,
-                      arguments: _videos[index].getVideoId()),
-                  labelAlignment: Alignment.topLeft,
+            itemBuilder: (context, index) => CardBorderArrow(
+                  text: _remoteWorks[index].postTitle,
+                  textColor: Theme.of(context).primaryColor,
+                  borderColor: Theme.of(context).primaryColor,
+                  callback: () => Navigator.of(context).pushNamed(
+                    routeRemoteWorkDetails,
+                    arguments: _remoteWorks[index],
+                  ),
                 ),
             separatorBuilder: (_, __) {
               return const SizedBox(
-                height: 12.0,
+                height: 8.0,
               );
             },
-            itemCount: _videos != null ? _videos.length : 0),
+            itemCount: _remoteWorks != null ? _remoteWorks.length : 0),
       ),
     );
   }
 
   @override
   void initBloc(AppBloc bloc) {
-    /// In case [_faqs] is null then fetch if again
-    if (_videos == null || _videos.isEmpty) {
-      bloc.getVideos();
+    /// In case [_remoteWorks] is null then fetch if again
+    if (_remoteWorks == null || _remoteWorks.isEmpty) {
+      bloc.geRemoteWork();
     }
   }
 
@@ -98,13 +99,13 @@ class _VideosPageState extends BaseState<VideosPage, AppBloc> {
 
   @override
   void onStateResultListener(ResultStream result) {
-    if (result is VideosResultStream) {
+    if (result is RemoteWorkResultStream) {
       /// Updates faqs list on the provider
-      Provider.of<VideosProvider>(context, listen: false)
-          .setVideos(result.model);
+      Provider.of<RemoteWorkProvider>(context, listen: false)
+          .setRemoteWork(result.model);
 
       /// Updates videos list
-      _videos = result.model;
+      _remoteWorks = result.model;
     }
   }
 }

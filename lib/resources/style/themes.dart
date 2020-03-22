@@ -60,6 +60,10 @@ class Themes {
     textTheme: defaultTextTheme,
     unselectedWidgetColor: colorPrimary,
     scaffoldBackgroundColor: Colors.white,
+    appBarTheme: AppBarTheme(
+      color: Colors.white,
+      elevation: 0.0,
+    ),
     tabBarTheme: TabBarTheme(
       labelColor: Covid19Colors.green,
       unselectedLabelColor: Covid19Colors.darkGrey,

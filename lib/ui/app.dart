@@ -13,6 +13,10 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/providers/faq_provider.dart';
+import 'package:covid19mobile/providers/remote_work_provider.dart';
+import 'package:covid19mobile/providers/stats_provider.dart';
+import 'package:covid19mobile/providers/videos_provider.dart';
 
 import 'package:covid19mobile/resources/style/themes.dart';
 import 'package:covid19mobile/ui/screens/contacts/contacts_page.dart';
@@ -20,6 +24,8 @@ import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/screens/faqs/faqs_page.dart';
 import 'package:covid19mobile/ui/screens/about/about_page.dart';
 import 'package:covid19mobile/ui/screens/home/home_page.dart';
+import 'package:covid19mobile/ui/screens/remote_work/remote_work_page.dart';
+import 'package:covid19mobile/ui/screens/remote_work_details/remote_work_details.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
 import 'package:covid19mobile/ui/screens/video_player/video_player_page.dart';
 import 'package:covid19mobile/ui/screens/videos/videos_page.dart';
@@ -35,29 +41,39 @@ final Logger logger = Logger(printer: PrettyPrinter(methodCount: 0));
 class CovidApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Provider<AppBloc>(
-      create: (_) => AppBloc(),
-      dispose: (_, bloc) => bloc.dispose(),
-      child: MaterialApp(
-        title: 'Covid 19 App',
-        localizationsDelegates: [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
+    return MultiProvider(
+        providers: [
+          Provider<AppBloc>.value(value: AppBloc()),
+          ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider()),
+          ChangeNotifierProvider<RemoteWorkProvider>.value(
+              value: RemoteWorkProvider()),
+          ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider()),
+          ChangeNotifierProvider<VideosProvider>.value(
+            value: VideosProvider(),
+          ),
         ],
-        theme: Themes.defaultAppTheme,
-        initialRoute: '/',
-        routes: {
-          '/': (_) => HomePage(title: 'Covid 19 App').builder,
-          routeStatistics: (_) => StatisticsPage().builder,
-          routeContacts: (_) => ContactsPage(),
-          routeFaqs: (_) => FaqsPage(title: 'Perguntas Frequentes').builder,
-          routeVideos: (_) => VideosPage(title: 'Vídeos').builder,
-          routeAbout: (_) => AboutPage(),
-          routeVideoPlayer: (_) => VideoPlayerPage(),
-        },
-      ),
-    );
+        child: MaterialApp(
+          title: 'Covid 19 App',
+          localizationsDelegates: [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          theme: Themes.defaultAppTheme,
+          initialRoute: '/',
+          routes: {
+            '/': (_) => HomePage(title: 'Covid 19 App'),
+            routeStatistics: (_) => StatisticsPage(),
+            routeContacts: (_) => ContactsPage(),
+            routeRemoteWork: (context) =>
+                RemoteWorkPage(title: S.of(context).screenRemoteWorkTitle),
+            routeRemoteWorkDetails: (context) => RemoteWorkDetails(),
+            routeFaqs: (_) => FaqsPage(title: 'Perguntas Frequentes'),
+            routeVideos: (_) => VideosPage(title: 'Vídeos'),
+            routeAbout: (_) => AboutPage(),
+            routeVideoPlayer: (_) => VideoPlayerPage(),
+          },
+        ));
   }
 }

@@ -10,18 +10,19 @@ import 'intl/messages_all.dart';
 
 class S {
   S(this.localeName);
-  
-  static const AppLocalizationDelegate delegate =
-    AppLocalizationDelegate();
+
+  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final String name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       return S(localeName);
     });
-  } 
+  }
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
@@ -375,6 +376,15 @@ class S {
     return Intl.message(
       'Vídeos',
       name: 'screenVideosTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get screenRemoteWorkTitle {
+    return Intl.message(
+      'Teletrabalho',
+      name: 'screenRemoteWorkTitle',
       desc: '',
       args: [],
     );

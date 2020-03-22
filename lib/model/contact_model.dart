@@ -11,8 +11,20 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-const String bundle = 'com.vost.covid19mobile';
+import 'package:flutter/material.dart';
 
-const String routeStatistics = "statistics";
+enum ContactType { phone, link, email }
 
-const String routeContacts = "contacts";
+class ContactModel {
+  ContactType contactType;
+
+  String title;
+
+  String description;
+
+  Widget icon;
+
+  double textSize;
+
+  ContactModel({this.contactType, this.title, this.description, this.icon, this.textSize = 28.0});
+}

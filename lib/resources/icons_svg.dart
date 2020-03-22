@@ -11,8 +11,26 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-const String bundle = 'com.vost.covid19mobile';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 
-const String routeStatistics = "statistics";
+mixin SvgIcons {
 
-const String routeContacts = "contacts";
+  static Widget phoneSvg = SvgPicture.asset(
+    'assets/icon_action_phone.svg',
+    color: Covid19Colors.green,
+  );
+
+  static Widget emailSvg = SvgPicture.asset(
+    'assets/icon_action_email.svg',
+    color: Covid19Colors.green,
+  );
+
+  static Widget linkSvg = SvgPicture.asset(
+    'assets/icon_action_link.svg',
+    color: Covid19Colors.green,
+    width: 20,
+    height: 20,
+  );
+}

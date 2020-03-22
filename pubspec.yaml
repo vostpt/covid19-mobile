@@ -38,6 +38,9 @@ dependencies:
   # UI
   google_fonts: 0.3.10
 
+  # Svg
+  flutter_svg: 0.13.0+2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -51,6 +54,7 @@ flutter:
   uses-material-design: true
   assets:
     - google_fonts/
+    - assets/
 
 flutter_intl:
   enabled: true

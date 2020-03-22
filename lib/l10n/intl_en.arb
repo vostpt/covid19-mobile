@@ -8,5 +8,18 @@
   "statisticsPageDataLabel": "Dados DGS via ESRI Portugal",
   "lastUpdated": "Última actualização: ",
   "checkDetails": "Ver detalhes",
-  "homePageConfirmedCases": "Casos confirmados de COVID-19 em Portugal"
+  "homePageConfirmedCases": "Casos confirmados de COVID-19 em Portugal",
+  "contactsPageTitle": "Contactos úteis",
+  "contactsPageSNSNumber": "808 24 24 24",
+  "contactsPageSNSNumberText": "Linha SNS 24 para esclarecimentos de diagnóstico médico.",
+  "contactsPageSSNumber": "300 502 502",
+  "contactsPageSSNumberText": "Linha Segurança Social para esclarecimentos sobre assistência a familiares, baixas e quarentena.",
+  "contactsPageMNENumber": "+351 217 929 755",
+  "contactsPageMNENumberText": "Linha do Ministério dos Negócios Estrangeiros de emergência aos portugueses em viagem.",
+  "contactsPageMSWeb": "covid19.min-saude.pt",
+  "contactsPageMSWebText": "Plataforma da DGS para esclarecimentos sobre a COVID-19.",
+  "contactsPageSNSEmail": "atendimento@SNS24.gov.pt",
+  "contactsPageSNSEmailText": "Canal SNS 24 para esclarecimentos de dúvidas. Não utilizar para diagnóstico médico.",
+  "contactsPageMNEEmail": "covid19@mne.pt",
+  "contactsPageMNEEmailText": "Canal do Ministério dos Negócios Estrangeiros de emergência aos portugueses em viagem."
 }

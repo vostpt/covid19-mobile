@@ -118,6 +118,123 @@ class S {
       args: [],
     );
   }
+
+  String get contactsPageTitle {
+    return Intl.message(
+      'Contactos úteis',
+      name: 'contactsPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageSNSNumber {
+    return Intl.message(
+      '808 24 24 24',
+      name: 'contactsPageSNSNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageSNSNumberText {
+    return Intl.message(
+      'Linha SNS 24 para esclarecimentos de diagnóstico médico.',
+      name: 'contactsPageSNSNumberText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageSSNumber {
+    return Intl.message(
+      '300 502 502',
+      name: 'contactsPageSSNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageSSNumberText {
+    return Intl.message(
+      'Linha Segurança Social para esclarecimentos sobre assistência a familiares, baixas e quarentena.',
+      name: 'contactsPageSSNumberText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageMNENumber {
+    return Intl.message(
+      '+351 217 929 755',
+      name: 'contactsPageMNENumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageMNENumberText {
+    return Intl.message(
+      'Linha do Ministério dos Negócios Estrangeiros de emergência aos portugueses em viagem.',
+      name: 'contactsPageMNENumberText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageMSWeb {
+    return Intl.message(
+      'covid19.min-saude.pt',
+      name: 'contactsPageMSWeb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageMSWebText {
+    return Intl.message(
+      'Plataforma da DGS para esclarecimentos sobre a COVID-19.',
+      name: 'contactsPageMSWebText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageSNSEmail {
+    return Intl.message(
+      'atendimento@SNS24.gov.pt',
+      name: 'contactsPageSNSEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageSNSEmailText {
+    return Intl.message(
+      'Canal SNS 24 para esclarecimentos de dúvidas. Não utilizar para diagnóstico médico.',
+      name: 'contactsPageSNSEmailText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageMNEEmail {
+    return Intl.message(
+      'covid19@mne.pt',
+      name: 'contactsPageMNEEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get contactsPageMNEEmailText {
+    return Intl.message(
+      'Canal do Ministério dos Negócios Estrangeiros de emergência aos portugueses em viagem.',
+      name: 'contactsPageMNEEmailText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

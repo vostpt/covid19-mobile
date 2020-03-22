@@ -14,6 +14,7 @@
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/utils/launch_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:html/dom.dart' as dom;
@@ -41,6 +42,7 @@ class RemoteWorkDetails extends StatelessWidget {
           child: Html(
             data: remoteWork.description.replaceAll("\\n", ""),
             backgroundColor: Colors.white,
+            onLinkTap: launchURL,
             defaultTextStyle: Theme.of(context).textTheme.body1,
             linkStyle: Theme.of(context)
                 .textTheme

@@ -1,4 +1,4 @@
-///     This program is free software: you can redistribute it and/or modify
+///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
 ///    (at your option) any later version.
@@ -11,9 +11,7 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-const String bundle = 'com.vost.covid19mobile';
-
-const String routeStatistics = "statistics";
-const String routeContacts = "contacts";
-const String routeFaqs = "faqs";
-const String routeAbout = "about";
+const String imageCcIcons = "assets/cc_icons.png";
+const String logoRepublica = "assets/logo_rep_blica.png";
+const String socialTwitter = "assets/social_twitter.png";
+const String socialYoutube = "assets/social_youtube.png";

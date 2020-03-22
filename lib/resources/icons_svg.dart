@@ -16,7 +16,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 
 mixin SvgIcons {
-
   static Widget phoneSvg = SvgPicture.asset(
     'assets/icon_action_phone.svg',
     color: Covid19Colors.green,

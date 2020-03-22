@@ -45,15 +45,7 @@ class HomePage extends BasePage {
   _HomePageState createState() => _HomePageState();
 
   @override
-  Widget get builder => MultiProvider(providers: [
-        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider()),
-        ChangeNotifierProvider<RemoteWorkProvider>.value(
-            value: RemoteWorkProvider()),
-        ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider()),
-        ChangeNotifierProvider<VideosProvider>.value(
-          value: VideosProvider(),
-        ),
-      ], child: HomePage(title: title));
+  Widget get builder => null;
 }
 
 class _HomePageState extends BaseState<HomePage, AppBloc> {
@@ -98,7 +90,8 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
                   ),
                   CardHome(
                     text: S.of(context).screenRemoteWorkTitle.toUpperCase(),
-                    callback: () => Navigator.of(context).pushNamed(routeRemoteWork),
+                    callback: () =>
+                        Navigator.of(context).pushNamed(routeRemoteWork),
                   ),
                   const SizedBox(
                     height: 8,

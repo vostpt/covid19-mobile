@@ -26,7 +26,8 @@ abstract class MessagingService {
     logger.i("$_tag: Initing FCM service...");
     _firebaseMessaging.requestNotificationPermissions();
 
-    _firebaseMessaging.onIosSettingsRegistered.listen((IosNotificationSettings settings) {
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings settings) {
       logger.i("$_tag: Push notifications registered for iOS: $settings");
     });
 
@@ -38,7 +39,8 @@ abstract class MessagingService {
       onMessage: (Map<String, dynamic> message) async {
         logger.i("$_tag Push (onMessage): $message");
       },
-      onBackgroundMessage: Platform.isIOS ? null : _backgroundNotificationsHandler,
+      onBackgroundMessage:
+          Platform.isIOS ? null : _backgroundNotificationsHandler,
       onLaunch: (Map<String, dynamic> message) async {
         logger.i(_tag, "$_tag: Push (onLaunch): $message");
       },
@@ -48,7 +50,8 @@ abstract class MessagingService {
     );
   }
 
-  static Future<dynamic> _backgroundNotificationsHandler(Map<String, dynamic> message) {
+  static Future<dynamic> _backgroundNotificationsHandler(
+      Map<String, dynamic> message) {
     if (message.containsKey('data')) {
       final dynamic data = message['data'];
       logger.i("$_tag: Push (background) data message: $message");

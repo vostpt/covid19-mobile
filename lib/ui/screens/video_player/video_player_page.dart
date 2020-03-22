@@ -29,12 +29,12 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   @override
   Widget build(BuildContext context) {
     _url = ModalRoute.of(context).settings.arguments;
-      _controller = YoutubePlayerController(
-        initialVideoId: _url,
-        flags: YoutubePlayerFlags(
-          autoPlay: true,
-        ),
-      );
+    _controller = YoutubePlayerController(
+      initialVideoId: _url,
+      flags: YoutubePlayerFlags(
+        autoPlay: true,
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,

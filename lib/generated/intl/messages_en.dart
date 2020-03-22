@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "faqPageResponsableEntity" : MessageLookupByLibrary.simpleMessage("Entidade Responsável"),
     "faqPageTitle" : MessageLookupByLibrary.simpleMessage("Perguntas Frequentes"),
     "homePageConfirmedCases" : MessageLookupByLibrary.simpleMessage("Casos confirmados de COVID-19 em Portugal"),
+    "homePageTitle" : MessageLookupByLibrary.simpleMessage("Resposta de Portugal ao Covid-19"),
     "lastUpdated" : MessageLookupByLibrary.simpleMessage("Última actualização: "),
     "screenAboutBuilt" : MessageLookupByLibrary.simpleMessage("Esta app foi construída com o apoio da VOST PT e Flutter Portugal"),
     "screenAboutButtonOpenSource" : MessageLookupByLibrary.simpleMessage("Licenças Open-Source"),

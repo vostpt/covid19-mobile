@@ -43,7 +43,7 @@ class CardBorderArrow extends StatelessWidget {
                 text.toUpperCase(),
                 style: Theme.of(context)
                     .textTheme
-                    .display2
+                    .display3
                     .copyWith(color: textColor),
               ),
             ),

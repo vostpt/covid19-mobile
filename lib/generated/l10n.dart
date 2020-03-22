@@ -361,6 +361,15 @@ class S {
       args: [],
     );
   }
+
+  String get homePageTitle {
+    return Intl.message(
+      'Resposta de Portugal ao Covid-19',
+      name: 'homePageTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

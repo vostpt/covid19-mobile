@@ -16,9 +16,13 @@ import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
+import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/ui/assets/images.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/home/components/card_home.dart';
+import 'package:covid19mobile/ui/widgets/button_border_background.dart';
+import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -59,54 +63,68 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     logger.i('[StatsProvider] $stats! - ${stats.hashCode}');
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Container(
         margin: EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Center(
-              child: Text("Covid App"),
+            SafeArea(
+              child: Image.asset(
+                logoEstamosOn,
+                width: MediaQuery.of(context).size.width * 0.4,
+              ),
             ),
             const SizedBox(
-              height: 8,
+              height: 16.0,
             ),
-            StatisticsButton(
-              callback: () => Navigator.of(context).pushNamed(routeStatistics),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            CardHome(
-              text: S.of(context).contactsPageTitle,
-              callback: () => Navigator.of(context).pushNamed(routeContacts),
-              backgroundColor: Covid19Colors.green,
-              textColor: Covid19Colors.white,
+            Text(
+              S.of(context).homePageTitle.toUpperCase(),
+              style: TextStyles.subtitle(
+                color: Covid19Colors.red,
+              ),
             ),
             const SizedBox(
-              height: 8,
+              height: 24.0,
             ),
-            CardHome(
-              text: S.of(context).faqPageTitle.toUpperCase(),
-              callback: () => Navigator.of(context).pushNamed(routeFaqs),
-              backgroundColor: Covid19Colors.green,
-              textColor: Covid19Colors.white,
+            SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  StatisticsButton(
+                    callback: () =>
+                        Navigator.of(context).pushNamed(routeStatistics),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  CardHome(
+                    text: S.of(context).faqPageTitle.toUpperCase(),
+                    callback: () => Navigator.of(context).pushNamed(routeFaqs),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  CardHome(
+                    text: S.of(context).contactsPageTitle,
+                    callback: () =>
+                        Navigator.of(context).pushNamed(routeContacts),
+                    backgroundColor: Covid19Colors.green,
+                    textColor: Covid19Colors.white,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  CardBorderArrow(
+                    text: S.of(context).screenAboutTitle.toUpperCase(),
+                    callback: () => Navigator.of(context).pushNamed(routeAbout),
+                    textColor: Covid19Colors.darkGrey,
+                    borderColor: Covid19Colors.lightGrey,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(
-              height: 8,
-            ),
-            CardHome(
-              text: S.of(context).faqPageTitle.toUpperCase(),
-              callback: () => Navigator.of(context).pushNamed(routeFaqs),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            CardHome(
-              text: S.of(context).screenAboutTitle.toUpperCase(),
-              callback: () => Navigator.of(context).pushNamed(routeAbout),
-            )
           ],
         ),
       ),

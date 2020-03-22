@@ -66,7 +66,8 @@ class CovidApp extends StatelessWidget {
             '/': (_) => HomePage(title: 'Covid 19 App'),
             routeStatistics: (_) => StatisticsPage(),
             routeContacts: (_) => ContactsPage(),
-            routeRemoteWork: (context) => RemoteWorkPage(title: S.of(context).screenRemoteWorkTitle),
+            routeRemoteWork: (context) =>
+                RemoteWorkPage(title: S.of(context).screenRemoteWorkTitle),
             routeRemoteWorkDetails: (context) => RemoteWorkDetails(),
             routeFaqs: (_) => FaqsPage(title: 'Perguntas Frequentes'),
             routeVideos: (_) => VideosPage(title: 'Vídeos'),

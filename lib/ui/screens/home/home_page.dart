@@ -90,7 +90,8 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
                   ),
                   CardHome(
                     text: S.of(context).screenRemoteWorkTitle.toUpperCase(),
-                    callback: () => Navigator.of(context).pushNamed(routeRemoteWork),
+                    callback: () =>
+                        Navigator.of(context).pushNamed(routeRemoteWork),
                   ),
                   const SizedBox(
                     height: 8,

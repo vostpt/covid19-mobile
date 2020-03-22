@@ -35,27 +35,29 @@ class RemoteWorkDetails extends StatelessWidget {
           style: TextStyles.h2(color: Covid19Colors.darkGreyLight),
         ),
       ),
-      body: Container(
-        margin: EdgeInsets.all(16.0),
-        child: Html(
-          data: remoteWork.description.replaceAll("\\n", ""),
-          backgroundColor: Colors.white,
-          defaultTextStyle: Theme.of(context).textTheme.body1,
-          linkStyle: Theme.of(context)
-              .textTheme
-              .body1
-              .copyWith(color: Theme.of(context).primaryColor),
-          customTextStyle: (dom.Node node, TextStyle baseStyle) {
-            if (node is dom.Element) {
-              switch (node.localName) {
-                case "b":
-                  return TextStyles.subtitle(
-                    color: Covid19Colors.darkGrey,
-                  );
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(16.0),
+          child: Html(
+            data: remoteWork.description.replaceAll("\\n", ""),
+            backgroundColor: Colors.white,
+            defaultTextStyle: Theme.of(context).textTheme.body1,
+            linkStyle: Theme.of(context)
+                .textTheme
+                .body1
+                .copyWith(color: Theme.of(context).primaryColor),
+            customTextStyle: (dom.Node node, TextStyle baseStyle) {
+              if (node is dom.Element) {
+                switch (node.localName) {
+                  case "b":
+                    return TextStyles.subtitle(
+                      color: Covid19Colors.darkGrey,
+                    );
+                }
               }
-            }
-            return baseStyle;
-          },
+              return baseStyle;
+            },
+          ),
         ),
       ),
     );

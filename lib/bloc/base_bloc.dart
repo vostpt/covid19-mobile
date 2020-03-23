@@ -122,11 +122,12 @@ class MeasuresResultStream
 
   @override
   StateStream state;
- /// Constructor to set the [state], a [StateStream] instance
+
+  /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [Lst<MeasuresModel>] instance list
   MeasuresResultStream({this.state, this.model});
+}
 
-    }
 /// [InitiativeResultStream] is extended from [ResultStream]
 class InitiativeResultStream
     extends ResultStream<StateStream, List<InitiativeModel>> {

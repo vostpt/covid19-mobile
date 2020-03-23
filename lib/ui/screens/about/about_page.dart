@@ -107,7 +107,8 @@ class AboutPage extends StatelessWidget {
                   const _TextMargin(),
                   CardBorderArrow(
                     text: S.of(context).screenAboutButtonOpenSource,
-                    callback: () => Navigator.of(context).pushNamed(routeLicences),
+                    callback: () =>
+                        Navigator.of(context).pushNamed(routeLicences),
                     textColor: Covid19Colors.darkGrey,
                     borderColor: Covid19Colors.grey,
                   ),

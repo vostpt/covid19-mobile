@@ -30,6 +30,19 @@ class CardVideo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final decoration = backgroundUrl == null
+        ? BoxDecoration(
+            borderRadius: BorderRadius.circular(4.0),
+            color: Theme.of(context).primaryColor,
+          )
+        : BoxDecoration(
+            borderRadius: BorderRadius.circular(4.0),
+            image: DecorationImage(
+              image: NetworkImage(backgroundUrl),
+              fit: BoxFit.cover,
+            ),
+          );
+
     return GestureDetector(
       onTap: onPressed,
       child: Container(
@@ -37,13 +50,7 @@ class CardVideo extends StatelessWidget {
         margin: const EdgeInsets.all(5.0),
         padding: const EdgeInsets.all(18.0),
         alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4.0),
-          image: DecorationImage(
-            image: NetworkImage(backgroundUrl),
-            fit: BoxFit.cover,
-          ),
-        ),
+        decoration: decoration,
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[

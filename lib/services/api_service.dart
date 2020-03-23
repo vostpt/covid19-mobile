@@ -115,12 +115,6 @@ class APIService {
     }
   }
 
-  /// Gets foo
-  Future<APIResponse> getFoo(Foo foo) async {
-    return await _performRequest(_RequestType.post, '/path',
-        body: foo.toJson());
-  }
-
   /// Gets the updated case stats
   Future<APIResponse> getStats() async {
     return await _performRequest(

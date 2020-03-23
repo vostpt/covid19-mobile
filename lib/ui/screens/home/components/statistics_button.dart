@@ -27,10 +27,10 @@ class StatisticsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonBackground(
-      color: Covid19Colors.red,
-      child: GestureDetector(
-        onTap: callback,
+    return GestureDetector(
+      onTap: callback,
+      child: ButtonBackground(
+        color: Covid19Colors.red,
         child: Column(
           children: <Widget>[
             Row(

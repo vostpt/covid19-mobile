@@ -18,7 +18,6 @@ import 'package:covid19mobile/model/faq_model.dart';
 import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
-import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
 import 'package:covid19mobile/services/api_service.dart';

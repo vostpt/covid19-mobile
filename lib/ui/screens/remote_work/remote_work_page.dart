@@ -13,6 +13,7 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
+import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
@@ -25,10 +26,7 @@ import 'package:provider/provider.dart';
 
 class RemoteWorkPage extends BasePage {
   /// Faqs page view
-  RemoteWorkPage({Key key, this.title}) : super(key: key);
-
-  /// Title of the page view
-  final String title;
+  RemoteWorkPage({Key key}) : super(key: key);
 
   @override
   _RemoteWorkState createState() => _RemoteWorkState();
@@ -53,7 +51,7 @@ class _RemoteWorkState extends BaseState<RemoteWorkPage, AppBloc> {
         iconTheme:
             Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
         title: Text(
-          widget.title.toUpperCase(),
+          S.of(context).screenRemoteWorkTitle.toUpperCase(),
           style: TextStyles.h2(color: Covid19Colors.darkGreyLight),
         ),
       ),

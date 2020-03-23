@@ -14,6 +14,7 @@ import 'package:covid19mobile/generated/l10n.dart';
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/providers/stats_provider.dart';
+import 'package:covid19mobile/resources/icons_svg.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/widgets/button_background.dart';
 import 'package:covid19mobile/ui/widgets/statistics_border.dart';
@@ -69,11 +70,9 @@ class StatisticsButton extends StatelessWidget {
                       .button
                       .copyWith(color: Colors.white),
                 ),
-                Icon(
-                  Icons.arrow_forward,
+                SvgIcons.linkSvg(
                   color: Colors.white,
-                  size: 20,
-                )
+                ),
               ],
             )
           ],

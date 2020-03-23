@@ -36,17 +36,6 @@ class AppBloc implements Bloc {
     APIService.api.init();
   }
 
-  void foo() async {
-    final APIResponse response = await APIService.api.getFoo(null);
-    if (response.isOk) {
-      logger.i('[$_tag] everything went ok!');
-      // do something
-    } else {
-      logger.e('[$_tag] oops...');
-      // throw some error
-    }
-  }
-
   void getStats() async {
     final APIResponse response = await APIService.api.getStats();
     if (response.isOk) {

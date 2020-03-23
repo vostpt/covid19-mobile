@@ -105,6 +105,11 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
                     key: expands[index],
                     withBorder: false,
                     title: _faqs[index].question,
+                    titleTextStyle: Theme.of(context)
+                        .textTheme
+                        .display3
+                        .copyWith(
+                            color: Covid19Colors.green, letterSpacing: 0.2),
                     onExpansionChanged: (value) {
                       if (value && index > 0) {
                         /// Calculates the height to scroll to position
@@ -115,7 +120,13 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
                       }
                     },
                     children: <Widget>[
-                      Text(_faqs[index].answer),
+                      Text(
+                        _faqs[index].answer,
+                        style: Theme.of(context)
+                            .textTheme
+                            .body1
+                            .copyWith(letterSpacing: 0.2, height: 22.4 / 16),
+                      ),
                       Text.rich(TextSpan(
                         text: '${S.of(context).faqPageResponsableEntity}: ',
                         style: TextStyles.h3(),

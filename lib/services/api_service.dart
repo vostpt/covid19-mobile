@@ -15,7 +15,6 @@ import 'dart:async';
 
 import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
-import 'package:covid19mobile/model/sample_model.dart';
 import 'package:covid19mobile/services/api.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';

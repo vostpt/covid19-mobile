@@ -11,8 +11,6 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/resources/style/text_styles.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/home/components/accordion.dart';
 import 'package:covid19mobile/utils/launch_url.dart';
 import 'package:flutter/material.dart';

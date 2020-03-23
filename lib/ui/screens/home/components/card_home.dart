@@ -1,3 +1,4 @@
+import 'package:covid19mobile/resources/icons_svg.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/widgets/button_background.dart';
 
@@ -49,10 +50,10 @@ class CardHome extends StatelessWidget {
                     .copyWith(color: textColor),
               ),
             ),
-            Icon(
-              Icons.arrow_forward,
+            SizedBox(width: 12.0),
+            SvgIcons.linkSvg(
               color: textColor,
-            )
+            ),
           ],
         ),
       ),

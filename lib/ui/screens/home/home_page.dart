@@ -53,32 +53,36 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
 
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.all(16.0),
+        margin: EdgeInsets.symmetric(horizontal:16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SafeArea(
-              child: Image.asset(
-                logoEstamosOn,
-                width: MediaQuery.of(context).size.width * 0.4,
-              ),
-            ),
-            const SizedBox(
-              height: 16.0,
-            ),
-            Text(
-              S.of(context).homePageTitle.toUpperCase(),
-              style: TextStyles.subtitle(
-                color: Covid19Colors.red,
-              ),
-            ),
-            const SizedBox(
-              height: 24.0,
-            ),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    const SizedBox(
+                      height: 16.0,
+                    ),
+                    SafeArea(
+                      child: Image.asset(
+                        logoEstamosOn,
+                        width: MediaQuery.of(context).size.width * 0.4,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16.0,
+                    ),
+                    Text(
+                      S.of(context).homePageTitle.toUpperCase(),
+                      style: TextStyles.subtitle(
+                        color: Covid19Colors.red,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 24.0,
+                    ),
                     StatisticsButton(
                       callback: () =>
                           Navigator.of(context).pushNamed(routeStatistics),

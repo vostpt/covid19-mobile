@@ -84,7 +84,7 @@ class _ContactsPageState extends State<ContactsPage> {
           contactType: ContactType.link,
           title: S.of(context).contactsPageMSWeb,
           description: S.of(context).contactsPageMSWebText,
-          icon: SvgIcons.linkSvg,
+          icon: SvgIcons.linkSvg(),
           textSize: 18))
       ..add(ContactModel(
           contactType: ContactType.email,

@@ -1,4 +1,5 @@
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/assets/images.dart';
 import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
@@ -106,7 +107,7 @@ class AboutPage extends StatelessWidget {
                   const _TextMargin(),
                   CardBorderArrow(
                     text: S.of(context).screenAboutButtonOpenSource,
-                    callback: () => print("yey"),
+                    callback: () => Navigator.of(context).pushNamed(routeLicences),
                     textColor: Covid19Colors.darkGrey,
                     borderColor: Covid19Colors.grey,
                   ),

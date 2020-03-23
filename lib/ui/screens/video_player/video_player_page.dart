@@ -27,7 +27,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
         elevation: 0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.close),
+            icon: Icon(Icons.close, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           )
         ],

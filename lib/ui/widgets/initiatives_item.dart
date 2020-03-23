@@ -37,7 +37,7 @@ class InitiativesItem extends StatelessWidget {
       onExpansionChanged: onExpansionChanged,
       children: <Widget>[
         Html(
-            useRichText: false,
+            useRichText: true,
             data: body.replaceAll("\\n", ""),
             backgroundColor: Colors.white,
             defaultTextStyle: Theme.of(context).textTheme.body1,
@@ -46,21 +46,7 @@ class InitiativesItem extends StatelessWidget {
                 .textTheme
                 .body1
                 .copyWith(color: Theme.of(context).primaryColor),
-            customTextStyle: (dom.Node node, TextStyle baseStyle) {
-              if (node is dom.Element) {
-                switch (node.localName) {
-                  case "b":
-                    return TextStyles.subtitle(
-                      color: Covid19Colors.darkGrey,
-                    );
-                  case "a":
-                    return Theme.of(context).textTheme.body1.copyWith(
-                          color: Theme.of(context).primaryColor,
-                        );
-                }
-              }
-              return baseStyle;
-            },
+
             customRender: (node, children) {
               if (node is dom.Element) {
                 switch (node.localName) {

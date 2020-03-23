@@ -53,7 +53,7 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
 
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal:16.0),
+        margin: EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

@@ -46,7 +46,6 @@ class InitiativesItem extends StatelessWidget {
                 .textTheme
                 .body1
                 .copyWith(color: Theme.of(context).primaryColor),
-
             customRender: (node, children) {
               if (node is dom.Element) {
                 switch (node.localName) {

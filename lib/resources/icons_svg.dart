@@ -26,10 +26,12 @@ mixin SvgIcons {
     color: Covid19Colors.green,
   );
 
-  static Widget linkSvg({Color color = Covid19Colors.green, double size = 24.0}) => SvgPicture.asset(
-    'assets/icon_action_link.svg',
-    color: color,
-    width: size,
-    height: size,
-  );
+  static Widget linkSvg(
+          {Color color = Covid19Colors.green, double size = 24.0}) =>
+      SvgPicture.asset(
+        'assets/icon_action_link.svg',
+        color: color,
+        width: size,
+        height: size,
+      );
 }

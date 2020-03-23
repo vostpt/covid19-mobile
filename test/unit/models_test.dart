@@ -12,6 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/model/remote_work_model.dart';
+import 'package:covid19mobile/model/slider_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/model/faq_model.dart';
 
@@ -53,7 +54,7 @@ void main() {
       expect(model, isInstanceOf<StatsModel>());
     });
 
-    test(' Measues Model', () async {
+    test(' Measures Model', () async {
       /// TODO: add model tests
     });
 
@@ -178,6 +179,22 @@ void main() {
       final model2 = FaqModel.fromJson(json);
       expect(model2, isNotNull);
       expect(model2, isInstanceOf<FaqModel>());
+    });
+
+    test(' Slider Model', () async {
+      /// Create model
+      final model = SliderModel(
+          url:
+              "https://covid19estamoson.gov.pt/estado-de-emergencia-nacional/pacote-de-medidas/",
+          image:
+              "https://covid19estamoson.gov.pt/wp-content/uploads/2020/03/pacote-medidas-emergencia-nacional-estamoson.png",
+          order: 10);
+
+      expect(model.url,
+          "https://covid19estamoson.gov.pt/estado-de-emergencia-nacional/pacote-de-medidas/");
+      expect(model.image,
+          "https://covid19estamoson.gov.pt/wp-content/uploads/2020/03/pacote-medidas-emergencia-nacional-estamoson.png");
+      expect(model.order, 10);
     });
   });
 }

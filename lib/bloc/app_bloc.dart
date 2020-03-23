@@ -19,6 +19,7 @@ import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/model/initiative_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
+import 'package:covid19mobile/model/slider_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
 import 'package:covid19mobile/services/api_service.dart';
@@ -48,6 +49,19 @@ class AppBloc implements Bloc {
       logger.e('[$_tag] oops...');
       // throw some error
     }
+  }
+
+  void getSlider() async {
+    final postType = PostType(PostTypes.slider);
+
+    var results =
+        await getPosts<SliderModel>(postType, cacheKey: "SliderModel");
+
+    onStream.sink.add(
+      SliderResultStream(
+          model: results,
+          state: results != null ? StateStream.success : StateStream.fail),
+    );
   }
 
   void geRemoteWork() async {
@@ -139,6 +153,15 @@ class AppBloc implements Bloc {
   /// Then returns the parsed data
   parseData<T>(PostType postType, dynamic data) {
     switch (postType.postTypes) {
+      case PostTypes.slider:
+
+        /// Data converted to a Map now we need to convert each entry
+        return data.map<T>((json) =>
+
+            /// into a [SliderModel] instance and save into a List
+            SliderModel.fromJson(json)).toList();
+
+        break;
       case PostTypes.measures:
 
         /// Data converted to a Map now we need to convert each entry

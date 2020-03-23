@@ -106,6 +106,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.0.9"
+  built_value_generator:
+    dependency: "direct dev"
+    description:
+      name: built_value_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.0.9"
   charcode:
     dependency: transitive
     description:

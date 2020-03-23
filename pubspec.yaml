@@ -55,12 +55,14 @@ dev_dependencies:
   mockito: 4.1.1
   build_runner: 1.8.0
   json_serializable: 3.2.5
+  built_value_generator: ^7.0.4
 
 flutter:
   uses-material-design: true
   assets:
     - google_fonts/
     - assets/
+    - assets/licence.txt
 
 flutter_intl:
   enabled: true

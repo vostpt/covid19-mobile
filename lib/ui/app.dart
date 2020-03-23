@@ -92,7 +92,8 @@ class CovidApp extends StatelessWidget {
               InitiativesPage(title: S.of(context).initiativesPageTitle),
           routeNotifications: (_) => NotificationsPage(),
           routeMeasures: (_) =>
-              MeasuresPage(title: 'Medidas Excecionais')
+              MeasuresPage(title: 'Medidas Excecionais'),
+          routeLicences: (_) => LicensePage()
         },
       ),
     );

@@ -496,6 +496,15 @@ class S {
       args: [],
     );
   }
+
+  String get licencesPageTitle {
+    return Intl.message(
+      'Licenças Open-Source',
+      name: 'licencesPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

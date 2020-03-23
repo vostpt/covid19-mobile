@@ -92,50 +92,52 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
         backgroundColor: Colors.white,
         elevation: 0.0,
       ),
-      body: Container(
-        child: ListView.separated(
-            controller: scrollController,
-            itemBuilder: (context, index) {
-              expands.putIfAbsent(index, () => GlobalKey());
+      body: Scrollbar(
+        child: Container(
+          child: ListView.separated(
+              controller: scrollController,
+              itemBuilder: (context, index) {
+                expands.putIfAbsent(index, () => GlobalKey());
 
-              return Container(
-                padding: EdgeInsets.only(top: 16, bottom: 18, left: 12),
-                child: Accordion(
-                  key: expands[index],
-                  withBorder: false,
-                  title: _faqs[index].question,
-                  onExpansionChanged: (value) {
-                    if (value && index > 0) {
-                      /// Calculates the height to scroll to position
-                      var size = _getSize(index);
-                      scrollController.animateTo(size,
-                          duration: Duration(milliseconds: 1250),
-                          curve: Curves.fastLinearToSlowEaseIn);
-                    }
-                  },
-                  children: <Widget>[
-                    Text(_faqs[index].answer),
-                    Text.rich(TextSpan(
-                      text: '${S.of(context).faqPageResponsableEntity}: ',
-                      style: TextStyles.h3(),
-                      children: <InlineSpan>[
-                        TextSpan(
-                          text: "${_faqs[index].responsableEntity}",
-                          style: TextStyles.texCustom(size: 16)
-                              .copyWith(fontWeight: FontWeight.w100),
-                        ),
-                      ],
-                    )),
-                  ],
-                ),
-              );
-            },
-            separatorBuilder: (_, __) {
-              return ListSeparator(
-                color: Covid19Colors.lightGreyLight,
-              );
-            },
-            itemCount: _faqs != null ? _faqs.length : 0),
+                return Container(
+                  padding: EdgeInsets.only(top: 16, bottom: 18, left: 12),
+                  child: Accordion(
+                    key: expands[index],
+                    withBorder: false,
+                    title: _faqs[index].question,
+                    onExpansionChanged: (value) {
+                      if (value && index > 0) {
+                        /// Calculates the height to scroll to position
+                        var size = _getSize(index);
+                        scrollController.animateTo(size,
+                            duration: Duration(milliseconds: 1250),
+                            curve: Curves.fastLinearToSlowEaseIn);
+                      }
+                    },
+                    children: <Widget>[
+                      Text(_faqs[index].answer),
+                      Text.rich(TextSpan(
+                        text: '${S.of(context).faqPageResponsableEntity}: ',
+                        style: TextStyles.h3(),
+                        children: <InlineSpan>[
+                          TextSpan(
+                            text: "${_faqs[index].responsableEntity}",
+                            style: TextStyles.texCustom(size: 16)
+                                .copyWith(fontWeight: FontWeight.w100),
+                          ),
+                        ],
+                      )),
+                    ],
+                  ),
+                );
+              },
+              separatorBuilder: (_, __) {
+                return ListSeparator(
+                  color: Covid19Colors.lightGreyLight,
+                );
+              },
+              itemCount: _faqs != null ? _faqs.length : 0),
+        ),
       ),
     );
   }

@@ -24,3 +24,4 @@ const String routeRemoteWorkDetails = "remoteWork/details";
 const String routeNotifications = "notifications";
 const String routeMeasures = "measures";
 const String routeInitiatives = "initiatives";
+const String routeLicences = "licences";

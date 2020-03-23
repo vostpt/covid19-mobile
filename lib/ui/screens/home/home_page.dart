@@ -12,8 +12,8 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
-import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/initiatives_provider.dart';
+import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
@@ -23,10 +23,7 @@ import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/assets/images.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/home/components/card_home.dart';
-import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
-import 'package:covid19mobile/generated/l10n.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

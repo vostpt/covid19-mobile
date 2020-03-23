@@ -21,6 +21,7 @@ import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/widgets/card_video.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class VideosPage extends BasePage {
@@ -35,11 +36,26 @@ class VideosPage extends BasePage {
 }
 
 class _VideosPageState extends BaseState<VideosPage, AppBloc> {
+  @override
+  dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    super.dispose();
+  }
+
   /// For the initial list of faqs
   List<VideoModel> _videos = [];
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.portraitDown,
+    ]);
+
     /// TODO: in case of slow connection show loading?
 
     /// Gets all faqs from the Provider or the Modal Route arguments

@@ -71,7 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "statisticsPageAwaitingResults" : MessageLookupByLibrary.simpleMessage("Aguardar Resultados"),
     "statisticsPageConfirmed" : MessageLookupByLibrary.simpleMessage("Confirmados"),
     "statisticsPageDataLabel" : MessageLookupByLibrary.simpleMessage("Dados DGS via ESRI Portugal"),
-    "statisticsPageRecovered" : MessageLookupByLibrary.simpleMessage("Recuperações"),
+    "statisticsPageRecovered" : MessageLookupByLibrary.simpleMessage("Recuperados"),
     "statisticsPageStatistics" : MessageLookupByLibrary.simpleMessage("Estatísticas"),
     "statisticsPageSuspects" : MessageLookupByLibrary.simpleMessage("Suspeitos")
   };

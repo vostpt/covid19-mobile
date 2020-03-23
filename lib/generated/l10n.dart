@@ -400,7 +400,7 @@ class S {
 
   String get statisticsPageRecovered {
     return Intl.message(
-      'Recuperações',
+      'Recuperados',
       name: 'statisticsPageRecovered',
       desc: '',
       args: [],

@@ -53,7 +53,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(
-              flex: 6,
+              flex: 4,
               child: StatsWidget(
                 color: Covid19Colors.statsBlue,
                 number: stats.confirmed,
@@ -70,7 +70,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
               height: _itemsMargin,
             ),
             Expanded(
-              flex: 2,
+              flex: 3,
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -113,7 +113,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
               height: _itemsMargin,
             ),
             Expanded(
-              flex: 2,
+              flex: 3,
               child: Row(
                 children: <Widget>[
                   Expanded(

@@ -48,6 +48,10 @@ class VideoModel extends BasePostModel {
     return uri.pathSegments.last;
   }
 
+  String getVideoThumbnail() {
+    return "https://img.youtube.com/vi/${getVideoId()}/hqdefault.jpg";
+  }
+
   /// Model constructor
   ///
   /// All properties are mandatory

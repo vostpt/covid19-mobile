@@ -62,7 +62,7 @@ class _VideosPageState extends BaseState<VideosPage, AppBloc> {
       body: Container(
         child: ListView.separated(
             itemBuilder: (context, index) => CardVideo(
-                  backgroundUrl: _videos[index].thumbnail,
+                  backgroundUrl: _videos[index].getVideoThumbnail(),
                   label: _videos[index].postTitle,
                   onPressed: () => Navigator.of(context).pushNamed(
                       routeVideoPlayer,

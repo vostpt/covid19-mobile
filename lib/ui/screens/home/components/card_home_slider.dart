@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../app.dart';
 import 'card_home_slider_indicator.dart';
 
 class HomeSlider extends StatefulWidget {
@@ -137,22 +138,21 @@ class CardHomeSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: onTap,
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          child: Stack(children: <Widget>[
-            ClipRRect(
-                borderRadius: BorderRadius.circular(4),
-                child: Image.network(
-                  backgroundPath,
-                  height: double.infinity,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  alignment: Alignment.topCenter,
-                )),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(4),
+          child: Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+            Image.network(
+              backgroundPath,
+              fit: BoxFit.cover,
+              alignment: Alignment.topCenter,
+            ),
+            Container(
+              color: Covid19Colors.green50,
+            ),
             Container(
                 padding: EdgeInsets.fromLTRB(12, 16, 12, 16),
-                height: double.infinity,
                 child: Stack(
                   children: <Widget>[
                     Text(
@@ -172,7 +172,8 @@ class CardHomeSlide extends StatelessWidget {
                                   height: 30,
                                   color: Covid19Colors.white,
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
                                     children: <Widget>[
                                       Text(
                                         secondaryLabel,

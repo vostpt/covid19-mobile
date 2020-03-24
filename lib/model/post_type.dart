@@ -48,7 +48,9 @@ class PostType {
       case PostTypes.videos:
         return '/videos';
       case PostTypes.initiatives:
-        final id = (appConfig == AppConfig.dev ? _initiativesIdDev : _initiativesIdProd);
+        final id = (appConfig == AppConfig.dev
+            ? _initiativesIdDev
+            : _initiativesIdProd);
         return '/measures?categories=$id';
       default:
         return '';

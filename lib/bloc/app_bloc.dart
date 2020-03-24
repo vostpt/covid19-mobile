@@ -252,3 +252,15 @@ class AppBloc implements Bloc {
   @override
   Stream<ResultStream> get onListener => onStream.stream;
 }
+
+class SplashBloc implements Bloc {
+  final AppBloc bloc;
+
+  SplashBloc(this.bloc);
+
+  @override
+  void dispose() {}
+
+  @override
+  Stream<ResultStream> get onListener => null;
+}

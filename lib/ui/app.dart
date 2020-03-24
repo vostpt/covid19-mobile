@@ -51,6 +51,17 @@ final Logger logger = Logger(printer: PrettyPrinter(methodCount: 0));
 
 /// Starting class for the project
 class CovidApp extends StatelessWidget {
+  final AppBloc appBloc = AppBloc();
+  final statsProvider = StatsProvider();
+  final remoteWorkProvider = RemoteWorkProvider();
+  final faqProvider = FaqProvider();
+  final videosProvider = VideosProvider();
+  final initiativeProvider = InitiativesProvider();
+  final notificationsProvider = NotificationsProvider();
+  final measuresProvider = MeasuresProvider();
+  final sliderProvider = SliderProvider();
+  final faqsCategoryProvider = FaqCategoryProvider();
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -58,27 +69,31 @@ class CovidApp extends StatelessWidget {
     ]);
     return MultiProvider(
       providers: [
-        Provider<AppBloc>.value(value: AppBloc()),
-        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider()),
-        ChangeNotifierProvider<RemoteWorkProvider>.value(value: RemoteWorkProvider()),
-        ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider()),
+        Provider<AppBloc>.value(value: appBloc),
+        ProxyProvider<AppBloc, SplashBloc>(
+          update: (_, __, splashBloc) => SplashBloc(appBloc),
+        ),
+        ChangeNotifierProvider<StatsProvider>.value(value: statsProvider),
+        ChangeNotifierProvider<RemoteWorkProvider>.value(
+            value: remoteWorkProvider),
+        ChangeNotifierProvider<FaqProvider>.value(value: faqProvider),
         ChangeNotifierProvider<VideosProvider>.value(
-          value: VideosProvider(),
+          value: videosProvider,
         ),
         ChangeNotifierProvider<InitiativesProvider>.value(
-          value: InitiativesProvider(),
+          value: initiativeProvider,
         ),
         ChangeNotifierProvider<NotificationsProvider>.value(
-          value: NotificationsProvider(),
+          value: notificationsProvider,
         ),
         ChangeNotifierProvider<MeasuresProvider>.value(
-          value: MeasuresProvider(),
+          value: measuresProvider,
         ),
         ChangeNotifierProvider<SliderProvider>.value(
-          value: SliderProvider(),
+          value: sliderProvider,
         ),
         ChangeNotifierProvider<FaqCategoryProvider>.value(
-          value: FaqCategoryProvider(),
+          value: faqsCategoryProvider,
         ),
       ],
       child: MaterialApp(

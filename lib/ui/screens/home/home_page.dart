@@ -245,8 +245,9 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     if (result is SliderResultStream) {
       Provider.of<SliderProvider>(context, listen: false)
           .setSlider(result.model);
+    }
 
-      if (result is FaqCategoryResultStream) {
+    if (result is FaqCategoryResultStream) {
       Provider.of<FaqCategoryProvider>(context, listen: false)
           .setFaqsCategories(result.model);
     }

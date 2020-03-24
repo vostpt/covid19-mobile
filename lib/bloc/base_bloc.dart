@@ -165,9 +165,6 @@ class FaqCategoryResultStream
   @override
   StateStream state;
 
-  @override
-  StateStream state;
-
   /// and [model] a [Lst<FaqCategoryModel>] instance list
   FaqCategoryResultStream({this.state, this.model});
 }

@@ -71,6 +71,7 @@ class CovidApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<SliderProvider>.value(
           value: SliderProvider(),
+        ),
         ChangeNotifierProvider<FaqCategoryProvider>.value(
           value: FaqCategoryProvider(),
         ),

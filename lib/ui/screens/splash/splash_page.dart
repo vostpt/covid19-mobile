@@ -34,7 +34,6 @@ import 'package:rxdart/rxdart.dart';
 import '../../../bloc/app_bloc.dart';
 import '../../../bloc/base_bloc.dart';
 
-
 /// Creates an HomePage extending [BasePage]
 /// that is a StatefulWidget
 class SplashPage extends BasePage {
@@ -57,15 +56,11 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
   final PublishSubject _initiativesSubject = PublishSubject<bool>();
   final PublishSubject _animationComplete = PublishSubject<bool>();
 
-  Stream<bool> get _dataLoaded => Rx.zip7(
-          _statsSubject,
-          _remoteWorkSubject,
-          _faqsSubject,
-          _videosSubject,
-          _measuresSubject,
-          _initiativesSubject,
-          _animationComplete,
-          (stats, remote, faqs, videos, measures, initiatives, animation) {
+  Stream<bool> get _dataLoaded => Rx.combineLatest2(
+      _animationComplete,
+      Rx.zip6(_statsSubject, _remoteWorkSubject, _faqsSubject, _videosSubject,
+          _measuresSubject, _initiativesSubject,
+          (stats, remote, faqs, videos, measures, initiatives) {
         logger.i("_statsSubject : ${stats}");
         logger.i("_remoteWorkSubject : ${remote}");
         logger.i("_faqsSubject : ${faqs}");
@@ -73,10 +68,11 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
         logger.i("_measuresSubject : ${measures}");
         logger.i("_initiativesSubject : ${initiatives}");
         logger.d(
-            "COMBINED: ${stats && remote && faqs && videos && measures && initiatives && animation}");
+            "COMBINED: ${stats && remote && faqs && videos && measures && initiatives}");
         return stats && remote && faqs && videos && measures && initiatives;
-      });
-  
+      }),
+      (animation, api) => animation && api);
+
   StreamSubscription<bool> _dataLoadedSubscription;
 
   @override
@@ -89,9 +85,10 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
         if (loaded) {
           logger.i("I'm inside the LOADED part");
           _dataLoadedSubscription.cancel();
-          await Navigator.of(context).pushNamedAndRemoveUntil(routeHome, (_) => false).catchError(logger.e);
+          await Navigator.of(context)
+              .pushNamedAndRemoveUntil(routeHome, (_) => false)
+              .catchError(logger.e);
           logger.i("After the navigation");
-          
         } else {
           logger.e("NO DATA");
           _insertOverlay(context);
@@ -169,7 +166,8 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
     }
 
     if (result is FaqCategoryResultStream) {
-      Provider.of<FaqCategoryProvider>(context, listen: false).setFaqsCategories(result.model);
+      Provider.of<FaqCategoryProvider>(context, listen: false)
+          .setFaqsCategories(result.model);
 
       if (result.state == StateStream.success) {
         _faqsSubject.add(true);

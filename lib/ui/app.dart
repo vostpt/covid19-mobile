@@ -33,6 +33,7 @@ import 'package:covid19mobile/ui/screens/notifications/notifications_page.dart';
 import 'package:covid19mobile/ui/screens/initiatives/initiatives_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work/remote_work_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work_details/remote_work_details.dart';
+import 'package:covid19mobile/ui/screens/splash/splash_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
 import 'package:covid19mobile/ui/screens/video_player/video_player_page.dart';
 import 'package:covid19mobile/ui/screens/videos/videos_page.dart';
@@ -89,10 +90,11 @@ class CovidApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         theme: Themes.defaultAppTheme,
-        initialRoute: '/',
+        initialRoute: splashRoute,
         onGenerateRoute: (settings) {
           final Map<String, Widget> routes = {
-            '/': HomePage(title: 'Covid 19 App'),
+            splashRoute: SplashPage(),
+            routeHome: HomePage(title: 'Covid 19 App'),
             routeStatistics: StatisticsPage(),
             routeContacts: ContactsPage(),
             routeRemoteWork: RemoteWorkPage(),

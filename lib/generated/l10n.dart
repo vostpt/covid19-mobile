@@ -183,24 +183,6 @@ class S {
     );
   }
 
-  String get homePageConfirmedCases {
-    return Intl.message(
-      'Casos confirmados de COVID-19 em Portugal',
-      name: 'homePageConfirmedCases',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get lastUpdated {
-    return Intl.message(
-      'Última actualização: ',
-      name: 'lastUpdated',
-      desc: '',
-      args: [],
-    );
-  }
-
   String get notificationsPageDescription {
     return Intl.message(
       'Que notificações vai receber?\nInformações importantes sobre atualização dos dados constantes nesta aplicação e avisos/alertas das entidades oficiais.',
@@ -466,6 +448,24 @@ class S {
     return Intl.message(
       'Teletrabalho',
       name: 'screenRemoteWorkTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get lastUpdated {
+    return Intl.message(
+      'Última actualização: ',
+      name: 'lastUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get homePageConfirmedCases {
+    return Intl.message(
+      'Casos confirmados de COVID-19 em Portugal',
+      name: 'homePageConfirmedCases',
       desc: '',
       args: [],
     );

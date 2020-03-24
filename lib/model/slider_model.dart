@@ -14,48 +14,26 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:covid19mobile/model/base_post_model.dart';
 
-part 'video_model.g.dart';
+part 'slider_model.g.dart';
 
-/// Stats Model
+/// Slider Model
 @JsonSerializable(includeIfNull: false)
-class VideoModel extends BasePostModel {
-  /// Recovered total cases
-  @JsonKey(name: 'post_title')
-  final String postTitle;
+class SliderModel extends BasePostModel {
+  /// Order of this slider
+  @JsonKey(name: 'order')
+  final int order;
 
-  /// Confirmed total cases
-  @JsonKey(name: 'video')
-  final String video;
+  @JsonKey(name: 'image')
+  final String image;
 
-  /// Suspected total cases
-  @JsonKey(name: 'descricao')
-  final String description;
-
-  /// Cases awaiting for results
-  @JsonKey(name: 'thumbnail')
-  final String thumbnail;
-
-  String getVideoUrl() {
-    var regex = RegExp(r'(?<=src=").*?(?=[?"])');
-    var videoUrl = regex.firstMatch(video)?.group(0);
-    return videoUrl?.replaceAll("\\", "");
-  }
-
-  String getVideoId() {
-    var videoUrl = getVideoUrl();
-    Uri uri = Uri.parse(videoUrl);
-    return uri.pathSegments.last;
-  }
-
-  String getVideoThumbnail() {
-    return "https://img.youtube.com/vi/${getVideoId()}/hqdefault.jpg";
-  }
+  @JsonKey(name: 'url')
+  final String url;
 
   /// Model constructor
   ///
   /// All properties are mandatory
   ///
-  VideoModel({
+  SliderModel({
     int id,
     String author,
     String date,
@@ -78,10 +56,9 @@ class VideoModel extends BasePostModel {
     String postMimeType,
     String commentCount,
     String filter,
-    this.postTitle,
-    this.video,
-    this.description,
-    this.thumbnail,
+    this.order,
+    this.image,
+    this.url,
   }) : super(
           id: id,
           author: author,
@@ -108,9 +85,9 @@ class VideoModel extends BasePostModel {
         );
 
   /// Mapper from Json to Model
-  factory VideoModel.fromJson(Map<String, dynamic> json) =>
-      _$VideoModelFromJson(json);
+  factory SliderModel.fromJson(Map<String, dynamic> json) =>
+      _$SliderModelFromJson(json);
 
   /// Maps Model to Json
-  Map<String, dynamic> toJson() => _$VideoModelToJson(this);
+  Map<String, dynamic> toJson() => _$SliderModelToJson(this);
 }

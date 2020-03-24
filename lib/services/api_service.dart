@@ -15,7 +15,6 @@ import 'dart:async';
 
 import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
-import 'package:covid19mobile/model/sample_model.dart';
 import 'package:covid19mobile/services/api.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -113,12 +112,6 @@ class APIService {
         dioErrorType: e?.type,
       );
     }
-  }
-
-  /// Gets foo
-  Future<APIResponse> getFoo(Foo foo) async {
-    return await _performRequest(_RequestType.post, '/path',
-        body: foo.toJson());
   }
 
   /// Gets the updated case stats

@@ -19,6 +19,7 @@ import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/notifications_provider.dart';
 import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
+import 'package:covid19mobile/providers/slider_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 
@@ -67,6 +68,9 @@ class CovidApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<MeasuresProvider>.value(
           value: MeasuresProvider(),
+        ),
+        ChangeNotifierProvider<SliderProvider>.value(
+          value: SliderProvider(),
         ),
         ChangeNotifierProvider<FaqCategoryProvider>.value(
           value: FaqCategoryProvider(),

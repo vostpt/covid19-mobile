@@ -1,7 +1,3 @@
-import 'package:covid19mobile/model/faq_category_model.dart';
-import 'package:covid19mobile/model/initiative_model.dart';
-import 'package:covid19mobile/model/video_model.dart';
-
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -14,6 +10,12 @@ import 'package:covid19mobile/model/video_model.dart';
 ///
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+import 'package:covid19mobile/model/initiative_model.dart';
+import 'package:covid19mobile/model/slider_model.dart';
+import 'package:covid19mobile/model/video_model.dart';
+import 'package:covid19mobile/model/faq_category_model.dart';
+
 
 import '../model/faq_model.dart';
 import '../model/measure_model.dart';
@@ -142,11 +144,24 @@ class InitiativeResultStream
   InitiativeResultStream({this.state, this.model});
 }
 
+class SliderResultStream extends ResultStream<StateStream, List<SliderModel>> {
+  @override
+  List<SliderModel> model;
+  
+  
+  @override
+  StateStream state;
+    /// and [model] a [Lst<SliderModel>] instance list
+  SliderResultStream({this.state, this.model});
+  
+}
+    
 class FaqCategoryResultStream
     extends ResultStream<StateStream, List<FaqCategoryModel>> {
   @override
   List<FaqCategoryModel> model;
-
+  
+  
   @override
   StateStream state;
 

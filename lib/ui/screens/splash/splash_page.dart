@@ -24,31 +24,17 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   @override
-  void initState() {
-    super.initState();
-    timedNavigationTo(routeHome);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: FlareActor(
-          "assets/estamos_on.flr",
-          alignment: Alignment.center,
-          animation: "in",
-        ),
+      body: FlareActor(
+        "assets/estamos_on.flr",
+        alignment: Alignment.center,
+        animation: "in",
+        callback: (status) {
+          /// When completes push into home
+          Navigator.pushReplacementNamed(context, routeHome);
+        },
       ),
     );
-  }
-
-  void timedNavigationTo(String newPage) {
-    /*
-    The timer set for 2400 is just enough time to see the whole animation
-      this should be modified to better fit the navigation.
-     */
-    Timer(Duration(milliseconds: 2400), () {
-      Navigator.pushReplacementNamed(context, routeHome);
-    });
   }
 }

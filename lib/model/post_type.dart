@@ -12,7 +12,8 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 /// Post types
-enum PostTypes { measures, remoteWork, videos, faq, initiatives, slider }
+enum PostTypes { measures, remoteWork, videos, faq, initiatives, slider, faqCategories }
+
 
 class PostType {
   final PostTypes postTypes;
@@ -23,6 +24,8 @@ class PostType {
     switch (postTypes) {
       case PostTypes.slider:
         return '/slider';
+      case PostTypes.faqCategories:
+        return '/appfaqs';
       case PostTypes.measures:
         return '/measures';
       case PostTypes.remoteWork:

@@ -14,6 +14,8 @@
 import 'package:covid19mobile/model/initiative_model.dart';
 import 'package:covid19mobile/model/slider_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
+import 'package:covid19mobile/model/faq_category_model.dart';
+
 
 import '../model/faq_model.dart';
 import '../model/measure_model.dart';
@@ -145,10 +147,27 @@ class InitiativeResultStream
 class SliderResultStream extends ResultStream<StateStream, List<SliderModel>> {
   @override
   List<SliderModel> model;
+  
+  
+  @override
+  StateStream state;
+    /// and [model] a [Lst<SliderModel>] instance list
+  SliderResultStream({this.state, this.model});
+  
+}
+    
+class FaqCategoryResultStream
+    extends ResultStream<StateStream, List<FaqCategoryModel>> {
+  @override
+  List<FaqCategoryModel> model;
+  
+  
+  @override
+  StateStream state;
 
   @override
   StateStream state;
 
-  /// and [model] a [Lst<SliderModel>] instance list
-  SliderResultStream({this.state, this.model});
+  /// and [model] a [Lst<FaqCategoryModel>] instance list
+  FaqCategoryResultStream({this.state, this.model});
 }

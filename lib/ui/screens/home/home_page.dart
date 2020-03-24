@@ -12,6 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/providers/faq_category_provider.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/measure_provider.dart';
@@ -202,6 +203,10 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     /// Get Slider
     ///
     bloc.getSlider();
+
+    /// GET FAQS categories
+    ///
+    bloc.getFaqCategories();
   }
 
   @override
@@ -240,6 +245,10 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     if (result is SliderResultStream) {
       Provider.of<SliderProvider>(context, listen: false)
           .setSlider(result.model);
+
+      if (result is FaqCategoryResultStream) {
+      Provider.of<FaqCategoryProvider>(context, listen: false)
+          .setFaqsCategories(result.model);
     }
   }
 }

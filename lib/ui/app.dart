@@ -39,6 +39,7 @@ import 'package:covid19mobile/ui/screens/videos/videos_page.dart';
 import 'package:covid19mobile/ui/screens/measures/measures_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -50,6 +51,9 @@ final Logger logger = Logger(printer: PrettyPrinter(methodCount: 0));
 class CovidApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     return MultiProvider(
       providers: [
         Provider<AppBloc>.value(value: AppBloc()),

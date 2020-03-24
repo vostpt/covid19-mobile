@@ -48,7 +48,7 @@ class SplashPage extends BasePage {
   _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashPageState extends BaseState<SplashPage, AppBloc> {
+class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
   final PublishSubject _statsSubject = PublishSubject<bool>();
   final PublishSubject _remoteWorkSubject = PublishSubject<bool>();
   final PublishSubject _faqsSubject = PublishSubject<bool>();
@@ -72,7 +72,13 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
         logger.i("_sliderSubject : ${slider}");
         logger.d(
             "COMBINED: ${stats && remote && faqs && videos && measures && initiatives && slider}");
-        return stats && remote && faqs && videos && measures && initiatives && slider;
+        return stats &&
+            remote &&
+            faqs &&
+            videos &&
+            measures &&
+            initiatives &&
+            slider;
       }),
       (animation, api) => animation && api);
 
@@ -115,39 +121,38 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
   }
 
   @override
-  void initBloc(AppBloc bloc) {
+  void initBloc(SplashBloc bloc) {
     /// Get Case Stats
     ///
-    bloc.getStats();
+    bloc.bloc.getStats();
 
     /// Get RemoteWork Posts
     ///
-    bloc.geRemoteWork();
+    bloc.bloc.geRemoteWork();
 
     /// Get Faq Posts
     ///
-    bloc.getFaqCategories();
+    bloc.bloc.getFaqCategories();
 
     /// Get Videos Posts
     ///
-    bloc.getVideos();
+    bloc.bloc.getVideos();
 
     /// Get Measures
     ///
-    bloc.getMeasures();
+    bloc.bloc.getMeasures();
 
     /// Get Initiatives Posts
     ///
-    bloc.getInitiatives();
-
+    bloc.bloc.getInitiatives();
 
     /// Get Slider
     ///
-    bloc.getSlider();
+    bloc.bloc.getSlider();
   }
 
   @override
-  Stream<ResultStream> get onStateListener => bloc.onListener;
+  Stream<ResultStream> get onStateListener => bloc.bloc.onListener;
 
   @override
   void onStateResultListener(ResultStream result) {

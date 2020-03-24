@@ -140,9 +140,7 @@ class CardHomeSlide extends StatelessWidget {
         onTap: onTap,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(4),
-          child: Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
+          child: Stack(fit: StackFit.expand, children: <Widget>[
             Image.network(
               backgroundPath,
               fit: BoxFit.cover,
@@ -172,8 +170,7 @@ class CardHomeSlide extends StatelessWidget {
                                   height: 30,
                                   color: Covid19Colors.white,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Text(
                                         secondaryLabel,

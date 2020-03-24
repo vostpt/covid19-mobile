@@ -86,7 +86,10 @@ void main() {
       );
       faqs.add(model);
 
-      p.setFaqs(0, faqs,);
+      p.setFaqs(
+        0,
+        faqs,
+      );
       expect(p, notifier);
       expect(p.faqs, isNotNull);
       expect(p.faqs[0], faqs);

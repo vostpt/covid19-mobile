@@ -109,9 +109,11 @@ class FaqResultStream extends ResultStream<StateStream, List<FaqModel>> {
   @override
   StateStream state;
 
+  int id;
+
   /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [List<FaqModel>] instance list
-  FaqResultStream({this.state, this.model});
+  FaqResultStream({this.state, this.model, this.id});
 }
 
 /// The ResultStream instance for requesting the remote work posts

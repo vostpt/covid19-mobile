@@ -101,15 +101,16 @@ class AppBloc implements Bloc {
     );
   }
 
-  void getFaqs() async {
+  void getFaqsDetails(int id) async {
     final postType = PostType(PostTypes.faq);
 
-    var results = await getPosts<FaqModel>(postType, cacheKey: "FaqModel");
+    var results = await getPosts<FaqModel>(postType, cacheKey: "FaqModel", id: id);
 
     onStream.sink.add(
       FaqResultStream(
           model: results,
-          state: results != null ? StateStream.success : StateStream.fail),
+          state: results != null ? StateStream.success : StateStream.fail,
+          id: id),
     );
   }
 
@@ -118,6 +119,12 @@ class AppBloc implements Bloc {
 
     var results = await getPosts<FaqCategoryModel>(postType,
         cacheKey: "FaqCategoryModel");
+
+    // fetch all categories
+    for (var result in results) {
+      logger.i("Getting faqs for: ${result.categoryId}");
+      getFaqsDetails(result.categoryId);
+    }
 
     onStream.sink.add(
       FaqCategoryResultStream(
@@ -138,8 +145,9 @@ class AppBloc implements Bloc {
   }
 
   Future<List<T>> getPosts<T>(PostType postType,
-      {bool cache = true, String cacheKey = "key"}) async {
-    final APIResponse response = await APIService.api.getPosts<T>(postType);
+      {int id, bool cache = true, String cacheKey = "key"}) async {
+    final APIResponse response =
+        await APIService.api.getPosts<T>(postType, id: id);
     if (response.isOk) {
       logger.i('[$_tag] everything went ok!');
 

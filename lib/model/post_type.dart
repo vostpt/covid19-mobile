@@ -12,7 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 /// Post types
-enum PostTypes { measures, remoteWork, videos, faq, initiatives }
+enum PostTypes { measures, remoteWork, videos, faq, initiatives, faqCategories }
 
 class PostType {
   final PostTypes postTypes;
@@ -21,6 +21,8 @@ class PostType {
 
   String getRequestType() {
     switch (postTypes) {
+      case PostTypes.faqCategories:
+        return '/appfaqs';
       case PostTypes.measures:
         return '/measures';
       case PostTypes.remoteWork:

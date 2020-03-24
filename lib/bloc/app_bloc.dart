@@ -14,6 +14,7 @@
 import 'dart:async';
 
 import 'package:covid19mobile/model/api_response_model.dart';
+import 'package:covid19mobile/model/faq_category_model.dart';
 import 'package:covid19mobile/model/faq_model.dart';
 import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/model/initiative_model.dart';
@@ -109,6 +110,19 @@ class AppBloc implements Bloc {
     );
   }
 
+  void getFaqCategories() async {
+    final postType = PostType(PostTypes.faqCategories);
+
+    var results = await getPosts<FaqCategoryModel>(postType,
+        cacheKey: "FaqCategoryModel");
+
+    onStream.sink.add(
+      FaqCategoryResultStream(
+          model: results,
+          state: results != null ? StateStream.success : StateStream.fail),
+    );
+  }
+
   void getInitiatives() async {
     final postType = PostType(PostTypes.initiatives);
 
@@ -150,6 +164,16 @@ class AppBloc implements Bloc {
   /// Then returns the parsed data
   parseData<T>(PostType postType, dynamic data) {
     switch (postType.postTypes) {
+      case PostTypes.faqCategories:
+
+        /// Data converted to a Map now we need to convert each entry
+        return data.map<T>((json) =>
+
+            /// into a [FaqCategoryModel] instance and save into a List
+            FaqCategoryModel.fromJson(json)).toList();
+
+        break;
+
       case PostTypes.measures:
 
         /// Data converted to a Map now we need to convert each entry
@@ -173,7 +197,7 @@ class AppBloc implements Bloc {
         /// Data converted to a Map now we need to convert each entry
         return data.map<T>((json) =>
 
-            /// into a [RemoteWorkModel] instance and save into a List
+            /// into a [FaqModel] instance and save into a List
             FaqModel.fromJson(json)).toList();
 
         break;

@@ -144,7 +144,6 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
 
     /// Get Initiatives Posts
     ///
-
     bloc.bloc.getInitiatives();
 
     /// Get Slider

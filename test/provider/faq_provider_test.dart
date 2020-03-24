@@ -54,7 +54,7 @@ void main() {
 
       var p = Provider.of<FaqProvider>(key.currentContext, listen: false);
       expect(p, notifier);
-      expect(p.faqs, isNull);
+      expect(p.faqs, isEmpty);
 
       List<FaqModel> faqs = [];
       final model = FaqModel(
@@ -89,6 +89,8 @@ void main() {
       p.setFaqs(0, faqs,);
       expect(p, notifier);
       expect(p.faqs, isNotNull);
+      expect(p.faqs[0], faqs);
+      expect(p.faqs.length, 1);
     }
 
     testWidgets('Faq Page with MultiProvider', testFaqWidgetWithMultiProvider);

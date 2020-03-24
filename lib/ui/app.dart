@@ -13,6 +13,8 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/model/faq_model.dart';
+import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/providers/faq_category_provider.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/measure_provider.dart';
@@ -28,7 +30,9 @@ import 'package:covid19mobile/ui/screens/contacts/contacts_page.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/screens/faqs/faqs_page.dart';
 import 'package:covid19mobile/ui/screens/about/about_page.dart';
+import 'package:covid19mobile/ui/screens/faqs_details/faq_details_page.dart';
 import 'package:covid19mobile/ui/screens/home/home_page.dart';
+import 'package:covid19mobile/ui/screens/measures/measures_detail.dart';
 import 'package:covid19mobile/ui/screens/notifications/notifications_page.dart';
 import 'package:covid19mobile/ui/screens/initiatives/initiatives_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work/remote_work_page.dart';
@@ -92,24 +96,59 @@ class CovidApp extends StatelessWidget {
         theme: Themes.defaultAppTheme,
         initialRoute: routeSplash,
         onGenerateRoute: (settings) {
-          final Map<String, Widget> routes = {
-            routeSplash: SplashPage(),
-            routeHome: HomePage(title: 'Covid 19 App'),
-            routeStatistics: StatisticsPage(),
-            routeContacts: ContactsPage(),
-            routeRemoteWork: RemoteWorkPage(),
-            routeRemoteWorkDetails: RemoteWorkDetails(),
-            routeFaqs: FaqsPage(title: 'Perguntas Frequentes'),
-            routeVideos: VideosPage(title: 'Vídeos'),
-            routeAbout: AboutPage(),
-            routeVideoPlayer: VideoPlayerPage(),
-            routeInitiatives: InitiativesPage(),
-            routeNotifications: NotificationsPage(),
-            routeMeasures: MeasuresPage(title: 'Medidas Excecionais'),
-            routeLicences: LicensePage()
-          };
+          var page;
+          switch (settings.name) {
+            case routeSplash:
+              page = SplashPage();
+              break;
+            case routeHome:
+              page = HomePage(title: 'Covid 19 App');
+              break;
+            case routeStatistics:
+              page = StatisticsPage();
+              break;
+            case routeContacts:
+              page = ContactsPage();
+              break;
+            case routeRemoteWork:
+              page = RemoteWorkPage();
+              break;
+            case routeRemoteWorkDetails:
+              page = RemoteWorkDetails();
+              break;
+            case routeFaqs:
+              page = FaqsPage(title: 'Perguntas Frequentes');
+              break;
+            case routeFaqsDetails:
+              page = FaqsDetails(title: '', faqs: settings.arguments);
+              break;
+            case routeVideos:
+              page = VideosPage(title: 'Vídeos');
+              break;
+            case routeAbout:
+              page = AboutPage();
+              break;
+            case routeVideoPlayer:
+              page = VideoPlayerPage();
+              break;
+            case routeInitiatives:
+              page = InitiativesPage();
+              break;
+            case routeNotifications:
+              page = NotificationsPage();
+              break;
+            case routeMeasures:
+              page = MeasuresPage(title: 'Medidas Excecionais');
+              break;
+            case routeMeasuresDetails:
+              page = MeasureDetail(measure: settings.arguments);
+              break;
+            case routeLicences:
+              page = LicensePage();
+              break;
+          }
           return CupertinoPageRoute(
-              builder: (_) => routes[settings.name], settings: settings);
+              builder: (_) => page, settings: settings);
         },
       ),
     );

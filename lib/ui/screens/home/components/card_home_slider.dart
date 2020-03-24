@@ -84,7 +84,11 @@ class _HomeSliderState extends State<HomeSlider> {
                   height: 128,
                   child: _pageView(sliderProvider.slider),
                 ),
-                Positioned(bottom: 0.0, left: 0.0, right: 0.0, child: _dots(sliderProvider.slider.length))
+                Positioned(
+                    bottom: 0.0,
+                    left: 0.0,
+                    right: 0.0,
+                    child: _dots(sliderProvider.slider.length))
               ],
             )
           : Container(),
@@ -98,7 +102,8 @@ class _HomeSliderState extends State<HomeSlider> {
       return;
     }
 
-    if (!(slide.url.startsWith("https://") || slide.url.startsWith("http://"))) {
+    if (!(slide.url.startsWith("https://") ||
+        slide.url.startsWith("http://"))) {
       urlToOpen = "https://${slide.url}";
     }
     _launch(urlToOpen);
@@ -115,7 +120,13 @@ class _HomeSliderState extends State<HomeSlider> {
 }
 
 class CardHomeSlide extends StatelessWidget {
-  const CardHomeSlide({Key key, this.titleLabel, this.secondaryLabel, this.backgroundPath, this.onTap}) : super(key: key);
+  const CardHomeSlide(
+      {Key key,
+      this.titleLabel,
+      this.secondaryLabel,
+      this.backgroundPath,
+      this.onTap})
+      : super(key: key);
 
   final String titleLabel;
   final String secondaryLabel;
@@ -162,7 +173,8 @@ class CardHomeSlide extends StatelessWidget {
                                     children: <Widget>[
                                       Text(
                                         secondaryLabel,
-                                        style: TextStyles.subtitle(color: Covid19Colors.green),
+                                        style: TextStyles.subtitle(
+                                            color: Covid19Colors.green),
                                       ),
                                       SizedBox(width: 7),
                                       Icon(

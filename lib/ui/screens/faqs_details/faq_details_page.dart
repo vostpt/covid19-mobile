@@ -65,7 +65,8 @@ class _FaqsPageState extends State<FaqsDetails> {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
+        iconTheme:
+            Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
         title: Text(
           widget.title.toUpperCase(),
           style: TextStyles.h2(color: Covid19Colors.darkGreyLight),
@@ -86,12 +87,18 @@ class _FaqsPageState extends State<FaqsDetails> {
                     key: expands[index],
                     withBorder: false,
                     title: widget.faqs[index].question,
-                    titleTextStyle: Theme.of(context).textTheme.display3.copyWith(color: Covid19Colors.green, letterSpacing: 0.2),
+                    titleTextStyle: Theme.of(context)
+                        .textTheme
+                        .display3
+                        .copyWith(
+                            color: Covid19Colors.green, letterSpacing: 0.2),
                     onExpansionChanged: (value) {
                       if (value && index > 0) {
                         /// Calculates the height to scroll to position
                         var size = _getSize(index);
-                        scrollController.animateTo(size, duration: Duration(milliseconds: 1250), curve: Curves.fastLinearToSlowEaseIn);
+                        scrollController.animateTo(size,
+                            duration: Duration(milliseconds: 1250),
+                            curve: Curves.fastLinearToSlowEaseIn);
                       }
                     },
                     children: <Widget>[
@@ -100,7 +107,10 @@ class _FaqsPageState extends State<FaqsDetails> {
                         backgroundColor: Colors.white,
                         onLinkTap: launchURL,
                         defaultTextStyle: Theme.of(context).textTheme.body1,
-                        linkStyle: Theme.of(context).textTheme.body1.copyWith(color: Theme.of(context).primaryColor),
+                        linkStyle: Theme.of(context)
+                            .textTheme
+                            .body1
+                            .copyWith(color: Theme.of(context).primaryColor),
                         customTextStyle: (dom.Node node, TextStyle baseStyle) {
                           if (node is dom.Element) {
                             switch (node.localName) {
@@ -119,7 +129,8 @@ class _FaqsPageState extends State<FaqsDetails> {
                         children: <InlineSpan>[
                           TextSpan(
                             text: "${widget.faqs[index].responsableEntity}",
-                            style: TextStyles.texCustom(size: 16).copyWith(fontWeight: FontWeight.w100),
+                            style: TextStyles.texCustom(size: 16)
+                                .copyWith(fontWeight: FontWeight.w100),
                           ),
                         ],
                       )),

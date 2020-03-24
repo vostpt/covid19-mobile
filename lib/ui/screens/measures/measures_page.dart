@@ -58,10 +58,14 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
     }
     return Scaffold(
       appBar: AppBar(
-        iconTheme: Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
+        iconTheme:
+            Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
         title: Text(
           S.of(context).measuresPageMeasures.toUpperCase(),
-          style: Theme.of(context).textTheme.display2.copyWith(color: Covid19Colors.darkGrey),
+          style: Theme.of(context)
+              .textTheme
+              .display2
+              .copyWith(color: Covid19Colors.darkGrey),
         ),
         backgroundColor: Colors.white,
         elevation: 0.0,
@@ -111,7 +115,8 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
   @override
   void onStateResultListener(ResultStream result) {
     if (result is MeasuresResultStream) {
-      Provider.of<MeasuresProvider>(context, listen: false).setMeasures(result.model);
+      Provider.of<MeasuresProvider>(context, listen: false)
+          .setMeasures(result.model);
     }
   }
 }

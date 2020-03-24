@@ -1,3 +1,8 @@
+import 'package:covid19mobile/bloc/app_bloc.dart';
+import 'package:covid19mobile/bloc/base_bloc.dart';
+import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/model/measure_model.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -16,13 +21,7 @@ import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/themes.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
-import 'package:covid19mobile/ui/screens/measures/measures_detail.dart';
 import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
-import 'package:covid19mobile/bloc/app_bloc.dart';
-import 'package:covid19mobile/bloc/base_bloc.dart';
-import 'package:covid19mobile/model/measure_model.dart';
-import 'package:covid19mobile/generated/l10n.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -59,14 +58,10 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
     }
     return Scaffold(
       appBar: AppBar(
-        iconTheme:
-            Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
+        iconTheme: Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
         title: Text(
           S.of(context).measuresPageMeasures.toUpperCase(),
-          style: Theme.of(context)
-              .textTheme
-              .display2
-              .copyWith(color: Covid19Colors.darkGrey),
+          style: Theme.of(context).textTheme.display2.copyWith(color: Covid19Colors.darkGrey),
         ),
         backgroundColor: Colors.white,
         elevation: 0.0,
@@ -116,8 +111,7 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
   @override
   void onStateResultListener(ResultStream result) {
     if (result is MeasuresResultStream) {
-      Provider.of<MeasuresProvider>(context, listen: false)
-          .setMeasures(result.model);
+      Provider.of<MeasuresProvider>(context, listen: false).setMeasures(result.model);
     }
   }
 }

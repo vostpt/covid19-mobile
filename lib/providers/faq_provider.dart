@@ -12,7 +12,6 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/model/faq_model.dart';
-import 'package:covid19mobile/ui/app.dart';
 import 'package:flutter/material.dart';
 
 class FaqProvider extends ChangeNotifier {

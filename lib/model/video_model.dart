@@ -103,8 +103,7 @@ class VideoModel extends BasePostModel {
         );
 
   /// Mapper from Json to Model
-  factory VideoModel.fromJson(Map<String, dynamic> json) =>
-      _$VideoModelFromJson(json);
+  factory VideoModel.fromJson(Map<String, dynamic> json) => _$VideoModelFromJson(json);
 
   /// Maps Model to Json
   Map<String, dynamic> toJson() => _$VideoModelToJson(this);

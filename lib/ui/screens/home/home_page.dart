@@ -33,6 +33,7 @@ import 'package:provider/provider.dart';
 import '../../../bloc/app_bloc.dart';
 import '../../../bloc/base_bloc.dart';
 import '../../app.dart';
+import 'components/card_home_slider.dart';
 import 'components/statistics_button.dart';
 
 /// Creates an HomePage extending [BasePage]
@@ -83,6 +84,7 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
                         color: Covid19Colors.red,
                       ),
                     ),
+                    HomeSlider(),
                     const SizedBox(
                       height: 24.0,
                     ),

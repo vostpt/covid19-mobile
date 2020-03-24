@@ -32,6 +32,7 @@ SliderModel _$SliderModelFromJson(Map<String, dynamic> json) {
     filter: json['filter'] as String,
     order: json['order'] as int,
     image: json['image'] as String,
+    title: json['post_title'] as String,
     url: json['url'] as String,
   );
 }
@@ -69,6 +70,7 @@ Map<String, dynamic> _$SliderModelToJson(SliderModel instance) {
   writeNotNull('filter', instance.filter);
   writeNotNull('order', instance.order);
   writeNotNull('image', instance.image);
+  writeNotNull('post_title', instance.title);
   writeNotNull('url', instance.url);
   return val;
 }

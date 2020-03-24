@@ -168,14 +168,17 @@ class AppBloc implements Bloc {
   parseData<T>(PostType postType, dynamic data) {
     switch (postType.postTypes) {
       case PostTypes.slider:
-         /// Data converted to a Map now we need to convert each entry
+
+        /// Data converted to a Map now we need to convert each entry
         return data.map<T>((json) =>
-        /// into a [SliderModel] instance and save into a List
+
+            /// into a [SliderModel] instance and save into a List
             SliderModel.fromJson(json)).toList();
       case PostTypes.faqCategories:
 
         /// Data converted to a Map now we need to convert each entry
         return data.map<T>((json) =>
+
             /// into a [FaqCategoryModel] instance and save into a List
             FaqCategoryModel.fromJson(json)).toList();
 

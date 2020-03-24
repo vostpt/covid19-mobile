@@ -26,6 +26,9 @@ class SliderModel extends BasePostModel {
   @JsonKey(name: 'image')
   final String image;
 
+  @JsonKey(name: 'post_title')
+  final String title;
+
   @JsonKey(name: 'url')
   final String url;
 
@@ -58,6 +61,7 @@ class SliderModel extends BasePostModel {
     String filter,
     this.order,
     this.image,
+    this.title,
     this.url,
   }) : super(
           id: id,

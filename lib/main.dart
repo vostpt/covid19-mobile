@@ -17,7 +17,7 @@ import 'package:covid19mobile/ui/app.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var enableInDevMode = true;
 
@@ -31,7 +31,7 @@ void main() {
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
   /// Init Firebase messaging service
-  MessagingService.init();
+  await MessagingService.init();
 
   runZoned<Future<void>>(() async {
     /// Run main app

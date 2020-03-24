@@ -161,7 +161,6 @@ class FaqCategoryResultStream
   @override
   List<FaqCategoryModel> model;
   
-  
   @override
   StateStream state;
 

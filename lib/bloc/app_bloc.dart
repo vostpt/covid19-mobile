@@ -49,6 +49,9 @@ class AppBloc implements Bloc {
     } else {
       logger.e('[$_tag] oops...');
       // throw some error
+      onStream.sink.add(StatsResultStream(
+          model: null,
+          state: StateStream.fail));
     }
   }
 
@@ -176,10 +179,12 @@ class AppBloc implements Bloc {
 
         /// Data converted to a Map now we need to convert each entry
         return data.map<T>((json) =>
+
             /// into a [FaqCategoryModel] instance and save into a List
             FaqCategoryModel.fromJson(json)).toList();
 
         break;
+
       case PostTypes.measures:
 
         /// Data converted to a Map now we need to convert each entry

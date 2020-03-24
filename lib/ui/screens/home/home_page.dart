@@ -12,14 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/generated/l10n.dart';
-import 'package:covid19mobile/providers/faq_category_provider.dart';
-import 'package:covid19mobile/providers/faq_provider.dart';
-import 'package:covid19mobile/providers/initiatives_provider.dart';
-import 'package:covid19mobile/providers/measure_provider.dart';
-import 'package:covid19mobile/providers/remote_work_provider.dart';
-import 'package:covid19mobile/providers/slider_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
-import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
@@ -30,14 +23,12 @@ import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../bloc/app_bloc.dart';
-import '../../../bloc/base_bloc.dart';
 import '../../app.dart';
 import 'components/statistics_button.dart';
 
 /// Creates an HomePage extending [BasePage]
 /// that is a StatefulWidget
-class HomePage extends BasePage {
+class HomePage extends StatefulWidget {
   /// Home page view
   HomePage({Key key, this.title}) : super(key: key);
 
@@ -48,7 +39,7 @@ class HomePage extends BasePage {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends BaseState<HomePage, AppBloc> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var stats = Provider.of<StatsProvider>(context);
@@ -172,84 +163,5 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
         ),
       ),
     );
-  }
-
-  @override
-  void initBloc(AppBloc bloc) {
-    /// Get Case Stats
-    ///
-    bloc.getStats();
-
-    /// Get RemoteWork Posts
-    ///
-    bloc.geRemoteWork();
-
-    /// Get Faq Posts
-    ///
-    bloc.getFaqs();
-
-    /// Get Videos Posts
-    ///
-    bloc.getVideos();
-
-    /// Get Measures
-    ///
-    bloc.getMeasures();
-
-    /// Get Initiatives Posts
-    ///
-    bloc.getInitiatives();
-
-    /// Get Slider
-    ///
-    bloc.getSlider();
-
-    /// GET FAQS categories
-    ///
-    bloc.getFaqCategories();
-  }
-
-  @override
-  Stream<ResultStream> get onStateListener => bloc.onListener;
-
-  @override
-  void onStateResultListener(ResultStream result) {
-    if (result is StatsResultStream) {
-      Provider.of<StatsProvider>(context, listen: false).setStats(result.model);
-    }
-
-    if (result is RemoteWorkResultStream) {
-      Provider.of<RemoteWorkProvider>(context, listen: false)
-          .setRemoteWork(result.model);
-    }
-
-    if (result is FaqResultStream) {
-      Provider.of<FaqProvider>(context, listen: false).setFaqs(result.model);
-    }
-
-    if (result is VideosResultStream) {
-      Provider.of<VideosProvider>(context, listen: false)
-          .setVideos(result.model);
-    }
-
-    if (result is MeasuresResultStream) {
-      Provider.of<MeasuresProvider>(context, listen: false)
-          .setMeasures(result.model);
-    }
-
-    if (result is InitiativeResultStream) {
-      Provider.of<InitiativesProvider>(context, listen: false)
-          .setInitiatives(result.model);
-    }
-
-    if (result is SliderResultStream) {
-      Provider.of<SliderProvider>(context, listen: false)
-          .setSlider(result.model);
-    }
-
-    if (result is FaqCategoryResultStream) {
-      Provider.of<FaqCategoryProvider>(context, listen: false)
-          .setFaqsCategories(result.model);
-    }
   }
 }

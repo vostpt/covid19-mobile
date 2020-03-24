@@ -5,7 +5,7 @@
         <key>provisioningProfiles</key>
         <dict>
             <key>com.vost.covid19mobile</key>
-            <string>Estamos ON Covid19</string>
+            <string>Estamos_ON_Covid19_PROD</string>
         </dict>
         <key>method</key>
         <string>app-store</string>

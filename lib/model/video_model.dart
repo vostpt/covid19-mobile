@@ -31,10 +31,6 @@ class VideoModel extends BasePostModel {
   @JsonKey(name: 'descricao')
   final String description;
 
-  /// Cases awaiting for results
-  @JsonKey(name: 'thumbnail')
-  final String thumbnail;
-
   String getVideoUrl() {
     var regex = RegExp(r'(?<=src=").*?(?=[?"])');
     var videoUrl = regex.firstMatch(video)?.group(0);
@@ -81,7 +77,6 @@ class VideoModel extends BasePostModel {
     this.postTitle,
     this.video,
     this.description,
-    this.thumbnail,
   }) : super(
           id: id,
           author: author,

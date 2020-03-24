@@ -13,9 +13,9 @@
 
 import 'dart:async';
 
+import 'package:covid19mobile/main.dart';
 import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
-import 'package:covid19mobile/model/sample_model.dart';
 import 'package:covid19mobile/services/api.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -44,7 +44,8 @@ class APIService {
 
   void init([Dio client, AbstractApi api]) async {
     if (!_initialized) {
-      _configApi = api ?? DevApi();
+      _configApi =
+          api ?? (appConfig == AppConfig.dev ? DevApi() : ProductionApi());
 
       _client = client ?? Dio();
       _client.options.baseUrl = _configApi.build();
@@ -115,12 +116,6 @@ class APIService {
     }
   }
 
-  /// Gets foo
-  Future<APIResponse> getFoo(Foo foo) async {
-    return await _performRequest(_RequestType.post, '/path',
-        body: foo.toJson());
-  }
-
   /// Gets the updated case stats
   Future<APIResponse> getStats() async {
     return await _performRequest(
@@ -130,10 +125,15 @@ class APIService {
   }
 
   /// Gets the posts accordingly by [postType]
-  Future<APIResponse> getPosts<T>(PostType postType) async {
+  Future<APIResponse> getPosts<T>(PostType postType, {int id}) async {
+    Map<String, int> queryParams;
+    if (id != null) {
+      queryParams = {"categories": id};
+    }
     return await _performRequest(
       _RequestType.get,
       postType.getRequestType(),
+      queryParams: queryParams,
     );
   }
 }

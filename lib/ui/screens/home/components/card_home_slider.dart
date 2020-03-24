@@ -11,13 +11,121 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:covid19mobile/providers/slider_provider.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class CardHomeSlider extends StatelessWidget {
-  const CardHomeSlider(Key key, this.titleLabel, this.secondaryLabel,
-      this.backgroundPath, this.onTap)
+import 'card_home_slider_indicator.dart';
+
+class HomeSlider extends StatefulWidget {
+  const HomeSlider({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  _HomeSliderState createState() => _HomeSliderState();
+}
+
+class _HomeSliderState extends State<HomeSlider> {
+  final _controller = PageController(initialPage: 0);
+
+  /// Builds the dots
+  Widget _dots(int length) => Center(
+        child: CardHomeSliderIndicator(
+          controller: _controller,
+          itemCount: length,
+          color: Covid19Colors.green,
+          onPageSelected: (int page) {
+            _controller.animateToPage(
+              page,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.ease,
+            );
+          },
+        ),
+      );
+
+  /// Builds the PageView
+  Widget _pageView(slides) => PageView.builder(
+        physics: AlwaysScrollableScrollPhysics(),
+        controller: _controller,
+        itemBuilder: (BuildContext context, int index) {
+          if (index >= slides.length) {
+            return null;
+          }
+
+          var slide = slides[index];
+
+          return CardHomeSlide(
+            titleLabel: slide.title,
+            secondaryLabel: "Ver detalhe",
+            backgroundPath: slide.image,
+            onTap: () => _onSlideTap(slide),
+          );
+        },
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    var sliderProvider = Provider.of<SliderProvider>(context);
+
+    return Container(
+      height: 138,
+      child: sliderProvider.slider != null
+          ? Stack(
+              children: <Widget>[
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: 128,
+                  child: _pageView(sliderProvider.slider),
+                ),
+                Positioned(
+                    bottom: 0.0,
+                    left: 0.0,
+                    right: 0.0,
+                    child: _dots(sliderProvider.slider.length))
+              ],
+            )
+          : Container(),
+    );
+  }
+
+  /// Callback to open Url on tap
+  _onSlideTap(slide) {
+    var urlToOpen = slide.url;
+    if (urlToOpen.isEmpty) {
+      return;
+    }
+
+    if (!(slide.url.startsWith("https://") ||
+        slide.url.startsWith("http://"))) {
+      urlToOpen = "https://${slide.url}";
+    }
+    _launch(urlToOpen);
+  }
+
+  /// Opens Url
+  _launch(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+}
+
+class CardHomeSlide extends StatelessWidget {
+  const CardHomeSlide(
+      {Key key,
+      this.titleLabel,
+      this.secondaryLabel,
+      this.backgroundPath,
+      this.onTap})
       : super(key: key);
 
   final String titleLabel;
@@ -29,22 +137,19 @@ class CardHomeSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: onTap,
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          child: Stack(children: <Widget>[
-            ClipRRect(
-                borderRadius: BorderRadius.circular(4),
-                child: Image.asset(
-                  backgroundPath,
-                  height: double.infinity,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  alignment: Alignment.topCenter,
-                )),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(4),
+          child: Stack(fit: StackFit.expand, children: <Widget>[
+            Image.network(
+              backgroundPath,
+              fit: BoxFit.cover,
+              alignment: Alignment.topCenter,
+            ),
+            Container(
+              color: Covid19Colors.green50,
+            ),
             Container(
                 padding: EdgeInsets.fromLTRB(12, 16, 12, 16),
-                height: double.infinity,
                 child: Stack(
                   children: <Widget>[
                     Text(

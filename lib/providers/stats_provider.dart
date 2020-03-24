@@ -35,6 +35,9 @@ class StatsProvider extends ChangeNotifier {
   String get lastUpdated => _lastUpdated;
 
   setStats(StatsModel stats) {
+    if (stats == null) {
+      return;
+    }
     _recovered = stats.recovered;
     _confirmed = stats.confirmed;
     _suspected = stats.suspected;

@@ -1,3 +1,5 @@
+import 'package:covid19mobile/resources/icons_svg.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -46,7 +48,9 @@ class CardBorderArrow extends StatelessWidget {
                     .copyWith(color: textColor),
               ),
             ),
-            Icon(Icons.arrow_forward, color: textColor)
+            SvgIcons.linkSvg(
+              color: textColor,
+            ),
           ],
         ),
       ),

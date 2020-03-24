@@ -1,3 +1,5 @@
+import 'package:covid19mobile/extensions/date_extensions.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -12,14 +14,11 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/model/measure_model.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/utils/launch_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' show parse;
 import 'package:intl/intl.dart';
-import 'package:covid19mobile/extensions/date_extensions.dart';
 // import 'package:html/dom.dart' as dom;
 
 /// Extension class to help parse information of [MeasureModel]
@@ -52,10 +51,10 @@ extension HtmlParsing on MeasureModel {
       return Html(
         data: postContent,
         onLinkTap: launchURL,
-            linkStyle: Theme.of(context)
-                .textTheme
-                .body1
-                .copyWith(color: Theme.of(context).primaryColor),
+        linkStyle: Theme.of(context)
+            .textTheme
+            .body1
+            .copyWith(color: Theme.of(context).primaryColor),
       );
     } else {
       return null;

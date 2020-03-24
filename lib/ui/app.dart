@@ -13,29 +13,35 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/providers/faq_category_provider.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
+import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/notifications_provider.dart';
-import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
+import 'package:covid19mobile/providers/slider_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
-
-import 'package:covid19mobile/resources/style/themes.dart';
-import 'package:covid19mobile/ui/screens/contacts/contacts_page.dart';
 import 'package:covid19mobile/resources/constants.dart';
-import 'package:covid19mobile/ui/screens/faqs/faqs_page.dart';
+import 'package:covid19mobile/resources/style/themes.dart';
 import 'package:covid19mobile/ui/screens/about/about_page.dart';
+import 'package:covid19mobile/ui/screens/contacts/contacts_page.dart';
+import 'package:covid19mobile/ui/screens/faqs/faqs_page.dart';
+import 'package:covid19mobile/ui/screens/faqs_details/faq_details_page.dart';
 import 'package:covid19mobile/ui/screens/home/home_page.dart';
-import 'package:covid19mobile/ui/screens/notifications/notifications_page.dart';
 import 'package:covid19mobile/ui/screens/initiatives/initiatives_page.dart';
+import 'package:covid19mobile/ui/screens/measures/measures_detail.dart';
+import 'package:covid19mobile/ui/screens/measures/measures_page.dart';
+import 'package:covid19mobile/ui/screens/notifications/notifications_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work/remote_work_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work_details/remote_work_details.dart';
+import 'package:covid19mobile/ui/screens/splash/splash_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
 import 'package:covid19mobile/ui/screens/video_player/video_player_page.dart';
 import 'package:covid19mobile/ui/screens/videos/videos_page.dart';
-import 'package:covid19mobile/ui/screens/measures/measures_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -45,26 +51,49 @@ final Logger logger = Logger(printer: PrettyPrinter(methodCount: 0));
 
 /// Starting class for the project
 class CovidApp extends StatelessWidget {
+  final AppBloc appBloc = AppBloc();
+  final statsProvider = StatsProvider();
+  final remoteWorkProvider = RemoteWorkProvider();
+  final faqProvider = FaqProvider();
+  final videosProvider = VideosProvider();
+  final initiativeProvider = InitiativesProvider();
+  final notificationsProvider = NotificationsProvider();
+  final measuresProvider = MeasuresProvider();
+  final sliderProvider = SliderProvider();
+  final faqsCategoryProvider = FaqCategoryProvider();
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     return MultiProvider(
       providers: [
-        Provider<AppBloc>.value(value: AppBloc()),
-        ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider()),
+        Provider<AppBloc>.value(value: appBloc),
+        ProxyProvider<AppBloc, SplashBloc>(
+          update: (_, __, splashBloc) => SplashBloc(appBloc),
+        ),
+        ChangeNotifierProvider<StatsProvider>.value(value: statsProvider),
         ChangeNotifierProvider<RemoteWorkProvider>.value(
-            value: RemoteWorkProvider()),
-        ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider()),
+            value: remoteWorkProvider),
+        ChangeNotifierProvider<FaqProvider>.value(value: faqProvider),
         ChangeNotifierProvider<VideosProvider>.value(
-          value: VideosProvider(),
+          value: videosProvider,
         ),
         ChangeNotifierProvider<InitiativesProvider>.value(
-          value: InitiativesProvider(),
+          value: initiativeProvider,
         ),
         ChangeNotifierProvider<NotificationsProvider>.value(
-          value: NotificationsProvider(),
+          value: notificationsProvider,
         ),
         ChangeNotifierProvider<MeasuresProvider>.value(
-          value: MeasuresProvider(),
+          value: measuresProvider,
+        ),
+        ChangeNotifierProvider<SliderProvider>.value(
+          value: sliderProvider,
+        ),
+        ChangeNotifierProvider<FaqCategoryProvider>.value(
+          value: faqsCategoryProvider,
         ),
       ],
       child: MaterialApp(
@@ -76,24 +105,60 @@ class CovidApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         theme: Themes.defaultAppTheme,
-        initialRoute: '/',
-        routes: {
-          '/': (_) => HomePage(title: 'Covid 19 App'),
-          routeStatistics: (_) => StatisticsPage(),
-          routeContacts: (_) => ContactsPage(),
-          routeRemoteWork: (context) =>
-              RemoteWorkPage(title: S.of(context).screenRemoteWorkTitle),
-          routeRemoteWorkDetails: (context) => RemoteWorkDetails(),
-          routeFaqs: (_) => FaqsPage(title: 'Perguntas Frequentes'),
-          routeVideos: (_) => VideosPage(title: 'Vídeos'),
-          routeAbout: (_) => AboutPage(),
-          routeVideoPlayer: (_) => VideoPlayerPage(),
-          routeInitiatives: (context) =>
-              InitiativesPage(title: S.of(context).initiativesPageTitle),
-          routeNotifications: (_) => NotificationsPage(),
-          routeMeasures: (_) =>
-              MeasuresPage(title: 'Medidas Excecionais'),
-          routeLicences: (_) => LicensePage()
+        initialRoute: routeSplash,
+        onGenerateRoute: (settings) {
+          var page;
+          switch (settings.name) {
+            case routeSplash:
+              page = SplashPage();
+              break;
+            case routeHome:
+              page = HomePage(title: 'Covid 19 App');
+              break;
+            case routeStatistics:
+              page = StatisticsPage();
+              break;
+            case routeContacts:
+              page = ContactsPage();
+              break;
+            case routeRemoteWork:
+              page = RemoteWorkPage();
+              break;
+            case routeRemoteWorkDetails:
+              page = RemoteWorkDetails();
+              break;
+            case routeFaqs:
+              page = FaqsPage(title: 'Perguntas Frequentes');
+              break;
+            case routeFaqsDetails:
+              page = FaqsDetails(title: '', faqs: settings.arguments);
+              break;
+            case routeVideos:
+              page = VideosPage(title: 'Vídeos');
+              break;
+            case routeAbout:
+              page = AboutPage();
+              break;
+            case routeVideoPlayer:
+              page = VideoPlayerPage();
+              break;
+            case routeInitiatives:
+              page = InitiativesPage();
+              break;
+            case routeNotifications:
+              page = NotificationsPage();
+              break;
+            case routeMeasures:
+              page = MeasuresPage(title: 'Medidas Excecionais');
+              break;
+            case routeMeasuresDetails:
+              page = MeasureDetail(measure: settings.arguments);
+              break;
+            case routeLicences:
+              page = LicensePage();
+              break;
+          }
+          return CupertinoPageRoute(builder: (_) => page, settings: settings);
         },
       ),
     );

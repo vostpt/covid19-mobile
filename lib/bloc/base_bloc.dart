@@ -1,6 +1,3 @@
-import 'package:covid19mobile/model/initiative_model.dart';
-import 'package:covid19mobile/model/video_model.dart';
-
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -13,6 +10,11 @@ import 'package:covid19mobile/model/video_model.dart';
 ///
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+import 'package:covid19mobile/model/initiative_model.dart';
+import 'package:covid19mobile/model/slider_model.dart';
+import 'package:covid19mobile/model/video_model.dart';
+import 'package:covid19mobile/model/faq_category_model.dart';
 
 import '../model/faq_model.dart';
 import '../model/measure_model.dart';
@@ -107,9 +109,11 @@ class FaqResultStream extends ResultStream<StateStream, List<FaqModel>> {
   @override
   StateStream state;
 
+  int id;
+
   /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [List<FaqModel>] instance list
-  FaqResultStream({this.state, this.model});
+  FaqResultStream({this.state, this.model, this.id});
 }
 
 /// The ResultStream instance for requesting the remote work posts
@@ -122,11 +126,12 @@ class MeasuresResultStream
 
   @override
   StateStream state;
- /// Constructor to set the [state], a [StateStream] instance
+
+  /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [Lst<MeasuresModel>] instance list
   MeasuresResultStream({this.state, this.model});
+}
 
-    }
 /// [InitiativeResultStream] is extended from [ResultStream]
 class InitiativeResultStream
     extends ResultStream<StateStream, List<InitiativeModel>> {
@@ -138,4 +143,27 @@ class InitiativeResultStream
 
   /// and [model] a [Lst<InitiativeModel>] instance list
   InitiativeResultStream({this.state, this.model});
+}
+
+class SliderResultStream extends ResultStream<StateStream, List<SliderModel>> {
+  @override
+  List<SliderModel> model;
+
+  @override
+  StateStream state;
+
+  /// and [model] a [Lst<SliderModel>] instance list
+  SliderResultStream({this.state, this.model});
+}
+
+class FaqCategoryResultStream
+    extends ResultStream<StateStream, List<FaqCategoryModel>> {
+  @override
+  List<FaqCategoryModel> model;
+
+  @override
+  StateStream state;
+
+  /// and [model] a [Lst<FaqCategoryModel>] instance list
+  FaqCategoryResultStream({this.state, this.model});
 }

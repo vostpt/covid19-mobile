@@ -1,5 +1,3 @@
-import 'package:covid19mobile/ui/assets/colors.dart';
-
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -18,11 +16,13 @@ import 'package:flutter/material.dart';
 class ButtonBackground extends StatelessWidget {
   final Color color;
   final Widget child;
+  final double border;
 
   const ButtonBackground({
     Key key,
     this.color,
     this.child,
+    this.border = 16.0,
   }) : super(key: key);
 
   @override
@@ -34,7 +34,7 @@ class ButtonBackground extends StatelessWidget {
         ),
         color: color,
       ),
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(border),
       child: child,
     );
   }

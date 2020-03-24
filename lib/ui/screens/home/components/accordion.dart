@@ -14,14 +14,15 @@
 import 'package:flutter/material.dart';
 
 class Accordion extends StatelessWidget {
-  const Accordion({
-    Key key,
-    this.title,
-    this.children,
-    this.onExpansionChanged,
-    this.withBorder = true,
-    this.initiallyExpanded = false,
-  }) : super(key: key);
+  const Accordion(
+      {Key key,
+      this.title,
+      this.children,
+      this.onExpansionChanged,
+      this.withBorder = true,
+      this.initiallyExpanded = false,
+      this.titleTextStyle})
+      : super(key: key);
 
   final String title;
   final List<Widget> children;
@@ -29,6 +30,8 @@ class Accordion extends StatelessWidget {
 
   final bool initiallyExpanded;
   final bool withBorder;
+
+  final TextStyle titleTextStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,7 @@ class Accordion extends StatelessWidget {
           child: ExpansionTile(
             title: Text(
               title,
-              style: Theme.of(context).textTheme.display4,
+              style: titleTextStyle ?? Theme.of(context).textTheme.display4,
             ),
             initiallyExpanded: initiallyExpanded,
             onExpansionChanged: onExpansionChanged,

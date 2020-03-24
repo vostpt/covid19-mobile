@@ -14,11 +14,13 @@
 import 'dart:async';
 
 import 'package:covid19mobile/model/api_response_model.dart';
+import 'package:covid19mobile/model/faq_category_model.dart';
 import 'package:covid19mobile/model/faq_model.dart';
 import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/model/initiative_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
+import 'package:covid19mobile/model/slider_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
 import 'package:covid19mobile/services/api_service.dart';
@@ -36,17 +38,6 @@ class AppBloc implements Bloc {
     APIService.api.init();
   }
 
-  void foo() async {
-    final APIResponse response = await APIService.api.getFoo(null);
-    if (response.isOk) {
-      logger.i('[$_tag] everything went ok!');
-      // do something
-    } else {
-      logger.e('[$_tag] oops...');
-      // throw some error
-    }
-  }
-
   void getStats() async {
     final APIResponse response = await APIService.api.getStats();
     if (response.isOk) {
@@ -58,7 +49,22 @@ class AppBloc implements Bloc {
     } else {
       logger.e('[$_tag] oops...');
       // throw some error
+      onStream.sink
+          .add(StatsResultStream(model: null, state: StateStream.fail));
     }
+  }
+
+  void getSlider() async {
+    final postType = PostType(PostTypes.slider);
+
+    var results =
+        await getPosts<SliderModel>(postType, cacheKey: "SliderModel");
+
+    onStream.sink.add(
+      SliderResultStream(
+          model: results,
+          state: results != null ? StateStream.success : StateStream.fail),
+    );
   }
 
   void geRemoteWork() async {
@@ -97,13 +103,36 @@ class AppBloc implements Bloc {
     );
   }
 
-  void getFaqs() async {
+  void getFaqsDetails(int id) async {
     final postType = PostType(PostTypes.faq);
 
-    var results = await getPosts<FaqModel>(postType, cacheKey: "FaqModel");
+    var results =
+        await getPosts<FaqModel>(postType, cacheKey: "FaqModel", id: id);
 
     onStream.sink.add(
       FaqResultStream(
+          model: results,
+          state: results != null ? StateStream.success : StateStream.fail,
+          id: id),
+    );
+  }
+
+  void getFaqCategories() async {
+    final postType = PostType(PostTypes.faqCategories);
+
+    var results = await getPosts<FaqCategoryModel>(postType,
+        cacheKey: "FaqCategoryModel");
+
+    // fetch all categories
+    if (results != null) {
+      for (var result in results) {
+        logger.i("Getting faqs for: ${result.categoryId}");
+        getFaqsDetails(result.categoryId);
+      }
+    }
+
+    onStream.sink.add(
+      FaqCategoryResultStream(
           model: results,
           state: results != null ? StateStream.success : StateStream.fail),
     );
@@ -121,8 +150,9 @@ class AppBloc implements Bloc {
   }
 
   Future<List<T>> getPosts<T>(PostType postType,
-      {bool cache = true, String cacheKey = "key"}) async {
-    final APIResponse response = await APIService.api.getPosts<T>(postType);
+      {int id, bool cache = true, String cacheKey = "key"}) async {
+    final APIResponse response =
+        await APIService.api.getPosts<T>(postType, id: id);
     if (response.isOk) {
       logger.i('[$_tag] everything went ok!');
 
@@ -150,6 +180,23 @@ class AppBloc implements Bloc {
   /// Then returns the parsed data
   parseData<T>(PostType postType, dynamic data) {
     switch (postType.postTypes) {
+      case PostTypes.slider:
+
+        /// Data converted to a Map now we need to convert each entry
+        return data.map<T>((json) =>
+
+            /// into a [SliderModel] instance and save into a List
+            SliderModel.fromJson(json)).toList();
+      case PostTypes.faqCategories:
+
+        /// Data converted to a Map now we need to convert each entry
+        return data.map<T>((json) =>
+
+            /// into a [FaqCategoryModel] instance and save into a List
+            FaqCategoryModel.fromJson(json)).toList();
+
+        break;
+
       case PostTypes.measures:
 
         /// Data converted to a Map now we need to convert each entry
@@ -173,7 +220,7 @@ class AppBloc implements Bloc {
         /// Data converted to a Map now we need to convert each entry
         return data.map<T>((json) =>
 
-            /// into a [RemoteWorkModel] instance and save into a List
+            /// into a [FaqModel] instance and save into a List
             FaqModel.fromJson(json)).toList();
 
         break;
@@ -204,4 +251,16 @@ class AppBloc implements Bloc {
 
   @override
   Stream<ResultStream> get onListener => onStream.stream;
+}
+
+class SplashBloc implements Bloc {
+  final AppBloc bloc;
+
+  SplashBloc(this.bloc);
+
+  @override
+  void dispose() {}
+
+  @override
+  Stream<ResultStream> get onListener => null;
 }

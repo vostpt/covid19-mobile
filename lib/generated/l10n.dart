@@ -10,18 +10,19 @@ import 'intl/messages_all.dart';
 
 class S {
   S(this.localeName);
-  
-  static const AppLocalizationDelegate delegate =
-    AppLocalizationDelegate();
+
+  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final String name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       return S(localeName);
     });
-  } 
+  }
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
@@ -177,24 +178,6 @@ class S {
     return Intl.message(
       'Perguntas Frequentes',
       name: 'faqPageTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get homePageConfirmedCases {
-    return Intl.message(
-      'Casos confirmados de COVID-19 em Portugal',
-      name: 'homePageConfirmedCases',
-      desc: '',
-      args: [],
-    );
-  }
-
-  String get lastUpdated {
-    return Intl.message(
-      'Última actualização: ',
-      name: 'lastUpdated',
       desc: '',
       args: [],
     );
@@ -400,7 +383,7 @@ class S {
 
   String get statisticsPageRecovered {
     return Intl.message(
-      'Recuperações',
+      'Recuperados',
       name: 'statisticsPageRecovered',
       desc: '',
       args: [],
@@ -470,6 +453,24 @@ class S {
     );
   }
 
+  String get lastUpdated {
+    return Intl.message(
+      'Última actualização: ',
+      name: 'lastUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get homePageConfirmedCases {
+    return Intl.message(
+      'Casos confirmados de COVID-19 em Portugal',
+      name: 'homePageConfirmedCases',
+      desc: '',
+      args: [],
+    );
+  }
+
   String get measuresPageMeasures {
     return Intl.message(
       'Medidas Excecionais',
@@ -501,6 +502,33 @@ class S {
     return Intl.message(
       'Licenças Open-Source',
       name: 'licencesPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get noConnection {
+    return Intl.message(
+      'Sem conexão',
+      name: 'noConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get buttonTryAgain {
+    return Intl.message(
+      'Tentar novamente',
+      name: 'buttonTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get cannotConnectInternetDescription {
+    return Intl.message(
+      'Não conseguimos aceder à Internet para obter os dados mais recentes. Verifica a tua conexão.',
+      name: 'cannotConnectInternetDescription',
       desc: '',
       args: [],
     );

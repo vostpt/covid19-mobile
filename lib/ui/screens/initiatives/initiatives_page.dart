@@ -13,12 +13,12 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
+import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/model/initiative_model.dart';
 import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
-import 'package:covid19mobile/ui/screens/home/components/accordion.dart';
 import 'package:covid19mobile/ui/widgets/initiatives_item.dart';
 import 'package:covid19mobile/ui/widgets/separator.dart';
 import 'package:flutter/material.dart';
@@ -26,10 +26,7 @@ import 'package:provider/provider.dart';
 
 class InitiativesPage extends BasePage {
   /// Initiatives page view
-  InitiativesPage({Key key, this.title}) : super(key: key);
-
-  /// Title of the page view
-  final String title;
+  InitiativesPage({Key key}) : super(key: key);
 
   @override
   _InitiativesPageState createState() => _InitiativesPageState();
@@ -86,7 +83,7 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
         iconTheme:
             Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
         title: Text(
-          widget.title.toUpperCase(),
+          S.of(context).initiativesPageTitle.toUpperCase(),
           style: TextStyles.h2(color: Covid19Colors.darkGreyLight),
         ),
         backgroundColor: Colors.white,

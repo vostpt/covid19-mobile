@@ -17,7 +17,9 @@ import 'package:covid19mobile/ui/app.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+AppConfig appConfig;
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var enableInDevMode = true;
 
@@ -30,8 +32,10 @@ void main() {
   /// Pass all uncaught errors from the framework to Crashlytics.
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
+  appConfig = AppConfig.prod;
+
   /// Init Firebase messaging service
-  MessagingService.init();
+  await MessagingService.init();
 
   runZoned<Future<void>>(() async {
     /// Run main app
@@ -46,4 +50,9 @@ void main() {
       logger.e('[Stacktrace]: ${s.toString()}');
     }
   });
+}
+
+enum AppConfig {
+  dev,
+  prod,
 }

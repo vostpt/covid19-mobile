@@ -84,20 +84,20 @@ class _ContactsPageState extends State<ContactsPage> {
           contactType: ContactType.link,
           title: S.of(context).contactsPageMSWeb,
           description: S.of(context).contactsPageMSWebText,
-          icon: SvgIcons.linkSvg,
-          textSize: 18))
+          icon: SvgIcons.linkSvg(size: 28),
+          textSize: 16))
       ..add(ContactModel(
           contactType: ContactType.email,
           title: S.of(context).contactsPageSNSEmail,
           description: S.of(context).contactsPageSNSEmailText,
           icon: SvgIcons.emailSvg,
-          textSize: 18))
+          textSize: 16))
       ..add(ContactModel(
           contactType: ContactType.email,
           title: S.of(context).contactsPageMNEEmail,
           description: S.of(context).contactsPageMNEEmailText,
           icon: SvgIcons.emailSvg,
-          textSize: 18));
+          textSize: 16));
   }
 
   _onContactTap(ContactModel contact) {

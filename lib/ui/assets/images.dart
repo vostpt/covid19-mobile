@@ -16,3 +16,4 @@ const String logoRepublica = "assets/logo_rep_blica.png";
 const String socialTwitter = "assets/social_twitter.png";
 const String socialYoutube = "assets/social_youtube.png";
 const String logoEstamosOn = "assets/logo_estamos_on.png";
+const String connectionError = "assets/illustration_error.png";

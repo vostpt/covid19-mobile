@@ -1,7 +1,7 @@
 name: covid19mobile
 description: COVID19 App
 
-version: 1.0.0+4
+version: 1.0.0+5
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
@@ -43,9 +43,12 @@ dependencies:
 
   # UI
   google_fonts: 0.3.10
+  flare_flutter: 2.0.1
+
 
   # Svg
   flutter_svg: 0.13.0+2
+
 
 dev_dependencies:
   flutter_test:

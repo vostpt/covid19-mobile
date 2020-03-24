@@ -18,6 +18,9 @@ class Covid19Colors {
   /// Green is the main color for the ap
   static const Color green = Color(0xff358f9a);
 
+  /// Green with 50% Transparency
+  static const Color green50 = Color(0x80358f9a);
+
   /// Color to be used mostly in important messages
   static const Color red = Color(0xffce3d40);
 

@@ -1,6 +1,4 @@
-import 'package:covid19mobile/model/base_post_model.dart';
-
-///     This program is free software: you can redistribute it and/or modify
+///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
 ///    (at your option) any later version.
@@ -14,6 +12,7 @@ import 'package:covid19mobile/model/base_post_model.dart';
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:covid19mobile/model/base_post_model.dart';
 
 part 'video_model.g.dart';
 
@@ -32,10 +31,6 @@ class VideoModel extends BasePostModel {
   @JsonKey(name: 'descricao')
   final String description;
 
-  /// Cases awaiting for results
-  @JsonKey(name: 'thumbnail')
-  final String thumbnail;
-
   String getVideoUrl() {
     var regex = RegExp(r'(?<=src=").*?(?=[?"])');
     var videoUrl = regex.firstMatch(video)?.group(0);
@@ -46,6 +41,10 @@ class VideoModel extends BasePostModel {
     var videoUrl = getVideoUrl();
     Uri uri = Uri.parse(videoUrl);
     return uri.pathSegments.last;
+  }
+
+  String getVideoThumbnail() {
+    return "https://img.youtube.com/vi/${getVideoId()}/hqdefault.jpg";
   }
 
   /// Model constructor
@@ -78,7 +77,6 @@ class VideoModel extends BasePostModel {
     this.postTitle,
     this.video,
     this.description,
-    this.thumbnail,
   }) : super(
           id: id,
           author: author,

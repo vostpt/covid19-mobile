@@ -16,8 +16,6 @@
   "defaultError": "An error has occurred",
   "faqPageResponsableEntity": "Entidade Responsável",
   "faqPageTitle": "Perguntas Frequentes",
-  "homePageConfirmedCases": "Casos confirmados de COVID-19 em Portugal",
-  "lastUpdated": "Última actualização: ",
   "notificationsPageDescription": "Que notificações vai receber?\nInformações importantes sobre atualização dos dados constantes nesta aplicação e avisos/alertas das entidades oficiais.",
   "notificationsPageReceiveNotifcations": "Notificações",
   "notificationsPageReceiveStats": "Estatísticas",
@@ -40,7 +38,7 @@
   "statisticsPageAwaitingResults": "Aguardar Resultados",
   "statisticsPageConfirmed": "Confirmados",
   "statisticsPageDataLabel": "Dados DGS via ESRI Portugal",
-  "statisticsPageRecovered": "Recuperações",
+  "statisticsPageRecovered": "Recuperados",
   "statisticsPageStatistics": "Estatísticas",
   "statisticsPageSuspects": "Suspeitos",
   "screenAboutButtonReport": "Reportar Problema",
@@ -49,10 +47,12 @@
   "screenVideosTitle": "Vídeos",
   "screenRemoteWorkTitle": "Teletrabalho",
   "lastUpdated": "Última actualização: ",
-  "checkDetails": "Ver detalhes",
   "homePageConfirmedCases": "Casos confirmados de COVID-19 em Portugal",
   "measuresPageMeasures": "Medidas Excecionais",
   "measuresHomepageButton": "Medidas excecionais de resposta À COVID-19",
   "initiativesPageTitle": "Iniciativas",
-  "licencesPageTitle": "Licenças Open-Source"
+  "licencesPageTitle": "Licenças Open-Source",
+  "noConnection": "Sem conexão",
+  "buttonTryAgain": "Tentar novamente",
+  "cannotConnectInternetDescription": "Não conseguimos aceder à Internet para obter os dados mais recentes. Verifica a tua conexão."
 }

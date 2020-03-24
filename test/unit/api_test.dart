@@ -18,7 +18,7 @@ import 'package:covid19mobile/model/faq_model.dart';
 import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
-import 'package:covid19mobile/model/measure_model.dart';
+import 'package:covid19mobile/model/slider_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
 import 'package:covid19mobile/services/api_service.dart';
@@ -300,7 +300,6 @@ void main() {
         video:
             "<iframe title=\"Apoio ao Cliente\" width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/vjSgGxuv8UQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
         description: "descricao",
-        thumbnail: "thumbnail",
       );
 
       when(client.get('/videos')).thenAnswer(
@@ -337,7 +336,6 @@ void main() {
               "video":
                   "<iframe title=\"Apoio ao Cliente\" width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/vjSgGxuv8UQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
               "descricao": "descricao",
-              "thumbnail": "thumbnail",
             },
             {
               "ID": 270,
@@ -369,7 +367,6 @@ void main() {
               "video":
                   "<iframe title=\"Apoio ao Cliente\" width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/vjSgGxuv8UQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
               "descricao": "descricao",
-              "thumbnail": "thumbnail",
             }
           ])),
         ),
@@ -424,7 +421,6 @@ void main() {
       expect(responseModel.filter, videoModel.filter);
       expect(responseModel.video, videoModel.video);
       expect(responseModel.description, videoModel.description);
-      expect(responseModel.thumbnail, videoModel.thumbnail);
 
       String expectedUrl = "https://www.youtube.com/embed/vjSgGxuv8UQ";
 
@@ -474,6 +470,116 @@ void main() {
           ),
         ),
       );
+    });
+
+    test(' performs a get Post Slider', () async {
+      final postType = PostType(PostTypes.slider);
+
+      final sliderModel = SliderModel(
+          url:
+              "https://covid19estamoson.gov.pt/estado-de-emergencia-nacional/pacote-de-medidas/",
+          image:
+              "https://covid19estamoson.gov.pt/wp-content/uploads/2020/03/pacote-medidas-emergencia-nacional-estamoson.png",
+          order: 10);
+
+      when(client.get(postType.getRequestType())).thenAnswer(
+        (_) => Future.value(
+          Response(statusCode: HttpStatus.ok, data: [
+            {
+              "ID": 758,
+              "post_author": "8",
+              "post_date": "2020-03-23 20:19:17",
+              "post_date_gmt": "2020-03-23 20:19:17",
+              "post_content": "",
+              "post_title": "Slide Pacote de Medidas",
+              "post_excerpt": "",
+              "post_status": "publish",
+              "comment_status": "closed",
+              "ping_status": "closed",
+              "post_password": "",
+              "post_name": "758",
+              "to_ping": "",
+              "pinged": "",
+              "post_modified": "2020-03-23 20:25:03",
+              "post_modified_gmt": "2020-03-23 20:25:03",
+              "post_content_filtered": "",
+              "post_parent": 0,
+              "guid":
+                  "https://covid19estamoson.gov.pt/?post_type=slider&#038;p=758",
+              "menu_order": 0,
+              "post_type": "slider",
+              "post_mime_type": "",
+              "comment_count": "0",
+              "filter": "raw",
+              "url":
+                  "https://covid19estamoson.gov.pt/estado-de-emergencia-nacional/pacote-de-medidas/",
+              "image":
+                  "https://covid19estamoson.gov.pt/wp-content/uploads/2020/03/pacote-medidas-emergencia-nacional-estamoson.png",
+              "order": 10
+            },
+            {
+              "ID": 760,
+              "post_author": "8",
+              "post_date": "2020-03-23 20:21:05",
+              "post_date_gmt": "2020-03-23 20:21:05",
+              "post_content": "",
+              "post_title": "Slide Iniciativas Nacionais",
+              "post_excerpt": "",
+              "post_status": "publish",
+              "comment_status": "closed",
+              "ping_status": "closed",
+              "post_password": "",
+              "post_name": "slide-iniciativas-nacionais",
+              "to_ping": "",
+              "pinged": "",
+              "post_modified": "2020-03-23 20:24:44",
+              "post_modified_gmt": "2020-03-23 20:24:44",
+              "post_content_filtered": "",
+              "post_parent": 0,
+              "guid":
+                  "https://covid19estamoson.gov.pt/?post_type=slider&#038;p=760",
+              "menu_order": 0,
+              "post_type": "slider",
+              "post_mime_type": "",
+              "comment_count": "0",
+              "filter": "raw",
+              "url": "https://covid19estamoson.gov.pt/iniciativas-nacionais/",
+              "image":
+                  "https://covid19estamoson.gov.pt/wp-content/uploads/2020/03/iniciativas-nacionais-estamoson-v1.png",
+              "order": 20
+            }
+          ]),
+        ),
+      );
+
+      /// Verify if is same instance
+      var response =
+          await api.getPosts<SliderModel>(PostType(PostTypes.slider));
+      expect(response, isInstanceOf<APIResponse>());
+
+      /// Verify json to model
+      var listResponseModel = response.data
+          .map<SliderModel>((json) => SliderModel.fromJson(json))
+          .toList();
+      expect(listResponseModel, isNotNull);
+      expect(listResponseModel, isInstanceOf<List>());
+      expect(listResponseModel.length, 2);
+
+      /// Verify model to json
+      var responseModeltoJson =
+          listResponseModel.map((model) => model.toJson());
+      expect(responseModeltoJson, isNotNull);
+
+      /// Call API
+      verify(
+        client.get('/slider'),
+      ).called(1);
+
+      SliderModel responseModel = listResponseModel.first;
+
+      expect(responseModel.order, sliderModel.order);
+      expect(responseModel.image, sliderModel.image);
+      expect(responseModel.url, sliderModel.url);
     });
   });
 }

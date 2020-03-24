@@ -134,7 +134,7 @@ DEPENDENCIES:
   - webview_media (from `.symlinks/plugins/webview_media/ios`)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - Crashlytics
     - Fabric
     - Firebase

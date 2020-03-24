@@ -18,7 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../app.dart';
 import 'card_home_slider_indicator.dart';
 
 class HomeSlider extends StatefulWidget {
@@ -85,11 +84,7 @@ class _HomeSliderState extends State<HomeSlider> {
                   height: 128,
                   child: _pageView(sliderProvider.slider),
                 ),
-                Positioned(
-                    bottom: 0.0,
-                    left: 0.0,
-                    right: 0.0,
-                    child: _dots(sliderProvider.slider.length))
+                Positioned(bottom: 0.0, left: 0.0, right: 0.0, child: _dots(sliderProvider.slider.length))
               ],
             )
           : Container(),
@@ -103,8 +98,7 @@ class _HomeSliderState extends State<HomeSlider> {
       return;
     }
 
-    if (!(slide.url.startsWith("https://") ||
-        slide.url.startsWith("http://"))) {
+    if (!(slide.url.startsWith("https://") || slide.url.startsWith("http://"))) {
       urlToOpen = "https://${slide.url}";
     }
     _launch(urlToOpen);
@@ -121,13 +115,7 @@ class _HomeSliderState extends State<HomeSlider> {
 }
 
 class CardHomeSlide extends StatelessWidget {
-  const CardHomeSlide(
-      {Key key,
-      this.titleLabel,
-      this.secondaryLabel,
-      this.backgroundPath,
-      this.onTap})
-      : super(key: key);
+  const CardHomeSlide({Key key, this.titleLabel, this.secondaryLabel, this.backgroundPath, this.onTap}) : super(key: key);
 
   final String titleLabel;
   final String secondaryLabel;
@@ -140,9 +128,7 @@ class CardHomeSlide extends StatelessWidget {
         onTap: onTap,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(4),
-          child: Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
+          child: Stack(fit: StackFit.expand, children: <Widget>[
             Image.network(
               backgroundPath,
               fit: BoxFit.cover,
@@ -172,13 +158,11 @@ class CardHomeSlide extends StatelessWidget {
                                   height: 30,
                                   color: Covid19Colors.white,
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Text(
                                         secondaryLabel,
-                                        style: TextStyles.subtitle(
-                                            color: Covid19Colors.green),
+                                        style: TextStyles.subtitle(color: Covid19Colors.green),
                                       ),
                                       SizedBox(width: 7),
                                       Icon(

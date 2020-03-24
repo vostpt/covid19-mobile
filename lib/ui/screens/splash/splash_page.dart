@@ -60,18 +60,16 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
 
   Stream<bool> get _dataLoaded => Rx.combineLatest2(
       _animationComplete,
-      Rx.zip7(_statsSubject, _remoteWorkSubject, _faqsSubject, _videosSubject,
-          _measuresSubject, _initiativesSubject, _sliderSubject,
+      Rx.zip7(_statsSubject, _remoteWorkSubject, _faqsSubject, _videosSubject, _measuresSubject, _initiativesSubject, _sliderSubject,
           (stats, remote, faqs, videos, measures, initiatives, slider) {
-        logger.i("_statsSubject : ${stats}");
-        logger.i("_remoteWorkSubject : ${remote}");
-        logger.i("_faqsSubject : ${faqs}");
-        logger.i("_videosSubject : ${videos}");
-        logger.i("_measuresSubject : ${measures}");
-        logger.i("_initiativesSubject : ${initiatives}");
-        logger.i("_sliderSubject : ${slider}");
-        logger.d(
-            "COMBINED: ${stats && remote && faqs && videos && measures && initiatives && slider}");
+        logger.i("_statsSubject : $stats");
+        logger.i("_remoteWorkSubject : $remote");
+        logger.i("_faqsSubject : $faqs");
+        logger.i("_videosSubject : $videos");
+        logger.i("_measuresSubject : $measures");
+        logger.i("_initiativesSubject : $initiatives");
+        logger.i("_sliderSubject : $slider");
+        logger.d("COMBINED: ${stats && remote && faqs && videos && measures && initiatives && slider}");
         return stats && remote && faqs && videos && measures && initiatives && slider;
       }),
       (animation, api) => animation && api);
@@ -88,9 +86,7 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
         if (loaded) {
           logger.i("I'm inside the LOADED part");
           _dataLoadedSubscription.cancel();
-          await Navigator.of(context)
-              .pushNamedAndRemoveUntil(routeHome, (_) => false)
-              .catchError(logger.e);
+          await Navigator.of(context).pushNamedAndRemoveUntil(routeHome, (_) => false).catchError(logger.e);
           logger.i("After the navigation");
         } else {
           logger.e("NO DATA");
@@ -140,7 +136,6 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
     ///
     bloc.getInitiatives();
 
-
     /// Get Slider
     ///
     bloc.getSlider();
@@ -163,8 +158,7 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
     }
 
     if (result is RemoteWorkResultStream) {
-      Provider.of<RemoteWorkProvider>(context, listen: false)
-          .setRemoteWork(result.model);
+      Provider.of<RemoteWorkProvider>(context, listen: false).setRemoteWork(result.model);
 
       if (result.state == StateStream.success) {
         _remoteWorkSubject.add(true);
@@ -174,8 +168,7 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
     }
 
     if (result is FaqCategoryResultStream) {
-      Provider.of<FaqCategoryProvider>(context, listen: false)
-          .setFaqsCategories(result.model);
+      Provider.of<FaqCategoryProvider>(context, listen: false).setFaqsCategories(result.model);
 
       if (result.state == StateStream.success) {
         _faqsSubject.add(true);
@@ -185,8 +178,7 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
     }
 
     if (result is VideosResultStream) {
-      Provider.of<VideosProvider>(context, listen: false)
-          .setVideos(result.model);
+      Provider.of<VideosProvider>(context, listen: false).setVideos(result.model);
 
       if (result.state == StateStream.success) {
         _videosSubject.add(true);
@@ -196,8 +188,7 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
     }
 
     if (result is MeasuresResultStream) {
-      Provider.of<MeasuresProvider>(context, listen: false)
-          .setMeasures(result.model);
+      Provider.of<MeasuresProvider>(context, listen: false).setMeasures(result.model);
 
       if (result.state == StateStream.success) {
         _measuresSubject.add(true);
@@ -207,8 +198,7 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
     }
 
     if (result is InitiativeResultStream) {
-      Provider.of<InitiativesProvider>(context, listen: false)
-          .setInitiatives(result.model);
+      Provider.of<InitiativesProvider>(context, listen: false).setInitiatives(result.model);
 
       if (result.state == StateStream.success) {
         _initiativesSubject.add(true);
@@ -218,8 +208,7 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
     }
 
     if (result is SliderResultStream) {
-      Provider.of<SliderProvider>(context, listen: false)
-          .setSlider(result.model);
+      Provider.of<SliderProvider>(context, listen: false).setSlider(result.model);
 
       if (result.state == StateStream.success) {
         _sliderSubject.add(true);

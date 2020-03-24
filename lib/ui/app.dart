@@ -13,35 +13,32 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
-import 'package:covid19mobile/model/faq_model.dart';
-import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/providers/faq_category_provider.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
+import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/notifications_provider.dart';
-import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/slider_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
-
-import 'package:covid19mobile/resources/style/themes.dart';
-import 'package:covid19mobile/ui/screens/contacts/contacts_page.dart';
 import 'package:covid19mobile/resources/constants.dart';
-import 'package:covid19mobile/ui/screens/faqs/faqs_page.dart';
+import 'package:covid19mobile/resources/style/themes.dart';
 import 'package:covid19mobile/ui/screens/about/about_page.dart';
+import 'package:covid19mobile/ui/screens/contacts/contacts_page.dart';
+import 'package:covid19mobile/ui/screens/faqs/faqs_page.dart';
 import 'package:covid19mobile/ui/screens/faqs_details/faq_details_page.dart';
 import 'package:covid19mobile/ui/screens/home/home_page.dart';
-import 'package:covid19mobile/ui/screens/measures/measures_detail.dart';
-import 'package:covid19mobile/ui/screens/notifications/notifications_page.dart';
 import 'package:covid19mobile/ui/screens/initiatives/initiatives_page.dart';
+import 'package:covid19mobile/ui/screens/measures/measures_detail.dart';
+import 'package:covid19mobile/ui/screens/measures/measures_page.dart';
+import 'package:covid19mobile/ui/screens/notifications/notifications_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work/remote_work_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work_details/remote_work_details.dart';
 import 'package:covid19mobile/ui/screens/splash/splash_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
 import 'package:covid19mobile/ui/screens/video_player/video_player_page.dart';
 import 'package:covid19mobile/ui/screens/videos/videos_page.dart';
-import 'package:covid19mobile/ui/screens/measures/measures_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -63,8 +60,7 @@ class CovidApp extends StatelessWidget {
       providers: [
         Provider<AppBloc>.value(value: AppBloc()),
         ChangeNotifierProvider<StatsProvider>.value(value: StatsProvider()),
-        ChangeNotifierProvider<RemoteWorkProvider>.value(
-            value: RemoteWorkProvider()),
+        ChangeNotifierProvider<RemoteWorkProvider>.value(value: RemoteWorkProvider()),
         ChangeNotifierProvider<FaqProvider>.value(value: FaqProvider()),
         ChangeNotifierProvider<VideosProvider>.value(
           value: VideosProvider(),
@@ -147,8 +143,7 @@ class CovidApp extends StatelessWidget {
               page = LicensePage();
               break;
           }
-          return CupertinoPageRoute(
-              builder: (_) => page, settings: settings);
+          return CupertinoPageRoute(builder: (_) => page, settings: settings);
         },
       ),
     );

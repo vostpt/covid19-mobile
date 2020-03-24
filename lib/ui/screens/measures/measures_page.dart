@@ -12,6 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/providers/measure_provider.dart';
+import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/themes.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
@@ -80,12 +81,9 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
                     text: measures[index].postTitle,
                     callback: () {
                       if (measures != null) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) => MeasureDetail(
-                                    measure: measures[index],
-                                  )),
+                        Navigator.of(context).pushNamed(
+                          routeMeasuresDetails,
+                          arguments: measures[index],
                         );
                       }
                     },

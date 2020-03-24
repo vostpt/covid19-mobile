@@ -49,6 +49,8 @@ class AppBloc implements Bloc {
     } else {
       logger.e('[$_tag] oops...');
       // throw some error
+      onStream.sink
+          .add(StatsResultStream(model: null, state: StateStream.fail));
     }
   }
 
@@ -104,7 +106,8 @@ class AppBloc implements Bloc {
   void getFaqsDetails(int id) async {
     final postType = PostType(PostTypes.faq);
 
-    var results = await getPosts<FaqModel>(postType, cacheKey: "FaqModel", id: id);
+    var results =
+        await getPosts<FaqModel>(postType, cacheKey: "FaqModel", id: id);
 
     onStream.sink.add(
       FaqResultStream(
@@ -121,9 +124,11 @@ class AppBloc implements Bloc {
         cacheKey: "FaqCategoryModel");
 
     // fetch all categories
-    for (var result in results) {
-      logger.i("Getting faqs for: ${result.categoryId}");
-      getFaqsDetails(result.categoryId);
+    if (results != null) {
+      for (var result in results) {
+        logger.i("Getting faqs for: ${result.categoryId}");
+        getFaqsDetails(result.categoryId);
+      }
     }
 
     onStream.sink.add(
@@ -191,6 +196,7 @@ class AppBloc implements Bloc {
             FaqCategoryModel.fromJson(json)).toList();
 
         break;
+
       case PostTypes.measures:
 
         /// Data converted to a Map now we need to convert each entry

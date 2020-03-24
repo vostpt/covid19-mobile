@@ -20,6 +20,9 @@ class SliderProvider extends ChangeNotifier {
   List<SliderModel> get slider => _slider;
 
   void setSlider(List<SliderModel> values) {
+    if (values == null) {
+      return;
+    }
     _slider = values;
 
     /// Sort Slides by order

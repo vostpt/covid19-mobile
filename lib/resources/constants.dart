@@ -13,8 +13,8 @@
 
 const String bundle = 'com.vost.covid19mobile';
 
-const String routeHome = "/";
-const String splashRoute = "splash";
+const String routeSplash = "/";
+const String routeHome = "home";
 const String routeStatistics = "statistics";
 const String routeContacts = "contacts";
 const String routeFaqs = "faqs";

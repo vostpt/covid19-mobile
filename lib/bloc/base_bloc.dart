@@ -160,7 +160,7 @@ class FaqCategoryResultStream
     extends ResultStream<StateStream, List<FaqCategoryModel>> {
   @override
   List<FaqCategoryModel> model;
-
+  
   @override
   StateStream state;
 

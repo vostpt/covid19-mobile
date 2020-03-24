@@ -94,11 +94,11 @@ class CovidApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         theme: Themes.defaultAppTheme,
-        initialRoute: splashRoute,
+        initialRoute: routeSplash,
         onGenerateRoute: (settings) {
           var page;
           switch (settings.name) {
-            case splashRoute:
+            case routeSplash:
               page = SplashPage();
               break;
             case routeHome:

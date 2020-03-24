@@ -16,7 +16,6 @@ import 'package:covid19mobile/model/slider_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
 import 'package:covid19mobile/model/faq_category_model.dart';
 
-
 import '../model/faq_model.dart';
 import '../model/measure_model.dart';
 import '../model/remote_work_model.dart';
@@ -110,9 +109,11 @@ class FaqResultStream extends ResultStream<StateStream, List<FaqModel>> {
   @override
   StateStream state;
 
+  int id;
+
   /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [List<FaqModel>] instance list
-  FaqResultStream({this.state, this.model});
+  FaqResultStream({this.state, this.model, this.id});
 }
 
 /// The ResultStream instance for requesting the remote work posts
@@ -147,15 +148,14 @@ class InitiativeResultStream
 class SliderResultStream extends ResultStream<StateStream, List<SliderModel>> {
   @override
   List<SliderModel> model;
-  
-  
+
   @override
   StateStream state;
-    /// and [model] a [Lst<SliderModel>] instance list
+
+  /// and [model] a [Lst<SliderModel>] instance list
   SliderResultStream({this.state, this.model});
-  
 }
-    
+
 class FaqCategoryResultStream
     extends ResultStream<StateStream, List<FaqCategoryModel>> {
   @override

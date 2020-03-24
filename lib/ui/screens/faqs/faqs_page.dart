@@ -24,7 +24,7 @@ import 'package:covid19mobile/ui/widgets/separator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class FaqsPage extends BasePage {
+class FaqsPage extends StatefulWidget {
   /// Faqs page view
   FaqsPage({Key key, this.title}) : super(key: key);
 
@@ -35,7 +35,7 @@ class FaqsPage extends BasePage {
   _FaqsPageState createState() => _FaqsPageState();
 }
 
-class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
+class _FaqsPageState extends State<FaqsPage> {
   /// For the initial list of faqs
   List<FaqModel> _faqs;
 
@@ -151,27 +151,5 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
         ),
       ),
     );
-  }
-
-  @override
-  void initBloc(AppBloc bloc) {
-    /// In case [_faqs] is null then fetch if again
-    if (_faqs == null) {
-      bloc.getFaqs();
-    }
-  }
-
-  @override
-  Stream<ResultStream> get onStateListener => bloc.onListener;
-
-  @override
-  void onStateResultListener(ResultStream result) {
-    if (result is FaqResultStream) {
-      /// Updates faqs list on the provider
-      Provider.of<FaqProvider>(context, listen: false).setFaqs(result.model);
-
-      /// Updates faqs list
-      _faqs = result.model;
-    }
   }
 }

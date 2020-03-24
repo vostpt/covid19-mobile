@@ -24,6 +24,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../app.dart';
+import 'components/card_home_slider.dart';
 import 'components/statistics_button.dart';
 
 /// Creates an HomePage extending [BasePage]
@@ -74,6 +75,7 @@ class _HomePageState extends State<HomePage> {
                         color: Covid19Colors.red,
                       ),
                     ),
+                    HomeSlider(),
                     const SizedBox(
                       height: 24.0,
                     ),

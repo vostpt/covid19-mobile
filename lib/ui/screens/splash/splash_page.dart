@@ -18,6 +18,7 @@ import 'package:covid19mobile/providers/faq_category_provider.dart';
 import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
+import 'package:covid19mobile/providers/slider_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
@@ -54,22 +55,24 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
   final PublishSubject _videosSubject = PublishSubject<bool>();
   final PublishSubject _measuresSubject = PublishSubject<bool>();
   final PublishSubject _initiativesSubject = PublishSubject<bool>();
+  final PublishSubject _sliderSubject = PublishSubject<bool>();
   final PublishSubject _animationComplete = PublishSubject<bool>();
 
   Stream<bool> get _dataLoaded => Rx.combineLatest2(
       _animationComplete,
-      Rx.zip6(_statsSubject, _remoteWorkSubject, _faqsSubject, _videosSubject,
-          _measuresSubject, _initiativesSubject,
-          (stats, remote, faqs, videos, measures, initiatives) {
+      Rx.zip7(_statsSubject, _remoteWorkSubject, _faqsSubject, _videosSubject,
+          _measuresSubject, _initiativesSubject, _sliderSubject,
+          (stats, remote, faqs, videos, measures, initiatives, slider) {
         logger.i("_statsSubject : ${stats}");
         logger.i("_remoteWorkSubject : ${remote}");
         logger.i("_faqsSubject : ${faqs}");
         logger.i("_videosSubject : ${videos}");
         logger.i("_measuresSubject : ${measures}");
         logger.i("_initiativesSubject : ${initiatives}");
+        logger.i("_sliderSubject : ${slider}");
         logger.d(
-            "COMBINED: ${stats && remote && faqs && videos && measures && initiatives}");
-        return stats && remote && faqs && videos && measures && initiatives;
+            "COMBINED: ${stats && remote && faqs && videos && measures && initiatives && slider}");
+        return stats && remote && faqs && videos && measures && initiatives && slider;
       }),
       (animation, api) => animation && api);
 
@@ -136,6 +139,11 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
     /// Get Initiatives Posts
     ///
     bloc.getInitiatives();
+
+
+    /// Get Slider
+    ///
+    bloc.getSlider();
   }
 
   @override
@@ -206,6 +214,17 @@ class _SplashPageState extends BaseState<SplashPage, AppBloc> {
         _initiativesSubject.add(true);
       } else if (result.state == StateStream.fail) {
         _initiativesSubject.add(false);
+      }
+    }
+
+    if (result is SliderResultStream) {
+      Provider.of<SliderProvider>(context, listen: false)
+          .setSlider(result.model);
+
+      if (result.state == StateStream.success) {
+        _sliderSubject.add(true);
+      } else if (result.state == StateStream.fail) {
+        _sliderSubject.add(false);
       }
     }
   }

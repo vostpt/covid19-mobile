@@ -44,11 +44,8 @@ class APIService {
 
   void init([Dio client, AbstractApi api]) async {
     if (!_initialized) {
-      _configApi = api ?? (
-        appConfig == AppConfig.dev ? 
-        DevApi() : 
-        ProductionApi()
-      );
+      _configApi =
+          api ?? (appConfig == AppConfig.dev ? DevApi() : ProductionApi());
 
       _client = client ?? Dio();
       _client.options.baseUrl = _configApi.build();

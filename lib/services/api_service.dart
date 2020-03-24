@@ -13,6 +13,7 @@
 
 import 'dart:async';
 
+import 'package:covid19mobile/main.dart';
 import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/services/api.dart';
@@ -43,7 +44,11 @@ class APIService {
 
   void init([Dio client, AbstractApi api]) async {
     if (!_initialized) {
-      _configApi = api ?? ProductionApi();
+      _configApi = api ?? (
+        appConfig == AppConfig.dev ? 
+        DevApi() : 
+        ProductionApi()
+      );
 
       _client = client ?? Dio();
       _client.options.baseUrl = _configApi.build();

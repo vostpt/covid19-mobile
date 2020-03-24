@@ -33,7 +33,6 @@ VideoModel _$VideoModelFromJson(Map<String, dynamic> json) {
     postTitle: json['post_title'] as String,
     video: json['video'] as String,
     description: json['descricao'] as String,
-    thumbnail: json['thumbnail'] as String,
   );
 }
 
@@ -71,6 +70,5 @@ Map<String, dynamic> _$VideoModelToJson(VideoModel instance) {
   writeNotNull('post_title', instance.postTitle);
   writeNotNull('video', instance.video);
   writeNotNull('descricao', instance.description);
-  writeNotNull('thumbnail', instance.thumbnail);
   return val;
 }

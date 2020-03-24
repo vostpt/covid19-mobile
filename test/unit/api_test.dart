@@ -300,7 +300,6 @@ void main() {
         video:
             "<iframe title=\"Apoio ao Cliente\" width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/vjSgGxuv8UQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
         description: "descricao",
-        thumbnail: "thumbnail",
       );
 
       when(client.get('/videos')).thenAnswer(
@@ -337,7 +336,6 @@ void main() {
               "video":
                   "<iframe title=\"Apoio ao Cliente\" width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/vjSgGxuv8UQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
               "descricao": "descricao",
-              "thumbnail": "thumbnail",
             },
             {
               "ID": 270,
@@ -369,7 +367,6 @@ void main() {
               "video":
                   "<iframe title=\"Apoio ao Cliente\" width=\"640\" height=\"360\" src=\"https:\/\/www.youtube.com\/embed\/vjSgGxuv8UQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
               "descricao": "descricao",
-              "thumbnail": "thumbnail",
             }
           ])),
         ),
@@ -424,7 +421,6 @@ void main() {
       expect(responseModel.filter, videoModel.filter);
       expect(responseModel.video, videoModel.video);
       expect(responseModel.description, videoModel.description);
-      expect(responseModel.thumbnail, videoModel.thumbnail);
 
       String expectedUrl = "https://www.youtube.com/embed/vjSgGxuv8UQ";
 

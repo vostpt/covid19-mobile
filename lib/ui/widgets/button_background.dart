@@ -16,11 +16,13 @@ import 'package:flutter/material.dart';
 class ButtonBackground extends StatelessWidget {
   final Color color;
   final Widget child;
+  final double border;
 
   const ButtonBackground({
     Key key,
     this.color,
     this.child,
+    this.border = 16.0,
   }) : super(key: key);
 
   @override
@@ -32,7 +34,7 @@ class ButtonBackground extends StatelessWidget {
         ),
         color: color,
       ),
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(border),
       child: child,
     );
   }

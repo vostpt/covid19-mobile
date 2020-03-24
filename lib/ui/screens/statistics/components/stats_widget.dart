@@ -35,17 +35,20 @@ class StatsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonBackground(
+      border: 0.0,
       color: color,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          StatisticsBorder(
-            color: Covid19Colors.darkGrey,
-            text: Text(
-              number,
-              style: numberStyle,
-              textAlign: TextAlign.center,
+          Center(
+            child: StatisticsBorder(
+              color: Covid19Colors.darkGrey,
+              text: Text(
+                number,
+                style: numberStyle,
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           const SizedBox(

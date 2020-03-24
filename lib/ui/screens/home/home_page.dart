@@ -184,10 +184,6 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     ///
     bloc.geRemoteWork();
 
-    /// Get Faq Posts
-    ///
-    bloc.getFaqs();
-
     /// Get Videos Posts
     ///
     bloc.getVideos();
@@ -224,7 +220,7 @@ class _HomePageState extends BaseState<HomePage, AppBloc> {
     }
 
     if (result is FaqResultStream) {
-      Provider.of<FaqProvider>(context, listen: false).setFaqs(result.model);
+      Provider.of<FaqProvider>(context, listen: false).setFaqs(result.id, result.model);
     }
 
     if (result is VideosResultStream) {

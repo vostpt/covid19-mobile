@@ -43,7 +43,7 @@ class APIService {
 
   void init([Dio client, AbstractApi api]) async {
     if (!_initialized) {
-      _configApi = api ?? DevApi();
+      _configApi = api ?? ProductionApi();
 
       _client = client ?? Dio();
       _client.options.baseUrl = _configApi.build();
@@ -123,10 +123,15 @@ class APIService {
   }
 
   /// Gets the posts accordingly by [postType]
-  Future<APIResponse> getPosts<T>(PostType postType) async {
+  Future<APIResponse> getPosts<T>(PostType postType, {int id}) async {
+    Map<String, int> queryParams;
+    if (id != null) {
+      queryParams = {"categories": id};
+    }
     return await _performRequest(
       _RequestType.get,
       postType.getRequestType(),
+      queryParams: queryParams,
     );
   }
 }

@@ -12,15 +12,16 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/model/faq_model.dart';
+import 'package:covid19mobile/ui/app.dart';
 import 'package:flutter/material.dart';
 
 class FaqProvider extends ChangeNotifier {
-  List<FaqModel> _faqs;
+  final Map<int, List<FaqModel>> _faqs = <int, List<FaqModel>>{};
 
-  List<FaqModel> get faqs => _faqs;
+  Map<int, List<FaqModel>> get faqs => _faqs;
 
-  void setFaqs(List<FaqModel> values) {
-    _faqs = values;
+  void setFaqs(int id, List<FaqModel> values) {
+    _faqs[id] = values;
     notifyListeners();
   }
 }

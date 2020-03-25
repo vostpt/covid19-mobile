@@ -131,7 +131,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                               .of(context)
                               .statisticsPageSuspects
                               .toUpperCase()
-                              .replaceAll(" ", newLine)
+                              .replaceFirst(" ", newLine)
                           : S.of(context).statisticsPageSuspects.toUpperCase() +
                               newLine,
                       textStyle: Theme.of(context)
@@ -155,7 +155,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                           .of(context)
                           .statisticsPageAwaitingResults
                           .toUpperCase()
-                          .replaceAll(" ", newLine),
+                          .replaceFirst(" ", newLine),
                       textStyle: Theme.of(context)
                           .textTheme
                           .display4

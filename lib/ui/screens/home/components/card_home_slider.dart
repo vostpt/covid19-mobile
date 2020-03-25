@@ -61,7 +61,6 @@ class _HomeSliderState extends State<HomeSlider> {
 
           return CardHomeSlide(
             titleLabel: slide.title,
-            secondaryLabel: "Ver detalhe",
             backgroundPath: slide.image,
             onTap: () => _onSlideTap(slide),
           );
@@ -137,56 +136,60 @@ class CardHomeSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: onTap,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(4),
+        child: Card(
+          elevation: 4.0,
+          clipBehavior: Clip.hardEdge,
           child: Stack(fit: StackFit.expand, children: <Widget>[
             Image.network(
               backgroundPath,
               fit: BoxFit.cover,
               alignment: Alignment.topCenter,
             ),
-            Container(
-              color: Covid19Colors.green50,
-            ),
-            Container(
-                padding: EdgeInsets.fromLTRB(12, 16, 12, 16),
-                child: Stack(
-                  children: <Widget>[
-                    Text(
-                      titleLabel.toUpperCase(),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: TextStyles.h1(color: Covid19Colors.white),
-                    ),
-                    Positioned(
+            if (secondaryLabel != null)
+              Container(
+                  padding: EdgeInsets.fromLTRB(12, 16, 12, 16),
+                  child: Stack(
+                    children: <Widget>[
+                      Text(
+                        titleLabel.toUpperCase(),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: TextStyles.h1(color: Covid19Colors.white),
+                      ),
+                      Positioned(
                         bottom: 0,
                         left: 0,
                         child: ClipRRect(
-                            borderRadius: BorderRadius.circular(4),
-                            child: Row(children: <Widget>[
+                          borderRadius: BorderRadius.circular(4),
+                          child: Row(
+                            children: <Widget>[
                               Container(
-                                  padding: EdgeInsets.all(5),
-                                  height: 30,
-                                  color: Covid19Colors.white,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text(
-                                        secondaryLabel,
-                                        style: TextStyles.subtitle(
-                                            color: Covid19Colors.green),
-                                      ),
-                                      SizedBox(width: 7),
-                                      Icon(
-                                        Icons.arrow_forward,
-                                        size: 16,
-                                        color: Covid19Colors.green,
-                                      )
-                                    ],
-                                  ))
-                            ])))
-                  ],
-                ))
+                                padding: EdgeInsets.all(5),
+                                height: 30,
+                                color: Covid19Colors.white,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(
+                                      secondaryLabel,
+                                      style: TextStyles.subtitle(
+                                          color: Covid19Colors.green),
+                                    ),
+                                    SizedBox(width: 7),
+                                    Icon(
+                                      Icons.arrow_forward,
+                                      size: 16,
+                                      color: Covid19Colors.green,
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ))
           ]),
         ));
   }

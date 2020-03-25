@@ -1,5 +1,3 @@
-import 'package:covid19mobile/extensions/date_extensions.dart';
-
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -19,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:intl/intl.dart';
+import 'package:covid19mobile/extensions/date_extensions.dart';
 // import 'package:html/dom.dart' as dom;
 
 /// Extension class to help parse information of [MeasureModel]

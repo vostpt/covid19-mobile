@@ -24,7 +24,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 const _itemsMargin = 8.0;
-const String newLine = "\n";
 
 class StatisticsPage extends BasePage {
   @override
@@ -127,13 +126,8 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                           .display1
                           .copyWith(color: Covid19Colors.darkGrey),
                       text: S.of(context).statisticsPageSuspects.contains(" ")
-                          ? S
-                              .of(context)
-                              .statisticsPageSuspects
-                              .toUpperCase()
-                              .replaceFirst(" ", newLine)
-                          : S.of(context).statisticsPageSuspects.toUpperCase() +
-                              newLine,
+                          ? "${S.of(context).statisticsPageSuspects.toUpperCase().replaceFirst(" ", "\n")}"
+                          : "${S.of(context).statisticsPageSuspects.toUpperCase()}\n",
                       textStyle: Theme.of(context)
                           .textTheme
                           .display4
@@ -151,11 +145,8 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                           .textTheme
                           .display1
                           .copyWith(color: Covid19Colors.darkGrey),
-                      text: S
-                          .of(context)
-                          .statisticsPageAwaitingResults
-                          .toUpperCase()
-                          .replaceFirst(" ", newLine),
+                      text:
+                          "${S.of(context).statisticsPageAwaitingResults.toUpperCase().replaceFirst(" ", "\n")}",
                       textStyle: Theme.of(context)
                           .textTheme
                           .display4

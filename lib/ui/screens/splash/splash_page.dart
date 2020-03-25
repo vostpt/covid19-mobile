@@ -15,6 +15,7 @@ import 'dart:async';
 
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/faq_category_provider.dart';
+import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
@@ -231,6 +232,11 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
       } else if (result.state == StateStream.fail) {
         _sliderSubject.add(false);
       }
+    }
+
+    if (result is FaqResultStream) {
+      Provider.of<FaqProvider>(context, listen: false)
+          .setFaqs(result.id, result.model);
     }
   }
 

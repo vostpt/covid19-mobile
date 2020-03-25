@@ -72,7 +72,7 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
                   borderColor: Theme.of(context).primaryColor,
                   callback: () {
                     logger.i(
-                        "Id: ${faqsCategories[index].id}. Map: $faqs; specific: ${faqs[faqsCategories[index].id]}");
+                        "Id: ${faqsCategories[index].categoryId}. Map: $faqs; specific: ${faqs[faqsCategories[index].categoryId]}");
                     Navigator.of(context).pushNamed(routeFaqsDetails,
                         arguments: faqs[faqsCategories[index].categoryId]);
                   },
@@ -102,6 +102,11 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
     if (result is FaqCategoryResultStream) {
       Provider.of<FaqCategoryProvider>(context, listen: false)
           .setFaqsCategories(result.model);
+    }
+
+    if (result is FaqResultStream) {
+      Provider.of<FaqProvider>(context, listen: false)
+          .setFaqs(result.id, result.model);
     }
   }
 }

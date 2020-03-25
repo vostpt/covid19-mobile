@@ -12,6 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:async';
+import 'dart:io';
 import 'package:covid19mobile/services/messaging_service.dart';
 import 'package:covid19mobile/ui/app.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -20,7 +21,14 @@ import 'package:flutter/material.dart';
 AppConfig appConfig;
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final WidgetsBinding binding = WidgetsFlutterBinding.ensureInitialized();
+
+  /// Override automaticSystemUiAdjustment auto UI color overlay adjustment
+  /// on Android
+  if (Platform.isAndroid) {
+    binding.renderView.automaticSystemUiAdjustment = false;
+  }
+
   var enableInDevMode = true;
 
   /// Set `enableInDevMode` to true to see reports while in debug mode

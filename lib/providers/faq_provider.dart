@@ -20,7 +20,7 @@ class FaqProvider extends ChangeNotifier {
   Map<int, List<FaqModel>> get faqs => _faqs;
 
   void setFaqs(Map<int, List<FaqModel>> values) {
-    if(values == null) {
+    if (values == null) {
       return;
     }
     _faqs.clear();

@@ -62,9 +62,16 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
 
   Stream<bool> get _dataLoaded => Rx.combineLatest2(
       _animationComplete,
-      Rx.zip8(_statsSubject, _remoteWorkSubject, _faqsSubject, _videosSubject,
-          _measuresSubject, _initiativesSubject, _sliderSubject,_faqDetailsSubject,
-          (stats, remote, faqs, videos, measures, initiatives, slider, faqDetails) {
+      Rx.zip8(
+          _statsSubject,
+          _remoteWorkSubject,
+          _faqsSubject,
+          _videosSubject,
+          _measuresSubject,
+          _initiativesSubject,
+          _sliderSubject,
+          _faqDetailsSubject, (stats, remote, faqs, videos, measures,
+              initiatives, slider, faqDetails) {
         logger.i("_statsSubject : $stats");
         logger.i("_remoteWorkSubject : $remote");
         logger.i("_faqsSubject : $faqs");
@@ -160,7 +167,6 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
 
   @override
   void onStateResultListener(ResultStream result) {
-    print("${result.state}: ${result.runtimeType}");
     if (result is StatsResultStream) {
       Provider.of<StatsProvider>(context, listen: false).setStats(result.model);
 
@@ -238,8 +244,7 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
     }
 
     if (result is FaqResultStream) {
-      Provider.of<FaqProvider>(context, listen: false)
-          .setFaqs(result.model);
+      Provider.of<FaqProvider>(context, listen: false).setFaqs(result.model);
 
       if (result.state == StateStream.success) {
         _faqDetailsSubject.add(true);
@@ -256,7 +261,6 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
         opaque: false,
         builder: (context) {
           final size = MediaQuery.of(context).size;
-          print(size.width);
           return Material(
             child: Container(
               color: Colors.black54,

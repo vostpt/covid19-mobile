@@ -102,7 +102,8 @@ class VideosResultStream extends ResultStream<StateStream, List<VideoModel>> {
 /// The ResultStream instance for requesting the remote work posts
 ///
 /// [FaqResultStream] is extended from [ResultStream]
-class FaqResultStream extends ResultStream<StateStream, Map<int, List<FaqModel>>> {
+class FaqResultStream
+    extends ResultStream<StateStream, Map<int, List<FaqModel>>> {
   @override
   Map<int, List<FaqModel>> model;
 

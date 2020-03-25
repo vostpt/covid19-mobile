@@ -27,55 +27,57 @@ class StatisticsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: callback,
-      behavior: HitTestBehavior.translucent,
-      child: ButtonBackground(
-        color: Covid19Colors.red,
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                StatisticsBorder(
-                  color: Colors.white,
-                  text: Text(Provider.of<StatsProvider>(context).confirmed,
+    return Theme(
+      data: Theme.of(context).copyWith(splashColor: Covid19Colors.green50),
+      child: InkWell(
+        onTap: callback,
+        child: ButtonBackground(
+          color: Covid19Colors.red,
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  StatisticsBorder(
+                    color: Colors.white,
+                    text: Text(Provider.of<StatsProvider>(context).confirmed,
+                        style: Theme.of(context)
+                            .textTheme
+                            .display2
+                            .copyWith(color: Colors.white)),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    child: Text(
+                      S.of(context).homePageConfirmedCases.toUpperCase(),
                       style: Theme.of(context)
                           .textTheme
                           .display2
-                          .copyWith(color: Colors.white)),
-                ),
-                const SizedBox(
-                  width: 8.0,
-                ),
-                Expanded(
-                  child: Text(
-                    S.of(context).homePageConfirmedCases.toUpperCase(),
+                          .copyWith(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                children: <Widget>[
+                  Text(
+                    S.of(context).checkDetails,
                     style: Theme.of(context)
                         .textTheme
-                        .display2
+                        .button
                         .copyWith(color: Colors.white),
                   ),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            Row(
-              children: <Widget>[
-                Text(
-                  S.of(context).checkDetails,
-                  style: Theme.of(context)
-                      .textTheme
-                      .button
-                      .copyWith(color: Colors.white),
-                ),
-                SvgIcons.linkSvg(
-                  color: Colors.white,
-                ),
-              ],
-            )
-          ],
+                  SvgIcons.linkSvg(
+                    color: Colors.white,
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

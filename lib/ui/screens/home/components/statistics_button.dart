@@ -30,6 +30,7 @@ class StatisticsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: callback,
+      behavior: HitTestBehavior.translucent,
       child: ButtonBackground(
         color: Covid19Colors.red,
         child: Column(

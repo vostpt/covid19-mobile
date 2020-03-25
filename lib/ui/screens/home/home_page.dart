@@ -66,14 +66,14 @@ class _HomePageState extends State<HomePage> {
                         width: MediaQuery.of(context).size.width * 0.4,
                       ),
                     ),
-                    const SizedBox(
-                      height: 16.0,
-                    ),
                     Text(
                       S.of(context).homePageTitle.toUpperCase(),
                       style: TextStyles.subtitle(
                         color: Covid19Colors.red,
                       ),
+                    ),
+                    const SizedBox(
+                      height: 16.0,
                     ),
                     HomeSlider(),
                     const SizedBox(

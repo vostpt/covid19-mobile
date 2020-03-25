@@ -39,33 +39,6 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
   /// ScrollController for changing the scroll position
   final ScrollController scrollController = ScrollController();
 
-  /// Store the rows index key for calculating the height dynamically
-  Map<int, GlobalKey> expands = <int, GlobalKey>{};
-
-  /// Gets the top value from the element position - 1
-  _getSize(int index) {
-    var from = index - 1;
-
-    var totalSize = 0.0;
-    for (int i = from, j = 0; i >= j; i--) {
-      /// Gets the widget key
-      var gKey = expands[i];
-
-      /// In case the context is no longer available skip
-      if (gKey.currentContext == null) {
-        continue;
-      }
-
-      /// Gets the Render box to get the element size
-      final RenderBox box = gKey.currentContext.findRenderObject();
-      final size = box.size;
-
-      totalSize += size.height;
-    }
-
-    return totalSize;
-  }
-
   @override
   Widget build(BuildContext context) {
     /// TODO: in case of slow connection show loading?
@@ -90,13 +63,11 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
         elevation: 0.0,
       ),
       body: Container(
+        margin: EdgeInsets.zero,
         child: ListView.separated(
             controller: scrollController,
             itemBuilder: (context, index) {
-              expands.putIfAbsent(index, () => GlobalKey());
-
               return Container(
-                padding: EdgeInsets.only(top: 16, bottom: 18, left: 12),
                 child: InitiativesItem(
                   title: _initiatives[index].title,
                   body: _initiatives[index].content,

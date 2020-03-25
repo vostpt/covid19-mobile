@@ -1,3 +1,5 @@
+import 'dart:io';
+
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -67,6 +69,17 @@ class CovidApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
+
+    /// If is an Android then change the status bar color
+    /// to dark and text to white
+    if (Platform.isAndroid) {
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+          statusBarColor: Colors.white,
+          statusBarIconBrightness:
+              Brightness.dark //or set color with: Color(0xFF0000FF)
+          ));
+    }
+
     return MultiProvider(
       providers: [
         Provider<AppBloc>.value(value: appBloc),

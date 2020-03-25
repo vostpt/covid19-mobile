@@ -119,8 +119,7 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
     }
 
     if (result is FaqResultStream) {
-      Provider.of<FaqProvider>(context, listen: false)
-          .setFaqs(result.model);
+      Provider.of<FaqProvider>(context, listen: false).setFaqs(result.model);
     }
   }
 }

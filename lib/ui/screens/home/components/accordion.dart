@@ -21,7 +21,11 @@ class Accordion extends StatelessWidget {
       this.onExpansionChanged,
       this.withBorder = true,
       this.initiallyExpanded = false,
-      this.titleTextStyle})
+      this.titleTextStyle,
+      this.padding,
+      this.margin,
+      this.contentPadding,
+      this.childrenPadding})
       : super(key: key);
 
   final String title;
@@ -33,6 +37,11 @@ class Accordion extends StatelessWidget {
 
   final TextStyle titleTextStyle;
 
+  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry contentPadding;
+  final EdgeInsetsGeometry childrenPadding;
+
   @override
   Widget build(BuildContext context) {
     assert(title != null, 'Title cannot be null');
@@ -42,8 +51,8 @@ class Accordion extends StatelessWidget {
         dividerColor: Colors.transparent,
       ),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-        margin: const EdgeInsets.symmetric(horizontal: 15.0),
+        padding: padding ?? const EdgeInsets.symmetric(horizontal: 15.0),
+        margin: margin ?? const EdgeInsets.symmetric(horizontal: 15.0),
         decoration: withBorder
             ? BoxDecoration(
                 border: Border.all(
@@ -53,7 +62,7 @@ class Accordion extends StatelessWidget {
               )
             : null,
         child: ListTileTheme(
-          contentPadding: EdgeInsets.zero,
+          contentPadding: contentPadding ?? EdgeInsets.zero,
           child: ExpansionTile(
             title: Text(
               title,
@@ -64,7 +73,8 @@ class Accordion extends StatelessWidget {
             children: children
                 ?.map(
                   (child) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    padding: childrenPadding ??
+                        const EdgeInsets.symmetric(vertical: 10.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: child,

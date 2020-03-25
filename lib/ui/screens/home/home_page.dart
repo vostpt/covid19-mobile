@@ -66,6 +66,9 @@ class _HomePageState extends State<HomePage> {
                         width: MediaQuery.of(context).size.width * 0.4,
                       ),
                     ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
                     Text(
                       S.of(context).homePageTitle.toUpperCase(),
                       style: TextStyles.subtitle(

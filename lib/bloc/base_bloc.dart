@@ -102,18 +102,16 @@ class VideosResultStream extends ResultStream<StateStream, List<VideoModel>> {
 /// The ResultStream instance for requesting the remote work posts
 ///
 /// [FaqResultStream] is extended from [ResultStream]
-class FaqResultStream extends ResultStream<StateStream, List<FaqModel>> {
+class FaqResultStream extends ResultStream<StateStream, Map<int, List<FaqModel>>> {
   @override
-  List<FaqModel> model;
+  Map<int, List<FaqModel>> model;
 
   @override
   StateStream state;
 
-  int id;
-
   /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [List<FaqModel>] instance list
-  FaqResultStream({this.state, this.model, this.id});
+  FaqResultStream({this.state, this.model});
 }
 
 /// The ResultStream instance for requesting the remote work posts

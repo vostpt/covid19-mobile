@@ -57,13 +57,14 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
   final PublishSubject _measuresSubject = PublishSubject<bool>();
   final PublishSubject _initiativesSubject = PublishSubject<bool>();
   final PublishSubject _sliderSubject = PublishSubject<bool>();
+  final PublishSubject _faqDetailsSubject = PublishSubject<bool>();
   final PublishSubject _animationComplete = PublishSubject<bool>();
 
   Stream<bool> get _dataLoaded => Rx.combineLatest2(
       _animationComplete,
-      Rx.zip7(_statsSubject, _remoteWorkSubject, _faqsSubject, _videosSubject,
-          _measuresSubject, _initiativesSubject, _sliderSubject,
-          (stats, remote, faqs, videos, measures, initiatives, slider) {
+      Rx.zip8(_statsSubject, _remoteWorkSubject, _faqsSubject, _videosSubject,
+          _measuresSubject, _initiativesSubject, _sliderSubject,_faqDetailsSubject,
+          (stats, remote, faqs, videos, measures, initiatives, slider, faqDetails) {
         logger.i("_statsSubject : $stats");
         logger.i("_remoteWorkSubject : $remote");
         logger.i("_faqsSubject : $faqs");
@@ -71,15 +72,17 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
         logger.i("_measuresSubject : $measures");
         logger.i("_initiativesSubject : $initiatives");
         logger.i("_sliderSubject : $slider");
+        logger.i("_faqDetailsSubject : $faqDetails");
         logger.d(
-            "COMBINED: ${stats && remote && faqs && videos && measures && initiatives && slider}");
+            "COMBINED: ${stats && remote && faqs && videos && measures && initiatives && slider && faqDetails}");
         return stats &&
             remote &&
             faqs &&
             videos &&
             measures &&
             initiatives &&
-            slider;
+            slider &&
+            faqDetails;
       }),
       (animation, api) => animation && api);
 
@@ -236,7 +239,13 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
 
     if (result is FaqResultStream) {
       Provider.of<FaqProvider>(context, listen: false)
-          .setFaqs(result.id, result.model);
+          .setFaqs(result.model);
+
+      if (result.state == StateStream.success) {
+        _faqDetailsSubject.add(true);
+      } else if (result.state == StateStream.fail) {
+        _faqDetailsSubject.add(false);
+      }
     }
   }
 
@@ -325,6 +334,7 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
     _videosSubject.close();
     _measuresSubject.close();
     _initiativesSubject.close();
+    _faqDetailsSubject.close();
     super.dispose();
   }
 }

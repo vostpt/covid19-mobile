@@ -103,18 +103,10 @@ class AppBloc implements Bloc {
     );
   }
 
-  void getFaqsDetails(int id) async {
+  Future<List<FaqModel>> getFaqsDetails(int id) async {
     final postType = PostType(PostTypes.faq);
 
-    var results =
-        await getPosts<FaqModel>(postType, cacheKey: "FaqModel", id: id);
-
-    onStream.sink.add(
-      FaqResultStream(
-          model: results,
-          state: results != null ? StateStream.success : StateStream.fail,
-          id: id),
-    );
+    return getPosts<FaqModel>(postType, cacheKey: "FaqModel", id: id);
   }
 
   void getFaqCategories() async {
@@ -125,10 +117,27 @@ class AppBloc implements Bloc {
 
     // fetch all categories
     if (results != null) {
+      final map = <int, List<FaqModel>>{};
       for (var result in results) {
         logger.i("Getting faqs for: ${result.categoryId}");
-        getFaqsDetails(result.categoryId);
+        map[result.categoryId] = await getFaqsDetails(result.categoryId);
       }
+
+      logger.i("FAQS: $map");
+
+      onStream.sink.add(
+        FaqResultStream(
+          model: map,
+          state: map.isNotEmpty ? StateStream.success : StateStream.fail,
+        ),
+      );
+    } else {
+      onStream.sink.add(
+        FaqResultStream(
+          model: null,
+          state: StateStream.fail,
+        ),
+      );
     }
 
     onStream.sink.add(

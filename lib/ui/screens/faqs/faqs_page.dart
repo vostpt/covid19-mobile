@@ -99,6 +99,7 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
 
   @override
   void onStateResultListener(ResultStream result) {
+    logger.i("New data: ${result.runtimeType}");
     if (result is FaqCategoryResultStream) {
       Provider.of<FaqCategoryProvider>(context, listen: false)
           .setFaqsCategories(result.model);
@@ -106,7 +107,7 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
 
     if (result is FaqResultStream) {
       Provider.of<FaqProvider>(context, listen: false)
-          .setFaqs(result.id, result.model);
+          .setFaqs(result.model);
     }
   }
 }

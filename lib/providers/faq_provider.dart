@@ -19,8 +19,12 @@ class FaqProvider extends ChangeNotifier {
 
   Map<int, List<FaqModel>> get faqs => _faqs;
 
-  void setFaqs(int id, List<FaqModel> values) {
-    _faqs[id] = values;
+  void setFaqs(Map<int, List<FaqModel>> values) {
+    if(values == null) {
+      return;
+    }
+    _faqs.clear();
+    _faqs.addAll(values);
     notifyListeners();
   }
 }

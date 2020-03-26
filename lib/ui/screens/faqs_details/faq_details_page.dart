@@ -95,7 +95,8 @@ class _FaqsPageState extends State<FaqsDetails> {
                 expands.putIfAbsent(index, () => GlobalKey());
 
                 return Container(
-                  padding: EdgeInsets.only(bottom: (index == widget.faqs.length -1) ? 18.0 : 0 ),
+                  padding: EdgeInsets.only(
+                      bottom: (index == widget.faqs.length - 1) ? 18.0 : 0),
                   child: Accordion(
                     key: expands[index],
                     withBorder: false,

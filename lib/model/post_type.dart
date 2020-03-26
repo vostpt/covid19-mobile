@@ -1,5 +1,4 @@
 import 'package:covid19mobile/main.dart';
-import 'package:covid19mobile/services/api.dart';
 
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
@@ -26,7 +25,7 @@ enum PostTypes {
 }
 
 const _initiativesIdDev = 6;
-const _initiativesIdProd = 4;
+const _initiativesIdProd = 7;
 
 class PostType {
   final PostTypes postTypes;
@@ -40,7 +39,9 @@ class PostType {
       case PostTypes.faqCategories:
         return '/appfaqs';
       case PostTypes.measures:
-        return '/measures';
+        return appConfig == AppConfig.dev
+            ? '/measures'
+            : '/measures?categories=4';
       case PostTypes.remoteWork:
         return '/remote_work';
       case PostTypes.faq:

@@ -15,6 +15,7 @@ import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
+import 'package:covid19mobile/ui/screens/home/components/card_home_slider.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/assets/images.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
@@ -24,7 +25,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../app.dart';
-import 'components/card_home_slider.dart';
 import 'components/statistics_button.dart';
 
 /// Creates an HomePage extending [BasePage]

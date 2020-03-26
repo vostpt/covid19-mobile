@@ -19,6 +19,7 @@ import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/stats_widget.dart';
+import 'package:covid19mobile/utils/launch_url.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -124,7 +125,9 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                           .textTheme
                           .display1
                           .copyWith(color: Covid19Colors.darkGrey),
-                      text: S.of(context).statisticsPageSuspects.toUpperCase(),
+                      text: S.of(context).statisticsPageSuspects.contains(" ")
+                          ? "${S.of(context).statisticsPageSuspects.toUpperCase().replaceFirst(" ", "\n")}"
+                          : "${S.of(context).statisticsPageSuspects.toUpperCase()}\n",
                       textStyle: Theme.of(context)
                           .textTheme
                           .display4
@@ -142,10 +145,8 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                           .textTheme
                           .display1
                           .copyWith(color: Covid19Colors.darkGrey),
-                      text: S
-                          .of(context)
-                          .statisticsPageAwaitingResults
-                          .toUpperCase(),
+                      text:
+                          "${S.of(context).statisticsPageAwaitingResults.toUpperCase().replaceFirst(" ", "\n")}",
                       textStyle: Theme.of(context)
                           .textTheme
                           .display4
@@ -170,9 +171,16 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
               height: _itemsMargin,
             ),
             SafeArea(
-              child: Text(S.of(context).statisticsPageDataLabel.toUpperCase(),
+              child: GestureDetector(
+                onTap: () {
+                  launchURL("https://bit.ly/APP2DGS");
+                },
+                child: Text(
+                  S.of(context).statisticsPageDataLabel,
                   style: TextStyles.subtitle(
-                      color: Theme.of(context).primaryColor)),
+                      color: Theme.of(context).primaryColor),
+                ),
+              ),
             ),
           ],
         ),

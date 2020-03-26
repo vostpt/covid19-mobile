@@ -103,7 +103,7 @@ class _ContactsPageState extends State<ContactsPage> {
   _onContactTap(ContactModel contact) {
     switch (contact.contactType) {
       case ContactType.phone:
-        _launch("tel: ${contact.title}");
+        _launch("tel:${contact.title.replaceAll(RegExp(r'[^0-9+]'), '')}");
         break;
       case ContactType.link:
         var urlToOpen = contact.title;

@@ -1,3 +1,5 @@
+import 'package:covid19mobile/ui/assets/colors.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -32,6 +34,14 @@ class InitiativesItem extends StatelessWidget {
       key: key,
       withBorder: false,
       title: title,
+      contentPadding: const EdgeInsets.only(left: 12, right: 17),
+      padding: const EdgeInsets.all(0.0),
+      margin: const EdgeInsets.all(0.0),
+      childrenPadding: const EdgeInsets.only(left: 12, right: 12),
+      titleTextStyle: Theme.of(context)
+          .textTheme
+          .display3
+          .copyWith(color: Covid19Colors.green),
       onExpansionChanged: onExpansionChanged,
       children: <Widget>[
         Html(

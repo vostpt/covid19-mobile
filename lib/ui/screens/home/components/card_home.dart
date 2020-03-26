@@ -1,7 +1,3 @@
-import 'package:covid19mobile/resources/icons_svg.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
-import 'package:covid19mobile/ui/widgets/button_background.dart';
-
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -16,6 +12,9 @@ import 'package:covid19mobile/ui/widgets/button_background.dart';
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:covid19mobile/resources/icons_svg.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/ui/widgets/button_background.dart';
 
 class CardHome extends StatelessWidget {
   final String text;

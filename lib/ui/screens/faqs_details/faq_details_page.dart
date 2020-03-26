@@ -95,11 +95,16 @@ class _FaqsPageState extends State<FaqsDetails> {
                 expands.putIfAbsent(index, () => GlobalKey());
 
                 return Container(
-                  padding: EdgeInsets.only(top: 16, bottom: 18, left: 12),
+                  padding: EdgeInsets.only(
+                      bottom: (index == widget.faqs.length - 1) ? 18.0 : 0),
                   child: Accordion(
                     key: expands[index],
                     withBorder: false,
                     title: widget.faqs[index].question,
+                    contentPadding: const EdgeInsets.only(left: 12, right: 17),
+                    padding: const EdgeInsets.all(0.0),
+                    margin: const EdgeInsets.all(0.0),
+                    childrenPadding: const EdgeInsets.only(left: 12, right: 12),
                     titleTextStyle: Theme.of(context)
                         .textTheme
                         .display3

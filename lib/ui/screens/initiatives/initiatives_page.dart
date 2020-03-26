@@ -68,6 +68,8 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
             controller: scrollController,
             itemBuilder: (context, index) {
               return Container(
+                padding: EdgeInsets.only(
+                    bottom: (index == _initiatives.length - 1) ? 18.0 : 0),
                 child: InitiativesItem(
                   title: _initiatives[index].title,
                   body: _initiatives[index].content,

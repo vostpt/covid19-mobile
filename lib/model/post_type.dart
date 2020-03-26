@@ -41,7 +41,7 @@ class PostType {
       case PostTypes.measures:
         return appConfig == AppConfig.dev
             ? '/measures'
-            : '/measures?categories=4';
+            : '/measures?categories=5,4';
       case PostTypes.remoteWork:
         return '/remote_work';
       case PostTypes.faq:

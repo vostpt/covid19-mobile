@@ -25,6 +25,7 @@ import 'package:covid19mobile/providers/slider_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
+import 'package:covid19mobile/resources/custom_localization.dart';
 import 'package:covid19mobile/resources/style/themes.dart';
 import 'package:covid19mobile/ui/screens/about/about_page.dart';
 import 'package:covid19mobile/ui/screens/contacts/contacts_page.dart';
@@ -113,6 +114,7 @@ class CovidApp extends StatelessWidget {
         title: 'Covid 19 App',
         localizationsDelegates: [
           S.delegate,
+          LicensesPageTitleTextLocalDelegate(context),
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,

@@ -498,6 +498,15 @@ class S {
     );
   }
 
+  String get licensesPageTitle {
+    return Intl.message(
+      'Licenças Open-Source',
+      name: 'licensesPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   String get licencesPageTitle {
     return Intl.message(
       'Licenças Open-Source',

@@ -68,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Última actualização: "),
         "licencesPageTitle":
             MessageLookupByLibrary.simpleMessage("Licenças Open-Source"),
+        "licensesPageTitle":
+            MessageLookupByLibrary.simpleMessage("Licenças Open-Source"),
         "measuresHomepageButton": MessageLookupByLibrary.simpleMessage(
             "Medidas excecionais de resposta À COVID-19"),
         "measuresPageMeasures":

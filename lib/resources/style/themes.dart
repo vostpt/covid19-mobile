@@ -29,6 +29,8 @@ class Themes {
   static Color colorTextLight = Covid19Colors.grey;
 
   static TextTheme defaultTextTheme = TextTheme(
+      headline: TextStyles.h1(),
+      caption: TextStyles.paragraphSmall(),
       body1: TextStyles.paragraphNormal(
         color: colorText,
       ),

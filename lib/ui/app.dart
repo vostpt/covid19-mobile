@@ -1,5 +1,3 @@
-import 'dart:io';
-
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -12,6 +10,8 @@ import 'dart:io';
 ///
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+import 'dart:io';
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
@@ -168,7 +168,9 @@ class CovidApp extends StatelessWidget {
               page = MeasureDetail(measure: settings.arguments);
               break;
             case routeLicences:
-              page = LicensePage();
+              page = LicensePage(
+                applicationName: "Estamos ON - Covid19",
+              );
               break;
           }
           return CupertinoPageRoute(builder: (_) => page, settings: settings);

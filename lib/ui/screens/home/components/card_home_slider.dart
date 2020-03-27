@@ -137,6 +137,9 @@ class CardHomeSlide extends StatelessWidget {
     return GestureDetector(
         onTap: onTap,
         child: Card(
+          ////This `color:` is so it doesn't show a black
+          ///background before it has a chance to load.
+          color: Covid19Colors.white,
           elevation: 4.0,
           clipBehavior: Clip.hardEdge,
           child: Stack(fit: StackFit.expand, children: <Widget>[

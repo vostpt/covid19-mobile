@@ -110,15 +110,6 @@ class _FaqsPageState extends State<FaqsDetails> {
                         .display3
                         .copyWith(
                             color: Covid19Colors.green, letterSpacing: 0.2),
-                    onExpansionChanged: (value) {
-                      if (value && index > 0) {
-                        /// Calculates the height to scroll to position
-                        var size = _getSize(index);
-                        scrollController.animateTo(size,
-                            duration: Duration(milliseconds: 1250),
-                            curve: Curves.fastLinearToSlowEaseIn);
-                      }
-                    },
                     children: <Widget>[
                       Html(
                         data: widget.faqs[index].answer.replaceAll("\\n", ""),

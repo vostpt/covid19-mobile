@@ -51,47 +51,21 @@ class SplashPage extends BasePage {
 
 class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
   final PublishSubject _statsSubject = PublishSubject<bool>();
-  final PublishSubject _remoteWorkSubject = PublishSubject<bool>();
-  final PublishSubject _faqsSubject = PublishSubject<bool>();
-  final PublishSubject _videosSubject = PublishSubject<bool>();
-  final PublishSubject _measuresSubject = PublishSubject<bool>();
-  final PublishSubject _initiativesSubject = PublishSubject<bool>();
   final PublishSubject _sliderSubject = PublishSubject<bool>();
-  final PublishSubject _faqDetailsSubject = PublishSubject<bool>();
   final PublishSubject _animationComplete = PublishSubject<bool>();
 
   Stream<bool> get _dataLoaded => Rx.combineLatest2(
-      _animationComplete,
-      Rx.zip8(
-          _statsSubject,
-          _remoteWorkSubject,
-          _faqsSubject,
-          _videosSubject,
-          _measuresSubject,
-          _initiativesSubject,
-          _sliderSubject,
-          _faqDetailsSubject, (stats, remote, faqs, videos, measures,
-              initiatives, slider, faqDetails) {
-        logger.i("_statsSubject : $stats");
-        logger.i("_remoteWorkSubject : $remote");
-        logger.i("_faqsSubject : $faqs");
-        logger.i("_videosSubject : $videos");
-        logger.i("_measuresSubject : $measures");
-        logger.i("_initiativesSubject : $initiatives");
-        logger.i("_sliderSubject : $slider");
-        logger.i("_faqDetailsSubject : $faqDetails");
-        logger.d(
-            "COMBINED: ${stats && remote && faqs && videos && measures && initiatives && slider && faqDetails}");
-        return stats &&
-            remote &&
-            faqs &&
-            videos &&
-            measures &&
-            initiatives &&
-            slider &&
-            faqDetails;
-      }),
-      (animation, api) => animation && api);
+              _animationComplete,
+              Rx.zip2(_statsSubject, _sliderSubject, (stats, slider) {
+                logger.i("_statsSubject : $stats");
+                logger.i("_sliderSubject : $slider");
+                logger.d("COMBINED: ${stats && slider}");
+                return stats && slider;
+              }),
+              (animation, api) => animation && api)
+          .timeout(Duration(seconds: 5), onTimeout: (sink) {
+        sink.add(true);
+      });
 
   StreamSubscription<bool> _dataLoadedSubscription;
 
@@ -137,29 +111,31 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
     ///
     bloc.bloc.getStats();
 
-    /// Get RemoteWork Posts
-    ///
-    bloc.bloc.geRemoteWork();
-
-    /// Get Faq Posts
-    ///
-    bloc.bloc.getFaqCategories();
-
-    /// Get Videos Posts
-    ///
-    bloc.bloc.getVideos();
-
-    /// Get Measures
-    ///
-    bloc.bloc.getMeasures();
-
-    /// Get Initiatives Posts
-    ///
-    bloc.bloc.getInitiatives();
-
     /// Get Slider
     ///
     bloc.bloc.getSlider();
+
+    scheduleMicrotask(() {
+      /// Get RemoteWork Posts
+      ///
+      bloc.bloc.geRemoteWork();
+
+      /// Get Faq Posts
+      ///
+      bloc.bloc.getFaqCategories();
+
+      /// Get Videos Posts
+      ///
+      bloc.bloc.getVideos();
+
+      /// Get Measures
+      ///
+      bloc.bloc.getMeasures();
+
+      /// Get Initiatives Posts
+      ///
+      bloc.bloc.getInitiatives();
+    });
   }
 
   @override
@@ -180,56 +156,26 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
     if (result is RemoteWorkResultStream) {
       Provider.of<RemoteWorkProvider>(context, listen: false)
           .setRemoteWork(result.model);
-
-      if (result.state == StateStream.success) {
-        _remoteWorkSubject.add(true);
-      } else if (result.state == StateStream.fail) {
-        _remoteWorkSubject.add(false);
-      }
     }
 
     if (result is FaqCategoryResultStream) {
       Provider.of<FaqCategoryProvider>(context, listen: false)
           .setFaqsCategories(result.model);
-
-      if (result.state == StateStream.success) {
-        _faqsSubject.add(true);
-      } else if (result.state == StateStream.fail) {
-        _faqsSubject.add(false);
-      }
     }
 
     if (result is VideosResultStream) {
       Provider.of<VideosProvider>(context, listen: false)
           .setVideos(result.model);
-
-      if (result.state == StateStream.success) {
-        _videosSubject.add(true);
-      } else if (result.state == StateStream.fail) {
-        _videosSubject.add(false);
-      }
     }
 
     if (result is MeasuresResultStream) {
       Provider.of<MeasuresProvider>(context, listen: false)
           .setMeasures(result.model);
-
-      if (result.state == StateStream.success) {
-        _measuresSubject.add(true);
-      } else if (result.state == StateStream.fail) {
-        _measuresSubject.add(false);
-      }
     }
 
     if (result is InitiativeResultStream) {
       Provider.of<InitiativesProvider>(context, listen: false)
           .setInitiatives(result.model);
-
-      if (result.state == StateStream.success) {
-        _initiativesSubject.add(true);
-      } else if (result.state == StateStream.fail) {
-        _initiativesSubject.add(false);
-      }
     }
 
     if (result is SliderResultStream) {
@@ -245,12 +191,6 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
 
     if (result is FaqResultStream) {
       Provider.of<FaqProvider>(context, listen: false).setFaqs(result.model);
-
-      if (result.state == StateStream.success) {
-        _faqDetailsSubject.add(true);
-      } else if (result.state == StateStream.fail) {
-        _faqDetailsSubject.add(false);
-      }
     }
   }
 
@@ -260,7 +200,6 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
     entry = OverlayEntry(
         opaque: false,
         builder: (context) {
-          final size = MediaQuery.of(context).size;
           return Material(
             child: Container(
               color: Colors.black54,
@@ -333,12 +272,10 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
   void dispose() {
     logger.i("Dispose called");
     _statsSubject.close();
-    _remoteWorkSubject.close();
-    _faqsSubject.close();
-    _videosSubject.close();
-    _measuresSubject.close();
-    _initiativesSubject.close();
-    _faqDetailsSubject.close();
+    _sliderSubject.close();
+    if (_dataLoadedSubscription != null) {
+      _dataLoadedSubscription.cancel();
+    }
     super.dispose();
   }
 }

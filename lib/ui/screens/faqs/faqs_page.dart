@@ -22,6 +22,7 @@ import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
+import 'package:covid19mobile/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -45,11 +46,6 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
   Map<int, List<FaqModel>> faqs;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     var provider = Provider.of<FaqCategoryProvider>(context);
     var faqsProvider = Provider.of<FaqProvider>(context);
@@ -61,6 +57,13 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
     if (faqsProvider.faqs != null) {
       faqs = faqsProvider.faqs;
     }
+
+    /// Check if have any data to present, if not show [CircularProgressIndicator]
+    /// while wait for data
+    var hasData = faqsCategories != null &&
+        faqsCategories.length > 0 &&
+        faqs != null &&
+        faqs.isNotEmpty;
 
     return Scaffold(
       appBar: AppBar(
@@ -78,33 +81,44 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
       ),
       body: Container(
         margin: EdgeInsets.all(16.0),
-        child: ListView.separated(
-            itemBuilder: (context, index) => CardBorderArrow(
-                  text: faqsCategories[index].name,
-                  textColor: Theme.of(context).primaryColor,
-                  borderColor: Theme.of(context).primaryColor,
-                  callback: () {
-                    logger.i(
-                        "Id: ${faqsCategories[index].categoryId}. Map: $faqs; specific: ${faqs[faqsCategories[index].categoryId]}");
-                    Navigator.of(context).pushNamed(routeFaqsDetails,
-                        arguments: faqs[faqsCategories[index].categoryId]);
-                  },
-                ),
-            separatorBuilder: (_, __) {
-              return const SizedBox(
-                height: 8.0,
-              );
-            },
-            itemCount: faqsCategories != null ? faqsCategories.length : 0),
+        child: hasData
+            ? ListView.separated(
+                itemBuilder: (context, index) => CardBorderArrow(
+                      text: faqsCategories[index].name,
+                      textColor: Theme.of(context).primaryColor,
+                      borderColor: Theme.of(context).primaryColor,
+                      callback: () {
+                        logger.i(
+                            "Id: ${faqsCategories[index].categoryId}. Map: $faqs; specific: ${faqs[faqsCategories[index].categoryId]}");
+                        Navigator.of(context).pushNamed(routeFaqsDetails,
+                            arguments: faqs[faqsCategories[index].categoryId]);
+                      },
+                    ),
+                separatorBuilder: (_, __) {
+                  return const SizedBox(
+                    height: 8.0,
+                  );
+                },
+                itemCount: faqsCategories != null ? faqsCategories.length : 0)
+            : const Loading(),
       ),
     );
   }
 
   @override
   void initBloc(AppBloc bloc) {
-    /// Get Measures
+    /// Get Faqs & Faqs categories
     ///
-    bloc.getFaqCategories();
+
+    var provider = Provider.of<FaqCategoryProvider>(context);
+    var faqsProvider = Provider.of<FaqProvider>(context);
+
+    if ((provider.faqs == null ||
+            (provider.faqs != null && provider.faqs.length == 0)) ||
+        (faqsProvider.faqs == null ||
+            (faqsProvider.faqs != null && faqsProvider.faqs.length == 0))) {
+      bloc.getFaqCategories();
+    }
   }
 
   @override

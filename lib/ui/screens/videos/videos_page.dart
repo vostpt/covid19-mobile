@@ -20,6 +20,7 @@ import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/widgets/card_video.dart';
+import 'package:covid19mobile/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,8 +41,6 @@ class _VideosPageState extends BaseState<VideosPage, AppBloc> {
 
   @override
   Widget build(BuildContext context) {
-    /// TODO: in case of slow connection show loading?
-
     /// Gets all faqs from the Provider or the Modal Route arguments
     ///
     /// If pushing from home and faqs have initial data
@@ -49,6 +48,10 @@ class _VideosPageState extends BaseState<VideosPage, AppBloc> {
     /// and update with the Provider
     _videos = Provider.of<VideosProvider>(context).videos ??
         ModalRoute.of(context).settings.arguments;
+
+    /// Check if have any data to present, if not show [CircularProgressIndicator]
+    /// while wait for data
+    var hasData = _videos != null && _videos.isNotEmpty;
 
     return Scaffold(
       appBar: AppBar(
@@ -60,21 +63,23 @@ class _VideosPageState extends BaseState<VideosPage, AppBloc> {
         ),
       ),
       body: Container(
-        child: ListView.separated(
-            itemBuilder: (context, index) => CardVideo(
-                  backgroundUrl: _videos[index].getVideoThumbnail(),
-                  label: _videos[index].postTitle,
-                  onPressed: () => Navigator.of(context).pushNamed(
-                      routeVideoPlayer,
-                      arguments: _videos[index].getVideoId()),
-                  labelAlignment: Alignment.topLeft,
-                ),
-            separatorBuilder: (_, __) {
-              return const SizedBox(
-                height: 12.0,
-              );
-            },
-            itemCount: _videos != null ? _videos.length : 0),
+        child: hasData
+            ? ListView.separated(
+                itemBuilder: (context, index) => CardVideo(
+                      backgroundUrl: _videos[index].getVideoThumbnail(),
+                      label: _videos[index].postTitle,
+                      onPressed: () => Navigator.of(context).pushNamed(
+                          routeVideoPlayer,
+                          arguments: _videos[index].getVideoId()),
+                      labelAlignment: Alignment.topLeft,
+                    ),
+                separatorBuilder: (_, __) {
+                  return const SizedBox(
+                    height: 12.0,
+                  );
+                },
+                itemCount: _videos != null ? _videos.length : 0)
+            : const Loading(),
       ),
     );
   }
@@ -82,7 +87,12 @@ class _VideosPageState extends BaseState<VideosPage, AppBloc> {
   @override
   void initBloc(AppBloc bloc) {
     /// In case [_faqs] is null then fetch if again
-    if (_videos == null || _videos.isEmpty) {
+
+    var provider = Provider.of<VideosProvider>(context);
+
+    if (_videos == null ||
+        provider.videos == null ||
+        (provider.videos != null && provider.videos.isEmpty)) {
       bloc.getVideos();
     }
   }

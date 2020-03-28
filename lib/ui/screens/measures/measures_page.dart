@@ -21,12 +21,10 @@ import 'package:covid19mobile/resources/style/themes.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
+import 'package:covid19mobile/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:covid19mobile/bloc/app_bloc.dart';
-import 'package:covid19mobile/bloc/base_bloc.dart';
-import 'package:covid19mobile/generated/l10n.dart';
-import 'package:covid19mobile/model/measure_model.dart';
+
 import '../../app.dart';
 
 /// Creates an MeasuresPage extending [BasePage]
@@ -58,6 +56,11 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
     if (provider.measures != null) {
       measures = provider.measures;
     }
+
+    /// Check if have any data to present, if not show [CircularProgressIndicator]
+    /// while wait for data
+    var hasData = measures != null && measures.isNotEmpty;
+
     return Scaffold(
       appBar: AppBar(
         iconTheme:
@@ -72,10 +75,10 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
         backgroundColor: Colors.white,
         elevation: 0.0,
       ),
-      body: measures != null
-          ? Container(
-              margin: EdgeInsets.all(10),
-              child: ListView.separated(
+      body: Container(
+        margin: EdgeInsets.all(10),
+        child: hasData
+            ? ListView.separated(
                 itemCount: measures.length,
                 itemBuilder: (_, index) {
                   return CardBorderArrow(
@@ -96,11 +99,9 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
                     height: 10,
                   );
                 },
-              ),
-            )
-          : Center(
-              child: Text("Loading..."),
-            ),
+              )
+            : const Loading(),
+      ),
     );
   }
 
@@ -108,7 +109,13 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
   void initBloc(AppBloc bloc) {
     /// Get Measures
     ///
-    bloc.getMeasures();
+
+    var provider = Provider.of<MeasuresProvider>(context);
+
+    if (provider.measures == null ||
+        (provider.measures != null && provider.measures.isEmpty)) {
+      bloc.getMeasures();
+    }
   }
 
   @override

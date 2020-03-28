@@ -65,10 +65,6 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
         faqs != null &&
         faqs.isNotEmpty;
 
-    print(hasData);
-    print(faqsCategories);
-    print(faqs);
-
     return Scaffold(
       appBar: AppBar(
         iconTheme:

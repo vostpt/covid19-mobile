@@ -62,34 +62,11 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
 
   Stream<bool> get _dataLoaded => Rx.combineLatest2(
       _animationComplete,
-      Rx.zip8(
-          _statsSubject,
-          _remoteWorkSubject,
-          _faqsSubject,
-          _videosSubject,
-          _measuresSubject,
-          _initiativesSubject,
-          _sliderSubject,
-          _faqDetailsSubject, (stats, remote, faqs, videos, measures,
-              initiatives, slider, faqDetails) {
+      Rx.zip2(_statsSubject, _sliderSubject, (stats, slider) {
         logger.i("_statsSubject : $stats");
-        logger.i("_remoteWorkSubject : $remote");
-        logger.i("_faqsSubject : $faqs");
-        logger.i("_videosSubject : $videos");
-        logger.i("_measuresSubject : $measures");
-        logger.i("_initiativesSubject : $initiatives");
         logger.i("_sliderSubject : $slider");
-        logger.i("_faqDetailsSubject : $faqDetails");
-        logger.d(
-            "COMBINED: ${stats && remote && faqs && videos && measures && initiatives && slider && faqDetails}");
-        return stats &&
-            remote &&
-            faqs &&
-            videos &&
-            measures &&
-            initiatives &&
-            slider &&
-            faqDetails;
+        logger.d("COMBINED: ${stats && slider}");
+        return stats && slider;
       }),
       (animation, api) => animation && api);
 
@@ -137,29 +114,31 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
     ///
     bloc.bloc.getStats();
 
-    /// Get RemoteWork Posts
-    ///
-    bloc.bloc.geRemoteWork();
-
-    /// Get Faq Posts
-    ///
-    bloc.bloc.getFaqCategories();
-
-    /// Get Videos Posts
-    ///
-    bloc.bloc.getVideos();
-
-    /// Get Measures
-    ///
-    bloc.bloc.getMeasures();
-
-    /// Get Initiatives Posts
-    ///
-    bloc.bloc.getInitiatives();
-
     /// Get Slider
     ///
     bloc.bloc.getSlider();
+
+    scheduleMicrotask(() {
+      /// Get RemoteWork Posts
+      ///
+      bloc.bloc.geRemoteWork();
+
+      /// Get Faq Posts
+      ///
+      bloc.bloc.getFaqCategories();
+
+      /// Get Videos Posts
+      ///
+      bloc.bloc.getVideos();
+
+      /// Get Measures
+      ///
+      bloc.bloc.getMeasures();
+
+      /// Get Initiatives Posts
+      ///
+      bloc.bloc.getInitiatives();
+    });
   }
 
   @override

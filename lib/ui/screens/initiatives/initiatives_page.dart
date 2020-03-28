@@ -20,6 +20,7 @@ import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/widgets/initiatives_item.dart';
+import 'package:covid19mobile/ui/widgets/loading.dart';
 import 'package:covid19mobile/ui/widgets/separator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -51,6 +52,10 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
     _initiatives = Provider.of<InitiativesProvider>(context).initiatives ??
         ModalRoute.of(context).settings.arguments;
 
+    /// Check if have any data to present, if not show [CircularProgressIndicator]
+    /// while wait for data
+    var hasData = _initiatives != null && _initiatives.length > 0;
+
     return Scaffold(
       appBar: AppBar(
         iconTheme:
@@ -64,25 +69,27 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
       ),
       body: Container(
         margin: EdgeInsets.zero,
-        child: ListView.separated(
-            controller: scrollController,
-            itemBuilder: (context, index) {
-              return Container(
-                padding: EdgeInsets.only(
-                    bottom: (index == _initiatives.length - 1) ? 18.0 : 0),
-                child: InitiativesItem(
-                  title: _initiatives[index].title,
-                  body: _initiatives[index].content,
-                  onExpansionChanged: (value) {},
-                ),
-              );
-            },
-            separatorBuilder: (_, __) {
-              return ListSeparator(
-                color: Covid19Colors.lightGreyLight,
-              );
-            },
-            itemCount: _initiatives != null ? _initiatives.length : 0),
+        child: hasData
+            ? ListView.separated(
+                controller: scrollController,
+                itemBuilder: (context, index) {
+                  return Container(
+                    padding: EdgeInsets.only(
+                        bottom: (index == _initiatives.length - 1) ? 18.0 : 0),
+                    child: InitiativesItem(
+                      title: _initiatives[index].title,
+                      body: _initiatives[index].content,
+                      onExpansionChanged: (value) {},
+                    ),
+                  );
+                },
+                separatorBuilder: (_, __) {
+                  return ListSeparator(
+                    color: Covid19Colors.lightGreyLight,
+                  );
+                },
+                itemCount: _initiatives != null ? _initiatives.length : 0)
+            : const Loading(),
       ),
     );
   }
@@ -90,7 +97,11 @@ class _InitiativesPageState extends BaseState<InitiativesPage, AppBloc> {
   @override
   void initBloc(AppBloc bloc) {
     /// In case [_initiatives] is null then fetch if again
-    if (_initiatives == null) {
+
+    var provider = Provider.of<InitiativesProvider>(context);
+
+    if (provider.initiatives == null ||
+        (provider.initiatives != null && provider.initiatives.isEmpty)) {
       bloc.getInitiatives();
     }
   }

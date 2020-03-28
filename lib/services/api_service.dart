@@ -49,7 +49,7 @@ class APIService {
 
       _client = client ?? Dio();
       _client.options.baseUrl = _configApi.build();
-      _client.options.connectTimeout = 30000;
+      _client.options.connectTimeout = 5000;
       _initialized = true;
     }
   }

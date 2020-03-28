@@ -21,6 +21,7 @@ import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
+import 'package:covid19mobile/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -46,6 +47,11 @@ class _RemoteWorkState extends BaseState<RemoteWorkPage, AppBloc> {
     /// and update with the Provider
     _remoteWorks = Provider.of<RemoteWorkProvider>(context).remoteWorks ??
         ModalRoute.of(context).settings.arguments;
+
+    /// Check if have any data to present, if not show [CircularProgressIndicator]
+    /// while wait for data
+    var hasData = _remoteWorks != null && _remoteWorks.isNotEmpty;
+
     return Scaffold(
       appBar: AppBar(
         iconTheme:
@@ -57,30 +63,35 @@ class _RemoteWorkState extends BaseState<RemoteWorkPage, AppBloc> {
       ),
       body: Container(
         margin: EdgeInsets.all(16.0),
-        child: ListView.separated(
-            itemBuilder: (context, index) => CardBorderArrow(
-                  text: _remoteWorks[index].postTitle,
-                  textColor: Theme.of(context).primaryColor,
-                  borderColor: Theme.of(context).primaryColor,
-                  callback: () => Navigator.of(context).pushNamed(
-                    routeRemoteWorkDetails,
-                    arguments: _remoteWorks[index],
-                  ),
-                ),
-            separatorBuilder: (_, __) {
-              return const SizedBox(
-                height: 8.0,
-              );
-            },
-            itemCount: _remoteWorks != null ? _remoteWorks.length : 0),
+        child: hasData
+            ? ListView.separated(
+                itemBuilder: (context, index) => CardBorderArrow(
+                      text: _remoteWorks[index].postTitle,
+                      textColor: Theme.of(context).primaryColor,
+                      borderColor: Theme.of(context).primaryColor,
+                      callback: () => Navigator.of(context).pushNamed(
+                        routeRemoteWorkDetails,
+                        arguments: _remoteWorks[index],
+                      ),
+                    ),
+                separatorBuilder: (_, __) {
+                  return const SizedBox(
+                    height: 8.0,
+                  );
+                },
+                itemCount: _remoteWorks != null ? _remoteWorks.length : 0)
+            : const Loading(),
       ),
     );
   }
 
   @override
   void initBloc(AppBloc bloc) {
-    /// In case [_remoteWorks] is null then fetch if again
-    if (_remoteWorks == null || _remoteWorks.isEmpty) {
+    /// In case no data then fetch if again
+    var provider = Provider.of<RemoteWorkProvider>(context);
+
+    if (provider.remoteWorks == null ||
+        (provider.remoteWorks != null && provider.remoteWorks.isEmpty)) {
       bloc.geRemoteWork();
     }
   }

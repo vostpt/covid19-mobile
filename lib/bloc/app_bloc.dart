@@ -114,7 +114,7 @@ class AppBloc implements Bloc {
 
     var results = await getPosts<FaqCategoryModel>(postType,
         cacheKey: "FaqCategoryModel");
-
+    print("resultsresultsresults: $results");
     // fetch all categories
     if (results != null) {
       final map = <int, List<FaqModel>>{};

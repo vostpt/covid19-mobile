@@ -50,6 +50,12 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
           children: <Widget>[
             Center(
               child: YoutubePlayer(
+                bottomActions: <Widget>[
+                  const SizedBox(width: 14.0),
+                  CurrentPosition(),
+                  const SizedBox(width: 8.0),
+                  ProgressBar(isExpanded: true),
+                ],
                 controller: _controller,
                 onReady: () {
                   _controller.addListener(() {});

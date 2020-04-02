@@ -148,7 +148,7 @@ class AboutPage extends StatelessWidget {
                       children: <Widget>[
                         _SocialMediaImage(
                           assetName: socialYoutube,
-                          width: size.width * 0.125,
+                          width: size.width * 0.12,
                           url:
                               "https://www.youtube.com/channel/UCOE-JsBcVf4__OlrsiW59EQ",
                         ),
@@ -157,7 +157,7 @@ class AboutPage extends StatelessWidget {
                         ),
                         _SocialMediaImage(
                           assetName: socialTwitter,
-                          width: size.width * 0.125,
+                          width: size.width * 0.12,
                           url: "https://twitter.com/govpt",
                         ),
                       ],
@@ -170,18 +170,13 @@ class AboutPage extends StatelessWidget {
                           ),
                       textAlign: TextAlign.left,
                     ),
-                    const _TextMargin(),
-                    Text(
-                      S.of(context).screenAboutFooter2,
-                      style: Theme.of(context).textTheme.subtitle.copyWith(
-                            color: Covid19Colors.white,
-                          ),
-                      textAlign: TextAlign.left,
-                    ),
                     const _FooterMargin(),
-                    Image.asset(
-                      imageCcIcons,
-                      width: size.width * 0.4,
+                    GestureDetector(
+                      onTap: () => launchURL("https://creativecommons.org/licenses/by-sa/4.0/legalcode.pt"),
+                      child: Image.asset(
+                        imageCcIcons,
+                        width: size.width * 0.25,
+                      ),
                     ),
                     const _FooterMargin(),
                   ],

@@ -1,4 +1,5 @@
 import 'package:covid19mobile/resources/icons_svg.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
@@ -22,21 +23,25 @@ class CardBorderArrow extends StatelessWidget {
   final Color borderColor;
   final Color textColor;
   final VoidCallback callback;
+  final Color color;
 
   const CardBorderArrow({
     Key key,
     @required this.text,
     @required this.callback,
     @required this.textColor,
+    Color color,
     this.borderColor,
-  }) : super(key: key);
+  })  : color = color ?? Covid19Colors.white,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: callback,
       child: ButtonBorderBackground(
-        color: borderColor ?? textColor,
+        borderColor: borderColor ?? textColor,
+        color: color,
         child: Row(
           children: <Widget>[
             Expanded(

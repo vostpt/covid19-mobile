@@ -1,5 +1,3 @@
-import 'dart:async';
-
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -12,6 +10,8 @@ import 'dart:async';
 ///
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+import 'dart:async';
 
 import 'package:covid19mobile/providers/slider_provider.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';

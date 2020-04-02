@@ -36,13 +36,28 @@ class CardHomeSliderIndicator extends AnimatedWidget {
   final Color color;
 
   Widget _buildLineIndicator(int index) {
+    /// Color to used for slides that are not visible
+    var _color = Covid19Colors.grey;
+
+    /// In case [controller] is not ready and page is still null
+    /// then set the first indicator to be the [color]
+    /// and the rest use [Covid19Colors.grey]
+    ///
+    /// When [controller] is ready and [index]
+    /// is equal to the [controller.page] then set
+    /// the [color] for the current index,
+    /// rest will use the [Covid19Colors.grey]
+    if ((controller.page == null && index == 0) ||
+        (controller.page != null && index == controller.page.toInt())) {
+      _color = color;
+    }
+
     return Container(
+      key: Key("Card-Home-Slider-$index"),
       width: 24,
       child: Center(
         child: Material(
-          color: (controller.page != null && index != controller.page.toInt())
-              ? Covid19Colors.grey
-              : color,
+          color: _color,
           borderRadius: BorderRadius.all(Radius.circular(2.0)),
           type: MaterialType.canvas,
           child: Container(

@@ -11,6 +11,8 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:async';
+
 import 'package:covid19mobile/providers/slider_provider.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
@@ -20,17 +22,38 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'card_home_slider_indicator.dart';
 
+/// Slider Time for moving to next slide
+const sliderAutoTimer = 30000;
+const sliderTransitionTimer = 1000;
+
 class HomeSlider extends StatefulWidget {
+  final _sliderAutoTimer;
+  final _sliderTransitionTimer;
+
   const HomeSlider({
     Key key,
-  }) : super(key: key);
+
+    /// Use this on Tests to override default timer time
+    @visibleForTesting int timer,
+
+    /// Use this on Tests to override default transition time
+    @visibleForTesting int transitionTime,
+  })  : _sliderAutoTimer = timer ?? sliderAutoTimer,
+        _sliderTransitionTimer = transitionTime ?? sliderTransitionTimer,
+        super(key: key);
 
   @override
   _HomeSliderState createState() => _HomeSliderState();
 }
 
 class _HomeSliderState extends State<HomeSlider> {
-  final _controller = PageController(initialPage: 0);
+  final _controller = PageController(
+    initialPage: 0,
+    viewportFraction: 0.95,
+  );
+
+  /// This holds a reference for the Timer to auto slide
+  var sliderTimer;
 
   /// Builds the dots
   Widget _dots(int length) => Center(
@@ -66,6 +89,17 @@ class _HomeSliderState extends State<HomeSlider> {
           );
         },
       );
+
+  Image image;
+
+  @override
+  void initState() {
+    /// Creates the timer
+    sliderTimer = Timer.periodic(
+        Duration(milliseconds: widget._sliderAutoTimer), _onTimerCallback);
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +150,39 @@ class _HomeSliderState extends State<HomeSlider> {
       throw 'Could not launch $url';
     }
   }
+
+  /// Callback that fires every [sliderAutoTimer] time
+  _onTimerCallback(Timer timer) {
+    if (_controller.hasClients) {
+      /// Gets the total slides length
+      var sliderProvider = Provider.of<SliderProvider>(context, listen: false);
+
+      /// Get the current page
+      /// If we are at the last page then animate to the
+      /// first page and start over
+      var slideIndex = _controller.page.toInt();
+      if (slideIndex == sliderProvider.slider.length - 1) {
+        _controller.animateToPage(0,
+            duration: Duration(milliseconds: widget._sliderTransitionTimer),
+            curve: Curves.fastLinearToSlowEaseIn);
+        return;
+      }
+
+      /// While the current page is less then
+      /// slides length then keep sliding to the next one
+      _controller.nextPage(
+          duration: Duration(milliseconds: widget._sliderTransitionTimer),
+          curve: Curves.fastLinearToSlowEaseIn);
+    }
+  }
+
+  @override
+  void dispose() {
+    /// Cancel timer on Dispose
+    sliderTimer?.cancel();
+
+    super.dispose();
+  }
 }
 
 class CardHomeSlide extends StatelessWidget {
@@ -143,11 +210,16 @@ class CardHomeSlide extends StatelessWidget {
           elevation: 4.0,
           clipBehavior: Clip.hardEdge,
           child: Stack(fit: StackFit.expand, children: <Widget>[
-            Image.network(
-              backgroundPath,
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
-            ),
+            backgroundPath.isNotEmpty
+                ? Image.network(
+                    backgroundPath,
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
+                  )
+                : Container(
+                    width: 0,
+                    height: 0,
+                  ),
             if (secondaryLabel != null)
               Container(
                   padding: EdgeInsets.fromLTRB(12, 16, 12, 16),

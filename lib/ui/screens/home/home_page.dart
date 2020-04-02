@@ -47,125 +47,141 @@ class _HomePageState extends State<HomePage> {
     logger.i('[StatsProvider] $stats! - ${stats.hashCode}');
 
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const SizedBox(
-                      height: 16.0,
-                    ),
-                    SafeArea(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  SafeArea(
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 16.0),
                       child: Image.asset(
                         logoEstamosOn,
                         width: MediaQuery.of(context).size.width * 0.4,
                       ),
                     ),
-                    const SizedBox(
-                      height: 8.0,
-                    ),
-                    Text(
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text(
                       S.of(context).homePageTitle.toUpperCase(),
                       style: TextStyles.subtitle(
                         color: Covid19Colors.red,
                       ),
                     ),
-                    const SizedBox(
-                      height: 16.0,
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  HomeSlider(),
+                  const SizedBox(
+                    height: 24.0,
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Column(
+                      children: <Widget>[
+                        StatisticsButton(
+                          callback: () =>
+                              Navigator.of(context).pushNamed(routeStatistics),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CardHome(
+                          text: S
+                              .of(context)
+                              .measuresHomepageButton
+                              .toUpperCase(),
+                          callback: () =>
+                              Navigator.of(context).pushNamed(routeMeasures),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CardHome(
+                          text:
+                              S.of(context).screenRemoteWorkTitle.toUpperCase(),
+                          callback: () =>
+                              Navigator.of(context).pushNamed(routeRemoteWork),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CardHome(
+                          text: S.of(context).initiativesPageTitle,
+                          callback: () =>
+                              Navigator.of(context).pushNamed(routeInitiatives),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CardHome(
+                          text: S.of(context).faqPageTitle.toUpperCase(),
+                          callback: () =>
+                              Navigator.of(context).pushNamed(routeFaqs),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CardHome(
+                          text: S.of(context).screenVideosTitle.toUpperCase(),
+                          callback: () =>
+                              Navigator.of(context).pushNamed(routeVideos),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CardHome(
+                          text: S.of(context).contactsPageTitle,
+                          callback: () =>
+                              Navigator.of(context).pushNamed(routeContacts),
+                          backgroundColor: Covid19Colors.green,
+                          textColor: Covid19Colors.white,
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CardBorderArrow(
+                          text: S
+                              .of(context)
+                              .screenNotificationsTitle
+                              .toUpperCase(),
+                          callback: () => Navigator.of(context)
+                              .pushNamed(routeNotifications),
+                          textColor: Covid19Colors.darkGrey,
+                          borderColor: Covid19Colors.lightGrey,
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CardBorderArrow(
+                          text: S.of(context).screenAboutTitle.toUpperCase(),
+                          callback: () =>
+                              Navigator.of(context).pushNamed(routeAbout),
+                          textColor: Covid19Colors.darkGrey,
+                          borderColor: Covid19Colors.lightGrey,
+                        ),
+                      ],
                     ),
-                    HomeSlider(),
-                    const SizedBox(
-                      height: 24.0,
-                    ),
-                    StatisticsButton(
-                      callback: () =>
-                          Navigator.of(context).pushNamed(routeStatistics),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CardHome(
-                      text: S.of(context).measuresHomepageButton.toUpperCase(),
-                      callback: () =>
-                          Navigator.of(context).pushNamed(routeMeasures),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CardHome(
-                      text: S.of(context).screenRemoteWorkTitle.toUpperCase(),
-                      callback: () =>
-                          Navigator.of(context).pushNamed(routeRemoteWork),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CardHome(
-                      text: S.of(context).initiativesPageTitle,
-                      callback: () =>
-                          Navigator.of(context).pushNamed(routeInitiatives),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CardHome(
-                      text: S.of(context).faqPageTitle.toUpperCase(),
-                      callback: () =>
-                          Navigator.of(context).pushNamed(routeFaqs),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CardHome(
-                      text: S.of(context).screenVideosTitle.toUpperCase(),
-                      callback: () =>
-                          Navigator.of(context).pushNamed(routeVideos),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CardHome(
-                      text: S.of(context).contactsPageTitle,
-                      callback: () =>
-                          Navigator.of(context).pushNamed(routeContacts),
-                      backgroundColor: Covid19Colors.green,
-                      textColor: Covid19Colors.white,
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CardBorderArrow(
-                      text:
-                          S.of(context).screenNotificationsTitle.toUpperCase(),
-                      callback: () =>
-                          Navigator.of(context).pushNamed(routeNotifications),
-                      textColor: Covid19Colors.darkGrey,
-                      borderColor: Covid19Colors.lightGrey,
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CardBorderArrow(
-                      text: S.of(context).screenAboutTitle.toUpperCase(),
-                      callback: () =>
-                          Navigator.of(context).pushNamed(routeAbout),
-                      textColor: Covid19Colors.darkGrey,
-                      borderColor: Covid19Colors.lightGrey,
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

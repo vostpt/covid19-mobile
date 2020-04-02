@@ -48,6 +48,28 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
     super.initState();
   }
 
+  int sortMeasures(MeasureModel a, MeasureModel b) {
+    // trabalhadores: 69
+    // empresas: 148
+    // serviços públicos: 129
+
+    if (a.id == 69) {
+      return -1;
+    } else if (b.id == 69) {
+      return 1;
+    } else if (a.id == 148) {
+      return -1;
+    } else if (b.id == 148) {
+      return 1;
+    } else if (a.id == 129) {
+      return -1;
+    } else if (b.id == 129) {
+      return 1;
+    }
+
+    return a.postTitle.compareTo(b.postTitle);
+  }
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<MeasuresProvider>(context);
@@ -55,6 +77,7 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
 
     if (provider.measures != null) {
       measures = provider.measures;
+      measures.sort(sortMeasures);
     }
 
     /// Check if have any data to present, if not show [CircularProgressIndicator]
@@ -83,6 +106,8 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
                 itemBuilder: (_, index) {
                   return CardBorderArrow(
                     text: measures[index].postTitle,
+                    color:
+                        index < 3 ? Covid19Colors.green : Covid19Colors.white,
                     callback: () {
                       if (measures != null) {
                         Navigator.of(context).pushNamed(
@@ -91,7 +116,8 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
                         );
                       }
                     },
-                    textColor: Themes.colorPrimary,
+                    textColor:
+                        index < 3 ? Covid19Colors.white : Themes.colorPrimary,
                   );
                 },
                 separatorBuilder: (_, __) {

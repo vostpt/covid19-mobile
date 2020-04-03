@@ -49,22 +49,18 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
   }
 
   int sortMeasures(MeasureModel a, MeasureModel b) {
-    // trabalhadores: 69
-    // empresas: 148
-    // serviços públicos: 129
-
-    if (a.id == 69) {
-      return -1;
-    } else if (b.id == 69) {
-      return 1;
-    } else if (a.id == 148) {
-      return -1;
-    } else if (b.id == 148) {
-      return 1;
-    } else if (a.id == 129) {
-      return -1;
-    } else if (b.id == 129) {
-      return 1;
+    /*
+     * The topIds matches the first measures to show, "trabalhadores", 
+     * "empresas" and "serviços publicos" the others measures are sorted alphabetically
+     * We will return -1 if the value of a is ordered before b and 1 if the value  a is ordered after b
+     */
+    var topIds = [69, 148, 129];
+    for (var value in topIds) {
+      if (value == a.id) {
+        return -1;
+      } else if (value == b.id) {
+        return 1;
+      }
     }
 
     return a.postTitle.compareTo(b.postTitle);

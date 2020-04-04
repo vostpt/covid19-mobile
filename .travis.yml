@@ -28,11 +28,9 @@ matrix:
     - git clone https://github.com/flutter/flutter.git -b stable --depth 1
     before_install:
     - yes | sdkmanager "platforms;android-28"
-    - openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./android/key.properties.enc -out ./android/key.properties
-    - openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./android/keystore.enc -d -a -out ./android/app/key.jks
-    - openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./android/app/google-services.json.enc -d -out ./android/app/google-services.json
     - chmod +x deploy_script_android.sh
     script:
+    - touch ./android/app/google-services.json
     - "./flutter/bin/flutter build apk"
     - flutter/bin/flutter test test
     deploy:
@@ -56,9 +54,8 @@ matrix:
     - brew install ios-deploy
     - git clone https://github.com/flutter/flutter.git -b stable --depth 1
     - chmod +x deploy_script_ios.sh
-    before_install:
-    - openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./ios/Runner/GoogleService-Info.plist.enc -out ./ios/Runner/GoogleService-Info.plist
     script:
+    - touch ./ios/Runner/GoogleService-Info.plist
     - flutter/bin/flutter precache
     - flutter/bin/flutter pub get
     - sudo gem install cocoapods -v 1.7.5

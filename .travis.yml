@@ -30,8 +30,8 @@ matrix:
     - yes | sdkmanager "platforms;android-28"
     - chmod +x deploy_script_android.sh
     script:
-    - touch ./android/app/google-services.json
-    - "./flutter/bin/flutter build apk"
+    - mv ./android/app/mock-google-services.json ./android/app/google-services.json
+    - "./flutter/bin/flutter build apk --debug"
     - flutter/bin/flutter test test
     deploy:
       skip_cleanup: true
@@ -55,7 +55,7 @@ matrix:
     - git clone https://github.com/flutter/flutter.git -b stable --depth 1
     - chmod +x deploy_script_ios.sh
     script:
-    - touch ./ios/Runner/GoogleService-Info.plist
+    - mv ./ios/Runner/MockGoogleService-Info.plist ./ios/Runner/GoogleService-Info.plist
     - flutter/bin/flutter precache
     - flutter/bin/flutter pub get
     - sudo gem install cocoapods -v 1.7.5

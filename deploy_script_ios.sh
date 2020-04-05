@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd ios
+openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in ./ios/Runner/GoogleService-Info.plist.enc -out ./ios/Runner/GoogleService-Info.plist
 openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in deploy_keys/cert.cer.enc -out deploy_keys/cert.cer
 openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in deploy_keys/key.p12.enc -out deploy_keys/key.p12
 openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -d -a -in deploy_keys/aps.cer.enc -out deploy_keys/aps.cer

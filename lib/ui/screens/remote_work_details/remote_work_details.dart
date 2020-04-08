@@ -14,10 +14,8 @@
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
-import 'package:covid19mobile/utils/launch_url.dart';
+import 'package:covid19mobile/ui/widgets/html_content.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:html/dom.dart' as dom;
 
 class RemoteWorkDetails extends StatelessWidget {
   const RemoteWorkDetails({Key key}) : super(key: key);
@@ -37,29 +35,14 @@ class RemoteWorkDetails extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.all(16.0),
-          child: Html(
-            data: remoteWork.description.replaceAll("\\n", ""),
-            backgroundColor: Colors.white,
-            onLinkTap: launchURL,
-            defaultTextStyle: Theme.of(context).textTheme.body1,
-            linkStyle: Theme.of(context)
-                .textTheme
-                .body1
-                .copyWith(color: Theme.of(context).primaryColor),
-            customTextStyle: (dom.Node node, TextStyle baseStyle) {
-              if (node is dom.Element) {
-                switch (node.localName) {
-                  case "b":
-                    return TextStyles.subtitle(
-                      color: Covid19Colors.darkGrey,
-                    );
-                }
-              }
-              return baseStyle;
-            },
-          ),
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            HtmlContent(content: remoteWork.description),
+            HtmlContent(content: remoteWork.howToAccess),
+            HtmlContent(content: remoteWork.technicalSupportUri),
+            HtmlContent(content: remoteWork.trainingInPortuguese),
+          ],
         ),
       ),
     );

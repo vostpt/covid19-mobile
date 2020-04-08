@@ -38,18 +38,10 @@ class RemoteWorkDetails extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            HtmlContent(
-              content: remoteWork.description,
-            ),
-            HtmlContent(
-              content: remoteWork.howToAccess,
-            ),
-            HtmlContent(
-              content: remoteWork.technicalSupportUri,
-            ),
-            HtmlContent(
-              content: remoteWork.trainingInPortuguese,
-            ),
+            HtmlContent(content: remoteWork.description),
+            HtmlContent(content: remoteWork.howToAccess),
+            HtmlContent(content: remoteWork.technicalSupportUri),
+            HtmlContent(content: remoteWork.trainingInPortuguese),
           ],
         ),
       ),

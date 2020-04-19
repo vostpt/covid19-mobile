@@ -16,13 +16,11 @@ import 'dart:async';
 import 'package:covid19mobile/main.dart';
 import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
-import 'package:covid19mobile/services/api.dart';
+import 'package:covid19mobile/services/estamoson/api.dart';
+import 'package:covid19mobile/services/request_type.dart';
+import 'package:covid19mobile/ui/app.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-
-import '../ui/app.dart';
-
-enum _RequestType { post, get, put, patch, delete }
 
 /// Main APIService
 ///
@@ -55,7 +53,7 @@ class APIService {
   }
 
   Future<APIResponse> _performRequest(
-    _RequestType type,
+    RequestType type,
     String resource, {
     Map<String, dynamic> headers,
     Map<String, dynamic> queryParams,
@@ -78,24 +76,8 @@ class APIService {
 
     try {
       switch (type) {
-        case _RequestType.post:
-          response = await _client.post(resource,
-              queryParameters: queryParams, data: body);
-          break;
-        case _RequestType.put:
-          response = await _client.put(resource,
-              queryParameters: queryParams, data: body);
-          break;
-        case _RequestType.get:
+        case RequestType.get:
           response = await _client.get(resource, queryParameters: queryParams);
-          break;
-        case _RequestType.patch:
-          response = await _client.patch(resource,
-              queryParameters: queryParams, data: body);
-          break;
-        case _RequestType.delete:
-          response = await _client.delete(resource,
-              queryParameters: queryParams, data: body);
           break;
       }
 
@@ -119,7 +101,7 @@ class APIService {
   /// Gets the updated case stats
   Future<APIResponse> getStats() async {
     return await _performRequest(
-      _RequestType.get,
+      RequestType.get,
       '/stats',
     );
   }
@@ -131,7 +113,7 @@ class APIService {
       queryParams = {"categories": id};
     }
     return await _performRequest(
-      _RequestType.get,
+      RequestType.get,
       postType.getRequestType(),
       queryParams: queryParams,
     );

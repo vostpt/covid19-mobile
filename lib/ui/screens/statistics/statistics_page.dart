@@ -14,6 +14,7 @@
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
@@ -34,6 +35,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
   @override
   Widget build(BuildContext context) {
     var stats = Provider.of<StatsProvider>(context);
+    var covidStatus = Provider.of<CovidStatusProvider>(context);
     return Scaffold(
       appBar: AppBar(
         iconTheme:
@@ -191,6 +193,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
   @override
   void initBloc(AppBloc bloc) {
     bloc.getStats();
+    bloc.getCovidStatus();
   }
 
   @override
@@ -200,6 +203,11 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
   void onStateResultListener(ResultStream result) {
     if (result is StatsResultStream) {
       Provider.of<StatsProvider>(context, listen: false).setStats(result.model);
+    }
+
+    if (result is CovidStatusResultStream) {
+      Provider.of<CovidStatusProvider>(context, listen: false)
+          .setCovidStatus(result.model);
     }
   }
 }

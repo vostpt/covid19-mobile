@@ -40,7 +40,7 @@ void main() async {
   /// Pass all uncaught errors from the framework to Crashlytics.
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
-  appConfig = AppConfig.prod;
+  appConfig = AppConfig.dev;
 
   /// Init Firebase messaging service
   await MessagingService.init();

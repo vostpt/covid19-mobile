@@ -14,6 +14,7 @@
 import 'dart:async';
 
 import 'package:covid19mobile/model/api_response_model.dart';
+import 'package:covid19mobile/model/covid_status_model.dart';
 import 'package:covid19mobile/model/faq_category_model.dart';
 import 'package:covid19mobile/model/faq_model.dart';
 import 'package:covid19mobile/model/measure_model.dart';
@@ -23,7 +24,8 @@ import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/slider_model.dart';
 import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
-import 'package:covid19mobile/services/api_service.dart';
+import 'package:covid19mobile/services/covid_status/status_api_service.dart';
+import 'package:covid19mobile/services/estamoson/api_service.dart';
 import 'package:covid19mobile/ui/app.dart';
 import 'package:rxdart/subjects.dart';
 
@@ -180,6 +182,17 @@ class AppBloc implements Bloc {
       // throw some error
     }
     return null;
+  }
+
+  /// Gets the full current status of Covid since day 1
+  void getCovidStatus() async {
+    var results = await CovidStatusAPIService.api.getFullDataSet();
+
+    CovidStatusModel data = CovidStatusModel.fromJson(results.data);
+
+    onStream.sink.add(CovidStatusResultStream(
+        model: data,
+        state: results != null ? StateStream.success : StateStream.fail));
   }
 
   /// Parse the json map into each corresponding Post Model

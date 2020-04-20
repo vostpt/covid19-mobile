@@ -15,6 +15,7 @@ import 'dart:io';
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/providers/faq_category_provider.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/initiatives_provider.dart';
@@ -64,6 +65,7 @@ class CovidApp extends StatelessWidget {
   final measuresProvider = MeasuresProvider();
   final sliderProvider = SliderProvider();
   final faqsCategoryProvider = FaqCategoryProvider();
+  final covidStatusProvider = CovidStatusProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +110,9 @@ class CovidApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<FaqCategoryProvider>.value(
           value: faqsCategoryProvider,
+        ),
+        ChangeNotifierProvider<CovidStatusProvider>.value(
+          value: covidStatusProvider,
         ),
       ],
       child: MaterialApp(

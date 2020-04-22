@@ -1,3 +1,6 @@
+import 'package:covid19mobile/resources/style/text_styles.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -30,17 +33,14 @@ class StatisticsNumberBig extends StatelessWidget {
               padding: const EdgeInsets.all(4),
               child: Text(
                 value.toString().toUpperCase(),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 28,
-                ),
+                style: TextStyles.h1(color: Covid19Colors.green),
               ),
             ),
           ),
         ),
         Text(
           text,
-          style: TextStyle(fontSize: 18),
+          style: TextStyles.h2(),
         )
       ],
     );

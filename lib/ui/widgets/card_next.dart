@@ -13,7 +13,6 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import 'package:covid19mobile/resources/style/text_styles.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 
 class CardNext extends StatelessWidget {

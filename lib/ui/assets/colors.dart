@@ -25,6 +25,9 @@ class Covid19Colors {
   static const Color red = Color(0xffce3d40);
 
   /// Mostly used in backgrounds
+  static const Color paleGrey = Color(0xfff9f9f9);
+
+  /// Mostly used in backgrounds
   static const Color lightGrey = Color(0xfff5f7fa);
 
   /// For certain letter colors

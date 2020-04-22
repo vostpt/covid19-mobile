@@ -11,22 +11,31 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:covid19mobile/extensions/string_extensions.dart';
-import 'package:intl/intl.dart';
-import 'package:covid19mobile/generated/l10n.dart';
 
-extension DateTimeExtensions on DateTime {
-  /// Parse date to reader friendly format
-  /// ex.: [ÚÚltima atualização: 11 de Abril de 2020, 20:30]
-  String parseReadableLastUpdatedAtDate(BuildContext context) {
-    String month = DateFormat.MMMM('pt_PT').format(this);
+class StatisticsContainer extends StatelessWidget {
+  final Widget child;
 
-    String lastUpdated = S.of(context).lastUpdated;
-    String of = S.of(context).dateOf;
+  StatisticsContainer({@required this.child});
 
-    var hour = DateFormat('HH:mm').format(this);
-
-    return "$lastUpdated: $day $of ${month.capitalize()} $of $year, $hour";
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: child,
+      margin: EdgeInsets.only(bottom: 8.0),
+      padding: EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 16,
+      ),
+      decoration: BoxDecoration(
+        color: Covid19Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          width: 2,
+          color: Covid19Colors.lightGrey,
+        ),
+      ),
+    );
   }
 }

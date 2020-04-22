@@ -27,13 +27,14 @@ abstract class StatusAbstractApi {
 
 class _StatusConfigApi implements StatusAbstractApi {
   @override
-  String get baseApi => "";
+  String get baseApi => "Requests";
+
+  /// Use Docker local image endpoint
+  @override
+  String get host => "192.168.1.97:8001";
 
   @override
-  String get host => null;
-
-  @override
-  String get scheme => null;
+  String get scheme => "http";
 
   @override
   String build({String path = ""}) {
@@ -54,13 +55,13 @@ class StatusDevApi extends _StatusConfigApi {
 
   @override
   String get scheme => "http";
-
-  @override
-  String get baseApi => "Requests";
 }
 
 /// Production API Configuration
 class StatusProductionApi extends _StatusConfigApi {
   @override
-  String get host => "";
+  String get host => "covid19-api.vost.pt";
+
+  @override
+  String get scheme => "https";
 }

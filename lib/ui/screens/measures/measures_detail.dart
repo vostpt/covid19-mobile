@@ -43,7 +43,8 @@ class MeasureDetail extends StatelessWidget {
                 height: 15,
               ),
               Text(measure.postTitle, style: Themes.defaultTextTheme.title),
-              Text(measure.parseReadableDate(), style: TextStyles.smallCaps()),
+              Text(measure.parseReadableDate(context),
+                  style: TextStyles.smallCaps()),
               Container(
                 height: 15,
               ),

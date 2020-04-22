@@ -15,7 +15,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'stats_model.g.dart';
 
-/// Stats Model
+/// [DEPRECATED]  Stats Model
 @JsonSerializable(includeIfNull: false)
 class StatsModel {
   /// Recovered total cases

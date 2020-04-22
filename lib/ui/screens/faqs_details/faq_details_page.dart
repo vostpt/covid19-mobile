@@ -138,7 +138,7 @@ class _FaqsPageState extends State<FaqsDetails> {
                         children: <InlineSpan>[
                           TextSpan(
                             text: "${widget.faqs[index].responsableEntity}",
-                            style: TextStyles.texCustom(size: 16)
+                            style: TextStyles.textCustom(size: 16)
                                 .copyWith(fontWeight: FontWeight.w100),
                           ),
                         ],

@@ -11,6 +11,8 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:intl/intl.dart';
+
 const String bundle = 'com.vost.covid19mobile';
 
 const String routeSplash = "/";
@@ -29,3 +31,6 @@ const String routeMeasures = "measures";
 const String routeMeasuresDetails = "measures/details";
 const String routeInitiatives = "initiatives";
 const String routeLicences = "licences";
+
+/// DSSG Source Date Time format
+final DateFormat formatDSSGDateTime = DateFormat("DD-MM-yyyy HH:mm");

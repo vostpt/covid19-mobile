@@ -137,8 +137,17 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
       bloc.bloc.getInitiatives();
 
       /// Get Current Covid Status
+      ///   gets all database
       ///
       bloc.bloc.getCovidStatus();
+
+      /// Get the Covid source server status
+      ///
+      bloc.bloc.getCovidStatus();
+
+      /// Get Last update covid status
+      ///
+      bloc.bloc.getCovidLastUpdate();
     });
   }
 

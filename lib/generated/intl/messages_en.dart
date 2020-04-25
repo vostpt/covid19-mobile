@@ -41,7 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "faqPageResponsableEntity" : MessageLookupByLibrary.simpleMessage("Entidade Responsável"),
     "faqPageTitle" : MessageLookupByLibrary.simpleMessage("Perguntas Frequentes"),
     "homePageConfirmedCases" : MessageLookupByLibrary.simpleMessage("Casos confirmados de COVID-19 em Portugal"),
-    "homePageTitle" : MessageLookupByLibrary.simpleMessage("Resposta de Portugal ao Covid-19"),
+    "homePageTitle" : MessageLookupByLibrary.simpleMessage("Resposta de Portugal à Covid-19"),
     "initiativesPageTitle" : MessageLookupByLibrary.simpleMessage("Iniciativas"),
     "lastUpdated" : MessageLookupByLibrary.simpleMessage("Última actualização: "),
     "licencesPageTitle" : MessageLookupByLibrary.simpleMessage("Licenças Open-Source"),

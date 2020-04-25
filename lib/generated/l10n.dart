@@ -425,7 +425,7 @@ class S {
 
   String get homePageTitle {
     return Intl.message(
-      'Resposta de Portugal ao Covid-19',
+      'Resposta de Portugal à Covid-19',
       name: 'homePageTitle',
       desc: '',
       args: [],

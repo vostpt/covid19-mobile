@@ -17,7 +17,7 @@ import 'package:covid19mobile/main_common.dart';
 /// 
 /// To run the dev configuration, please use the following command: 
 /// 
-/// `flutter run`
+/// `flutter run -t lib/main_dev.dart`
 void main() async {
-  mainCommon(AppConfig.prod);
+  mainCommon(AppConfig.dev);
 }

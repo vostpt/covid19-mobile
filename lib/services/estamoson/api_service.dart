@@ -13,7 +13,7 @@
 
 import 'dart:async';
 
-import 'package:covid19mobile/main.dart';
+import 'package:covid19mobile/main_common.dart';
 import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/services/estamoson/api.dart';

@@ -11,7 +11,7 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/main.dart';
+import 'package:covid19mobile/main_common.dart';
 import 'package:covid19mobile/model/api_response_model.dart';
 import 'package:covid19mobile/services/covid_status/status_api.dart';
 import 'package:covid19mobile/services/request_type.dart';

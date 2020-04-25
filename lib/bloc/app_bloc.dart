@@ -14,6 +14,8 @@
 import 'dart:async';
 
 import 'package:covid19mobile/model/api_response_model.dart';
+import 'package:covid19mobile/model/covid_server_status.dart';
+import 'package:covid19mobile/model/covid_status_last_updated_model.dart';
 import 'package:covid19mobile/model/covid_status_model.dart';
 import 'package:covid19mobile/model/faq_category_model.dart';
 import 'package:covid19mobile/model/faq_model.dart';
@@ -191,6 +193,39 @@ class AppBloc implements Bloc {
     CovidStatusModel data = CovidStatusModel.fromJson(results.data);
 
     onStream.sink.add(CovidStatusResultStream(
+        model: data,
+        state: results != null ? StateStream.success : StateStream.fail));
+  }
+
+   /// Gets the entries from a [start] date to [end] date in the [yyyy-mm-dd] format
+  void getCovidEntry(String start, {String end}) async {
+    var results = await CovidStatusAPIService.api.getEntry(start, end: end);
+
+    CovidStatusModel data = CovidStatusModel.fromJson(results.data);
+
+    onStream.sink.add(CovidEntryStatusStream(
+        model: data,
+        state: results != null ? StateStream.success : StateStream.fail));
+  }
+
+   /// Gets the last updated status for COVID
+  void getCovidLastUpdate() async {
+    var results = await CovidStatusAPIService.api.getLastUpdate();
+
+    CovidStatusLastUpdatedModel data = CovidStatusLastUpdatedModel.fromJson(results.data);
+
+    onStream.sink.add(CovidLastUpdatedStream(
+        model: data,
+        state: results != null ? StateStream.success : StateStream.fail));
+  }
+
+  /// Gets the server status for the Covid server
+    void getServerStatus() async {
+    var results = await CovidStatusAPIService.api.getServerStatus();
+
+    CovidServerStatusModel data = CovidServerStatusModel.fromJson(results.data);
+
+    onStream.sink.add(CovidServerStatusStream(
         model: data,
         state: results != null ? StateStream.success : StateStream.fail));
   }

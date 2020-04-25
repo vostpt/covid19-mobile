@@ -1,3 +1,5 @@
+import 'package:covid19mobile/model/covid_server_status.dart';
+import 'package:covid19mobile/model/covid_status_last_updated_model.dart';
 import 'package:covid19mobile/model/covid_status_model.dart';
 
 ///     This program is free software: you can redistribute it and/or modify
@@ -112,6 +114,45 @@ class CovidStatusResultStream
   /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [T] instance list
   CovidStatusResultStream({this.state, this.model});
+}
+
+class CovidEntryStatusStream
+    extends ResultStream<StateStream, CovidStatusModel> {
+  @override
+  CovidStatusModel model;
+
+  @override
+  StateStream state;
+
+  /// Constructor to set the [state], a [StateStream] instance
+  /// and [model] a [T] instance list
+  CovidEntryStatusStream({this.state, this.model});
+}
+
+class CovidLastUpdatedStream
+    extends ResultStream<StateStream, CovidStatusLastUpdatedModel> {
+  @override
+  CovidStatusLastUpdatedModel model;
+
+  @override
+  StateStream state;
+
+  /// Constructor to set the [state], a [StateStream] instance
+  /// and [model] a [T] instance list
+  CovidLastUpdatedStream({this.state, this.model});
+}
+
+class CovidServerStatusStream
+    extends ResultStream<StateStream, CovidServerStatusModel> {
+  @override
+  CovidServerStatusModel model;
+
+  @override
+  StateStream state;
+
+  /// Constructor to set the [state], a [StateStream] instance
+  /// and [model] a [T] instance list
+  CovidServerStatusStream({this.state, this.model});
 }
 
 /// The ResultStream instance for requesting the remote work posts

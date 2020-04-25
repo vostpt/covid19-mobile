@@ -1,4 +1,5 @@
 import 'package:covid19mobile/resources/style/text_styles.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 
 ///     This program is free software: you can redistribute it and/or modify
@@ -46,9 +47,8 @@ class CardVideo extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: 144.0,
         margin: const EdgeInsets.all(5.0),
-        padding: const EdgeInsets.all(18.0),
+        height: 144.0,
         alignment: Alignment.center,
         decoration: decoration,
         child: Stack(
@@ -60,6 +60,12 @@ class CardVideo extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Theme.of(context).primaryColor,
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4.0),
+                color: Covid19Colors.black50,
               ),
             ),
             ButtonTheme(
@@ -85,15 +91,19 @@ class CardVideo extends StatelessWidget {
             if (label != null)
               Align(
                 alignment: labelAlignment,
-                child: Text(
-                  label,
-                  style: TextStyles.subtitle(color: Colors.white)
-                      .copyWith(shadows: [
-                    const Shadow(
-                      offset: Offset(0.0, 1.0),
-                      blurRadius: 3.0,
-                    ),
-                  ]),
+                child: Container(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Text(
+                    label,
+                    style: TextStyles.subtitle(color: Colors.white)
+                        .copyWith(shadows: [
+                      const Shadow(
+                        offset: Offset(0.0, 1.0),
+                        blurRadius: 4.0,
+                        color: Covid19Colors.black65,
+                      ),
+                    ]),
+                  ),
                 ),
               ),
           ],

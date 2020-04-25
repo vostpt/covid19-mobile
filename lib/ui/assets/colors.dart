@@ -62,4 +62,10 @@ class Covid19Colors {
 
   /// For use in list separator
   static const Color lightGreyLight = Color(0xffeceef0);
+
+  /// For use in shadows
+  static const Color black65 = Color(0xA6000000);
+
+  /// For use in overalaus
+  static const Color black50 = Color(0x80000000);
 }

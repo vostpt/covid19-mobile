@@ -22,6 +22,7 @@ import 'package:covid19mobile/ui/screens/statistics/components/statistics_horizo
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_number_big.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_vertical.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
+import 'package:covid19mobile/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,104 +52,102 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
         ),
         elevation: 0.0,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              // Horizontal - Confirmed Cases
-              StatisticHorizontalWidget(
-                label: S.of(context).statisticsPageConfirmed,
-                value: currentStatistics.confirmed,
-                percentage: currentStatistics.confirmedPercentage,
-              ),
-
-              /// Vertical Info - Deaths | Recovered
-              Row(
-                children: <Widget>[
-                  /// Deaths
-                  Expanded(
-                    child: StatisticVerticalWidget(
-                      label: S.of(context).statisticsPageDeaths,
-                      value: currentStatistics.death,
-                      percentage: currentStatistics.deathPercentage,
-                      valueDifference: currentStatistics.deathAbsolute,
+      body: currentStatistics.confirmed == null
+          ? Loading()
+          : SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    // Horizontal - Confirmed Cases
+                    StatisticHorizontalWidget(
+                      label: S.of(context).statisticsPageConfirmed,
+                      value: currentStatistics.confirmed,
+                      percentage: currentStatistics.confirmedPercentage,
                     ),
-                  ),
 
-                  /// Vertical Divider
-                  Container(
-                    width: 8.0,
-                  ),
+                    /// Vertical Info - Deaths | Recovered
+                    Row(
+                      children: <Widget>[
+                        /// Deaths
+                        Expanded(
+                          child: StatisticVerticalWidget(
+                            label: S.of(context).statisticsPageDeaths,
+                            value: currentStatistics.death,
+                            percentage: currentStatistics.deathPercentage,
+                            valueDifference: currentStatistics.deathAbsolute,
+                          ),
+                        ),
 
-                  /// Recovered
-                  Expanded(
-                    child: StatisticVerticalWidget(
-                      label: S.of(context).statisticsPageRecovered,
-                      value: currentStatistics.recovered,
-                      percentage: currentStatistics.recoveredPercentage,
-                      valueDifference: currentStatistics.recoveredAbsolute,
+                        /// Vertical Divider
+                        Container(
+                          width: 8.0,
+                        ),
+
+                        /// Recovered
+                        Expanded(
+                          child: StatisticVerticalWidget(
+                            label: S.of(context).statisticsPageRecovered,
+                            value: currentStatistics.recovered,
+                            percentage: currentStatistics.recoveredPercentage,
+                            valueDifference:
+                                currentStatistics.recoveredAbsolute,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
 
-              /// Horizontal - Hospitalized
-              StatisticHorizontalWidget(
-                label: S.of(context).statisticsPageHospitalized,
-                value: currentStatistics.hospitalized,
-                percentage: currentStatistics.hospitalizedPercentage,
-              ),
+                    /// Horizontal - Hospitalized UCI
+                    StatisticHorizontalWidget(
+                      label: S.of(context).statisticsPageHospitalizedUCI,
+                      value: currentStatistics.hospitalizedUCI,
+                      percentage: currentStatistics.hospitalizedUCIPercentage,
+                    ),
 
-              /// Horizontal - Hospitalized UCI
-              StatisticHorizontalWidget(
-                label: S.of(context).statisticsPageHospitalizedUCI,
-                value: currentStatistics.hospitalizedUCI,
-                percentage: currentStatistics.hospitalizedUCIPercentage,
-              ),
+                    /// Big Numbers
+                    ///
+                    /// Suspected
+                    StatisticsNumberBig(
+                      label: S.of(context).statisticsPageSuspects,
+                      value: currentStatistics.suspected,
+                    ),
 
-              /// Big Numbers
-              ///
-              /// Suspected
-              StatisticsNumberBig(
-                label: S.of(context).statisticsPageSuspects,
-                value: currentStatistics.suspected,
-              ),
+                    /// Waiting results
+                    StatisticsNumberBig(
+                      label: S.of(context).statisticsPageAwaitingResults,
+                      value: currentStatistics.waitingResults,
+                    ),
 
-              /// Waiting results
-              StatisticsNumberBig(
-                label: S.of(context).statisticsPageAwaitingResults,
-                value: currentStatistics.waitingResults,
-              ),
+                    /// Under surveillance
+                    StatisticsNumberBig(
+                      label: S.of(context).statisticsPageUnderSurveillance,
+                      value: currentStatistics.underSurveillance,
+                    ),
 
-              /// Under surveillance
-              StatisticsNumberBig(
-                label: S.of(context).statisticsPageUnderSurveillance,
-                value: currentStatistics.underSurveillance,
-              ),
+                    /// Last update
+                    Container(
+                      margin:
+                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                      child: Text(
+                        currentStatistics.getReadableLastUpdate(context),
+                        style: TextStyles.h3Regular(color: Covid19Colors.grey),
+                      ),
+                    ),
 
-              /// Last update
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-                child: Text(
-                  currentStatistics.getReadableLastUpdate(context),
-                  style: TextStyles.h3Regular(color: Covid19Colors.grey),
+                    /// Data from...
+                    Container(
+                      margin:
+                          EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
+                      child: Text(
+                        S.of(context).statisticsPageDataLabel,
+                        style: TextStyles.h3Regular(color: Covid19Colors.grey),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-
-              /// Data from...
-              Container(
-                margin: EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
-                child: Text(
-                  S.of(context).statisticsPageDataLabel,
-                  style: TextStyles.h3Regular(color: Covid19Colors.grey),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 

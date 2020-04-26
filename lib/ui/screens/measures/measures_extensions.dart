@@ -27,7 +27,7 @@ extension HtmlParsing on MeasureModel {
   String parseReadableDate(BuildContext context) {
     var date = DateTime.parse(postModifiedGMT);
     String month = DateFormat.MMMM('pt_PT').format(date).capitalize();
-    return "${S.of(context).publishedAt} ${date.hour}:${date.minute} de ${date.day} de $month de ${date.year}";
+    return "${S.of(context).publishedAt} ${date.hour}:${date.minute} ${S.of(context).dateOf} ${date.day} ${S.of(context).dateOf} $month ${S.of(context).dateOf} ${date.year}";
   }
 
   /// Parses the HTML of a excerpt content

@@ -102,7 +102,7 @@ class CovidStatusStatistics {
     _suspected = status.suspects.values.last.toInt();
 
     // Waiting results
-    _waitingResults = status.suspects.values.last.toInt();
+    _waitingResults = status.waitingResults.values.last.toInt();
 
     // Under surveillance
     _underSurveillance = status.surveillance.values.last.toInt();
@@ -162,11 +162,15 @@ class CovidStatusStatistics {
   ///
 
   /// Get human friend readable date
-  String getReadableLastUpdate(BuildContext context) =>
-      _lastUpdatedData.parseReadableLastUpdatedAtDate(context);
+  String getReadableLastUpdate(BuildContext context) => _lastUpdatedData == null
+      ? ""
+      : _lastUpdatedData.parseReadableLastUpdatedAtDate(context);
 
   /// Calculates the percentage change between last two values
   double _calculatePercentage(Map<int, double> map) {
+    if (map == null) {
+      return 0.0;
+    }
     var values = map.values;
 
     if (values.length > 1) {
@@ -181,6 +185,10 @@ class CovidStatusStatistics {
 
   /// Calculates the absolute change between last two values
   int _calculateAbsoluteNew(Map<int, double> map) {
+    if (map == null) {
+      return 0;
+    }
+
     var values = map.values;
 
     if (values.length > 1) {

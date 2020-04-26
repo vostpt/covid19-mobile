@@ -18,7 +18,7 @@ import 'package:covid19mobile/generated/l10n.dart';
 
 extension DateTimeExtensions on DateTime {
   /// Parse date to reader friendly format
-  /// ex.: [ÚÚltima atualização: 11 de Abril de 2020, 20:30]
+  /// ex.: [Última atualização: 11 de Abril de 2020, 20:30]
   String parseReadableLastUpdatedAtDate(BuildContext context) {
     String month = DateFormat.MMMM('pt_PT').format(this);
 

@@ -122,7 +122,7 @@ Map<String, dynamic> _$CovidStatusLastUpdatedModelToJson(
   writeNotNull('obitos', instance.deaths);
   writeNotNull('internados', instance.hospitalized);
   writeNotNull('internados_uci', instance.hospitalizedUCI);
-  writeNotNull('lab', instance.lab);
+  writeNotNull('lab', instance.waitingResults);
   writeNotNull('suspeitos', instance.suspects);
   writeNotNull('vigilancia', instance.surveillance);
   writeNotNull('n_confirmados', instance.confirmedNumber);

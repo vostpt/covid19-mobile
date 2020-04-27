@@ -30,6 +30,7 @@ dependencies:
   rxdart: 0.23.1
   html: 0.14.0+3
   flutter_html: 0.11.1
+  fl_chart: 0.9.0
 
 
   # Firebase

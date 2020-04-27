@@ -51,11 +51,14 @@ class StatisticHorizontalWidget extends StatelessWidget {
                 value: value,
                 percentage: percentage,
               ),
-              SizedBox(
-                height: double.infinity,
-                child: VerticalDivider(
-                  thickness: 2,
-                  color: Covid19Colors.lightGrey,
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                child: SizedBox(
+                  height: 40,
+                  child: VerticalDivider(
+                    thickness: 2,
+                    color: Covid19Colors.lightGrey,
+                  ),
                 ),
               ),
               StatisticsNewAbsolute(value: absolute)

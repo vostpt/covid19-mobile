@@ -22,18 +22,23 @@ class StatisticsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: child,
       margin: const EdgeInsets.only(bottom: 8.0),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 16,
-      ),
-      decoration: BoxDecoration(
-        color: Covid19Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          width: 2,
-          color: Covid19Colors.lightGrey,
+      child: Ink(
+        decoration: BoxDecoration(
+          color: Covid19Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            width: 2,
+            color: Covid19Colors.lightGrey,
+          ),
+        ),
+        child: InkWell(
+          onTap: () {},
+          child: child,
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: 16,
         ),
       ),
     );

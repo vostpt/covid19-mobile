@@ -31,6 +31,10 @@ const String routeMeasures = "measures";
 const String routeMeasuresDetails = "measures/details";
 const String routeInitiatives = "initiatives";
 const String routeLicences = "licences";
+const String routeStatisticsConfirmed = "statistics/confirmed";
+const String routeStatisticsDeaths = "statistics/deaths";
+const String routeStatisticsRecovered = "statistics/recovered";
+const String routeStatisticsHospitalized = "statistics/hospitalized";
 
 /// DSSG Source Date Time format
 final DateFormat formatDSSGDateTime = DateFormat("DD-MM-yyyy HH:mm");

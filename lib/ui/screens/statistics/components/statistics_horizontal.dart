@@ -25,12 +25,14 @@ class StatisticHorizontalWidget extends StatelessWidget {
   final int value;
   final double percentage;
   final int absolute;
+  final VoidCallback onTap;
 
   StatisticHorizontalWidget({
     @required this.label,
     @required this.value,
     @required this.percentage,
     @required this.absolute,
+    @required this.onTap,
   });
 
   @override

@@ -12,23 +12,34 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/resources/style/text_styles.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 
 class SquaredNumberWidget extends StatelessWidget {
   final int value;
 
-  SquaredNumberWidget({@required this.value});
+  //Default style: TextStyles.h3()
+  final TextStyle style;
+
+  SquaredNumberWidget({@required this.value, this.style});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 4.0),
       padding: const EdgeInsets.symmetric(
-        horizontal: 6.0,
         vertical: 4.0,
+        horizontal: 6.0,
+      ),
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1,
+          color: Covid19Colors.lightGrey,
+        ),
       ),
       child: Text(
         value.toString().toUpperCase(),
-        style: TextStyles.statisticsNumberSecondary(),
+        style: style == null ? TextStyles.h3() : style,
       ),
     );
   }

@@ -12,7 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/generated/l10n.dart';
-import 'package:covid19mobile/providers/stats_provider.dart';
+import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/resources/icons_svg.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_border.dart';
@@ -39,7 +39,11 @@ class StatisticsButton extends StatelessWidget {
                 children: <Widget>[
                   StatisticsBorder(
                     color: Colors.white,
-                    text: Text(Provider.of<StatsProvider>(context).confirmed,
+                    text: Text(
+                        Provider.of<CovidStatusProvider>(context)
+                            .statistics
+                            .confirmed
+                            .toString(),
                         style: Theme.of(context)
                             .textTheme
                             .display2

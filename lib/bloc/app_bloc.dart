@@ -24,7 +24,6 @@ import 'package:covid19mobile/model/initiative_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/slider_model.dart';
-import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
 import 'package:covid19mobile/services/covid_status/status_api_service.dart';
 import 'package:covid19mobile/services/estamoson/api_service.dart';
@@ -40,25 +39,6 @@ class AppBloc implements Bloc {
 
   AppBloc() {
     APIService.api.init();
-  }
-
-  void getStats() async {
-    final APIResponse response = await APIService.api.getStats();
-    if (response.isOk) {
-      logger.i('[$_tag] everything went ok!');
-
-      onStream.sink.add(
-        StatsResultStream(
-            model: StatsModel.fromJson(response.data),
-            state: StateStream.success),
-      );
-    } else {
-      logger.e('[$_tag] oops...');
-      // throw some error
-      onStream.sink.add(
-        StatsResultStream(model: null, state: StateStream.fail),
-      );
-    }
   }
 
   void getSlider() async {

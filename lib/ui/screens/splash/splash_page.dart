@@ -20,7 +20,6 @@ import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/slider_provider.dart';
-import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/icons_svg.dart';
@@ -107,10 +106,6 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
 
   @override
   void initBloc(SplashBloc bloc) {
-    /// Get Case Stats
-    ///
-    bloc.bloc.getStats();
-
     /// Get Slider
     ///
     bloc.bloc.getSlider();
@@ -156,16 +151,6 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
 
   @override
   void onStateResultListener(ResultStream result) {
-    if (result is StatsResultStream) {
-      Provider.of<StatsProvider>(context, listen: false).setStats(result.model);
-
-      if (result.state == StateStream.success) {
-        _statsSubject.add(true);
-      } else if (result.state == StateStream.fail) {
-        _statsSubject.add(false);
-      }
-    }
-
     if (result is RemoteWorkResultStream) {
       Provider.of<RemoteWorkProvider>(context, listen: false)
           .setRemoteWork(result.model);

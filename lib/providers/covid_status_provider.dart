@@ -20,8 +20,7 @@ class CovidStatusProvider extends ChangeNotifier {
 
   CovidStatusModel get status => _status;
 
-  CovidStatusStatistics get statisticsPage =>
-      CovidStatusStatistics(status: status);
+  CovidStatusStatistics get statistics => CovidStatusStatistics(status: status);
 
   void setCovidStatus(CovidStatusModel value) {
     _status = value;

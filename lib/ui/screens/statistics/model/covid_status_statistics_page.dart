@@ -29,6 +29,9 @@ class CovidStatusStatistics {
   /// Percentage growth from previous day
   double _confirmedPercentageNew;
 
+  /// Confirmed absolute growth from previous day
+  int _confirmedAbsolutNew;
+
   /// Death total cases
   int _death;
 
@@ -47,17 +50,14 @@ class CovidStatusStatistics {
   /// Recovered absolute growth from previous day
   int _recoveredAbsolutNew;
 
-  /// Hospitalized total cases
-  int _hospitalized;
-
-  /// Hospitalized percentage growth from previous day
-  double _hospitalizedPercentageNew;
-
   /// Hospitalized UCI total cases
   int _hospitalizedUCI;
 
   /// Hospitalized percentage growth from previous day
   double _hospitalizedUCIPercentageNew;
+
+  /// Hospitalized absoulte growth from previous day
+  int _hospitalizedUCIAbsolutGrowth;
 
   /// Suspected total cases;
   int _suspected;
@@ -78,6 +78,7 @@ class CovidStatusStatistics {
     // Confirmed
     _confirmed = status.confirmed.values.last.toInt();
     _confirmedPercentageNew = _calculatePercentage(status.confirmed);
+    _confirmedAbsolutNew = _calculateAbsoluteNew(status.confirmed);
 
     // Death
     _death = status.deaths.values.last.toInt();
@@ -89,14 +90,12 @@ class CovidStatusStatistics {
     _recoveredPercentageNew = _calculatePercentage(status.recovered);
     _recoveredAbsolutNew = _calculateAbsoluteNew(status.recovered);
 
-    // Hospitalized
-    _hospitalized = status.hospitalized.values.last.toInt();
-    _hospitalizedPercentageNew = _calculatePercentage(status.hospitalized);
-
     // Hospitalized UCI
     _hospitalizedUCI = status.hospitalizedUCI.values.last.toInt();
     _hospitalizedUCIPercentageNew =
         _calculatePercentage(status.hospitalizedUCI);
+    _hospitalizedUCIAbsolutGrowth =
+        _calculateAbsoluteNew(status.hospitalizedUCI);
 
     // Suspected
     _suspected = status.suspects.values.last.toInt();
@@ -118,6 +117,9 @@ class CovidStatusStatistics {
   /// Percentage growth from previous day
   double get confirmedPercentage => _confirmedPercentageNew;
 
+  /// Confirmed absolute growth from previous day
+  int get confirmedAbsolut => _confirmedAbsolutNew;
+
   /// Death total cases
   int get death => _death;
 
@@ -136,17 +138,14 @@ class CovidStatusStatistics {
   /// Recovered absolute growth from previous day
   int get recoveredAbsolute => _recoveredAbsolutNew;
 
-  /// Hospitalized total cases
-  int get hospitalized => _hospitalized;
-
-  /// Hospitalized percentage growth from previous day
-  double get hospitalizedPercentage => _hospitalizedPercentageNew;
-
   /// Hospitalized UCI total cases
   int get hospitalizedUCI => _hospitalizedUCI;
 
-  /// Hospitalized percentage growth from previous day
+  /// Hospitalized UCI percentage growth from previous day
   double get hospitalizedUCIPercentage => _hospitalizedUCIPercentageNew;
+
+  /// Hospitalized UCI absolute growth from previous day
+  int get hospitalizedUCIAbsolute => _hospitalizedUCIAbsolutGrowth;
 
   /// Suspected total cases;
   int get suspected => _suspected;

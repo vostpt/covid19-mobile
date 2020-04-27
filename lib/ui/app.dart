@@ -23,7 +23,6 @@ import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/notifications_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/slider_provider.dart';
-import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/custom_localization.dart';
@@ -56,7 +55,6 @@ final Logger logger = Logger(printer: PrettyPrinter(methodCount: 0));
 /// Starting class for the project
 class CovidApp extends StatelessWidget {
   final AppBloc appBloc = AppBloc();
-  final statsProvider = StatsProvider();
   final remoteWorkProvider = RemoteWorkProvider();
   final faqProvider = FaqProvider();
   final videosProvider = VideosProvider();
@@ -89,7 +87,6 @@ class CovidApp extends StatelessWidget {
         ProxyProvider<AppBloc, SplashBloc>(
           update: (_, __, splashBloc) => SplashBloc(appBloc),
         ),
-        ChangeNotifierProvider<StatsProvider>.value(value: statsProvider),
         ChangeNotifierProvider<RemoteWorkProvider>.value(
             value: remoteWorkProvider),
         ChangeNotifierProvider<FaqProvider>.value(value: faqProvider),

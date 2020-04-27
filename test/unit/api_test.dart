@@ -19,7 +19,6 @@ import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/slider_model.dart';
-import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/model/video_model.dart';
 import 'package:covid19mobile/services/estamoson/api_service.dart';
 import 'package:dio/dio.dart';
@@ -55,48 +54,6 @@ void main() {
       api.init(client);
 
       when(options.headers).thenReturn({});
-    });
-
-    test(' performs a get stats', () async {
-      final statsModel = StatsModel("10", "1", "1", "5", "3", "5 Fev");
-
-      when(client.get('/stats')).thenAnswer(
-        (_) => Future.value(
-          Response(statusCode: HttpStatus.ok, data: {
-            "recuperados": "10",
-            "confirmados": "1",
-            "suspeitos": "1",
-            "aguardar_resultados": "5",
-            "obitos": "3",
-            "data_atualizacao": "5 Fev",
-          }),
-        ),
-      );
-
-      /// Verify if is same instance
-      var response = await api.getStats();
-      expect(response, isInstanceOf<APIResponse>());
-
-      /// Verify json to model
-      var responseModel = StatsModel.fromJson(response.data);
-      expect(responseModel, isNotNull);
-
-      /// Verify model to json
-      var responseModelToJson = responseModel.toJson();
-      expect(responseModelToJson, isNotNull);
-
-      /// Call API
-      verify(
-        client.get('/stats'),
-      ).called(1);
-
-      /// verify model data
-      expect(responseModel.recovered, statsModel.recovered);
-      expect(responseModel.confirmed, statsModel.confirmed);
-      expect(responseModel.awaitingResults, statsModel.awaitingResults);
-      expect(responseModel.suspected, statsModel.suspected);
-      expect(responseModel.deaths, statsModel.deaths);
-      expect(responseModel.lastUpdated, statsModel.lastUpdated);
     });
 
     test(' performs a get Post RemoteWork', () async {

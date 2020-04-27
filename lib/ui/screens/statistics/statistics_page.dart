@@ -35,7 +35,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
   @override
   Widget build(BuildContext context) {
     CovidStatusStatistics currentStatistics =
-        Provider.of<CovidStatusProvider>(context).statisticsPage;
+        Provider.of<CovidStatusProvider>(context).statistics;
 
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
@@ -65,6 +65,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                       label: S.of(context).statisticsPageConfirmed,
                       value: currentStatistics.confirmed,
                       percentage: currentStatistics.confirmedPercentage,
+                      absolute: currentStatistics.confirmedAbsolut,
                     ),
 
                     /// Vertical Info - Deaths | Recovered
@@ -103,6 +104,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                       label: S.of(context).statisticsPageHospitalizedUCI,
                       value: currentStatistics.hospitalizedUCI,
                       percentage: currentStatistics.hospitalizedUCIPercentage,
+                      absolute: currentStatistics.hospitalizedUCIAbsolute,
                     ),
 
                     /// Big Numbers

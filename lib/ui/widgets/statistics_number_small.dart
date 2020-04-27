@@ -12,6 +12,8 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import 'package:covid19mobile/resources/style/text_styles.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 
 class StatisticsNumberSmall extends StatelessWidget {
@@ -32,20 +34,14 @@ class StatisticsNumberSmall extends StatelessWidget {
               padding: const EdgeInsets.all(4),
               child: Text(
                 value.toString().toUpperCase(),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
+                style: TextStyles.h2(color: Covid19Colors.green),
               ),
             ),
           ),
         ),
         Text(
           text,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyles.h3(),
         )
       ],
     );

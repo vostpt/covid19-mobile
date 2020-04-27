@@ -13,9 +13,6 @@
 
 import 'package:covid19mobile/main_common.dart';
 import 'package:covid19mobile/model/api_response_model.dart';
-import 'package:covid19mobile/model/covid_server_status.dart';
-import 'package:covid19mobile/model/covid_status_last_updated_model.dart';
-import 'package:covid19mobile/model/covid_status_model.dart';
 import 'package:covid19mobile/services/covid_status/status_api.dart';
 import 'package:covid19mobile/services/request_type.dart';
 import 'package:covid19mobile/ui/app.dart';
@@ -104,10 +101,11 @@ class CovidStatusAPIService {
   }
 
   /// Date must be in dd-mm-yyyy format
-  Future<APIResponse> getEntry<CovidStatusModel>(String start, {String end}) async {
+  Future<APIResponse> getEntry<CovidStatusModel>(String start,
+      {String end}) async {
     return await _performRequest(
       RequestType.get,
-      '/get_entry/$start${end == null? '' : '_until_$end'}',
+      "/get_entry/$start${end == null ? '' : '_until_$end'}",
     );
   }
 
@@ -123,7 +121,7 @@ class CovidStatusAPIService {
   Future<APIResponse> getServerStatus<CovidServerStatusModel>() async {
     return await _performRequest(
       RequestType.get,
-      '/get_last_update',
+      '/get_status',
     );
   }
 }

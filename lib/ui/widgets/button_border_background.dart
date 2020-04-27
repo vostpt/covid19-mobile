@@ -34,7 +34,7 @@ class ButtonBorderBackground extends StatelessWidget {
           width: 2.0,
         ),
       ),
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: child,
     );
   }

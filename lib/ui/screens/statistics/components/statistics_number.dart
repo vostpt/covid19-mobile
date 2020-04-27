@@ -11,22 +11,30 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:flutter/widgets.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
-import 'package:flutter/material.dart';
 
-class Brand extends StatelessWidget {
+class StatisticNumberWidget extends StatelessWidget {
+  final String label;
+  final int value;
+
+  StatisticNumberWidget({
+    @required this.label,
+    @required this.value,
+  });
+
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        children: <TextSpan>[
-          TextSpan(
-            text: '#COVID19',
-            style: TextStyles.h1(color: Covid19Colors.red),
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Text(
+            label,
+            style: TextStyles.h3(color: Covid19Colors.green),
           ),
-          TextSpan(
-            text: 'PT',
+          Text(
+            value.toString().toUpperCase(),
             style: TextStyles.h1(color: Covid19Colors.green),
           ),
         ],

@@ -15,22 +15,45 @@ import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 
-class Brand extends StatelessWidget {
+class NumberAndPercentageWidget extends StatelessWidget {
+  final int value;
+  final double percentage;
+
+  const NumberAndPercentageWidget(
+      {Key key, @required this.value, @required this.percentage})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        children: <TextSpan>[
-          TextSpan(
-            text: '#COVID19',
-            style: TextStyles.h1(color: Covid19Colors.red),
+    return Row(
+      children: <Widget>[
+        Container(
+          margin: const EdgeInsets.all(4.0),
+          child: Text(
+            value.toString().toUpperCase(),
+            style: TextStyles.statisticsBig(),
           ),
-          TextSpan(
-            text: 'PT',
-            style: TextStyles.h1(color: Covid19Colors.green),
-          ),
-        ],
-      ),
+        ),
+        Text(
+          _showPercentage(percentage),
+          style: TextStyles.h3Regular(color: Covid19Colors.grey),
+        ),
+      ],
     );
+  }
+}
+
+/// Return the label for percentage depending
+///   of the value passed.
+String _showPercentage(double percentage) {
+  String value = percentage.toStringAsFixed(1);
+
+  if (percentage > 0.0) {
+    return "(+$value%)";
+  }
+  if (percentage == 0.0) {
+    return "(0%)";
+  } else {
+    return "($value%)";
   }
 }

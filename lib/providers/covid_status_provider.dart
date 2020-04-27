@@ -12,12 +12,16 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/model/covid_status_model.dart';
+import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:flutter/material.dart';
 
 class CovidStatusProvider extends ChangeNotifier {
   CovidStatusModel _status;
 
   CovidStatusModel get status => _status;
+
+  CovidStatusStatistics get statisticsPage =>
+      CovidStatusStatistics(status: status);
 
   void setCovidStatus(CovidStatusModel value) {
     _status = value;

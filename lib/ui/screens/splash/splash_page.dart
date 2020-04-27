@@ -137,8 +137,17 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
       bloc.bloc.getInitiatives();
 
       /// Get Current Covid Status
+      ///   gets all database
       ///
       bloc.bloc.getCovidStatus();
+
+      /// Get the Covid source server status
+      ///
+      bloc.bloc.getCovidStatus();
+
+      /// Get Last update covid status
+      ///
+      bloc.bloc.getCovidLastUpdate();
     });
   }
 
@@ -213,8 +222,8 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(4.0)),
                   ),
-                  margin: EdgeInsets.all(24.0),
-                  padding: EdgeInsets.all(24.0),
+                  margin: const EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(24.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,

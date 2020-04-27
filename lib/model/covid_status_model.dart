@@ -66,7 +66,7 @@ class CovidStatusModel {
   final Map<int, double> hospitalizedUCI;
 
   @JsonKey(name: 'lab')
-  final Map<int, double> lab;
+  final Map<int, double> waitingResults;
 
   @JsonKey(name: 'suspeitos')
   final Map<int, double> suspects;
@@ -286,7 +286,7 @@ class CovidStatusModel {
       this.deaths,
       this.hospitalized,
       this.hospitalizedUCI,
-      this.lab,
+      this.waitingResults,
       this.suspects,
       this.surveillance,
       this.confirmedNumber,

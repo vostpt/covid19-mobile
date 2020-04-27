@@ -15,8 +15,8 @@ import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/resources/icons_svg.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_border.dart';
 import 'package:covid19mobile/ui/widgets/button_background.dart';
-import 'package:covid19mobile/ui/widgets/statistics_border.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

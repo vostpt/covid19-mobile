@@ -10,39 +10,32 @@
 ///
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 
-class StatisticsNumberBig extends StatelessWidget {
-  final int value;
-  final String text;
+class StatisticsContainer extends StatelessWidget {
+  final Widget child;
 
-  StatisticsNumberBig(this.value, this.text);
+  StatisticsContainer({@required this.child});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Card(
-          color: Colors.black,
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.all(4),
-              child: Text(
-                value.toString().toUpperCase(),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 28,
-                ),
-              ),
-            ),
-          ),
+    return Container(
+      child: child,
+      margin: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 16,
+      ),
+      decoration: BoxDecoration(
+        color: Covid19Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          width: 2,
+          color: Covid19Colors.lightGrey,
         ),
-        Text(
-          text,
-          style: TextStyle(fontSize: 18),
-        )
-      ],
+      ),
     );
   }
 }

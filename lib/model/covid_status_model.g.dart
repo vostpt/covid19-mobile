@@ -304,7 +304,8 @@ Map<String, dynamic> _$CovidStatusModelToJson(CovidStatusModel instance) {
       instance.hospitalized?.map((k, e) => MapEntry(k.toString(), e)));
   writeNotNull('internados_uci',
       instance.hospitalizedUCI?.map((k, e) => MapEntry(k.toString(), e)));
-  writeNotNull('lab', instance.lab?.map((k, e) => MapEntry(k.toString(), e)));
+  writeNotNull(
+      'lab', instance.waitingResults?.map((k, e) => MapEntry(k.toString(), e)));
   writeNotNull(
       'suspeitos', instance.suspects?.map((k, e) => MapEntry(k.toString(), e)));
   writeNotNull('vigilancia',

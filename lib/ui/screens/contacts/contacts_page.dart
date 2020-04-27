@@ -48,7 +48,7 @@ class _ContactsPageState extends State<ContactsPage> {
         elevation: 0.0,
       ),
       body: Container(
-        margin: EdgeInsets.all(12.0),
+        margin: const EdgeInsets.all(12.0),
         child: ListView.builder(
             itemCount: _contacts.length,
             itemBuilder: (context, index) {

@@ -11,6 +11,7 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -39,10 +40,7 @@ class CardFilesLink extends StatelessWidget {
                 Expanded(
                   child: Text(
                     text,
-                    style: TextStyle(
-                      color: Covid19Colors.green,
-                      fontSize: 18,
-                    ),
+                    style: TextStyles.h2(color: Covid19Colors.green),
                   ),
                 ),
                 Icon(

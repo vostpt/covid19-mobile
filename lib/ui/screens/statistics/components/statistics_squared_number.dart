@@ -12,24 +12,23 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/resources/style/text_styles.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 
-class Brand extends StatelessWidget {
+class SquaredNumberWidget extends StatelessWidget {
+  final int value;
+
+  SquaredNumberWidget({@required this.value});
+
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        children: <TextSpan>[
-          TextSpan(
-            text: '#COVID19',
-            style: TextStyles.h1(color: Covid19Colors.red),
-          ),
-          TextSpan(
-            text: 'PT',
-            style: TextStyles.h1(color: Covid19Colors.green),
-          ),
-        ],
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 6.0,
+        vertical: 4.0,
+      ),
+      child: Text(
+        value.toString().toUpperCase(),
+        style: TextStyles.statisticsNumberSecondary(),
       ),
     );
   }

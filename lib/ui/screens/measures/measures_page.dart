@@ -95,7 +95,7 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
         elevation: 0.0,
       ),
       body: Container(
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         child: hasData
             ? ListView.separated(
                 itemCount: measures.length,

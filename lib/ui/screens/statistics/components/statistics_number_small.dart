@@ -15,22 +15,34 @@ import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 
-class Brand extends StatelessWidget {
+class StatisticsNumberSmall extends StatelessWidget {
+  final int value;
+  final String text;
+
+  StatisticsNumberSmall(this.value, this.text);
+
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        children: <TextSpan>[
-          TextSpan(
-            text: '#COVID19',
-            style: TextStyles.h1(color: Covid19Colors.red),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Card(
+          color: Colors.black,
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: Text(
+                value.toString().toUpperCase(),
+                style: TextStyles.h2(color: Covid19Colors.green),
+              ),
+            ),
           ),
-          TextSpan(
-            text: 'PT',
-            style: TextStyles.h1(color: Covid19Colors.green),
-          ),
-        ],
-      ),
+        ),
+        Text(
+          text,
+          style: TextStyles.h3(),
+        )
+      ],
     );
   }
 }

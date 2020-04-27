@@ -1,5 +1,3 @@
-import 'dart:io';
-
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -13,6 +11,7 @@ import 'dart:io';
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:io';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/assets/dimensions.dart';
@@ -79,7 +78,8 @@ class Themes {
       indicator: UnderlineTabIndicator(
         borderSide:
             BorderSide(width: tabIndicatorWeight, color: Covid19Colors.green),
-        insets: EdgeInsets.fromLTRB(tabIndicatorMagin, 0, tabIndicatorMagin, 0),
+        insets: const EdgeInsets.fromLTRB(
+            tabIndicatorMagin, 0, tabIndicatorMagin, 0),
       ),
     ),
   );

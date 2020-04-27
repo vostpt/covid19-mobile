@@ -47,14 +47,17 @@ class AppBloc implements Bloc {
     if (response.isOk) {
       logger.i('[$_tag] everything went ok!');
 
-      onStream.sink.add(StatsResultStream(
-          model: StatsModel.fromJson(response.data),
-          state: StateStream.success));
+      onStream.sink.add(
+        StatsResultStream(
+            model: StatsModel.fromJson(response.data),
+            state: StateStream.success),
+      );
     } else {
       logger.e('[$_tag] oops...');
       // throw some error
-      onStream.sink
-          .add(StatsResultStream(model: null, state: StateStream.fail));
+      onStream.sink.add(
+        StatsResultStream(model: null, state: StateStream.fail),
+      );
     }
   }
 
@@ -89,9 +92,11 @@ class AppBloc implements Bloc {
 
     var results = await getPosts<VideoModel>(postType, cacheKey: "VideoModel");
 
-    onStream.sink.add(VideosResultStream(
-        model: results,
-        state: results != null ? StateStream.success : StateStream.fail));
+    onStream.sink.add(
+      VideosResultStream(
+          model: results,
+          state: results != null ? StateStream.success : StateStream.fail),
+    );
   }
 
   void getMeasures() async {
@@ -157,9 +162,11 @@ class AppBloc implements Bloc {
     var results =
         await getPosts<InitiativeModel>(postType, cacheKey: "InitiativeModel");
 
-    onStream.sink.add(InitiativeResultStream(
-        model: results,
-        state: results != null ? StateStream.success : StateStream.fail));
+    onStream.sink.add(
+      InitiativeResultStream(
+          model: results,
+          state: results != null ? StateStream.success : StateStream.fail),
+    );
   }
 
   Future<List<T>> getPosts<T>(PostType postType,
@@ -192,42 +199,76 @@ class AppBloc implements Bloc {
 
     CovidStatusModel data = CovidStatusModel.fromJson(results.data);
 
-    onStream.sink.add(CovidStatusResultStream(
-        model: data,
-        state: results != null ? StateStream.success : StateStream.fail));
+    if (results.isOk) {
+      onStream.sink.add(
+        CovidStatusResultStream(
+            model: data,
+            state: results != null ? StateStream.success : StateStream.fail),
+      );
+    } else {
+      logger.e(
+          "${results.statusCode} [$_tag][getCovidLastUpdate][${results.dioErrorType}]");
+      // throw some error
+    }
   }
 
-   /// Gets the entries from a [start] date to [end] date in the [yyyy-mm-dd] format
+  /// Gets the entries from a [start] date to [end] date in the [yyyy-mm-dd] format
   void getCovidEntry(String start, {String end}) async {
     var results = await CovidStatusAPIService.api.getEntry(start, end: end);
 
-    CovidStatusModel data = CovidStatusModel.fromJson(results.data);
+    if (results.isOk) {
+      CovidStatusModel data = CovidStatusModel.fromJson(results.data);
 
-    onStream.sink.add(CovidEntryStatusStream(
-        model: data,
-        state: results != null ? StateStream.success : StateStream.fail));
+      onStream.sink.add(
+        CovidEntryStatusStream(
+            model: data,
+            state: results != null ? StateStream.success : StateStream.fail),
+      );
+    } else {
+      logger.e(
+          "${results.statusCode} [$_tag][getCovidLastUpdate][${results.dioErrorType}]");
+      // throw some error
+    }
   }
 
-   /// Gets the last updated status for COVID
+  /// Gets the last updated status for COVID
   void getCovidLastUpdate() async {
     var results = await CovidStatusAPIService.api.getLastUpdate();
 
-    CovidStatusLastUpdatedModel data = CovidStatusLastUpdatedModel.fromJson(results.data);
+    if (results.isOk) {
+      CovidStatusLastUpdatedModel data =
+          CovidStatusLastUpdatedModel.fromJson(results.data);
 
-    onStream.sink.add(CovidLastUpdatedStream(
-        model: data,
-        state: results != null ? StateStream.success : StateStream.fail));
+      onStream.sink.add(
+        CovidLastUpdatedStream(
+            model: data,
+            state: results != null ? StateStream.success : StateStream.fail),
+      );
+    } else {
+      logger.e(
+          "${results.statusCode} [$_tag][getCovidLastUpdate][${results.dioErrorType}]");
+      // throw some error
+    }
   }
 
   /// Gets the server status for the Covid server
-    void getServerStatus() async {
+  void getServerStatus() async {
     var results = await CovidStatusAPIService.api.getServerStatus();
 
-    CovidServerStatusModel data = CovidServerStatusModel.fromJson(results.data);
+    if (results.isOk) {
+      CovidServerStatusModel data =
+          CovidServerStatusModel.fromJson(results.data);
 
-    onStream.sink.add(CovidServerStatusStream(
-        model: data,
-        state: results != null ? StateStream.success : StateStream.fail));
+      onStream.sink.add(
+        CovidServerStatusStream(
+            model: data,
+            state: results != null ? StateStream.success : StateStream.fail),
+      );
+    } else {
+      logger.e(
+          "${results.statusCode} [$_tag][getCovidLastUpdate][${results.dioErrorType}]");
+      // throw some error
+    }
   }
 
   /// Parse the json map into each corresponding Post Model

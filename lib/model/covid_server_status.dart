@@ -20,9 +20,9 @@ class CovidServerStatusModel {
   @JsonKey(name: 'status')
   final Map<int, String> status;
 
-
   CovidServerStatusModel(
-      this.status,);
+    this.status,
+  );
 
   /// Mapper from Json to Model
   factory CovidServerStatusModel.fromJson(Map<String, dynamic> json) =>

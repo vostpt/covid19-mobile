@@ -66,7 +66,7 @@ class CovidStatusLastUpdatedModel {
   final double hospitalizedUCI;
 
   @JsonKey(name: 'lab')
-  final double lab;
+  final double waitingResults;
 
   @JsonKey(name: 'suspeitos')
   final double suspects;
@@ -286,7 +286,7 @@ class CovidStatusLastUpdatedModel {
       this.deaths,
       this.hospitalized,
       this.hospitalizedUCI,
-      this.lab,
+      this.waitingResults,
       this.suspects,
       this.surveillance,
       this.confirmedNumber,

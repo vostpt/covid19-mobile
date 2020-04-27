@@ -1,4 +1,4 @@
-import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/resources/style/text_styles.dart';
 
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
@@ -14,28 +14,34 @@ import 'package:covid19mobile/ui/assets/colors.dart';
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_container.dart';
 
-class PlayButton extends StatelessWidget {
+class StatisticsNumberBig extends StatelessWidget {
+  final String label;
+  final int value;
+
+  StatisticsNumberBig({
+    @required this.label,
+    @required this.value,
+  });
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 48,
-      margin: const EdgeInsets.only(
-        left: 8,
-        right: 8,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white,
-      ),
-      child: Container(
-        height: 18.098360061645508,
-        margin: const EdgeInsets.only(
-          left: 26.88525390625,
-          right: 26.88525390625,
+    return StatisticsContainer(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 8.0,
+          horizontal: 8.0,
         ),
-        decoration: BoxDecoration(
-          color: Covid19Colors.green,
-          borderRadius: BorderRadius.circular(1),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Expanded(child: Text(label, style: TextStyles.h3())),
+            Text(
+              value.toString().toUpperCase(),
+              style: TextStyles.statisticsBig(),
+            )
+          ],
         ),
       ),
     );

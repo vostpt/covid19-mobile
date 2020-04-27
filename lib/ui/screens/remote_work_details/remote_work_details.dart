@@ -35,7 +35,7 @@ class RemoteWorkDetails extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
             HtmlContent(content: remoteWork.description),

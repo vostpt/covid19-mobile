@@ -11,26 +11,28 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/resources/style/text_styles.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 
-class Brand extends StatelessWidget {
+class StatisticsBorder extends StatelessWidget {
+  final Color color;
+  final Text text;
+
+  const StatisticsBorder({Key key, this.color, this.text}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        children: <TextSpan>[
-          TextSpan(
-            text: '#COVID19',
-            style: TextStyles.h1(color: Covid19Colors.red),
-          ),
-          TextSpan(
-            text: 'PT',
-            style: TextStyles.h1(color: Covid19Colors.green),
-          ),
-        ],
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(4.0),
+        ),
+        border: Border.all(
+          color: color,
+          width: 2.0,
+        ),
       ),
+      padding: const EdgeInsets.all(4.0),
+      child: text,
     );
   }
 }

@@ -15,16 +15,16 @@ import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/covid_status_provider.dart';
-import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
-import 'package:covid19mobile/ui/screens/statistics/components/stats_widget.dart';
-import 'package:covid19mobile/utils/launch_url.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_horizontal.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_number_big.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_vertical.dart';
+import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
+import 'package:covid19mobile/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-const _itemsMargin = 8.0;
 
 class StatisticsPage extends BasePage {
   @override
@@ -34,10 +34,13 @@ class StatisticsPage extends BasePage {
 class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
   @override
   Widget build(BuildContext context) {
-    var stats = Provider.of<StatsProvider>(context);
-    var covidStatus = Provider.of<CovidStatusProvider>(context);
+    CovidStatusStatistics currentStatistics =
+        Provider.of<CovidStatusProvider>(context).statisticsPage;
+
     return Scaffold(
+      backgroundColor: Covid19Colors.paleGrey,
       appBar: AppBar(
+        backgroundColor: Covid19Colors.paleGrey,
         iconTheme:
             Theme.of(context).iconTheme.copyWith(color: Covid19Colors.darkGrey),
         title: Text(
@@ -47,152 +50,109 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
               .display2
               .copyWith(color: Covid19Colors.darkGrey),
         ),
-        backgroundColor: Colors.white,
         elevation: 0.0,
       ),
-      body: Container(
-        margin: EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Expanded(
-              flex: 4,
-              child: StatsWidget(
-                color: Covid19Colors.statsBlue,
-                number: stats.confirmed,
-                numberStyle:
-                    TextStyles.statisticsBig(color: Covid19Colors.darkGrey),
-                text: S.of(context).statisticsPageConfirmed.toUpperCase(),
-                textStyle: Theme.of(context)
-                    .textTheme
-                    .display1
-                    .copyWith(color: Covid19Colors.darkGrey),
-              ),
-            ),
-            const SizedBox(
-              height: _itemsMargin,
-            ),
-            Expanded(
-              flex: 3,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: StatsWidget(
-                      color: Covid19Colors.statsGreen,
-                      number: stats.recovered,
-                      numberStyle: Theme.of(context)
-                          .textTheme
-                          .display1
-                          .copyWith(color: Covid19Colors.darkGrey),
-                      text: S.of(context).statisticsPageRecovered.toUpperCase(),
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .display4
-                          .copyWith(color: Covid19Colors.darkGrey),
+      body: currentStatistics.confirmed == null
+          ? Loading()
+          : SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    // Horizontal - Confirmed Cases
+                    StatisticHorizontalWidget(
+                      label: S.of(context).statisticsPageConfirmed,
+                      value: currentStatistics.confirmed,
+                      percentage: currentStatistics.confirmedPercentage,
                     ),
-                  ),
-                  const SizedBox(
-                    width: _itemsMargin,
-                  ),
-                  Expanded(
-                    child: StatsWidget(
-                      color: Covid19Colors.statsRed,
-                      number: stats.deaths,
-                      numberStyle: Theme.of(context)
-                          .textTheme
-                          .display1
-                          .copyWith(color: Covid19Colors.darkGrey),
-                      text: "Óbitos".toUpperCase(),
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .display4
-                          .copyWith(color: Covid19Colors.darkGrey),
+
+                    /// Vertical Info - Deaths | Recovered
+                    Row(
+                      children: <Widget>[
+                        /// Deaths
+                        Expanded(
+                          child: StatisticVerticalWidget(
+                            label: S.of(context).statisticsPageDeaths,
+                            value: currentStatistics.death,
+                            percentage: currentStatistics.deathPercentage,
+                            valueDifference: currentStatistics.deathAbsolute,
+                          ),
+                        ),
+
+                        /// Vertical Divider
+                        Container(
+                          width: 8.0,
+                        ),
+
+                        /// Recovered
+                        Expanded(
+                          child: StatisticVerticalWidget(
+                            label: S.of(context).statisticsPageRecovered,
+                            value: currentStatistics.recovered,
+                            percentage: currentStatistics.recoveredPercentage,
+                            valueDifference:
+                                currentStatistics.recoveredAbsolute,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: _itemsMargin,
-            ),
-            Expanded(
-              flex: 3,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: StatsWidget(
-                      color: Covid19Colors.statsYellow,
-                      number: stats.suspected,
-                      numberStyle: Theme.of(context)
-                          .textTheme
-                          .display1
-                          .copyWith(color: Covid19Colors.darkGrey),
-                      text: S.of(context).statisticsPageSuspects.contains(" ")
-                          ? "${S.of(context).statisticsPageSuspects.toUpperCase().replaceFirst(" ", "\n")}"
-                          : "${S.of(context).statisticsPageSuspects.toUpperCase()}\n",
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .display4
-                          .copyWith(color: Covid19Colors.darkGrey),
+
+                    /// Horizontal - Hospitalized UCI
+                    StatisticHorizontalWidget(
+                      label: S.of(context).statisticsPageHospitalizedUCI,
+                      value: currentStatistics.hospitalizedUCI,
+                      percentage: currentStatistics.hospitalizedUCIPercentage,
                     ),
-                  ),
-                  const SizedBox(
-                    width: _itemsMargin,
-                  ),
-                  Expanded(
-                    child: StatsWidget(
-                      color: Covid19Colors.statsGrey,
-                      number: stats.awaitingResults,
-                      numberStyle: Theme.of(context)
-                          .textTheme
-                          .display1
-                          .copyWith(color: Covid19Colors.darkGrey),
-                      text:
-                          "${S.of(context).statisticsPageAwaitingResults.toUpperCase().replaceFirst(" ", "\n")}",
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .display4
-                          .copyWith(color: Covid19Colors.darkGrey),
+
+                    /// Big Numbers
+                    ///
+                    /// Suspected
+                    StatisticsNumberBig(
+                      label: S.of(context).statisticsPageSuspects,
+                      value: currentStatistics.suspected,
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: _itemsMargin,
-            ),
-            Container(
-              child: Text(
-                  "${S.of(context).lastUpdated.toUpperCase()}${stats.lastUpdated}",
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle
-                      .copyWith(color: Covid19Colors.grey)),
-            ),
-            const SizedBox(
-              height: _itemsMargin,
-            ),
-            SafeArea(
-              child: GestureDetector(
-                onTap: () {
-                  launchURL("https://bit.ly/APP2DGS");
-                },
-                child: Text(
-                  S.of(context).statisticsPageDataLabel,
-                  style: TextStyles.subtitle(
-                      color: Theme.of(context).primaryColor),
+
+                    /// Waiting results
+                    StatisticsNumberBig(
+                      label: S.of(context).statisticsPageAwaitingResults,
+                      value: currentStatistics.waitingResults,
+                    ),
+
+                    /// Under surveillance
+                    StatisticsNumberBig(
+                      label: S.of(context).statisticsPageUnderSurveillance,
+                      value: currentStatistics.underSurveillance,
+                    ),
+
+                    /// Last update
+                    Container(
+                      margin:
+                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                      child: Text(
+                        currentStatistics.getReadableLastUpdate(context),
+                        style: TextStyles.h3Regular(color: Covid19Colors.grey),
+                      ),
+                    ),
+
+                    /// Data from...
+                    Container(
+                      margin:
+                          EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
+                      child: Text(
+                        S.of(context).statisticsPageDataLabel,
+                        style: TextStyles.h3Regular(color: Covid19Colors.grey),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
-      ),
     );
   }
 
   @override
   void initBloc(AppBloc bloc) {
-    bloc.getStats();
     bloc.getCovidStatus();
   }
 
@@ -201,10 +161,6 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
 
   @override
   void onStateResultListener(ResultStream result) {
-    if (result is StatsResultStream) {
-      Provider.of<StatsProvider>(context, listen: false).setStats(result.model);
-    }
-
     if (result is CovidStatusResultStream) {
       Provider.of<CovidStatusProvider>(context, listen: false)
           .setCovidStatus(result.model);

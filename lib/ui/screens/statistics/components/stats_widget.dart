@@ -12,8 +12,8 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_border.dart';
 import 'package:covid19mobile/ui/widgets/button_background.dart';
-import 'package:covid19mobile/ui/widgets/statistics_border.dart';
 import 'package:flutter/material.dart';
 
 class StatsWidget extends StatelessWidget {

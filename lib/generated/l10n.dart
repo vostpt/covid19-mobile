@@ -362,7 +362,7 @@ class S {
 
   String get statisticsPageConfirmed {
     return Intl.message(
-      'Confirmados',
+      'Casos Confirmados',
       name: 'statisticsPageConfirmed',
       desc: '',
       args: [],
@@ -371,7 +371,7 @@ class S {
 
   String get statisticsPageDataLabel {
     return Intl.message(
-      'Dados DGS via ESRI Portugal',
+      'Dados recolhidos por Data Science for Social Good Portugal, a partir do boletim diário da Direcção Geral de Saúde.',
       name: 'statisticsPageDataLabel',
       desc: '',
       args: [],
@@ -400,6 +400,42 @@ class S {
     return Intl.message(
       'Suspeitos',
       name: 'statisticsPageSuspects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageDeaths {
+    return Intl.message(
+      'Óbitos',
+      name: 'statisticsPageDeaths',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageHospitalized {
+    return Intl.message(
+      'Hospitalizados',
+      name: 'statisticsPageHospitalized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageHospitalizedUCI {
+    return Intl.message(
+      'Hospitalizados nos Cuidados Intensivos',
+      name: 'statisticsPageHospitalizedUCI',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageUnderSurveillance {
+    return Intl.message(
+      'Em vigilância',
+      name: 'statisticsPageUnderSurveillance',
       desc: '',
       args: [],
     );
@@ -452,7 +488,7 @@ class S {
 
   String get lastUpdated {
     return Intl.message(
-      'Última actualização: ',
+      'Última actualização',
       name: 'lastUpdated',
       desc: '',
       args: [],
@@ -535,6 +571,42 @@ class S {
     return Intl.message(
       'Não conseguimos aceder à Internet para obter os dados mais recentes. Verifica a tua conexão.',
       name: 'cannotConnectInternetDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get newPlural {
+    return Intl.message(
+      'Novos',
+      name: 'newPlural',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get seeDetails {
+    return Intl.message(
+      'Ver Detalhes',
+      name: 'seeDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get publishedAt {
+    return Intl.message(
+      'Publicada às',
+      name: 'publishedAt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get dateOf {
+    return Intl.message(
+      'de',
+      name: 'dateOf',
       desc: '',
       args: [],
     );

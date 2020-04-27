@@ -1,3 +1,5 @@
+import 'package:covid19mobile/generated/l10n.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -11,28 +13,19 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:covid19mobile/resources/style/text_styles.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:flutter/material.dart';
 
-class StatisticsBorder extends StatelessWidget {
-  final Color color;
-  final Text text;
-
-  const StatisticsBorder({Key key, this.color, this.text}) : super(key: key);
-
+class SeeDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(4.0),
-        ),
-        border: Border.all(
-          color: color,
-          width: 2.0,
-        ),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Text(
+        S.of(context).seeDetails,
+        style: TextStyles.h3Regular(color: Covid19Colors.green),
       ),
-      padding: EdgeInsets.all(4.0),
-      child: text,
     );
   }
 }

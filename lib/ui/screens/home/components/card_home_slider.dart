@@ -222,7 +222,7 @@ class CardHomeSlide extends StatelessWidget {
                   ),
             if (secondaryLabel != null)
               Container(
-                  padding: EdgeInsets.fromLTRB(12, 16, 12, 16),
+                  padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
                   child: Stack(
                     children: <Widget>[
                       Text(
@@ -239,7 +239,7 @@ class CardHomeSlide extends StatelessWidget {
                           child: Row(
                             children: <Widget>[
                               Container(
-                                padding: EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
                                 height: 30,
                                 color: Covid19Colors.white,
                                 child: Row(

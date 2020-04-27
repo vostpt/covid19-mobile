@@ -11,23 +11,23 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/utils/launch_url.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter/material.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:intl/intl.dart';
-import 'package:covid19mobile/extensions/date_extensions.dart';
-// import 'package:html/dom.dart' as dom;
 
 /// Extension class to help parse information of [MeasureModel]
 extension HtmlParsing on MeasureModel {
   /// Parse date to reader friendly format
   /// ex.: [Publicada às 12h00 de 15 de Março de 2020]
-  String parseReadableDate() {
+  String parseReadableDate(BuildContext context) {
     var date = DateTime.parse(postModifiedGMT);
-    String month = DateFormat.MMMM('pt_PT').format(date).capitalize();
-    return "Publicada às ${date.hour}:${date.minute} de ${date.day} de $month de ${date.year}";
+    String month =
+        toBeginningOfSentenceCase(DateFormat.MMMM('pt_PT').format(date));
+    return "${S.of(context).publishedAt} ${date.hour}:${date.minute} ${S.of(context).dateOf} ${date.day} ${S.of(context).dateOf} $month ${S.of(context).dateOf} ${date.year}";
   }
 
   /// Parses the HTML of a excerpt content

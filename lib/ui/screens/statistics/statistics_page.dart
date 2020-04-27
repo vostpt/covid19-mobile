@@ -16,6 +16,7 @@ import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/model/covid_status_model.dart';
 import 'package:covid19mobile/providers/covid_status_provider.dart';
+import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
@@ -25,12 +26,9 @@ import 'package:covid19mobile/ui/screens/statistics/components/statistics_vertic
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:covid19mobile/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fl_chart/fl_chart.dart';
-
-DateTime firstDay = DateTime(2020, 2, 26);
 
 class StatisticsPage extends BasePage {
   @override
@@ -38,13 +36,6 @@ class StatisticsPage extends BasePage {
 }
 
 class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
-  List<Color> gradientColors = [
-    Covid19Colors.white,
-    Covid19Colors.green,
-  ];
-
-  bool logValues = false;
-
   @override
   Widget build(BuildContext context) {
     CovidStatusStatistics currentStatistics =
@@ -79,7 +70,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                       percentage: currentStatistics.confirmedPercentage,
                       absolute: currentStatistics.confirmedAbsolut,
                       onTap: () {
-                        //TODO ADD on Tap
+                        Navigator.pushNamed(context, routeStatisticsConfirmed);
                       },
                     ),
 
@@ -94,7 +85,8 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                             percentage: currentStatistics.deathPercentage,
                             valueDifference: currentStatistics.deathAbsolute,
                             onTap: () {
-                              //TODO ADD on Tap
+                              Navigator.pushNamed(
+                                  context, routeStatisticsDeaths);
                             },
                           ),
                         ),
@@ -113,7 +105,8 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                             valueDifference:
                                 currentStatistics.recoveredAbsolute,
                             onTap: () {
-                              //TODO ADD on Tap
+                              Navigator.pushNamed(
+                                  context, routeStatisticsRecovered);
                             },
                           ),
                         ),
@@ -127,7 +120,8 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                       percentage: currentStatistics.hospitalizedUCIPercentage,
                       absolute: currentStatistics.hospitalizedUCIAbsolute,
                       onTap: () {
-                        //TODO ADD on Tap
+                        Navigator.pushNamed(
+                            context, routeStatisticsHospitalized);
                       },
                     ),
 
@@ -225,96 +219,3 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
     }
   }
 }
-
-// body: Container(
-//         margin: EdgeInsets.all(12.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.stretch,
-//           children: <Widget>[
-//             Container(
-//               child: Text(
-//                 "Total de Confirmados",
-//                 style: Theme.of(context).textTheme.title,
-//               ),
-//               margin: EdgeInsets.all(10.0),
-//             ),
-//             SafeArea(
-//               child: Container(
-//                 padding: EdgeInsets.all(10.0),
-//                 child: LineChart(
-//                   LineChartData(
-//                     lineBarsData: _getData(covidStatus.status),
-//                     lineTouchData: LineTouchData(
-//                       touchTooltipData: LineTouchTooltipData(
-//                         tooltipBgColor: Colors.white,
-//                       ),
-//                       touchCallback: (LineTouchResponse touchResponse) {},
-//                       handleBuiltInTouches: true,
-//                     ),
-//                     gridData: FlGridData(
-//                       show: false,
-//                     ),
-//                     titlesData: FlTitlesData(
-//                       bottomTitles: SideTitles(
-//                           showTitles: true,
-//                           reservedSize: 30,
-//                           textStyle: const TextStyle(
-//                             color: Covid19Colors.grey,
-//                             fontWeight: FontWeight.bold,
-//                             fontSize: 16,
-//                           ),
-//                           margin: 10,
-//                           getTitles: (value) {
-//                             if (value % 20 == 0) {
-//                               DateTime day =
-//                                   firstDay.add(Duration(days: value.toInt()));
-//                               String month = DateFormat.MMM('pt_PT')
-//                                   .format(day)
-//                                   .toUpperCase();
-
-//                               return "${day.day} $month";
-//                             }
-//                             return "";
-//                           }),
-//                       leftTitles: SideTitles(
-//                           showTitles: true,
-//                           interval: 5000,
-//                           textStyle: const TextStyle(
-//                             color: Covid19Colors.grey,
-//                             fontWeight: FontWeight.bold,
-//                             fontSize: 14,
-//                           ),
-//                           margin: 8,
-//                           reservedSize: 40,
-//                           getTitles: (value) {
-//                             if (value == 0) return "";
-//                             return "${value.toInt()}";
-//                           }),
-//                     ),
-//                     borderData: FlBorderData(
-//                       show: true,
-//                       border: const Border(
-//                         bottom: BorderSide(
-//                           color: Colors.grey,
-//                           width: 2,
-//                         ),
-//                         left: BorderSide(
-//                           color: Colors.grey,
-//                           width: 2,
-//                         ),
-//                         right: BorderSide(
-//                           color: Colors.transparent,
-//                         ),
-//                         top: BorderSide(
-//                           color: Colors.transparent,
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                   swapAnimationDuration: Duration(milliseconds: 400),
-//                 ),
-//               ),
-//             )
-//           ],
-//         ),
-//       ),

@@ -11,6 +11,8 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:ui';
+import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:intl/intl.dart';
 
 const String bundle = 'com.vost.covid19mobile';
@@ -38,3 +40,6 @@ const String routeStatisticsHospitalized = "statistics/hospitalized";
 
 /// DSSG Source Date Time format
 final DateFormat formatDSSGDateTime = DateFormat("DD-MM-yyyy HH:mm");
+
+/// First day of DSSG Data
+final DateTime firstDayData = DateTime(2020, 2, 26);

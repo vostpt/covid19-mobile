@@ -15,7 +15,6 @@ import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/covid_status_provider.dart';
-import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
@@ -67,7 +66,9 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                       value: currentStatistics.confirmed,
                       percentage: currentStatistics.confirmedPercentage,
                       absolute: currentStatistics.confirmedAbsolut,
-                      onTap: () {},
+                      onTap: () {
+                        //TODO ADD on Tap
+                      },
                     ),
 
                     /// Vertical Info - Deaths | Recovered
@@ -80,6 +81,9 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                             value: currentStatistics.death,
                             percentage: currentStatistics.deathPercentage,
                             valueDifference: currentStatistics.deathAbsolute,
+                            onTap: () {
+                              //TODO ADD on Tap
+                            },
                           ),
                         ),
 
@@ -96,6 +100,9 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                             percentage: currentStatistics.recoveredPercentage,
                             valueDifference:
                                 currentStatistics.recoveredAbsolute,
+                            onTap: () {
+                              //TODO ADD on Tap
+                            },
                           ),
                         ),
                       ],
@@ -108,7 +115,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                       percentage: currentStatistics.hospitalizedUCIPercentage,
                       absolute: currentStatistics.hospitalizedUCIAbsolute,
                       onTap: () {
-                        Navigator.of(context).pushNamed(routeMeasures);
+                        //TODO ADD on Tap
                       },
                     ),
 

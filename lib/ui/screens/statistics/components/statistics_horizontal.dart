@@ -38,6 +38,7 @@ class StatisticHorizontalWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StatisticsContainer(
+      onTap: onTap,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -16,8 +16,9 @@ import 'package:flutter/material.dart';
 
 class StatisticsContainer extends StatelessWidget {
   final Widget child;
+  final VoidCallback onTap;
 
-  StatisticsContainer({@required this.child});
+  StatisticsContainer({@required this.child, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class StatisticsContainer extends StatelessWidget {
           ),
         ),
         child: InkWell(
-          onTap: () {},
+          onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 12,

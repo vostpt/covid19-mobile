@@ -34,11 +34,13 @@ class StatisticsContainer extends StatelessWidget {
         ),
         child: InkWell(
           onTap: () {},
-          child: child,
-        ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 16,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 16,
+            ),
+            child: child,
+          ),
         ),
       ),
     );

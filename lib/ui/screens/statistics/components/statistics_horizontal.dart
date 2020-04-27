@@ -47,9 +47,12 @@ class StatisticHorizontalWidget extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              NumberAndPercentageWidget(
-                value: value,
-                percentage: percentage,
+              ConstrainedBox(
+                constraints: BoxConstraints(minWidth: 180),
+                child: NumberAndPercentageWidget(
+                  value: value,
+                  percentage: percentage,
+                ),
               ),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20),

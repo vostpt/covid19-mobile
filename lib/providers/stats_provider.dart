@@ -14,7 +14,8 @@
 import 'package:covid19mobile/model/stats_model.dart';
 import 'package:flutter/material.dart';
 
-/// [DEPRECATED]  Creates a Provider for updating UI
+/// Creates a Provider for updating UI
+@deprecated
 class StatsProvider extends ChangeNotifier {
   String _recovered = "0";
   String get recovered => _recovered;

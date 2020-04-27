@@ -50,12 +50,12 @@ class StatisticVerticalWidget extends StatelessWidget {
           Text(label, style: TextStyles.h3()),
           NumberAndPercentageWidget(value: value, percentage: percentage),
           Container(
-            margin: EdgeInsets.only(bottom: 8.0),
+            margin: const EdgeInsets.only(bottom: 8.0),
             child: Row(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 4.0),
-                  padding: EdgeInsets.symmetric(
+                  margin: const EdgeInsets.symmetric(vertical: 4.0),
+                  padding: const EdgeInsets.symmetric(
                     vertical: 4.0,
                     horizontal: 6.0,
                   ),

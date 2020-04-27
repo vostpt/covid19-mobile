@@ -22,7 +22,7 @@ class SquaredNumberWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 6.0,
         vertical: 4.0,
       ),

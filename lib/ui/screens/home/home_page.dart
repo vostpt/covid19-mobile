@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SafeArea(
                     child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 16.0),
+                      margin: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Image.asset(
                         logoEstamosOn,
                         width: MediaQuery.of(context).size.width * 0.4,
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                     height: 8.0,
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 16.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
                       S.of(context).homePageTitle.toUpperCase(),
                       style: TextStyles.subtitle(
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                     height: 24.0,
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 16.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
                       children: <Widget>[
                         StatisticsButton(

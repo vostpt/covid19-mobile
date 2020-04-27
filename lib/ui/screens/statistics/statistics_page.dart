@@ -56,7 +56,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
           ? Loading()
           : SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[

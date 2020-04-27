@@ -57,9 +57,10 @@ class ResultStream<S, M> {
 /// [fail] if request throw an exception
 enum StateStream { request, loading, success, fail }
 
-/// [DEPRECATED] The ResultStream instance for requesting the case Stats
+/// The ResultStream instance for requesting the case Stats
 ///
 /// [StatsResultStream] is extended from [ResultStream]
+@deprecated
 class StatsResultStream extends ResultStream<StateStream, StatsModel> {
   @override
   StatsModel model;

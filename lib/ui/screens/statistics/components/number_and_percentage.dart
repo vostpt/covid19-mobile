@@ -28,7 +28,7 @@ class NumberAndPercentageWidget extends StatelessWidget {
     return Row(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.all(4.0),
+          margin: const EdgeInsets.all(4.0),
           child: Text(
             value.toString().toUpperCase(),
             style: TextStyles.statisticsBig(),

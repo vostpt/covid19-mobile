@@ -12,7 +12,6 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:covid19mobile/extensions/string_extensions.dart';
 import 'package:intl/intl.dart';
 import 'package:covid19mobile/generated/l10n.dart';
 
@@ -27,6 +26,6 @@ extension DateTimeExtensions on DateTime {
 
     var hour = DateFormat('HH:mm').format(this);
 
-    return "$lastUpdated: $day $of ${month.capitalize()} $of $year, $hour";
+    return "$lastUpdated: $day $of ${toBeginningOfSentenceCase(month)} $of $year, $hour";
   }
 }

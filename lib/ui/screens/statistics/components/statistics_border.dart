@@ -31,7 +31,7 @@ class StatisticsBorder extends StatelessWidget {
           width: 2.0,
         ),
       ),
-      padding: EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(4.0),
       child: text,
     );
   }

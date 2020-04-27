@@ -80,7 +80,7 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
         elevation: 0.0,
       ),
       body: Container(
-        margin: EdgeInsets.all(16.0),
+        margin: const EdgeInsets.all(16.0),
         child: hasData
             ? ListView.separated(
                 itemBuilder: (context, index) => CardBorderArrow(

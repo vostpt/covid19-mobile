@@ -62,7 +62,7 @@ class _RemoteWorkState extends BaseState<RemoteWorkPage, AppBloc> {
         ),
       ),
       body: Container(
-        margin: EdgeInsets.all(16.0),
+        margin: const EdgeInsets.all(16.0),
         child: hasData
             ? ListView.separated(
                 itemBuilder: (context, index) => CardBorderArrow(

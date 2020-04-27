@@ -30,7 +30,7 @@ class CardFAQ extends StatelessWidget {
       child: Card(
         color: Colors.blue,
         child: Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

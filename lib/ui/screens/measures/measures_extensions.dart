@@ -11,7 +11,6 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/extensions/string_extensions.dart';
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/utils/launch_url.dart';
@@ -26,7 +25,8 @@ extension HtmlParsing on MeasureModel {
   /// ex.: [Publicada às 12h00 de 15 de Março de 2020]
   String parseReadableDate(BuildContext context) {
     var date = DateTime.parse(postModifiedGMT);
-    String month = DateFormat.MMMM('pt_PT').format(date).capitalize();
+    String month =
+        toBeginningOfSentenceCase(DateFormat.MMMM('pt_PT').format(date));
     return "${S.of(context).publishedAt} ${date.hour}:${date.minute} ${S.of(context).dateOf} ${date.day} ${S.of(context).dateOf} $month ${S.of(context).dateOf} ${date.year}";
   }
 

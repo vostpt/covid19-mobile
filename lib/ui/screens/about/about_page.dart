@@ -43,7 +43,7 @@ class AboutPage extends StatelessWidget {
           children: <Widget>[
             Container(
               color: Colors.white,
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
@@ -172,7 +172,8 @@ class AboutPage extends StatelessWidget {
                     ),
                     const _FooterMargin(),
                     GestureDetector(
-                      onTap: () => launchURL("https://creativecommons.org/licenses/by-sa/4.0/legalcode.pt"),
+                      onTap: () => launchURL(
+                          "https://creativecommons.org/licenses/by-sa/4.0/legalcode.pt"),
                       child: Image.asset(
                         imageCcIcons,
                         width: size.width * 0.25,

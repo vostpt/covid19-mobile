@@ -50,7 +50,6 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
               .display2
               .copyWith(color: Covid19Colors.darkGrey),
         ),
-        elevation: 0.0,
       ),
       body: currentStatistics.confirmed == null
           ? Loading()

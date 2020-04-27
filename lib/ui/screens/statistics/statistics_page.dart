@@ -14,7 +14,6 @@
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
-import 'package:covid19mobile/model/covid_status_model.dart';
 import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
@@ -27,8 +26,6 @@ import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistic
 import 'package:covid19mobile/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'package:fl_chart/fl_chart.dart';
 
 class StatisticsPage extends BasePage {
   @override
@@ -184,38 +181,6 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
     if (result is CovidStatusResultStream) {
       Provider.of<CovidStatusProvider>(context, listen: false)
           .setCovidStatus(result.model);
-    }
-  }
-
-  List<LineChartBarData> _getData(CovidStatusModel status) {
-    if (status != null && status.confirmed.isNotEmpty) {
-      List<FlSpot> spots = <FlSpot>[];
-
-      status.confirmed.forEach((day, value) {
-        spots.add(FlSpot(day.toDouble(), value));
-      });
-
-      LineChartBarData line = LineChartBarData(
-        spots: spots,
-        isCurved: true,
-        colors: <Color>[Covid19Colors.green],
-        barWidth: 3,
-        isStrokeCapRound: true,
-        dotData: FlDotData(
-          show: false,
-        ),
-        belowBarData: BarAreaData(
-          gradientFrom: Offset(0.5, 0.5),
-          gradientTo: Offset(1, 1),
-          gradientColorStops: [0, 0.95],
-          show: true,
-          colors:
-              gradientColors.map((color) => color.withOpacity(0.5)).toList(),
-        ),
-      );
-      return <LineChartBarData>[line];
-    } else {
-      return <LineChartBarData>[];
     }
   }
 }

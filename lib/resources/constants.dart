@@ -42,4 +42,10 @@ const String routeStatisticsHospitalized = "statistics/hospitalized";
 final DateFormat formatDSSGDateTime = DateFormat("DD-MM-yyyy HH:mm");
 
 /// First day of DSSG Data
-final DateTime firstDayData = DateTime(2020, 2, 26);
+final DateTime firstDayOfData = DateTime(2020, 2, 26);
+
+/// Gradient for the Plots
+const List<Color> gradientColors = [
+  Covid19Colors.white,
+  Covid19Colors.green,
+];

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -48,7 +46,6 @@ class _StatisticsConfirmedState
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.all(12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -124,6 +121,7 @@ class TrendPlot extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: LineChart(
               Covid19LineChartData(
+                days: plotData.keys.toList(),
                 data: _plotLines.lineBarsData(),
               ),
               swapAnimationDuration: plotAnimationDuration,
@@ -174,6 +172,7 @@ class DualTrendBarPlot extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: BarChart(
               Covid19BarChartData(
+                days: plotData.keys.toList(),
                 data: _plotBars.barsGroupData(),
               ),
               swapAnimationDuration: plotAnimationDuration,

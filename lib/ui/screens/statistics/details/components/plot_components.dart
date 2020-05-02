@@ -58,7 +58,7 @@ class Covid19PlotLeftSideTitles extends SideTitles {
 }
 
 class Covid19PlotBottomSideTitles extends SideTitles {
-  Covid19PlotBottomSideTitles()
+  Covid19PlotBottomSideTitles(List<int> data)
       : super(
           showTitles: true,
           rotateAngle: 45.0,
@@ -68,18 +68,18 @@ class Covid19PlotBottomSideTitles extends SideTitles {
               fontSize: 10),
           margin: 15,
           reservedSize: 10,
-          getTitles: (value) {
+          getTitles: (double value) {
             if (value % 7 == 0) {
-              return parseDateToReadable(value);
+              return parseDateToReadable(data.elementAt(value.toInt()));
             }
             return "";
           },
         );
 
-  static String parseDateToReadable(double value) {
+  static String parseDateToReadable(int value) {
     DateTime day = firstDayOfData.add(
       Duration(
-        days: value.toInt(),
+        days: value,
       ),
     );
     String month = DateFormat.MMM('pt_PT').format(day).toUpperCase();
@@ -114,6 +114,7 @@ class Covid19PlotLineChartBarData extends LineChartBarData {
 
 class Covid19LineChartData extends LineChartData {
   Covid19LineChartData({
+    @required List<int> days,
     @required List<LineChartBarData> data,
     double interval = 5000,
   }) : super(
@@ -130,7 +131,7 @@ class Covid19LineChartData extends LineChartData {
           titlesData: FlTitlesData(
             show: true,
             leftTitles: Covid19PlotLeftSideTitles(interval: interval),
-            bottomTitles: Covid19PlotBottomSideTitles(),
+            bottomTitles: Covid19PlotBottomSideTitles(days),
           ),
           borderData: FlBorderData(
             show: false,
@@ -141,6 +142,7 @@ class Covid19LineChartData extends LineChartData {
 
 class Covid19BarChartData extends BarChartData {
   Covid19BarChartData({
+    @required List<int> days,
     @required List<BarChartGroupData> data,
     double interval = 500,
   }) : super(
@@ -155,7 +157,7 @@ class Covid19BarChartData extends BarChartData {
           ),
           titlesData: FlTitlesData(
             leftTitles: Covid19PlotLeftSideTitles(interval: interval),
-            bottomTitles: Covid19PlotBottomSideTitles(),
+            bottomTitles: Covid19PlotBottomSideTitles(days),
           ),
           borderData: FlBorderData(
             show: false,

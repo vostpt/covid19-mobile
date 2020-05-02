@@ -17,26 +17,61 @@ import 'package:flutter/material.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 
+enum FilterDays { last30Days, last7Days, all }
+
 abstract class BasePlot {
+  int _lastDay;
+  int _length;
   Map<int, double> _data;
   Map<int, double> _logData;
 
-  BasePlot({@required data}) {
+  BasePlot({@required Map<int, double> data}) {
+    _lastDay = data.entries.last.key;
+    _length = data.length;
     _data = data;
     _logData = _data.map((day, value) {
       return MapEntry(day, math.log(value));
     });
   }
 
-  Map<int, double> getData({logaritmic = false}) {
-    return logaritmic ? _logData : _data;
+  Map<int, double> getData({
+    logaritmic = false,
+    FilterDays days = FilterDays.last30Days,
+  }) {
+    Map<int, double> values = logaritmic ? _logData : _data;
+
+    switch (days) {
+      case FilterDays.last30Days:
+        values.removeWhere((int day, _) {
+          return (day <= _lastDay - 30);
+        });
+        return values;
+      case FilterDays.last7Days:
+        values.removeWhere((int day, _) {
+          return (day <= _lastDay - 7);
+        });
+        return values;
+      case FilterDays.all:
+      default:
+        return values;
+    }
   }
+
+  int get length => _length;
+
+  // int get daysToShow => switch () {
+  //   case :
+
+  //     break;
+  //   default:
+  // }
 }
 
 class Covid19PlotBars extends BasePlot {
   Covid19PlotBars({@required data}) : super(data: data);
 
-  List<BarChartGroupData> barsGroupData({logaritmic = false}) {
+  List<BarChartGroupData> barsGroupData(
+      {bool logaritmic = false, FilterDays width = FilterDays.last30Days}) {
     return getData(logaritmic: logaritmic)
         .map(
           (day, value) {

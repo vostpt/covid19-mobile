@@ -15,6 +15,9 @@ import 'package:flutter/widgets.dart';
 
 /// Style colors for this project, to be use widely in the project
 class Covid19Colors {
+  /// Light green
+  static const Color lightGreen = Color(0xffaddcdf);
+
   /// Green is the main color for the ap
   static const Color green = Color(0xff358f9a);
 

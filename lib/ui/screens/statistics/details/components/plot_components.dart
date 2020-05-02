@@ -31,8 +31,8 @@ class Covid19LineTouchData extends LineTouchData {
 class Covid19PlotBorder extends Border {
   Covid19PlotBorder()
       : super(
-          bottom: BorderSide(color: Colors.grey, width: 2),
-          left: BorderSide(color: Colors.grey, width: 2),
+          bottom: BorderSide(color: Colors.transparent),
+          left: BorderSide(color: Colors.transparent),
           right: BorderSide(color: Colors.transparent),
           top: BorderSide(color: Colors.transparent),
         );
@@ -51,9 +51,7 @@ class Covid19PlotLeftSideTitles extends SideTitles {
           reservedSize: 40,
           getTitles: (value) {
             if (value == 0) return "";
-            if (value >= 1000) {
-              return "${value / 1000}k";
-            }
+
             return "${value.toInt()}";
           },
         );
@@ -114,6 +112,33 @@ class Covid19PlotLineChartBarData extends LineChartBarData {
         );
 }
 
+class Covid19LineChartData extends LineChartData {
+  Covid19LineChartData({
+    @required List<LineChartBarData> data,
+    double interval = 5000,
+  }) : super(
+          minY: 0,
+          lineBarsData: data,
+          lineTouchData: Covid19LineTouchData(),
+          gridData: FlGridData(
+            verticalInterval: 7, // number of days of week
+            horizontalInterval: interval,
+            drawHorizontalLine: true,
+            drawVerticalLine: true,
+            show: true,
+          ),
+          titlesData: FlTitlesData(
+            show: true,
+            leftTitles: Covid19PlotLeftSideTitles(interval: interval),
+            bottomTitles: Covid19PlotBottomSideTitles(),
+          ),
+          borderData: FlBorderData(
+            show: false,
+            border: Covid19PlotBorder(),
+          ),
+        );
+}
+
 class Covid19BarChartData extends BarChartData {
   Covid19BarChartData({
     @required List<BarChartGroupData> data,
@@ -133,35 +158,7 @@ class Covid19BarChartData extends BarChartData {
             bottomTitles: Covid19PlotBottomSideTitles(),
           ),
           borderData: FlBorderData(
-            show: true,
-            border: Covid19PlotBorder(),
-          ),
-        );
-}
-
-// covid19plotLines.lineBarsData()
-
-class Covid19LineChartData extends LineChartData {
-  Covid19LineChartData({
-    @required List<LineChartBarData> data,
-    double interval = 5000,
-  }) : super(
-          minY: 0,
-          lineBarsData: data,
-          lineTouchData: Covid19LineTouchData(),
-          gridData: FlGridData(
-            verticalInterval: 7, // number of days of week
-            horizontalInterval: interval,
-            drawHorizontalLine: true,
-            drawVerticalLine: true,
-            show: true,
-          ),
-          titlesData: FlTitlesData(
-            leftTitles: Covid19PlotLeftSideTitles(interval: interval),
-            bottomTitles: Covid19PlotBottomSideTitles(),
-          ),
-          borderData: FlBorderData(
-            show: true,
+            show: false,
             border: Covid19PlotBorder(),
           ),
         );

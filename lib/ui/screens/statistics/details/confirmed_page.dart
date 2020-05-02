@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -16,6 +18,7 @@ import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_container.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_footer.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_constants.dart';
@@ -49,11 +52,15 @@ class _StatisticsConfirmedState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              TrendPlot(
-                plotData: currentStatistics.status.confirmed,
+              StatisticsContainer(
+                child: TrendPlot(
+                  plotData: currentStatistics.status.confirmed,
+                ),
               ),
-              DualTrendBarPlot(
-                plotData: currentStatistics.status.confirmedNew,
+              StatisticsContainer(
+                child: DualTrendBarPlot(
+                  plotData: currentStatistics.status.confirmedNew,
+                ),
               ),
               DataInformationFooter(
                 currentStatistics: currentStatistics,
@@ -101,12 +108,20 @@ class TrendPlot extends StatelessWidget {
           swith: Text("<Switcher>"),
         ),
 
+        /// ---
+        Divider(
+          height: 3,
+          thickness: 3,
+          color: Covid19Colors.lightGrey,
+        ),
+
         /// --------------------------
         /// Plot
         /// --------------------------
         SafeArea(
           child: Container(
-            padding: const EdgeInsets.all(10.0),
+            margin: const EdgeInsetsDirectional.only(top: 37.0),
+            width: MediaQuery.of(context).size.width,
             child: LineChart(
               Covid19LineChartData(
                 data: _plotLines.lineBarsData(),
@@ -144,12 +159,19 @@ class DualTrendBarPlot extends StatelessWidget {
           swith: Text("<Switcher>"),
         ),
 
+        /// ---
+        Divider(
+          thickness: 3,
+          color: Covid19Colors.lightGrey,
+        ),
+
         /// --------------------------
         /// Plot
         /// --------------------------
         SafeArea(
           child: Container(
-            padding: const EdgeInsets.all(10.0),
+            margin: const EdgeInsetsDirectional.only(top: 37.0),
+            width: MediaQuery.of(context).size.width,
             child: BarChart(
               Covid19BarChartData(
                 data: _plotBars.barsGroupData(),

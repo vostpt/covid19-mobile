@@ -46,8 +46,10 @@ class Covid19PlotBars extends BasePlot {
                 x: day,
                 barRods: <BarChartRodData>[
                   BarChartRodData(
+                    borderRadius: BorderRadius.all(Radius.circular(1)),
+                    width: 5.0,
                     y: value < 0 ? 0 : value,
-                    color: Covid19Colors.green,
+                    color: Covid19Colors.lightGreen,
                   )
                 ],
               ),

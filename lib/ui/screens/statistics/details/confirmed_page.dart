@@ -16,8 +16,11 @@ import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_footer.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_constants.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -42,14 +45,17 @@ class _StatisticsConfirmedState
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(12.0),
+          margin: const EdgeInsets.all(12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               TrendPlot(
-                currentStatistics: currentStatistics,
+                plotData: currentStatistics.status.confirmed,
               ),
               DualTrendBarPlot(
+                plotData: currentStatistics.status.confirmedNew,
+              ),
+              DataInformationFooter(
                 currentStatistics: currentStatistics,
               )
             ],
@@ -77,46 +83,35 @@ class _StatisticsConfirmedState
 }
 
 class TrendPlot extends StatelessWidget {
-  final CovidStatusStatistics currentStatistics;
+  final Map<int, double> plotData;
 
-  TrendPlot({@required this.currentStatistics});
+  TrendPlot({@required this.plotData});
+
   @override
   Widget build(BuildContext context) {
-    final covid19plotLines =
-        Covid19PlotLines(data: currentStatistics.status.confirmed);
+    final _plotLines = Covid19PlotLines(data: plotData);
 
     return Column(
       children: <Widget>[
+        /// --------------------------
+        /// Header
+        /// --------------------------
         PlotHeader(
           header: "Total de Confirmados",
           swith: Text("<Switcher>"),
         ),
 
+        /// --------------------------
+        /// Plot
+        /// --------------------------
         SafeArea(
           child: Container(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: LineChart(
-              LineChartData(
-                minY: 0,
-                lineBarsData: covid19plotLines.lineBarsData,
-                lineTouchData: Covid19LineTouchData(),
-                gridData: FlGridData(
-                  verticalInterval: 7,
-                  horizontalInterval: 5000,
-                  drawHorizontalLine: true,
-                  drawVerticalLine: true,
-                  show: true,
-                ),
-                titlesData: FlTitlesData(
-                  bottomTitles: Covid19PlotBottomSideTitles(),
-                  leftTitles: Covid19PlotBottomSideTitles(),
-                ),
-                borderData: FlBorderData(
-                  show: true,
-                  border: Covid19PlotBorder(),
-                ),
+              Covid19LineChartData(
+                data: _plotLines.lineBarsData(),
               ),
-              swapAnimationDuration: baseplotSwapAnimationDuration,
+              swapAnimationDuration: plotAnimationDuration,
             ),
           ),
         ),
@@ -131,19 +126,18 @@ class TrendPlot extends StatelessWidget {
 }
 
 class DualTrendBarPlot extends StatelessWidget {
-  final CovidStatusStatistics currentStatistics;
+  final Map<int, double> plotData;
 
-  DualTrendBarPlot({@required this.currentStatistics});
+  DualTrendBarPlot({@required this.plotData});
 
   @override
   Widget build(BuildContext context) {
-    Covid19PlotBars _plotBars =
-        Covid19PlotBars(data: currentStatistics.status.confirmedNew);
+    Covid19PlotBars _plotBars = Covid19PlotBars(data: plotData);
 
     return Column(
       children: <Widget>[
         /// --------------------------
-        /// HEADER
+        /// Header
         /// --------------------------
         PlotHeader(
           header: "Novos Casos",
@@ -151,37 +145,16 @@ class DualTrendBarPlot extends StatelessWidget {
         ),
 
         /// --------------------------
-        /// PLOT
+        /// Plot
         /// --------------------------
         SafeArea(
           child: Container(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: BarChart(
-              BarChartData(
-                minY: 0,
-                barGroups: _plotBars.barsGroupData,
-                gridData: FlGridData(
-                  verticalInterval: 7,
-                  horizontalInterval: 1000,
-                  drawHorizontalLine: true,
-                  drawVerticalLine: true,
-                  show: true,
-                ),
-
-                /// -----
-
-                titlesData: FlTitlesData(
-                  bottomTitles: Covid19PlotLeftSideTitles(),
-                  leftTitles: Covid19PlotBottomSideTitles(),
-                ),
-
-                /// -----
-                borderData: FlBorderData(
-                  show: true,
-                  border: Covid19PlotBorder(),
-                ),
+              Covid19BarChartData(
+                data: _plotBars.barsGroupData(),
               ),
-              swapAnimationDuration: baseplotSwapAnimationDuration,
+              swapAnimationDuration: plotAnimationDuration,
             ),
           ),
         ),
@@ -189,7 +162,7 @@ class DualTrendBarPlot extends StatelessWidget {
         /// --------------------------
         /// Buttons
         /// --------------------------
-        // PlotButtons(),
+        PlotButtons(),
       ],
     );
   }

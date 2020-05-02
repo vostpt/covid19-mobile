@@ -18,25 +18,26 @@ import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 abstract class BasePlot {
-  final Map<int, double> data;
-  Map<int, double> logData;
+  Map<int, double> _data;
+  Map<int, double> _logData;
 
-  BasePlot({@required this.data}) {
-    logData = data.map((day, value) {
+  BasePlot({@required data}) {
+    _data = data;
+    _logData = _data.map((day, value) {
       return MapEntry(day, math.log(value));
     });
   }
 
   Map<int, double> getData({logaritmic = false}) {
-    return logaritmic ? logData : data;
+    return logaritmic ? _logData : _data;
   }
 }
 
 class Covid19PlotBars extends BasePlot {
   Covid19PlotBars({@required data}) : super(data: data);
 
-  List<BarChartGroupData> get barsGroupData {
-    return getData()
+  List<BarChartGroupData> barsGroupData({logaritmic = false}) {
+    return getData(logaritmic: logaritmic)
         .map(
           (day, value) {
             return MapEntry(
@@ -61,8 +62,8 @@ class Covid19PlotBars extends BasePlot {
 class Covid19PlotLines extends BasePlot {
   Covid19PlotLines({@required data}) : super(data: data);
 
-  List<LineChartBarData> get lineBarsData {
-    List<FlSpot> spots = getData()
+  List<LineChartBarData> lineBarsData({logaritmic = false}) {
+    List<FlSpot> spots = getData(logaritmic: logaritmic)
         .map(
           (day, value) {
             return MapEntry(

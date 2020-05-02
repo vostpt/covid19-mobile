@@ -13,15 +13,14 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
-import 'package:covid19mobile/model/covid_status_model.dart';
 import 'package:covid19mobile/providers/covid_status_provider.dart';
-import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class StatisticsConfirmed extends BasePage {
@@ -41,107 +40,20 @@ class _StatisticsConfirmedState
       appBar: AppBar(
         title: Text("CASOS CONFIRMADOS"),
       ),
-      body: Container(
-        margin: EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    child: Text(
-                      "Total de Confirmados",
-                      style: Theme.of(context).textTheme.title,
-                    ),
-                    margin: EdgeInsets.all(10.0),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    child: Text("<Switcher>"),
-                  ),
-                )
-              ],
-            ),
-            SafeArea(
-              child: Container(
-                padding: EdgeInsets.all(10.0),
-                child: LineChart(
-                  LineChartData(
-                    lineBarsData: _getData(currentStatistics.status),
-                    lineTouchData: LineTouchData(
-                      touchTooltipData: LineTouchTooltipData(
-                        tooltipBgColor: Colors.white,
-                      ),
-                      touchCallback: (LineTouchResponse touchResponse) {},
-                      handleBuiltInTouches: true,
-                    ),
-                    gridData: FlGridData(
-                      show: false,
-                    ),
-                    titlesData: FlTitlesData(
-                      bottomTitles: SideTitles(
-                          showTitles: true,
-                          reservedSize: 30,
-                          textStyle: const TextStyle(
-                            color: Covid19Colors.grey,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                          margin: 10,
-                          getTitles: (value) {
-                            if (value % 20 == 0) {
-                              DateTime day = firstDayOfData
-                                  .add(Duration(days: value.toInt()));
-                              String month = DateFormat.MMM('pt_PT')
-                                  .format(day)
-                                  .toUpperCase();
-
-                              return "${day.day} $month";
-                            }
-                            return "";
-                          }),
-                      leftTitles: SideTitles(
-                          showTitles: true,
-                          interval: 5000,
-                          textStyle: const TextStyle(
-                            color: Covid19Colors.grey,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
-                          margin: 8,
-                          reservedSize: 40,
-                          getTitles: (value) {
-                            if (value == 0) return "";
-                            return "${value.toInt()}";
-                          }),
-                    ),
-                    borderData: FlBorderData(
-                      show: true,
-                      border: const Border(
-                        bottom: BorderSide(
-                          color: Colors.grey,
-                          width: 2,
-                        ),
-                        left: BorderSide(
-                          color: Colors.grey,
-                          width: 2,
-                        ),
-                        right: BorderSide(
-                          color: Colors.transparent,
-                        ),
-                        top: BorderSide(
-                          color: Colors.transparent,
-                        ),
-                      ),
-                    ),
-                  ),
-                  swapAnimationDuration: Duration(milliseconds: 400),
-                ),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              TrendPlot(
+                currentStatistics: currentStatistics,
               ),
-            )
-          ],
+              DualTrendBarPlot(
+                currentStatistics: currentStatistics,
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -162,50 +74,123 @@ class _StatisticsConfirmedState
           .setCovidStatus(result.model);
     }
   }
-
-  List<LineChartBarData> _getData(CovidStatusModel status) {
-    if (status != null && status.confirmed.isNotEmpty) {
-      List<FlSpot> spots = <FlSpot>[];
-
-      status.confirmed.forEach((day, value) {
-        spots.add(FlSpot(day.toDouble(), value));
-      });
-
-      LineChartBarData line = LineChartBarData(
-        spots: spots,
-        isCurved: true,
-        colors: <Color>[Covid19Colors.green],
-        barWidth: 3,
-        isStrokeCapRound: true,
-        dotData: FlDotData(
-          show: false,
-        ),
-        belowBarData: BarAreaData(
-          gradientFrom: Offset(0.5, 0.5),
-          gradientTo: Offset(1, 1),
-          gradientColorStops: [0, 0.95],
-          show: true,
-          colors:
-              gradientColors.map((color) => color.withOpacity(0.5)).toList(),
-        ),
-      );
-      return <LineChartBarData>[line];
-    } else {
-      return <LineChartBarData>[];
-    }
-  }
 }
 
 class TrendPlot extends StatelessWidget {
+  final CovidStatusStatistics currentStatistics;
+
+  TrendPlot({@required this.currentStatistics});
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final covid19plotLines =
+        Covid19PlotLines(data: currentStatistics.status.confirmed);
+
+    return Column(
+      children: <Widget>[
+        PlotHeader(
+          header: "Total de Confirmados",
+          swith: Text("<Switcher>"),
+        ),
+
+        SafeArea(
+          child: Container(
+            padding: EdgeInsets.all(10.0),
+            child: LineChart(
+              LineChartData(
+                minY: 0,
+                lineBarsData: covid19plotLines.lineBarsData,
+                lineTouchData: Covid19LineTouchData(),
+                gridData: FlGridData(
+                  verticalInterval: 7,
+                  horizontalInterval: 5000,
+                  drawHorizontalLine: true,
+                  drawVerticalLine: true,
+                  show: true,
+                ),
+                titlesData: FlTitlesData(
+                  bottomTitles: Covid19PlotBottomSideTitles(),
+                  leftTitles: Covid19PlotBottomSideTitles(),
+                ),
+                borderData: FlBorderData(
+                  show: true,
+                  border: Covid19PlotBorder(),
+                ),
+              ),
+              swapAnimationDuration: baseplotSwapAnimationDuration,
+            ),
+          ),
+        ),
+
+        /// --------------------------
+        /// Buttons
+        /// --------------------------
+        PlotButtons(),
+      ],
+    );
   }
 }
 
-class DualTrendPlot extends StatelessWidget {
+class DualTrendBarPlot extends StatelessWidget {
+  final CovidStatusStatistics currentStatistics;
+
+  DualTrendBarPlot({@required this.currentStatistics});
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    Covid19PlotBars _plotBars =
+        Covid19PlotBars(data: currentStatistics.status.confirmedNew);
+
+    return Column(
+      children: <Widget>[
+        /// --------------------------
+        /// HEADER
+        /// --------------------------
+        PlotHeader(
+          header: "Novos Casos",
+          swith: Text("<Switcher>"),
+        ),
+
+        /// --------------------------
+        /// PLOT
+        /// --------------------------
+        SafeArea(
+          child: Container(
+            padding: EdgeInsets.all(10.0),
+            child: BarChart(
+              BarChartData(
+                minY: 0,
+                barGroups: _plotBars.barsGroupData,
+                gridData: FlGridData(
+                  verticalInterval: 7,
+                  horizontalInterval: 1000,
+                  drawHorizontalLine: true,
+                  drawVerticalLine: true,
+                  show: true,
+                ),
+
+                /// -----
+
+                titlesData: FlTitlesData(
+                  bottomTitles: Covid19PlotLeftSideTitles(),
+                  leftTitles: Covid19PlotBottomSideTitles(),
+                ),
+
+                /// -----
+                borderData: FlBorderData(
+                  show: true,
+                  border: Covid19PlotBorder(),
+                ),
+              ),
+              swapAnimationDuration: baseplotSwapAnimationDuration,
+            ),
+          ),
+        ),
+
+        /// --------------------------
+        /// Buttons
+        /// --------------------------
+        // PlotButtons(),
+      ],
+    );
   }
 }

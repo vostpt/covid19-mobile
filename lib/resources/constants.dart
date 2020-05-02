@@ -41,7 +41,7 @@ const String routeStatisticsHospitalized = "statistics/hospitalized";
 /// DSSG Source Date Time format
 final DateFormat formatDSSGDateTime = DateFormat("DD-MM-yyyy HH:mm");
 
-/// First day of DSSG Data
+/// First day of DSSG Data - 26 February 2020
 final DateTime firstDayOfData = DateTime(2020, 2, 26);
 
 /// Gradient for the Plots

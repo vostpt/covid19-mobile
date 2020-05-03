@@ -17,9 +17,11 @@ import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_container.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_footer.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_constants.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dropdown.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
@@ -85,14 +87,28 @@ class _StatisticsDeathsState extends BaseState<StatisticsDeaths, AppBloc> {
   }
 }
 
-class TrendPlot extends StatelessWidget {
+class TrendPlot extends StatefulWidget {
   final Map<int, double> plotData;
 
   TrendPlot({Key key, @required this.plotData}) : super(key: key);
 
   @override
+  _TrendPlotState createState() => _TrendPlotState();
+}
+
+class _TrendPlotState extends State<TrendPlot> {
+  StatisticsFilter currentStatisticsFilter;
+
+  @override
+  void initState() {
+    currentStatisticsFilter = StatisticsFilter.last30;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final _plotLines = Covid19PlotLines(data: plotData);
+    Covid19PlotLines _plot = Covid19PlotLines(
+        data: widget.plotData, filter: currentStatisticsFilter);
 
     return Column(
       children: <Widget>[
@@ -101,7 +117,12 @@ class TrendPlot extends StatelessWidget {
         /// --------------------------
         PlotHeader(
           header: "Total de Óbitos",
-          swith: Text("<Switcher>"),
+          dropdown: Covid19PlotDropdown(
+              onDropdownChanged: (StatisticsFilter updatedFilter) {
+            setState(() {
+              currentStatisticsFilter = updatedFilter;
+            });
+          }),
         ),
 
         /// --------------------------
@@ -121,9 +142,7 @@ class TrendPlot extends StatelessWidget {
             margin: const EdgeInsetsDirectional.only(top: 37.0),
             width: MediaQuery.of(context).size.width,
             child: LineChart(
-              Covid19LineChartData(
-                plotData: _plotLines,
-              ),
+              Covid19LineChartData(plotData: _plot),
               swapAnimationDuration: plotAnimationDuration,
             ),
           ),
@@ -138,14 +157,27 @@ class TrendPlot extends StatelessWidget {
   }
 }
 
-class DualTrendBarPlot extends StatelessWidget {
+class DualTrendBarPlot extends StatefulWidget {
   final Map<int, double> plotData;
 
   DualTrendBarPlot({@required this.plotData});
 
   @override
+  _DualTrendBarPlotState createState() => _DualTrendBarPlotState();
+}
+
+class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
+  StatisticsFilter currentStatisticsFilter;
+
+  @override
+  void initState() {
+    currentStatisticsFilter = StatisticsFilter.last30;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Covid19PlotBars _plot = Covid19PlotBars(data: plotData);
+    Covid19PlotBars _plot = Covid19PlotBars(data: widget.plotData);
 
     return Column(
       children: <Widget>[
@@ -154,7 +186,12 @@ class DualTrendBarPlot extends StatelessWidget {
         /// --------------------------
         PlotHeader(
           header: "Novos Casos",
-          swith: Text("<Switcher>"),
+          dropdown: Covid19PlotDropdown(
+              onDropdownChanged: (StatisticsFilter updatedFilter) {
+            setState(() {
+              currentStatisticsFilter = updatedFilter;
+            });
+          }),
         ),
 
         /// --------------------------
@@ -171,9 +208,7 @@ class DualTrendBarPlot extends StatelessWidget {
             margin: const EdgeInsetsDirectional.only(top: 37.0),
             width: MediaQuery.of(context).size.width,
             child: BarChart(
-              Covid19BarChartData(
-                plotData: _plot,
-              ),
+              Covid19BarChartData(plotData: _plot),
               swapAnimationDuration: plotAnimationDuration,
             ),
           ),

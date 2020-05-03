@@ -115,7 +115,6 @@ class Covid19PlotLineChartBarData extends LineChartBarData {
 class Covid19LineChartData extends LineChartData {
   Covid19LineChartData({
     @required Covid19PlotLines plotData,
-    double interval = 5000,
   }) : super(
           minY: 0,
           maxY: plotData.currentPlotData.maxValue * 1.20,
@@ -123,14 +122,15 @@ class Covid19LineChartData extends LineChartData {
           lineTouchData: Covid19LineTouchData(),
           gridData: FlGridData(
             verticalInterval: plotData.currentPlotData.filter.plotInterval(),
-            horizontalInterval: interval,
+            horizontalInterval: plotData.currentPlotData.interval,
             drawHorizontalLine: true,
             drawVerticalLine: true,
             show: true,
           ),
           titlesData: FlTitlesData(
             show: true,
-            leftTitles: Covid19PlotLeftSideTitles(interval: interval),
+            leftTitles: Covid19PlotLeftSideTitles(
+                interval: plotData.currentPlotData.interval),
             bottomTitles: Covid19PlotBottomSideTitles(
               days: plotData.days(),
               filter: plotData.currentPlotData.filter,
@@ -141,21 +141,20 @@ class Covid19LineChartData extends LineChartData {
 }
 
 class Covid19BarChartData extends BarChartData {
-  Covid19BarChartData({
-    @required Covid19PlotBars plotData,
-    double interval = 500,
-  }) : super(
+  Covid19BarChartData({@required Covid19PlotBars plotData})
+      : super(
           minY: 0,
           barGroups: plotData.barsGroupData(),
           gridData: FlGridData(
             verticalInterval: plotData.currentPlotData.filter.plotInterval(),
-            horizontalInterval: interval,
+            horizontalInterval: plotData.currentPlotData.interval,
             drawHorizontalLine: true,
             drawVerticalLine: true,
             show: true,
           ),
           titlesData: FlTitlesData(
-            leftTitles: Covid19PlotLeftSideTitles(interval: interval),
+            leftTitles: Covid19PlotLeftSideTitles(
+                interval: plotData.currentPlotData.interval),
             bottomTitles: Covid19PlotBottomSideTitles(
               days: plotData.days(),
               filter: plotData.currentPlotData.filter,

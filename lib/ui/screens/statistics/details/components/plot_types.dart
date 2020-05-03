@@ -18,6 +18,15 @@ import 'package:flutter/material.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 
+///
+/// Determines the best divider value,
+///   useful for the YY axis in the plots
+///
+double calculateDividerInterval(double input) {
+  int multipiler = math.pow(10, input.truncate().toString().length - 2);
+  return ((input ~/ multipiler) * multipiler ~/ 10).truncateToDouble();
+}
+
 /// Helpful class to have all information ready to show the
 ///   various plots
 class PlotData {
@@ -39,6 +48,9 @@ class PlotData {
   /// Max value of the XX axis
   int dayLast;
 
+  /// Interval in which the plot should divide in the YY axis
+  double interval;
+
   PlotData({
     this.filter = StatisticsFilter.all,
     this.data,
@@ -46,6 +58,7 @@ class PlotData {
     this.dayLast,
     this.maxValue = double.maxFinite,
     this.minValue = double.minPositive,
+    this.interval,
   });
 }
 
@@ -104,13 +117,16 @@ abstract class BasePlot {
       min = math.min(value, min);
     });
 
+    double dividerInterval = calculateDividerInterval(max);
+
     return PlotData(
         data: values,
         filter: filter,
         dayFirst: dayFirst,
         dayLast: dayLast,
         maxValue: max,
-        minValue: min);
+        minValue: min,
+        interval: dividerInterval);
   }
 }
 

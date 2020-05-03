@@ -124,7 +124,7 @@ class _TrendPlotState extends State<TrendPlot> {
         /// --------------------------
         PlotHeader(
           header: "Total de Confirmados",
-          swith: Covid19PlotDropdown(
+          dropdown: Covid19PlotDropdown(
               onDropdownChanged: (StatisticsFilter updatedFilter) {
             setState(() {
               currentStatisticsFilter = updatedFilter;
@@ -167,14 +167,28 @@ class _TrendPlotState extends State<TrendPlot> {
   }
 }
 
-class DualTrendBarPlot extends StatelessWidget {
+class DualTrendBarPlot extends StatefulWidget {
   final Map<int, double> plotData;
 
   DualTrendBarPlot({Key key, @required this.plotData}) : super(key: key);
 
   @override
+  _DualTrendBarPlotState createState() => _DualTrendBarPlotState();
+}
+
+class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
+  StatisticsFilter currentStatisticsFilter;
+
+  @override
+  void initState() {
+    currentStatisticsFilter = StatisticsFilter.last30;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Covid19PlotBars _plot = Covid19PlotBars(data: plotData);
+    Covid19PlotBars _plot =
+        Covid19PlotBars(data: widget.plotData, filter: currentStatisticsFilter);
 
     return Column(
       children: <Widget>[
@@ -183,7 +197,12 @@ class DualTrendBarPlot extends StatelessWidget {
         /// --------------------------
         PlotHeader(
           header: "Novos Casos",
-          swith: Text("<Switcher>"),
+          dropdown: Covid19PlotDropdown(
+              onDropdownChanged: (StatisticsFilter updatedFilter) {
+            setState(() {
+              currentStatisticsFilter = updatedFilter;
+            });
+          }),
         ),
 
         /// --------------------------

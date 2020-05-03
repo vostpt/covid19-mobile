@@ -1,5 +1,3 @@
-import 'package:covid19mobile/resources/style/text_styles.dart';
-
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -14,6 +12,8 @@ import 'package:covid19mobile/resources/style/text_styles.dart';
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:covid19mobile/resources/style/text_styles.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dropdown.dart';
 
 class PlotButtons extends StatelessWidget {
   PlotButtons({Key key}) : super(key: key);
@@ -39,9 +39,9 @@ class PlotButtons extends StatelessWidget {
 class PlotHeader extends StatelessWidget {
   final String header;
 
-  final Widget swith;
+  final Covid19PlotDropdown dropdown;
 
-  PlotHeader({Key key, @required this.header, @required this.swith})
+  PlotHeader({Key key, @required this.header, @required this.dropdown})
       : super(key: key);
 
   @override
@@ -59,7 +59,7 @@ class PlotHeader extends StatelessWidget {
         ),
         Expanded(
           child: Container(
-            child: swith,
+            child: dropdown,
           ),
         )
       ],

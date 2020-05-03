@@ -1,3 +1,5 @@
+import 'package:covid19mobile/resources/style/text_styles.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -31,10 +33,15 @@ class Covid19PlotDropdown extends StatelessWidget {
             .map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(value),
+            child: Text(value,
+                style: TextStyles.h2(fontWeight: FontWeight.normal)),
           );
         }).toList(),
+        isExpanded: true,
+        iconDisabledColor: Covid19Colors.lightGrey,
+        iconEnabledColor: Covid19Colors.darkGrey,
         onChanged: (String value) {
+          // callback(value);
           // setState({});
         },
         icon: Icon(
@@ -43,13 +50,8 @@ class Covid19PlotDropdown extends StatelessWidget {
         ),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(
-          color: Covid19Colors.darkGrey,
-        ),
-        underline: Container(
-          height: 0,
-          color: Colors.transparent,
-        ),
+        style: TextStyles.h2(fontWeight: FontWeight.normal),
+        underline: Container(color: Colors.transparent),
       ),
     );
   }

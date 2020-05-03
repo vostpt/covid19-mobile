@@ -82,5 +82,6 @@ class Themes {
             tabIndicatorMagin, 0, tabIndicatorMagin, 0),
       ),
     ),
+    canvasColor: Covid19Colors.white,
   );
 }

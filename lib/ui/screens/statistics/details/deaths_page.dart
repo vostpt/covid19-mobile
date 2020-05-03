@@ -88,7 +88,7 @@ class _StatisticsDeathsState extends BaseState<StatisticsDeaths, AppBloc> {
 class TrendPlot extends StatelessWidget {
   final Map<int, double> plotData;
 
-  TrendPlot({@required this.plotData});
+  TrendPlot({Key key, @required this.plotData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class TrendPlot extends StatelessWidget {
         /// Header
         /// --------------------------
         PlotHeader(
-          header: "Total de Mortes Confirmadas",
+          header: "Total de Óbitos",
           swith: Text("<Switcher>"),
         ),
 
@@ -122,8 +122,7 @@ class TrendPlot extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: LineChart(
               Covid19LineChartData(
-                days: plotData.keys.toList(),
-                data: _plotLines.lineBarsData(),
+                plotData: _plotLines,
               ),
               swapAnimationDuration: plotAnimationDuration,
             ),
@@ -146,7 +145,7 @@ class DualTrendBarPlot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Covid19PlotBars _plotBars = Covid19PlotBars(data: plotData);
+    Covid19PlotBars _plot = Covid19PlotBars(data: plotData);
 
     return Column(
       children: <Widget>[
@@ -173,8 +172,7 @@ class DualTrendBarPlot extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: BarChart(
               Covid19BarChartData(
-                days: plotData.keys.toList(),
-                data: _plotBars.barsGroupData(),
+                plotData: _plot,
               ),
               swapAnimationDuration: plotAnimationDuration,
             ),

@@ -19,88 +19,114 @@ import 'package:fl_chart/fl_chart.dart';
 
 enum FilterDays { last30Days, last7Days, all }
 
+/// Helpful class to have all information ready to show the
+///   various plots
+class PlotData {
+  /// Data is Filtered by what days
+  final FilterDays filter;
+
+  /// All data filtered
+  final Map<int, double> data;
+
+  /// Max value of the YY axis
+  final double maxValue;
+
+  /// Min value of the YY axis
+  final double minValue;
+
+  /// Min value of the XX axis
+  final int dayFirst;
+
+  /// Max value of the XX axis
+  final int dayLast;
+
+  PlotData({
+    this.filter = FilterDays.all,
+    this.data,
+    this.dayFirst,
+    this.dayLast,
+    this.maxValue = double.maxFinite,
+    this.minValue = double.minPositive,
+  });
+}
+
 abstract class BasePlot {
-  int _lastDay;
-  int _length;
   Map<int, double> _data;
   Map<int, double> _logData;
+  PlotData _currentPlotData;
 
   BasePlot({@required Map<int, double> data}) {
-    _lastDay = data.entries.last.key;
-    _length = data.length;
     _data = data;
     _logData = _data.map((day, value) {
       return MapEntry(day, math.log(value));
     });
   }
 
-  Map<int, double> getData({
+  /// Returns the current filtered and selected plot data
+  PlotData get currentPlotData => _currentPlotData;
+
+  /// List of days showing in the current
+  List<int> days() => _currentPlotData.data.keys.toList();
+
+  /// Returns the data already formatted and filtered
+  PlotData getData({
     logaritmic = false,
-    FilterDays days = FilterDays.last30Days,
+    FilterDays filter = FilterDays.last30Days,
   }) {
     Map<int, double> values = logaritmic ? _logData : _data;
 
-    switch (days) {
+    int dayFirst = values.entries.first.key;
+    int dayLast = values.entries.last.key;
+
+    switch (filter) {
       case FilterDays.last30Days:
         values.removeWhere((int day, _) {
-          return (day <= _lastDay - 30);
+          return (day <= dayLast - 30);
         });
-        return values;
+        break;
+
       case FilterDays.last7Days:
         values.removeWhere((int day, _) {
-          return (day <= _lastDay - 7);
+          return (day <= dayLast - 7);
         });
-        return values;
+        break;
+
       case FilterDays.all:
       default:
-        return values;
+        break;
     }
-  }
 
-  int get length => _length;
+    double max = double.minPositive;
+    double min = double.maxFinite;
 
-  // int get daysToShow => switch () {
-  //   case :
+    // Determine wht are the min and max values of YY axis
+    values.forEach((day, value) {
+      max = math.max(value, max);
+      min = math.min(value, min);
+    });
 
-  //     break;
-  //   default:
-  // }
-}
-
-class Covid19PlotBars extends BasePlot {
-  Covid19PlotBars({@required data}) : super(data: data);
-
-  List<BarChartGroupData> barsGroupData(
-      {bool logaritmic = false, FilterDays width = FilterDays.last30Days}) {
-    return getData(logaritmic: logaritmic)
-        .map(
-          (day, value) {
-            return MapEntry(
-              day,
-              BarChartGroupData(
-                x: day,
-                barRods: <BarChartRodData>[
-                  BarChartRodData(
-                    borderRadius: BorderRadius.all(Radius.circular(1)),
-                    width: 5.0,
-                    y: value < 0 ? 0 : value,
-                    color: Covid19Colors.lightGreen,
-                  )
-                ],
-              ),
-            );
-          },
-        )
-        .values
-        .toList();
+    return PlotData(
+        data: values,
+        filter: filter,
+        dayFirst: dayFirst,
+        dayLast: dayLast,
+        maxValue: max,
+        minValue: min);
   }
 }
 
+/// Prepare data to show in lines
 class Covid19PlotLines extends BasePlot {
-  Covid19PlotLines({@required data}) : super(data: data);
+  Covid19PlotLines({
+    @required data,
+    bool logaritmic = false,
+    FilterDays filter = FilterDays.all,
+  }) : super(data: data) {
+    _currentPlotData = getData(logaritmic: logaritmic, filter: filter);
+  }
 
-  List<LineChartBarData> lineBarsData({logaritmic = false}) {
-    List<FlSpot> spots = getData(logaritmic: logaritmic)
+  List<LineChartBarData> lineBarsData() {
+    List<FlSpot> spots = _currentPlotData.data
         .map(
           (day, value) {
             return MapEntry(
@@ -118,5 +144,40 @@ class Covid19PlotLines extends BasePlot {
     return <LineChartBarData>[
       Covid19PlotLineChartBarData(spots),
     ];
+  }
+}
+
+/// Prepare data to show in Bar plot
+class Covid19PlotBars extends BasePlot {
+  Covid19PlotBars({
+    @required data,
+    bool logaritmic = false,
+    FilterDays filter = FilterDays.last30Days,
+  }) : super(data: data) {
+    _currentPlotData = getData(logaritmic: logaritmic, filter: filter);
+  }
+
+  List<BarChartGroupData> barsGroupData() {
+    return _currentPlotData.data
+        .map(
+          (day, value) {
+            return MapEntry(
+              day,
+              BarChartGroupData(
+                x: day,
+                barRods: <BarChartRodData>[
+                  BarChartRodData(
+                    borderRadius: BorderRadius.all(Radius.circular(1)),
+                    width: 10.0,
+                    y: value < 0 ? 0 : value,
+                    color: Covid19Colors.lightGreen,
+                  )
+                ],
+              ),
+            );
+          },
+        )
+        .values
+        .toList();
   }
 }

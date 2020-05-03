@@ -20,6 +20,7 @@ import 'package:covid19mobile/ui/screens/statistics/components/statistics_contai
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_footer.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_constants.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dropdown.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
@@ -49,14 +50,20 @@ class _StatisticsConfirmedState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              StatisticsContainer(
-                child: TrendPlot(
-                  plotData: currentStatistics.status.confirmed,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: StatisticsContainer(
+                  child: TrendPlot(
+                    plotData: currentStatistics.status.confirmed,
+                  ),
                 ),
               ),
-              StatisticsContainer(
-                child: DualTrendBarPlot(
-                  plotData: currentStatistics.status.confirmedNew,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: StatisticsContainer(
+                  child: DualTrendBarPlot(
+                    plotData: currentStatistics.status.confirmedNew,
+                  ),
                 ),
               ),
               DataInformationFooter(
@@ -89,11 +96,11 @@ class _StatisticsConfirmedState
 class TrendPlot extends StatelessWidget {
   final Map<int, double> plotData;
 
-  TrendPlot({@required this.plotData});
+  TrendPlot({Key key, @required this.plotData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _plotLines = Covid19PlotLines(data: plotData);
+    final _plot = Covid19PlotLines(data: plotData);
 
     return Column(
       children: <Widget>[
@@ -102,7 +109,10 @@ class TrendPlot extends StatelessWidget {
         /// --------------------------
         PlotHeader(
           header: "Total de Confirmados",
-          swith: Text("<Switcher>"),
+          swith: Covid19PlotDropdown(),
+        ),
+        const SizedBox(
+          height: 11.0,
         ),
 
         /// --------------------------
@@ -122,10 +132,7 @@ class TrendPlot extends StatelessWidget {
             margin: const EdgeInsetsDirectional.only(top: 37.0),
             width: MediaQuery.of(context).size.width,
             child: LineChart(
-              Covid19LineChartData(
-                days: plotData.keys.toList(),
-                data: _plotLines.lineBarsData(),
-              ),
+              Covid19LineChartData(plotData: _plot),
               swapAnimationDuration: plotAnimationDuration,
             ),
           ),
@@ -143,11 +150,11 @@ class TrendPlot extends StatelessWidget {
 class DualTrendBarPlot extends StatelessWidget {
   final Map<int, double> plotData;
 
-  DualTrendBarPlot({@required this.plotData});
+  DualTrendBarPlot({Key key, @required this.plotData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Covid19PlotBars _plotBars = Covid19PlotBars(data: plotData);
+    Covid19PlotBars _plot = Covid19PlotBars(data: plotData);
 
     return Column(
       children: <Widget>[
@@ -173,10 +180,7 @@ class DualTrendBarPlot extends StatelessWidget {
             margin: const EdgeInsetsDirectional.only(top: 37.0),
             width: MediaQuery.of(context).size.width,
             child: BarChart(
-              Covid19BarChartData(
-                days: plotData.keys.toList(),
-                data: _plotBars.barsGroupData(),
-              ),
+              Covid19BarChartData(plotData: _plot),
               swapAnimationDuration: plotAnimationDuration,
             ),
           ),

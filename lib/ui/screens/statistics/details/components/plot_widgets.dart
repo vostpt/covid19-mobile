@@ -14,6 +14,8 @@
 import 'package:flutter/material.dart';
 
 class PlotButtons extends StatelessWidget {
+  PlotButtons({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -37,7 +39,8 @@ class PlotHeader extends StatelessWidget {
 
   final Widget swith;
 
-  PlotHeader({@required this.header, @required this.swith});
+  PlotHeader({Key key, @required this.header, @required this.swith})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

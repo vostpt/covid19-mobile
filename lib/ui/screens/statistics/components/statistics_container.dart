@@ -18,7 +18,12 @@ class StatisticsContainer extends StatelessWidget {
   final Widget child;
   final VoidCallback onTap;
 
-  StatisticsContainer({@required this.child, this.onTap});
+  StatisticsContainer({
+    @required this.child,
+    this.onTap,
+  });
+
+  get margin => margin;
 
   @override
   Widget build(BuildContext context) {

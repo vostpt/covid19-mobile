@@ -41,6 +41,9 @@ class CovidStatusStatistics {
   /// Death absolute growth from previous day
   int _deathAbsolutNew;
 
+  /// How many deaths per day happened
+  Map<int, double> _deathsPerDayAbsolut;
+
   /// Recovered total cases
   int _recovered;
 
@@ -84,6 +87,7 @@ class CovidStatusStatistics {
     _death = status.deaths.values.last.toInt();
     _deathPercentageNew = _calculatePercentage(status.deaths);
     _deathAbsolutNew = _calculateAbsoluteNew(status.deaths);
+    _deathsPerDayAbsolut = _calculateAbsolutePerDay(status.deaths);
 
     // Recovered
     _recovered = status.recovered.values.last.toInt();
@@ -190,7 +194,7 @@ class CovidStatusStatistics {
 
     var values = map.values;
 
-    if (values.length > 1) {
+    if (map != null && values.length > 1) {
       int current = values.last.toInt();
       int previous = values.elementAt(values.length - 2).toInt();
 
@@ -200,5 +204,20 @@ class CovidStatusStatistics {
     } else {
       return 0;
     }
+  }
+
+  //TODO Create the map for all the absolut changes in deaths
+  Map<int, double> _calculateAbsolutePerDay(Map<int, double> map) {
+    _deathsPerDayAbsolut = <int, double>{};
+    _deathsPerDayAbsolut.addEntries([map.entries.first]);
+
+    _deathsPerDayAbsolut.forEach(
+      (day, value) {
+        int nextDay = day + 1;
+        if (map.containsKey(nextDay)) {}
+      },
+    );
+
+    return _deathsPerDayAbsolut;
   }
 }

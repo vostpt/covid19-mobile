@@ -213,6 +213,16 @@ class TextStyles {
         ),
       );
 
+  static TextStyle statisticsPlotLabel({
+    Color color = Covid19Colors.grey,
+  }) =>
+      GoogleFonts.roboto(
+        textStyle: TextStyle(
+            color: Covid19Colors.grey,
+            fontWeight: FontWeight.bold,
+            fontSize: 12),
+      );
+
   static TextStyle textCustom({
     Color color = Covid19Colors.darkGrey,
     double size = 14.0,

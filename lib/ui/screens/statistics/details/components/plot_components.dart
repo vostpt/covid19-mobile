@@ -12,7 +12,9 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/resources/constants.dart';
+import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -44,15 +46,13 @@ class Covid19PlotLeftSideTitles extends SideTitles {
   }) : super(
           showTitles: true,
           interval: interval,
-          textStyle: const TextStyle(
-              color: Covid19Colors.grey,
-              fontWeight: FontWeight.bold,
-              fontSize: 16),
+          textStyle: TextStyles.statisticsPlotLabel(),
           margin: 4,
           reservedSize: 40,
           getTitles: (value) {
-            if (value == 0) return "";
-
+            if (value == 0) {
+              return "";
+            }
             return "${value.toInt()}";
           },
         );
@@ -63,14 +63,11 @@ class Covid19PlotBottomSideTitles extends SideTitles {
       : super(
           showTitles: true,
           rotateAngle: 45.0,
-          textStyle: const TextStyle(
-              color: Covid19Colors.grey,
-              fontWeight: FontWeight.bold,
-              fontSize: 10),
-          margin: 15,
+          textStyle: TextStyles.statisticsPlotLabel(),
+          margin: 14,
           reservedSize: 10,
           getTitles: (double value) {
-            if (value % 7 == 0) {
+            if (value % 7 == 0 && value < days.length) {
               return parseDateToReadable(days.elementAt(value.toInt()));
             }
             return "";
@@ -115,12 +112,12 @@ class Covid19PlotLineChartBarData extends LineChartBarData {
 
 class Covid19LineChartData extends LineChartData {
   Covid19LineChartData({
-    @required List<int> days,
-    @required List<LineChartBarData> data,
+    @required Covid19PlotLines plotData,
     double interval = 5000,
   }) : super(
           minY: 0,
-          lineBarsData: data,
+          maxY: plotData.currentPlotData.maxValue * 1.20,
+          lineBarsData: plotData.lineBarsData(),
           lineTouchData: Covid19LineTouchData(),
           gridData: FlGridData(
             verticalInterval: 7, // number of days of week
@@ -132,23 +129,19 @@ class Covid19LineChartData extends LineChartData {
           titlesData: FlTitlesData(
             show: true,
             leftTitles: Covid19PlotLeftSideTitles(interval: interval),
-            bottomTitles: Covid19PlotBottomSideTitles(days),
+            bottomTitles: Covid19PlotBottomSideTitles(plotData.days()),
           ),
-          borderData: FlBorderData(
-            show: false,
-            border: Covid19PlotBorder(),
-          ),
+          borderData: FlBorderData(show: false),
         );
 }
 
 class Covid19BarChartData extends BarChartData {
   Covid19BarChartData({
-    @required List<int> days,
-    @required List<BarChartGroupData> data,
+    @required Covid19PlotBars plotData,
     double interval = 500,
   }) : super(
           minY: 0,
-          barGroups: data,
+          barGroups: plotData.barsGroupData(),
           gridData: FlGridData(
             verticalInterval: 7, // number of days of week
             horizontalInterval: interval,
@@ -158,7 +151,7 @@ class Covid19BarChartData extends BarChartData {
           ),
           titlesData: FlTitlesData(
             leftTitles: Covid19PlotLeftSideTitles(interval: interval),
-            bottomTitles: Covid19PlotBottomSideTitles(days),
+            bottomTitles: Covid19PlotBottomSideTitles(plotData.days()),
           ),
           borderData: FlBorderData(
             show: false,

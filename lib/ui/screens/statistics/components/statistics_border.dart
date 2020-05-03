@@ -24,7 +24,7 @@ class StatisticsBorder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: Covid19StatisticsBorderDecorator(),
+      decoration: Covid19BorderDecorator(),
       padding: const EdgeInsets.all(4.0),
       child: text,
     );

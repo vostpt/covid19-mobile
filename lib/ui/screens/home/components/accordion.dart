@@ -55,7 +55,7 @@ class Accordion extends StatelessWidget {
       child: Container(
         padding: padding ?? const EdgeInsets.symmetric(horizontal: 15.0),
         margin: margin ?? const EdgeInsets.symmetric(horizontal: 15.0),
-        decoration: withBorder ? Covid19StatisticsBorderDecorator() : null,
+        decoration: withBorder ? Covid19BorderDecorator() : null,
         child: ListTileTheme(
           contentPadding: contentPadding ?? EdgeInsets.zero,
           child: ExpansionTile(

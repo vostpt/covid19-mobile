@@ -14,8 +14,8 @@
 import 'package:flutter/material.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 
-class Covid19StatisticsBorderDecorator extends BoxDecoration {
-  Covid19StatisticsBorderDecorator()
+class Covid19BorderDecorator extends BoxDecoration {
+  Covid19BorderDecorator()
       : super(
           color: Covid19Colors.white,
           borderRadius: BorderRadius.circular(8),

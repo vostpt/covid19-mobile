@@ -31,7 +31,7 @@ class SquaredNumberWidget extends StatelessWidget {
         vertical: 4.0,
         horizontal: 6.0,
       ),
-      decoration: Covid19StatisticsBorderDecorator(),
+      decoration: Covid19BorderDecorator(),
       child: Text(
         value.toString().toUpperCase(),
         style: style == null ? TextStyles.h3() : style,

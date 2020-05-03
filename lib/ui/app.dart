@@ -40,6 +40,7 @@ import 'package:covid19mobile/ui/screens/remote_work/remote_work_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work_details/remote_work_details.dart';
 import 'package:covid19mobile/ui/screens/splash/splash_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/confirmed_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/deaths_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
 import 'package:covid19mobile/ui/screens/video_player/video_player_page.dart';
 import 'package:covid19mobile/ui/screens/videos/videos_page.dart';
@@ -173,15 +174,13 @@ class CovidApp extends StatelessWidget {
               page = MeasureDetail(measure: settings.arguments);
               break;
             case routeLicences:
-              page = LicensePage(
-                applicationName: "Estamos ON - Covid19",
-              );
+              page = LicensePage(applicationName: "Estamos ON - Covid19");
               break;
             case routeStatisticsConfirmed:
               page = StatisticsConfirmed();
               break;
             case routeStatisticsDeaths:
-              page = StatisticsConfirmed();
+              page = StatisticsDeaths();
               break;
             case routeStatisticsRecovered:
               page = StatisticsConfirmed();

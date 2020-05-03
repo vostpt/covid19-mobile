@@ -105,11 +105,13 @@ class TrendPlot extends StatelessWidget {
           swith: Text("<Switcher>"),
         ),
 
-        /// ---
-        Divider(
-          height: 3,
-          thickness: 3,
-          color: Covid19Colors.lightGrey,
+        /// --------------------------
+        Container(
+          child: Divider(
+            height: 3,
+            thickness: 3,
+            color: Covid19Colors.lightGrey,
+          ),
         ),
 
         /// --------------------------
@@ -157,7 +159,7 @@ class DualTrendBarPlot extends StatelessWidget {
           swith: Text("<Switcher>"),
         ),
 
-        /// ---
+        /// --------------------------
         Divider(
           thickness: 3,
           color: Covid19Colors.lightGrey,

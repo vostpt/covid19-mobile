@@ -39,8 +39,9 @@ class Covid19PlotBorder extends Border {
 }
 
 class Covid19PlotLeftSideTitles extends SideTitles {
-  Covid19PlotLeftSideTitles({@required double interval})
-      : super(
+  Covid19PlotLeftSideTitles({
+    @required double interval,
+  }) : super(
           showTitles: true,
           interval: interval,
           textStyle: const TextStyle(
@@ -58,7 +59,7 @@ class Covid19PlotLeftSideTitles extends SideTitles {
 }
 
 class Covid19PlotBottomSideTitles extends SideTitles {
-  Covid19PlotBottomSideTitles(List<int> data)
+  Covid19PlotBottomSideTitles(List<int> days)
       : super(
           showTitles: true,
           rotateAngle: 45.0,
@@ -70,7 +71,7 @@ class Covid19PlotBottomSideTitles extends SideTitles {
           reservedSize: 10,
           getTitles: (double value) {
             if (value % 7 == 0) {
-              return parseDateToReadable(data.elementAt(value.toInt()));
+              return parseDateToReadable(days.elementAt(value.toInt()));
             }
             return "";
           },

@@ -17,6 +17,7 @@ import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_container.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_footer.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_constants.dart';
@@ -93,14 +94,28 @@ class _StatisticsConfirmedState
   }
 }
 
-class TrendPlot extends StatelessWidget {
+class TrendPlot extends StatefulWidget {
   final Map<int, double> plotData;
 
   TrendPlot({Key key, @required this.plotData}) : super(key: key);
 
   @override
+  _TrendPlotState createState() => _TrendPlotState();
+}
+
+class _TrendPlotState extends State<TrendPlot> {
+  StatisticsFilter currentStatisticsFilter;
+
+  @override
+  void initState() {
+    currentStatisticsFilter = StatisticsFilter.last30;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final _plot = Covid19PlotLines(data: plotData);
+    Covid19PlotLines _plot = Covid19PlotLines(
+        data: widget.plotData, filter: currentStatisticsFilter);
 
     return Column(
       children: <Widget>[
@@ -109,7 +124,12 @@ class TrendPlot extends StatelessWidget {
         /// --------------------------
         PlotHeader(
           header: "Total de Confirmados",
-          swith: Covid19PlotDropdown(),
+          swith: Covid19PlotDropdown(
+              onDropdownChanged: (StatisticsFilter updatedFilter) {
+            setState(() {
+              currentStatisticsFilter = updatedFilter;
+            });
+          }),
         ),
         const SizedBox(
           height: 11.0,

@@ -611,6 +611,33 @@ class S {
       args: [],
     );
   }
+
+  String get lastMonth {
+    return Intl.message(
+      'Ultimo Mês',
+      name: 'lastMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get lastWeek {
+    return Intl.message(
+      'Ultima Semana',
+      name: 'lastWeek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get all {
+    return Intl.message(
+      'Tudo',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

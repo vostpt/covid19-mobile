@@ -12,36 +12,35 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:math' as math;
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
 import 'package:flutter/material.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-enum FilterDays { last30Days, last7Days, all }
-
 /// Helpful class to have all information ready to show the
 ///   various plots
 class PlotData {
   /// Data is Filtered by what days
-  final FilterDays filter;
+  StatisticsFilter filter;
 
   /// All data filtered
-  final Map<int, double> data;
+  Map<int, double> data;
 
   /// Max value of the YY axis
-  final double maxValue;
+  double maxValue;
 
   /// Min value of the YY axis
-  final double minValue;
+  double minValue;
 
   /// Min value of the XX axis
-  final int dayFirst;
+  int dayFirst;
 
   /// Max value of the XX axis
-  final int dayLast;
+  int dayLast;
 
   PlotData({
-    this.filter = FilterDays.all,
+    this.filter = StatisticsFilter.all,
     this.data,
     this.dayFirst,
     this.dayLast,
@@ -51,13 +50,12 @@ class PlotData {
 }
 
 abstract class BasePlot {
-  Map<int, double> _data;
-  Map<int, double> _logData;
+  final Map<int, double> linearData;
+  Map<int, double> logaritmicData;
   PlotData _currentPlotData;
 
-  BasePlot({@required Map<int, double> data}) {
-    _data = data;
-    _logData = _data.map((day, value) {
+  BasePlot({@required this.linearData}) {
+    logaritmicData = linearData.map((day, value) {
       return MapEntry(day, math.log(value));
     });
   }
@@ -70,28 +68,29 @@ abstract class BasePlot {
 
   /// Returns the data already formatted and filtered
   PlotData getData({
-    logaritmic = false,
-    FilterDays filter = FilterDays.last30Days,
+    isLogaritmic,
+    StatisticsFilter filter,
   }) {
-    Map<int, double> values = logaritmic ? _logData : _data;
+    Map<int, double> values = <int, double>{};
+    values.addAll(isLogaritmic ? logaritmicData : linearData);
 
     int dayFirst = values.entries.first.key;
     int dayLast = values.entries.last.key;
 
     switch (filter) {
-      case FilterDays.last30Days:
+      case StatisticsFilter.last30:
         values.removeWhere((int day, _) {
-          return (day <= dayLast - 30);
+          return (day <= dayLast - StatisticsFilter.last30.value());
         });
         break;
 
-      case FilterDays.last7Days:
+      case StatisticsFilter.last7:
         values.removeWhere((int day, _) {
-          return (day <= dayLast - 7);
+          return (day <= dayLast - StatisticsFilter.last7.value());
         });
         break;
 
-      case FilterDays.all:
+      case StatisticsFilter.all:
       default:
         break;
     }
@@ -120,9 +119,9 @@ class Covid19PlotLines extends BasePlot {
   Covid19PlotLines({
     @required data,
     bool logaritmic = false,
-    FilterDays filter = FilterDays.all,
-  }) : super(data: data) {
-    _currentPlotData = getData(logaritmic: logaritmic, filter: filter);
+    StatisticsFilter filter = StatisticsFilter.all,
+  }) : super(linearData: data) {
+    _currentPlotData = getData(isLogaritmic: logaritmic, filter: filter);
   }
 
   List<LineChartBarData> lineBarsData() {
@@ -152,9 +151,9 @@ class Covid19PlotBars extends BasePlot {
   Covid19PlotBars({
     @required data,
     bool logaritmic = false,
-    FilterDays filter = FilterDays.last30Days,
-  }) : super(data: data) {
-    _currentPlotData = getData(logaritmic: logaritmic, filter: filter);
+    StatisticsFilter filter = StatisticsFilter.last30,
+  }) : super(linearData: data) {
+    _currentPlotData = getData(isLogaritmic: logaritmic, filter: filter);
   }
 
   List<BarChartGroupData> barsGroupData() {

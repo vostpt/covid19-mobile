@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "all" : MessageLookupByLibrary.simpleMessage("Tudo"),
     "buttonTryAgain" : MessageLookupByLibrary.simpleMessage("Tentar novamente"),
     "cannotConnectInternetDescription" : MessageLookupByLibrary.simpleMessage("Não conseguimos aceder à Internet para obter os dados mais recentes. Verifica a tua conexão."),
     "checkDetails" : MessageLookupByLibrary.simpleMessage("Ver detalhes"),
@@ -44,7 +45,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "homePageConfirmedCases" : MessageLookupByLibrary.simpleMessage("Casos confirmados de COVID-19 em Portugal"),
     "homePageTitle" : MessageLookupByLibrary.simpleMessage("Resposta de Portugal à Covid-19"),
     "initiativesPageTitle" : MessageLookupByLibrary.simpleMessage("Iniciativas"),
+    "lastMonth" : MessageLookupByLibrary.simpleMessage("Ultimo Mês"),
     "lastUpdated" : MessageLookupByLibrary.simpleMessage("Última actualização"),
+    "lastWeek" : MessageLookupByLibrary.simpleMessage("Ultima Semana"),
     "licencesPageTitle" : MessageLookupByLibrary.simpleMessage("Licenças Open-Source"),
     "licensesPageTitle" : MessageLookupByLibrary.simpleMessage("Licenças Open-Source"),
     "measuresHomepageButton" : MessageLookupByLibrary.simpleMessage("Medidas excecionais de resposta À COVID-19"),

@@ -63,5 +63,8 @@
   "newPlural": "Novos",
   "seeDetails": "Ver Detalhes",
   "publishedAt": "Publicada às",
-  "dateOf": "de"
+  "dateOf": "de",
+  "lastMonth": "Ultimo Mês",
+  "lastWeek": "Ultima Semana",
+  "all": "Tudo"
 }

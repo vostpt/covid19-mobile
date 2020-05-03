@@ -12,7 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/resources/style/text_styles.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/ui/widgets/border_decorator.dart';
 import 'package:flutter/material.dart';
 
 class SquaredNumberWidget extends StatelessWidget {
@@ -31,12 +31,7 @@ class SquaredNumberWidget extends StatelessWidget {
         vertical: 4.0,
         horizontal: 6.0,
       ),
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-          color: Covid19Colors.lightGrey,
-        ),
-      ),
+      decoration: Covid19StatisticsBorderDecorator(),
       child: Text(
         value.toString().toUpperCase(),
         style: style == null ? TextStyles.h3() : style,

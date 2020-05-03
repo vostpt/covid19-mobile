@@ -1,5 +1,3 @@
-import 'package:covid19mobile/ui/widgets/border_decorator.dart';
-
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -14,19 +12,16 @@ import 'package:covid19mobile/ui/widgets/border_decorator.dart';
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 
-class StatisticsBorder extends StatelessWidget {
-  final Color color;
-  final Text text;
-
-  const StatisticsBorder({Key key, this.color, this.text}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: Covid19StatisticsBorderDecorator(),
-      padding: const EdgeInsets.all(4.0),
-      child: text,
-    );
-  }
+class Covid19StatisticsBorderDecorator extends BoxDecoration {
+  Covid19StatisticsBorderDecorator()
+      : super(
+          color: Covid19Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            width: 2,
+            color: Covid19Colors.lightGrey,
+          ),
+        );
 }

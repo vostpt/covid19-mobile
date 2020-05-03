@@ -12,6 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/ui/widgets/border_decorator.dart';
 import 'package:flutter/material.dart';
 
 class Covid19PlotDropdown extends StatelessWidget {
@@ -23,14 +24,7 @@ class Covid19PlotDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsetsDirectional.only(start: 8.0),
-      decoration: BoxDecoration(
-        color: Covid19Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          width: 2,
-          color: Covid19Colors.lightGrey,
-        ),
-      ),
+      decoration: Covid19BorderDecorator(),
       child: DropdownButton<String>(
         value: "Ultimo Mês",
         items: <String>['Ultima Semana', 'Ultimo Mês', 'Tudo']

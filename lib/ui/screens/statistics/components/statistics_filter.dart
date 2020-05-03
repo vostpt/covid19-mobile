@@ -30,6 +30,13 @@ extension StatisticsFilterExtension on StatisticsFilter {
         StatisticsFilter.last7: 7,
       }[this];
 
+  /// Given the [StatisticFilter] what should be the plot XX interval
+  double plotInterval() => const {
+        StatisticsFilter.last7: 1.0,
+        StatisticsFilter.last30: 7.0,
+        StatisticsFilter.all: 7.0,
+      }[this];
+
   /// Returns a [StatisticsFilter] given a string label
   static StatisticsFilter fromLabel(BuildContext context, String str) {
     return StatisticsFilter.values

@@ -63,8 +63,8 @@ abstract class BasePlot {
   /// Returns the current filtered and selected plot data
   PlotData get currentPlotData => _currentPlotData;
 
-  /// List of days showing in the current
-  List<int> days() => _currentPlotData.data.keys.toList();
+  /// Map of days current showing
+  Map<int, double> days() => _currentPlotData.data;
 
   /// Returns the data already formatted and filtered
   PlotData getData({

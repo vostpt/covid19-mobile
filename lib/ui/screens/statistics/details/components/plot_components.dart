@@ -14,6 +14,7 @@
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,8 @@ class Covid19PlotLeftSideTitles extends SideTitles {
 }
 
 class Covid19PlotBottomSideTitles extends SideTitles {
-  Covid19PlotBottomSideTitles(List<int> days)
+  Covid19PlotBottomSideTitles(
+      {@required Map<int, double> days, @required StatisticsFilter filter})
       : super(
           showTitles: true,
           rotateAngle: 45.0,
@@ -67,8 +69,8 @@ class Covid19PlotBottomSideTitles extends SideTitles {
           margin: 14,
           reservedSize: 10,
           getTitles: (double value) {
-            if (value % 7 == 0 && value < days.length) {
-              return parseDateToReadable(days.elementAt(value.toInt()));
+            if (value % filter.plotInterval() == 0) {
+              return parseDateToReadable(days[value.toInt()].toInt());
             }
             return "";
           },
@@ -120,7 +122,7 @@ class Covid19LineChartData extends LineChartData {
           lineBarsData: plotData.lineBarsData(),
           lineTouchData: Covid19LineTouchData(),
           gridData: FlGridData(
-            verticalInterval: 7, // number of days of week
+            verticalInterval: plotData.currentPlotData.filter.plotInterval(),
             horizontalInterval: interval,
             drawHorizontalLine: true,
             drawVerticalLine: true,
@@ -129,7 +131,10 @@ class Covid19LineChartData extends LineChartData {
           titlesData: FlTitlesData(
             show: true,
             leftTitles: Covid19PlotLeftSideTitles(interval: interval),
-            bottomTitles: Covid19PlotBottomSideTitles(plotData.days()),
+            bottomTitles: Covid19PlotBottomSideTitles(
+              days: plotData.days(),
+              filter: plotData.currentPlotData.filter,
+            ),
           ),
           borderData: FlBorderData(show: false),
         );
@@ -143,7 +148,7 @@ class Covid19BarChartData extends BarChartData {
           minY: 0,
           barGroups: plotData.barsGroupData(),
           gridData: FlGridData(
-            verticalInterval: 7, // number of days of week
+            verticalInterval: plotData.currentPlotData.filter.plotInterval(),
             horizontalInterval: interval,
             drawHorizontalLine: true,
             drawVerticalLine: true,
@@ -151,7 +156,10 @@ class Covid19BarChartData extends BarChartData {
           ),
           titlesData: FlTitlesData(
             leftTitles: Covid19PlotLeftSideTitles(interval: interval),
-            bottomTitles: Covid19PlotBottomSideTitles(plotData.days()),
+            bottomTitles: Covid19PlotBottomSideTitles(
+              days: plotData.days(),
+              filter: plotData.currentPlotData.filter,
+            ),
           ),
           borderData: FlBorderData(
             show: false,

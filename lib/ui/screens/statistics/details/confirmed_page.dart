@@ -161,7 +161,7 @@ class _TrendPlotState extends State<TrendPlot> {
         /// --------------------------
         /// Buttons
         /// --------------------------
-        PlotButtons(),
+        // PlotButtons(),
       ],
     );
   }
@@ -209,7 +209,7 @@ class DualTrendBarPlot extends StatelessWidget {
         /// --------------------------
         /// Buttons
         /// --------------------------
-        PlotButtons(),
+        // PlotButtons(),
       ],
     );
   }

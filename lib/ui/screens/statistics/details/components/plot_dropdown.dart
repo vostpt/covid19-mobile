@@ -28,7 +28,13 @@ class Covid19PlotDropdown extends StatefulWidget {
 }
 
 class _Covid19PlotDropdownState extends State<Covid19PlotDropdown> {
-  StatisticsFilter currentFilter = StatisticsFilter.last30;
+  StatisticsFilter currentFilter;
+
+  @override
+  void initState() {
+    currentFilter = StatisticsFilter.last30;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +56,14 @@ class _Covid19PlotDropdownState extends State<Covid19PlotDropdown> {
         iconDisabledColor: Covid19Colors.lightGrey,
         iconEnabledColor: Covid19Colors.darkGrey,
         onChanged: (String value) {
-          setState(() {
+          if (currentFilter.label(context).compareTo(value) != 0) {
             currentFilter = StatisticsFilterExtension.fromLabel(context, value);
-            widget.onDropdownChanged(currentFilter);
-          });
+            setState(() {
+              currentFilter =
+                  StatisticsFilterExtension.fromLabel(context, value);
+              widget.onDropdownChanged(currentFilter);
+            });
+          }
         },
         icon: Icon(
           Icons.keyboard_arrow_down,

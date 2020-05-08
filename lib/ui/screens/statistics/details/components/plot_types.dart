@@ -27,79 +27,65 @@ double calculateDividerInterval(double input) {
   return ((input ~/ multipiler) * multipiler ~/ 10).truncateToDouble();
 }
 
-/// Helpful class to have all information ready to show the
-///   various plots
 class PlotData {
-  /// Data is Filtered by what days
-  StatisticsFilter filter;
-
-  /// All data filtered
-  Map<int, double> data;
-
   /// Max value of the YY axis
-  double maxValue;
+  final double maxValue;
 
   /// Min value of the YY axis
-  double minValue;
+  final double minValue;
 
   /// Min value of the XX axis
-  int dayFirst;
+  final int dayFirst;
 
   /// Max value of the XX axis
-  int dayLast;
+  final int dayLast;
 
   /// Interval in which the plot should divide in the YY axis
-  double interval;
+  final double interval;
 
-  PlotData({
-    this.filter = StatisticsFilter.all,
-    this.data,
+  PlotData(
+    this.maxValue,
+    this.minValue,
     this.dayFirst,
     this.dayLast,
-    this.maxValue = double.maxFinite,
-    this.minValue = double.minPositive,
     this.interval,
-  });
+  );
 }
 
-abstract class BasePlot {
-  final Map<int, double> linearData;
-  Map<int, double> logaritmicData;
-  PlotData _currentPlotData;
+class BasePlot {
+  final Map<int, double> points;
 
-  BasePlot({@required this.linearData}) {
-    logaritmicData = linearData.map((day, value) {
-      return MapEntry(day, math.log(value));
-    });
-  }
+  PlotData linearData;
+  PlotData logaritmicData;
+
+  /// Data is showing is logaritmic or not
+  bool logaritmic = false;
+
+  /// Data is Filtered by what days
+  StatisticsFilter filter = StatisticsFilter.last30;
+
+  BasePlot(
+      {@required this.points,
+      logaritmic = false,
+      filter = StatisticsFilter.last30});
 
   /// Returns the current filtered and selected plot data
-  PlotData get currentPlotData => _currentPlotData;
+  PlotData get currentPlotData => logaritmic ? logaritmicData : linearData;
 
-  /// Map of days current showing
-  Map<int, double> days() => _currentPlotData.data;
-
-  /// Returns the data already formatted and filtered
-  PlotData getData({
-    isLogaritmic,
-    StatisticsFilter filter,
-  }) {
-    Map<int, double> values = <int, double>{};
-    values.addAll(isLogaritmic ? logaritmicData : linearData);
-
-    int dayFirst = values.entries.first.key;
-    int dayLast = values.entries.last.key;
-
+  Map<int, double> get filteredPlotData {
+    int lastDay = currentPlotData.dayLast;
+    var values = <int, double>{};
+    values.addAll(points);
     switch (filter) {
       case StatisticsFilter.last30:
         values.removeWhere((int day, _) {
-          return (day <= dayLast - StatisticsFilter.last30.value());
+          return (day <= lastDay - StatisticsFilter.last30.value());
         });
         break;
 
       case StatisticsFilter.last7:
         values.removeWhere((int day, _) {
-          return (day <= dayLast - StatisticsFilter.last7.value());
+          return (day <= lastDay - StatisticsFilter.last7.value());
         });
         break;
 
@@ -108,40 +94,61 @@ abstract class BasePlot {
         break;
     }
 
-    double max = double.minPositive;
-    double min = double.maxFinite;
+    return values;
+  }
+
+  /// Map of days current showing
+  Map<int, double> days() => points;
+
+  /// Returns the data already formatted and filtered
+  void initializeData({
+    StatisticsFilter filter,
+  }) {
+    linearData = calculateValues();
+    logaritmicData = calculateLogValues(linearData);
+  }
+
+  PlotData calculateValues() {
+    int dayFirst = points.entries.first.key;
+    int dayLast = points.entries.last.key;
+
+    double maxValue = double.minPositive;
+    double minValue = double.maxFinite;
 
     // Determine wht are the min and max values of YY axis
-    values.forEach((day, value) {
-      max = math.max(value, max);
-      min = math.min(value, min);
+    points.forEach((day, value) {
+      maxValue = math.max(value, maxValue);
+      minValue = math.min(value, minValue);
     });
 
-    double dividerInterval = calculateDividerInterval(max);
+    double interval = calculateDividerInterval(maxValue);
 
+    return PlotData(maxValue, minValue, dayFirst, dayLast, interval);
+  }
+
+  PlotData calculateLogValues(PlotData linearData) {
     return PlotData(
-        data: values,
-        filter: filter,
-        dayFirst: dayFirst,
-        dayLast: dayLast,
-        maxValue: max,
-        minValue: min,
-        interval: dividerInterval);
+      linearData.maxValue,
+      linearData.minValue,
+      linearData.dayLast,
+      linearData.dayLast,
+      linearData.interval,
+    );
   }
 }
 
 /// Prepare data to show in lines
 class Covid19PlotLines extends BasePlot {
   Covid19PlotLines({
-    @required data,
-    bool logaritmic = false,
-    StatisticsFilter filter = StatisticsFilter.all,
-  }) : super(linearData: data) {
-    _currentPlotData = getData(isLogaritmic: logaritmic, filter: filter);
+    @required Map<int, double> data,
+  }) : super(points: data) {
+    initializeData(
+      filter: filter,
+    );
   }
 
   List<LineChartBarData> lineBarsData() {
-    List<FlSpot> spots = _currentPlotData.data
+    List<FlSpot> spots = filteredPlotData
         .map(
           (day, value) {
             return MapEntry(
@@ -164,16 +171,14 @@ class Covid19PlotLines extends BasePlot {
 
 /// Prepare data to show in Bar plot
 class Covid19PlotBars extends BasePlot {
-  Covid19PlotBars({
-    @required data,
-    bool logaritmic = false,
-    StatisticsFilter filter = StatisticsFilter.last30,
-  }) : super(linearData: data) {
-    _currentPlotData = getData(isLogaritmic: logaritmic, filter: filter);
+  Covid19PlotBars({@required data}) : super(points: data) {
+    initializeData(
+      filter: filter,
+    );
   }
 
   List<BarChartGroupData> barsGroupData() {
-    return _currentPlotData.data
+    return filteredPlotData
         .map(
           (day, value) {
             return MapEntry(

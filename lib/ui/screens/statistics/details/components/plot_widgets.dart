@@ -1,3 +1,5 @@
+import 'package:covid19mobile/ui/assets/colors.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -14,24 +16,62 @@
 import 'package:flutter/material.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dropdown.dart';
+import 'package:covid19mobile/generated/l10n.dart';
 
-class PlotButtons extends StatelessWidget {
-  PlotButtons({Key key}) : super(key: key);
+class PlotButtons extends StatefulWidget {
+  final Function(bool) onLogaritmicSelected;
+
+  PlotButtons({Key key, @required this.onLogaritmicSelected}) : super(key: key);
+
+  @override
+  _PlotButtonsState createState() => _PlotButtonsState();
+}
+
+class _PlotButtonsState extends State<PlotButtons> {
+  bool isLogSelected;
+
+  @override
+  void initState() {
+    isLogSelected = false;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        FlatButton(
-          child: Text("Linear"),
-          onPressed: () {},
-        ),
-        FlatButton(
-          child: Text("Log"),
-          onPressed: () {},
-        ),
-      ],
+    return Container(
+      margin: const EdgeInsets.only(top: 10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          FlatButton(
+            color: Covid19Colors.grey,
+            disabledColor: Covid19Colors.white,
+            child: Text(
+              S.of(context).linear,
+              style: isLogSelected ? TextStyles.h1() : TextStyles.h4(),
+            ),
+            onPressed: () {
+              if (isLogSelected) {
+                isLogSelected = !isLogSelected;
+                widget.onLogaritmicSelected(isLogSelected);
+              }
+            },
+          ),
+          FlatButton(
+            color: Covid19Colors.grey,
+            child: Text(
+              S.of(context).logaritmicShort,
+              style: (!isLogSelected) ? TextStyles.h1() : TextStyles.h4(),
+            ),
+            onPressed: () {
+              if (!isLogSelected) {
+                isLogSelected = !isLogSelected;
+                widget.onLogaritmicSelected(isLogSelected);
+              }
+            },
+          ),
+        ],
+      ),
     );
   }
 }

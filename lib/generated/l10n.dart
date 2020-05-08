@@ -638,6 +638,51 @@ class S {
       args: [],
     );
   }
+
+  String get statisticsNewCases {
+    return Intl.message(
+      'Novos Casos',
+      name: 'statisticsNewCases',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsTotalConfirmed {
+    return Intl.message(
+      'Total de Confirmados',
+      name: 'statisticsTotalConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsConfirmedCases {
+    return Intl.message(
+      'Casos Confirmados',
+      name: 'statisticsConfirmedCases',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get linear {
+    return Intl.message(
+      'Linear',
+      name: 'linear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get logaritmicShort {
+    return Intl.message(
+      'Log',
+      name: 'logaritmicShort',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

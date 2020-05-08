@@ -72,7 +72,7 @@ class _StatisticsDeathsState extends BaseState<StatisticsDeaths, AppBloc> {
 
   @override
   void initBloc(AppBloc bloc) {
-    bloc.getCovidStatus();
+    // bloc.getCovidStatus();
   }
 
   @override
@@ -97,18 +97,20 @@ class TrendPlot extends StatefulWidget {
 }
 
 class _TrendPlotState extends State<TrendPlot> {
-  StatisticsFilter currentStatisticsFilter;
+  Covid19PlotLines _plot;
 
   @override
   void initState() {
-    currentStatisticsFilter = StatisticsFilter.last30;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Covid19PlotLines _plot = Covid19PlotLines(
-        data: widget.plotData, filter: currentStatisticsFilter);
+    if (_plot == null) {
+      _plot = Covid19PlotLines(
+        data: widget.plotData,
+      );
+    }
 
     return Column(
       children: <Widget>[
@@ -120,7 +122,7 @@ class _TrendPlotState extends State<TrendPlot> {
           dropdown: Covid19PlotDropdown(
               onDropdownChanged: (StatisticsFilter updatedFilter) {
             setState(() {
-              currentStatisticsFilter = updatedFilter;
+              _plot.filter = updatedFilter;
             });
           }),
         ),
@@ -151,7 +153,13 @@ class _TrendPlotState extends State<TrendPlot> {
         /// --------------------------
         /// Buttons
         /// --------------------------
-        PlotButtons(),
+        PlotButtons(
+          onLogaritmicSelected: (bool value) {
+            setState(() {
+              _plot.logaritmic = value;
+            });
+          },
+        ),
       ],
     );
   }
@@ -168,10 +176,12 @@ class DualTrendBarPlot extends StatefulWidget {
 
 class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
   StatisticsFilter currentStatisticsFilter;
+  bool showingLogaritmicStyle;
 
   @override
   void initState() {
     currentStatisticsFilter = StatisticsFilter.last30;
+    showingLogaritmicStyle = false;
     super.initState();
   }
 
@@ -217,7 +227,13 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
         /// --------------------------
         /// Buttons
         /// --------------------------
-        PlotButtons(),
+        PlotButtons(
+          onLogaritmicSelected: (bool value) {
+            setState(() {
+              showingLogaritmicStyle = value;
+            });
+          },
+        ),
       ],
     );
   }

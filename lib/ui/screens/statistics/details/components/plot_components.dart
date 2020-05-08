@@ -31,6 +31,17 @@ class Covid19LineTouchData extends LineTouchData {
         );
 }
 
+class Covid19BarTouchData extends BarTouchData {
+  Covid19BarTouchData()
+      : super(
+          touchTooltipData: BarTouchTooltipData(
+            tooltipBgColor: Colors.white,
+          ),
+          touchCallback: (BarTouchResponse touchResponse) {},
+          handleBuiltInTouches: true,
+        );
+}
+
 class Covid19PlotBorder extends Border {
   Covid19PlotBorder()
       : super(
@@ -51,7 +62,7 @@ class Covid19PlotLeftSideTitles extends SideTitles {
           margin: 4,
           reservedSize: 40,
           getTitles: (value) {
-            if (value == 0) {
+            if (value.isNaN || value == 0) {
               return "";
             }
             return "${value.toInt()}";
@@ -64,13 +75,16 @@ class Covid19PlotBottomSideTitles extends SideTitles {
       {@required Map<int, double> days, @required StatisticsFilter filter})
       : super(
           showTitles: true,
-          rotateAngle: 45.0,
+          rotateAngle: 25.0,
           textStyle: TextStyles.statisticsPlotLabel(),
           margin: 14,
           reservedSize: 10,
           getTitles: (double value) {
-            if (value % filter.plotInterval() == 0) {
-              return parseDateToReadable(days[value.toInt()].toInt());
+            //TODO: Improve on this part
+            if ((value != null || value % filter.intervalValue() == 0)) {
+              // if (days[value.toInt()] != null) {
+              //   return parseDateToReadable(days[value.toInt()].toInt());
+              // }
             }
             return "";
           },
@@ -121,7 +135,7 @@ class Covid19LineChartData extends LineChartData {
           lineBarsData: plotData.lineBarsData(),
           lineTouchData: Covid19LineTouchData(),
           gridData: FlGridData(
-            verticalInterval: plotData.currentPlotData.filter.plotInterval(),
+            verticalInterval: plotData.filter.intervalValue(),
             horizontalInterval: plotData.currentPlotData.interval,
             drawHorizontalLine: true,
             drawVerticalLine: true,
@@ -133,7 +147,7 @@ class Covid19LineChartData extends LineChartData {
                 interval: plotData.currentPlotData.interval),
             bottomTitles: Covid19PlotBottomSideTitles(
               days: plotData.days(),
-              filter: plotData.currentPlotData.filter,
+              filter: plotData.filter,
             ),
           ),
           borderData: FlBorderData(show: false),
@@ -145,8 +159,9 @@ class Covid19BarChartData extends BarChartData {
       : super(
           minY: 0,
           barGroups: plotData.barsGroupData(),
+          barTouchData: Covid19BarTouchData(),
           gridData: FlGridData(
-            verticalInterval: plotData.currentPlotData.filter.plotInterval(),
+            verticalInterval: plotData.filter.intervalValue(),
             horizontalInterval: plotData.currentPlotData.interval,
             drawHorizontalLine: true,
             drawVerticalLine: true,
@@ -154,10 +169,11 @@ class Covid19BarChartData extends BarChartData {
           ),
           titlesData: FlTitlesData(
             leftTitles: Covid19PlotLeftSideTitles(
-                interval: plotData.currentPlotData.interval),
+              interval: plotData.currentPlotData.interval,
+            ),
             bottomTitles: Covid19PlotBottomSideTitles(
               days: plotData.days(),
-              filter: plotData.currentPlotData.filter,
+              filter: plotData.filter,
             ),
           ),
           borderData: FlBorderData(

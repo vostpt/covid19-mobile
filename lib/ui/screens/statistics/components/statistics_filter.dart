@@ -31,7 +31,7 @@ extension StatisticsFilterExtension on StatisticsFilter {
       }[this];
 
   /// Given the [StatisticFilter] what should be the plot XX interval
-  double plotInterval() => const {
+  double intervalValue() => const {
         StatisticsFilter.last7: 1.0,
         StatisticsFilter.last30: 7.0,
         StatisticsFilter.all: 7.0,

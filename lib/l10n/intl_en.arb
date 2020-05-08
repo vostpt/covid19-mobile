@@ -66,5 +66,10 @@
   "dateOf": "de",
   "lastMonth": "Ultimo Mês",
   "lastWeek": "Ultima Semana",
-  "all": "Tudo"
+  "all": "Tudo",
+  "statisticsNewCases": "Novos Casos",
+  "statisticsTotalConfirmed": "Total de Confirmados",
+  "statisticsConfirmedCases": "Casos Confirmados",
+  "linear": "Linear",
+  "logaritmicShort": "Log"
 }

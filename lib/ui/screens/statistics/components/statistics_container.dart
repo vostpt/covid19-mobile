@@ -11,7 +11,6 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/widgets/border_decorator.dart';
 import 'package:flutter/material.dart';
 

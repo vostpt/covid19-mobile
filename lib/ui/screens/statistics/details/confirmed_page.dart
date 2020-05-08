@@ -13,6 +13,7 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
+import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
@@ -44,7 +45,7 @@ class _StatisticsConfirmedState
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
       appBar: AppBar(
-        title: Text("CASOS CONFIRMADOS"),
+        title: Text(S.of(context).statisticsConfirmedCases.toUpperCase()),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -59,14 +60,14 @@ class _StatisticsConfirmedState
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: StatisticsContainer(
-                  child: DualTrendBarPlot(
-                    plotData: currentStatistics.status.confirmedNew,
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: StatisticsContainer(
+              //     child: DualTrendBarPlot(
+              //       plotData: currentStatistics.status.confirmedNew,
+              //     ),
+              //   ),
+              // ),
               DataInformationFooter(
                 currentStatistics: currentStatistics,
               )
@@ -79,7 +80,7 @@ class _StatisticsConfirmedState
 
   @override
   void initBloc(AppBloc bloc) {
-    bloc.getCovidStatus();
+    // bloc.getCovidStatus();
   }
 
   @override
@@ -100,34 +101,31 @@ class TrendPlot extends StatefulWidget {
   TrendPlot({Key key, @required this.plotData}) : super(key: key);
 
   @override
-  _TrendPlotState createState() => _TrendPlotState();
+  _TrendPlotState createState() => _TrendPlotState(plotData);
 }
 
 class _TrendPlotState extends State<TrendPlot> {
-  StatisticsFilter currentStatisticsFilter;
+  Covid19PlotLines _plot;
 
-  @override
-  void initState() {
-    currentStatisticsFilter = StatisticsFilter.last30;
-    super.initState();
+  _TrendPlotState(plotData) {
+    _plot = Covid19PlotLines(
+      data: plotData,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    Covid19PlotLines _plot = Covid19PlotLines(
-        data: widget.plotData, filter: currentStatisticsFilter);
-
     return Column(
       children: <Widget>[
         /// --------------------------
         /// Header
         /// --------------------------
         PlotHeader(
-          header: "Total de Confirmados",
-          dropdown: Covid19PlotDropdown(
-              onDropdownChanged: (StatisticsFilter updatedFilter) {
+          header: S.of(context).statisticsTotalConfirmed,
+          dropdown:
+              Covid19PlotDropdown(onDropdownChanged: (StatisticsFilter value) {
             setState(() {
-              currentStatisticsFilter = updatedFilter;
+              _plot.filter = value;
             });
           }),
         ),
@@ -161,7 +159,13 @@ class _TrendPlotState extends State<TrendPlot> {
         /// --------------------------
         /// Buttons
         /// --------------------------
-        // PlotButtons(),
+        PlotButtons(
+          onLogaritmicSelected: (bool value) {
+            setState(() {
+              _plot.logaritmic = value;
+            });
+          },
+        ),
       ],
     );
   }
@@ -178,17 +182,21 @@ class DualTrendBarPlot extends StatefulWidget {
 
 class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
   StatisticsFilter currentStatisticsFilter;
+  bool showingLogaritmicStyle;
+  Covid19PlotBars _plot;
 
   @override
   void initState() {
     currentStatisticsFilter = StatisticsFilter.last30;
+    showingLogaritmicStyle = false;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Covid19PlotBars _plot =
-        Covid19PlotBars(data: widget.plotData, filter: currentStatisticsFilter);
+    if (_plot == null) {
+      _plot = Covid19PlotBars(data: widget.plotData);
+    }
 
     return Column(
       children: <Widget>[
@@ -196,7 +204,7 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
         /// Header
         /// --------------------------
         PlotHeader(
-          header: "Novos Casos",
+          header: S.of(context).statisticsNewCases,
           dropdown: Covid19PlotDropdown(
               onDropdownChanged: (StatisticsFilter updatedFilter) {
             setState(() {
@@ -219,7 +227,9 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
             margin: const EdgeInsetsDirectional.only(top: 37.0),
             width: MediaQuery.of(context).size.width,
             child: BarChart(
-              Covid19BarChartData(plotData: _plot),
+              Covid19BarChartData(
+                plotData: _plot,
+              ),
               swapAnimationDuration: plotAnimationDuration,
             ),
           ),
@@ -228,7 +238,13 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
         /// --------------------------
         /// Buttons
         /// --------------------------
-        // PlotButtons(),
+        PlotButtons(
+          onLogaritmicSelected: (bool value) {
+            setState(() {
+              showingLogaritmicStyle = value;
+            });
+          },
+        ),
       ],
     );
   }

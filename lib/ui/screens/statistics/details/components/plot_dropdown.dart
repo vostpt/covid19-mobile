@@ -58,11 +58,8 @@ class _Covid19PlotDropdownState extends State<Covid19PlotDropdown> {
         onChanged: (String value) {
           if (currentFilter.label(context).compareTo(value) != 0) {
             currentFilter = StatisticsFilterExtension.fromLabel(context, value);
-            setState(() {
-              currentFilter =
-                  StatisticsFilterExtension.fromLabel(context, value);
-              widget.onDropdownChanged(currentFilter);
-            });
+            currentFilter = StatisticsFilterExtension.fromLabel(context, value);
+            widget.onDropdownChanged(currentFilter);
           }
         },
         icon: Icon(

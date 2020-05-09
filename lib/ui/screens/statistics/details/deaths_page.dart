@@ -13,6 +13,7 @@
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
+import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
@@ -55,11 +56,16 @@ class _StatisticsDeathsState extends BaseState<StatisticsDeaths, AppBloc> {
                   plotData: currentStatistics.status.deaths,
                 ),
               ),
-              // StatisticsContainer(
-              //   child: DualTrendBarPlot(
-              //     plotData: currentStatistics.status.deaths,
-              //   ),
-              // ),
+              StatisticsContainer(
+                child: DualTrendBarPlot(
+                  plotData: currentStatistics.status.deaths,
+                ),
+              ),
+              StatisticsContainer(
+                child: DualTrendBarPlot(
+                  plotData: currentStatistics.status.deaths,
+                ),
+              ),
               DataInformationFooter(
                 currentStatistics: currentStatistics,
               )
@@ -149,17 +155,6 @@ class _TrendPlotState extends State<TrendPlot> {
             ),
           ),
         ),
-
-        /// --------------------------
-        /// Buttons
-        /// --------------------------
-        PlotButtons(
-          onLogaritmicSelected: (bool value) {
-            setState(() {
-              _plot.logaritmic = value;
-            });
-          },
-        ),
       ],
     );
   }
@@ -176,12 +171,10 @@ class DualTrendBarPlot extends StatefulWidget {
 
 class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
   StatisticsFilter currentStatisticsFilter;
-  bool showingLogaritmicStyle;
 
   @override
   void initState() {
     currentStatisticsFilter = StatisticsFilter.last30;
-    showingLogaritmicStyle = false;
     super.initState();
   }
 
@@ -195,7 +188,7 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
         /// Header
         /// --------------------------
         PlotHeader(
-          header: "Novos Casos",
+          header: S.of(context).statisticsNewCases,
           dropdown: Covid19PlotDropdown(
               onDropdownChanged: (StatisticsFilter updatedFilter) {
             setState(() {
@@ -223,18 +216,14 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
             ),
           ),
         ),
-
-        /// --------------------------
-        /// Buttons
-        /// --------------------------
-        PlotButtons(
-          onLogaritmicSelected: (bool value) {
-            setState(() {
-              showingLogaritmicStyle = value;
-            });
-          },
-        ),
       ],
     );
+  }
+}
+
+class HorizontalBars extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

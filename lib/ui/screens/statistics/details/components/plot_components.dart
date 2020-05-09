@@ -16,6 +16,7 @@ import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
+import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -181,4 +182,36 @@ class Covid19BarChartData extends BarChartData {
             border: Covid19PlotBorder(),
           ),
         );
+}
+
+class Covid19DoubleBarChart extends BarChartData {
+  Covid19DoubleBarChart({@required List<AgeGroupBySex> ageGroups})
+      : super(
+          minY: 0,
+          barGroups: parseDoubleBar(ageGroups),
+        );
+
+  static List<BarChartGroupData> parseDoubleBar(List<AgeGroupBySex> ageGroups) {
+    List<BarChartGroupData> groupedData = [];
+
+    for (var ageGroup in ageGroups) {
+      groupedData.add(
+        BarChartGroupData(
+            x: ageGroup.order,
+            barRods: [
+              BarChartRodData(
+                y: ageGroup.male,
+                color: Covid19Colors.green,
+              ),
+              BarChartRodData(
+                y: ageGroup.female,
+                color: Covid19Colors.lightGreen,
+              ),
+            ],
+            barsSpace: 4),
+      );
+    }
+
+    return groupedData;
+  }
 }

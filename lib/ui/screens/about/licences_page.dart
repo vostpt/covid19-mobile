@@ -36,7 +36,7 @@ class LicencesPage extends StatelessWidget {
             S.of(context).licencesPageTitle.toUpperCase(),
             style: Theme.of(context)
                 .textTheme
-                .title
+                .headline6
                 .copyWith(color: Covid19Colors.darkGrey),
           ),
         ),

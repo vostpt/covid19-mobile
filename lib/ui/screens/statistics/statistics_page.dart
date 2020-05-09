@@ -48,7 +48,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
           S.of(context).statisticsPageStatistics.toUpperCase(),
           style: Theme.of(context)
               .textTheme
-              .display2
+              .headline3
               .copyWith(color: Covid19Colors.darkGrey),
         ),
       ),

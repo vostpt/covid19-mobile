@@ -61,7 +61,7 @@ class Accordion extends StatelessWidget {
           child: ExpansionTile(
             title: Text(
               title,
-              style: titleTextStyle ?? Theme.of(context).textTheme.display4,
+              style: titleTextStyle ?? Theme.of(context).textTheme.headline1,
             ),
             initiallyExpanded: initiallyExpanded,
             onExpansionChanged: onExpansionChanged,

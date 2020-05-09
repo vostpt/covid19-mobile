@@ -26,10 +26,10 @@ class HtmlContent extends StatelessWidget {
       data: content,
       backgroundColor: Colors.white,
       onLinkTap: launchURL,
-      defaultTextStyle: Theme.of(context).textTheme.body1,
+      defaultTextStyle: Theme.of(context).textTheme.bodyText2,
       linkStyle: Theme.of(context)
           .textTheme
-          .body1
+          .bodyText2
           .copyWith(color: Theme.of(context).primaryColor),
     );
   }

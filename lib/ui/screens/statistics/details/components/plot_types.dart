@@ -56,21 +56,14 @@ class BasePlot {
   final Map<int, double> points;
 
   PlotData linearData;
-  PlotData logaritmicData;
-
-  /// Data is showing is logaritmic or not
-  bool logaritmic = false;
 
   /// Data is Filtered by what days
   StatisticsFilter filter = StatisticsFilter.last30;
 
-  BasePlot(
-      {@required this.points,
-      logaritmic = false,
-      filter = StatisticsFilter.last30});
+  BasePlot({@required this.points, filter = StatisticsFilter.last30});
 
   /// Returns the current filtered and selected plot data
-  PlotData get currentPlotData => logaritmic ? logaritmicData : linearData;
+  PlotData get currentPlotData => linearData;
 
   Map<int, double> get filteredPlotData {
     int lastDay = currentPlotData.dayLast;
@@ -105,7 +98,6 @@ class BasePlot {
     StatisticsFilter filter,
   }) {
     linearData = calculateValues();
-    logaritmicData = calculateLogValues(linearData);
   }
 
   PlotData calculateValues() {
@@ -124,16 +116,6 @@ class BasePlot {
     double interval = calculateDividerInterval(maxValue);
 
     return PlotData(maxValue, minValue, dayFirst, dayLast, interval);
-  }
-
-  PlotData calculateLogValues(PlotData linearData) {
-    return PlotData(
-      linearData.maxValue,
-      linearData.minValue,
-      linearData.dayLast,
-      linearData.dayLast,
-      linearData.interval,
-    );
   }
 }
 

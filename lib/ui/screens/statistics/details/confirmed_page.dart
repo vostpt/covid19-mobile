@@ -60,14 +60,23 @@ class _StatisticsConfirmedState
                   ),
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: StatisticsContainer(
-              //     child: DualTrendBarPlot(
-              //       plotData: currentStatistics.status.confirmedNew,
-              //     ),
-              //   ),
-              // ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: StatisticsContainer(
+                  child: DualTrendBarPlot(
+                    plotData: currentStatistics.status.confirmedNew,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: StatisticsContainer(
+                  child: ByAgeBarPlot(
+                    plotDataCategory:
+                        currentStatistics.confirmedRecentByAgeGroup,
+                  ),
+                ),
+              ),
               DataInformationFooter(
                 currentStatistics: currentStatistics,
               )
@@ -155,17 +164,6 @@ class _TrendPlotState extends State<TrendPlot> {
             ),
           ),
         ),
-
-        /// --------------------------
-        /// Buttons
-        /// --------------------------
-        PlotButtons(
-          onLogaritmicSelected: (bool value) {
-            setState(() {
-              _plot.logaritmic = value;
-            });
-          },
-        ),
       ],
     );
   }
@@ -224,7 +222,7 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
         /// --------------------------
         SafeArea(
           child: Container(
-            margin: const EdgeInsetsDirectional.only(top: 37.0),
+            margin: const EdgeInsets.only(top: 37.0),
             width: MediaQuery.of(context).size.width,
             child: BarChart(
               Covid19BarChartData(
@@ -234,17 +232,53 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
             ),
           ),
         ),
+      ],
+    );
+  }
+}
+
+class ByAgeBarPlot extends StatelessWidget {
+  final List<AgeGroupBySex> plotDataCategory;
+
+  const ByAgeBarPlot({
+    Key key,
+    this.plotDataCategory,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        /// --------------------------
+        /// Header
+        /// --------------------------
+        PlotHeader(
+          header: S.of(context).statisticsNewCases,
+          dropdown: Covid19PlotDropdown(
+              onDropdownChanged: (StatisticsFilter updatedFilter) {
+            //TODO set plot as Statefull
+          }),
+        ),
 
         /// --------------------------
-        /// Buttons
-        /// --------------------------
-        PlotButtons(
-          onLogaritmicSelected: (bool value) {
-            setState(() {
-              showingLogaritmicStyle = value;
-            });
-          },
+        Divider(
+          thickness: 3,
+          color: Covid19Colors.lightGrey,
         ),
+
+        /// --------------------------
+        /// Plot
+        /// --------------------------
+        SafeArea(
+          child: Container(
+            margin: const EdgeInsets.only(top: 37.0),
+            width: MediaQuery.of(context).size.width,
+            child: BarChart(
+              Covid19DoubleBarChart(ageGroups: plotDataCategory),
+              swapAnimationDuration: plotAnimationDuration,
+            ),
+          ),
+        )
       ],
     );
   }

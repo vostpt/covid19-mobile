@@ -214,7 +214,7 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Text(S.of(context).noConnection,
-                          style: Theme.of(context).textTheme.display2.copyWith(
+                          style: Theme.of(context).textTheme.headline3.copyWith(
                                 color: Covid19Colors.darkGrey,
                               )),
                       const SizedBox(

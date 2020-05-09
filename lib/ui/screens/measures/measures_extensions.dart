@@ -52,7 +52,7 @@ extension HtmlParsing on MeasureModel {
         onLinkTap: launchURL,
         linkStyle: Theme.of(context)
             .textTheme
-            .body1
+            .bodyText2
             .copyWith(color: Theme.of(context).primaryColor),
       );
     } else {

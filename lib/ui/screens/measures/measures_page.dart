@@ -88,7 +88,7 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
           S.of(context).measuresPageMeasures.toUpperCase(),
           style: Theme.of(context)
               .textTheme
-              .display2
+              .headline3
               .copyWith(color: Covid19Colors.darkGrey),
         ),
         backgroundColor: Colors.white,

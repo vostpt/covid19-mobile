@@ -45,7 +45,7 @@ class ContactCard extends StatelessWidget {
               padding: const EdgeInsets.only(top: 4.0, bottom: 8.0),
               child: Text(
                 contact.title,
-                style: Theme.of(context).textTheme.display2.copyWith(
+                style: Theme.of(context).textTheme.headline3.copyWith(
                     fontSize: contact.textSize,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 0.35,

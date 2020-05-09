@@ -46,7 +46,7 @@ class StatisticsButton extends StatelessWidget {
                             .toString(),
                         style: Theme.of(context)
                             .textTheme
-                            .display2
+                            .headline3
                             .copyWith(color: Colors.white)),
                   ),
                   const SizedBox(
@@ -57,7 +57,7 @@ class StatisticsButton extends StatelessWidget {
                       S.of(context).homePageConfirmedCases.toUpperCase(),
                       style: Theme.of(context)
                           .textTheme
-                          .display2
+                          .headline3
                           .copyWith(color: Colors.white),
                     ),
                   )

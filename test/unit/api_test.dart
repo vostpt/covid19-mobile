@@ -14,7 +14,6 @@
 import 'dart:io';
 
 import 'package:covid19mobile/model/api_response_model.dart';
-import 'package:covid19mobile/model/faq_model.dart';
 import 'package:covid19mobile/model/measure_model.dart';
 import 'package:covid19mobile/model/post_type.dart';
 import 'package:covid19mobile/model/remote_work_model.dart';
@@ -386,34 +385,6 @@ void main() {
 
     test(' performs a get Post Faqs', () async {
       final postType = PostType(PostTypes.faq);
-
-      final faqModel = FaqModel(
-        10,
-        "pergunta",
-        "resposta",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        1,
-        "",
-        1,
-        "",
-        "",
-        "",
-        "",
-      );
 
       when(client.get(postType.getRequestType())).thenAnswer(
         (_) => Future.value(

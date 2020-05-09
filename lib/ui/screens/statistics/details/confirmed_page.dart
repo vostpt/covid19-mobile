@@ -20,9 +20,11 @@ import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_container.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_footer.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/symptoms_naming.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_constants.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dropdown.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_label_gender.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
@@ -74,6 +76,14 @@ class _StatisticsConfirmedState
                   child: ByAgeBarPlot(
                     plotDataCategory:
                         currentStatistics.confirmedRecentByAgeGroup,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: StatisticsContainer(
+                  child: SymptomsBarPlot(
+                    symptomsPercentages: currentStatistics.symptomsByPercentage,
                   ),
                 ),
               ),
@@ -252,13 +262,7 @@ class ByAgeBarPlot extends StatelessWidget {
         /// --------------------------
         /// Header
         /// --------------------------
-        PlotHeader(
-          header: S.of(context).statisticsNewCases,
-          dropdown: Covid19PlotDropdown(
-              onDropdownChanged: (StatisticsFilter updatedFilter) {
-            //TODO set plot as Statefull
-          }),
-        ),
+        PlotHeader(header: S.of(context).statisticsNewCasesByAgeGroupAndSex),
 
         /// --------------------------
         Divider(
@@ -275,6 +279,52 @@ class ByAgeBarPlot extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: BarChart(
               Covid19DoubleBarChart(ageGroups: plotDataCategory),
+              swapAnimationDuration: plotAnimationDuration,
+            ),
+          ),
+        ),
+
+        /// --------------------------
+        /// Labels
+        /// --------------------------
+        PlotLabelGender(),
+      ],
+    );
+  }
+}
+
+class SymptomsBarPlot extends StatelessWidget {
+  final List<SymptomsPercentage> symptomsPercentages;
+
+  const SymptomsBarPlot({Key key, this.symptomsPercentages}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        /// --------------------------
+        /// Header
+        /// --------------------------
+        PlotHeader(header: S.of(context).statisticsSymptoms),
+
+        /// --------------------------
+        Divider(
+          thickness: 3,
+          color: Covid19Colors.lightGrey,
+        ),
+
+        /// --------------------------
+        /// Plot
+        /// --------------------------
+        SafeArea(
+          child: Container(
+            margin: const EdgeInsets.only(top: 37.0),
+            width: MediaQuery.of(context).size.width,
+            child: BarChart(
+              Covid19BarSymptomsPercentageChart(
+                context,
+                symptomsPercentages: symptomsPercentages,
+              ),
               swapAnimationDuration: plotAnimationDuration,
             ),
           ),

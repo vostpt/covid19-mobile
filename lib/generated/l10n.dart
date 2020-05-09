@@ -614,7 +614,7 @@ class S {
 
   String get lastMonth {
     return Intl.message(
-      'Ultimo Mês',
+      'Ultimos 30 dias',
       name: 'lastMonth',
       desc: '',
       args: [],
@@ -623,7 +623,7 @@ class S {
 
   String get lastWeek {
     return Intl.message(
-      'Ultima Semana',
+      'Ultimos 7 dias',
       name: 'lastWeek',
       desc: '',
       args: [],
@@ -679,6 +679,78 @@ class S {
     return Intl.message(
       'Log',
       name: 'logaritmicShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsNewCasesByAgeGroupAndSex {
+    return Intl.message(
+      'Casos por idade',
+      name: 'statisticsNewCasesByAgeGroupAndSex',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsSymptoms {
+    return Intl.message(
+      'Sintomas',
+      name: 'statisticsSymptoms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomCough {
+    return Intl.message(
+      'Tosse',
+      name: 'symptomCough',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomFever {
+    return Intl.message(
+      'Febre',
+      name: 'symptomFever',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomBreathingDifficulties {
+    return Intl.message(
+      'Dificuldades\nrespiratórias',
+      name: 'symptomBreathingDifficulties',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomHeadache {
+    return Intl.message(
+      'Cefeleia',
+      name: 'symptomHeadache',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomMusclePain {
+    return Intl.message(
+      'Dores\nmusculares',
+      name: 'symptomMusclePain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomGenealizedWeakness {
+    return Intl.message(
+      'Fraqueza\ngeneralizada',
+      name: 'symptomGenealizedWeakness',
       desc: '',
       args: [],
     );

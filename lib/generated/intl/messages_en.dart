@@ -45,9 +45,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "homePageConfirmedCases" : MessageLookupByLibrary.simpleMessage("Casos confirmados de COVID-19 em Portugal"),
     "homePageTitle" : MessageLookupByLibrary.simpleMessage("Resposta de Portugal à Covid-19"),
     "initiativesPageTitle" : MessageLookupByLibrary.simpleMessage("Iniciativas"),
-    "lastMonth" : MessageLookupByLibrary.simpleMessage("Ultimo Mês"),
+    "lastMonth" : MessageLookupByLibrary.simpleMessage("Ultimos 30 dias"),
     "lastUpdated" : MessageLookupByLibrary.simpleMessage("Última actualização"),
-    "lastWeek" : MessageLookupByLibrary.simpleMessage("Ultima Semana"),
+    "lastWeek" : MessageLookupByLibrary.simpleMessage("Ultimos 7 dias"),
     "licencesPageTitle" : MessageLookupByLibrary.simpleMessage("Licenças Open-Source"),
     "licensesPageTitle" : MessageLookupByLibrary.simpleMessage("Licenças Open-Source"),
     "linear" : MessageLookupByLibrary.simpleMessage("Linear"),
@@ -83,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "seeDetails" : MessageLookupByLibrary.simpleMessage("Ver Detalhes"),
     "statisticsConfirmedCases" : MessageLookupByLibrary.simpleMessage("Casos Confirmados"),
     "statisticsNewCases" : MessageLookupByLibrary.simpleMessage("Novos Casos"),
+    "statisticsNewCasesByAgeGroupAndSex" : MessageLookupByLibrary.simpleMessage("Casos por idade"),
     "statisticsPageAwaitingResults" : MessageLookupByLibrary.simpleMessage("Aguardar Resultados"),
     "statisticsPageConfirmed" : MessageLookupByLibrary.simpleMessage("Casos Confirmados"),
     "statisticsPageDataLabel" : MessageLookupByLibrary.simpleMessage("Dados recolhidos por Data Science for Social Good Portugal, a partir do boletim diário da Direcção Geral de Saúde."),
@@ -93,6 +94,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "statisticsPageStatistics" : MessageLookupByLibrary.simpleMessage("Estatísticas"),
     "statisticsPageSuspects" : MessageLookupByLibrary.simpleMessage("Suspeitos"),
     "statisticsPageUnderSurveillance" : MessageLookupByLibrary.simpleMessage("Em vigilância"),
-    "statisticsTotalConfirmed" : MessageLookupByLibrary.simpleMessage("Total de Confirmados")
+    "statisticsSymptoms" : MessageLookupByLibrary.simpleMessage("Sintomas"),
+    "statisticsTotalConfirmed" : MessageLookupByLibrary.simpleMessage("Total de Confirmados"),
+    "symptomBreathingDifficulties" : MessageLookupByLibrary.simpleMessage("Dificuldades\nrespiratórias"),
+    "symptomCough" : MessageLookupByLibrary.simpleMessage("Tosse"),
+    "symptomFever" : MessageLookupByLibrary.simpleMessage("Febre"),
+    "symptomGenealizedWeakness" : MessageLookupByLibrary.simpleMessage("Fraqueza\ngeneralizada"),
+    "symptomHeadache" : MessageLookupByLibrary.simpleMessage("Cefeleia"),
+    "symptomMusclePain" : MessageLookupByLibrary.simpleMessage("Dores\nmusculares")
   };
 }

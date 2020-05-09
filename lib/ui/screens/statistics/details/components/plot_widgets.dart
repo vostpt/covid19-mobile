@@ -1,5 +1,3 @@
-import 'package:covid19mobile/ui/assets/colors.dart';
-
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -17,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dropdown.dart';
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 
 class PlotButtons extends StatefulWidget {
   final Function(bool) onLogaritmicSelected;
@@ -81,8 +80,11 @@ class PlotHeader extends StatelessWidget {
 
   final Covid19PlotDropdown dropdown;
 
-  PlotHeader({Key key, @required this.header, @required this.dropdown})
-      : super(key: key);
+  PlotHeader({
+    Key key,
+    @required this.header,
+    this.dropdown,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -98,9 +100,11 @@ class PlotHeader extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Container(
-            child: dropdown,
-          ),
+          child: dropdown == null
+              ? Container()
+              : Container(
+                  child: dropdown,
+                ),
         )
       ],
     );

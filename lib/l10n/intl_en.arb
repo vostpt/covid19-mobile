@@ -64,12 +64,20 @@
   "seeDetails": "Ver Detalhes",
   "publishedAt": "Publicada às",
   "dateOf": "de",
-  "lastMonth": "Ultimo Mês",
-  "lastWeek": "Ultima Semana",
+  "lastMonth": "Ultimos 30 dias",
+  "lastWeek": "Ultimos 7 dias",
   "all": "Tudo",
   "statisticsNewCases": "Novos Casos",
   "statisticsTotalConfirmed": "Total de Confirmados",
   "statisticsConfirmedCases": "Casos Confirmados",
   "linear": "Linear",
-  "logaritmicShort": "Log"
+  "logaritmicShort": "Log",
+  "statisticsNewCasesByAgeGroupAndSex": "Casos por idade",
+  "statisticsSymptoms": "Sintomas",
+  "symptomCough": "Tosse",
+  "symptomFever": "Febre",
+  "symptomBreathingDifficulties": "Dificuldades\nrespiratórias",
+  "symptomHeadache": "Cefeleia",
+  "symptomMusclePain": "Dores\nmusculares",
+  "symptomGenealizedWeakness": "Fraqueza\ngeneralizada"
 }

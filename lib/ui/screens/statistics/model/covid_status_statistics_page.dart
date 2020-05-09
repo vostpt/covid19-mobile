@@ -13,21 +13,9 @@
 
 import 'package:covid19mobile/model/covid_status_model.dart';
 import 'package:covid19mobile/resources/constants.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/symptoms_naming.dart';
 import 'package:flutter/material.dart';
 import 'package:covid19mobile/extensions/date_extensions.dart';
-
-//TODO Improve on this, maybe Enum?
-List<String> ages = [
-  "0to9",
-  "10to19",
-  "20to29",
-  "30to39",
-  "40to49",
-  "50to59",
-  "60to69",
-  "70to79",
-  "80plus",
-];
 
 class AgeGroupBySex {
   final int order;
@@ -103,6 +91,9 @@ class CovidStatusStatistics {
 
   /// Under surveillance total cases;
   int _underSurveillance;
+
+  /// Latest Symptons division
+  List<SymptomsPercentage> _symptomsPercentages;
 
   CovidStatusStatistics({this.status}) {
     if (status == null) {
@@ -186,6 +177,34 @@ class CovidStatusStatistics {
 
     // Under surveillance
     _underSurveillance = status.surveillance.values.last.toInt();
+
+    // Latest Simptons division
+    _symptomsPercentages = _calculateSymptonsPercentages([
+      MapEntry(
+        SymptomType.breathingDifficulties,
+        status.symptomsBreathingDifficulties.entries.last,
+      ),
+      MapEntry(
+        SymptomType.cough,
+        status.symptomsCough.entries.last,
+      ),
+      MapEntry(
+        SymptomType.fever,
+        status.symptomsFever.entries.last,
+      ),
+      MapEntry(
+        SymptomType.generalizedWeakness,
+        status.symptomsGeneralizedWeakness.entries.last,
+      ),
+      MapEntry(
+        SymptomType.headache,
+        status.symptomsHeadache.entries.last,
+      ),
+      MapEntry(
+        SymptomType.musclePain,
+        status.symptomsMusclePain.entries.last,
+      )
+    ]);
   }
 
   ///
@@ -243,6 +262,9 @@ class CovidStatusStatistics {
 
   /// Under surveillance total cases;
   int get underSurveillance => _underSurveillance;
+
+  /// Latest Symptoms detected by percentaged
+  List<SymptomsPercentage> get symptomsByPercentage => _symptomsPercentages;
 
   ///
   /// Helping methods
@@ -310,18 +332,35 @@ class CovidStatusStatistics {
     List<MapEntry<int, double>> confirmedFemale,
     List<MapEntry<int, double>> confirmedMale,
   ) {
-    assert(confirmedFemale.length == 10);
-    assert(confirmedMale.length == 10);
+    assert(confirmedFemale.length == 9);
+    assert(confirmedMale.length == 9);
 
-    var container = [];
+    List<AgeGroupBySex> container = [];
 
-    for (int group = 0; group < ages.length; group++) {
+    for (int group = 0; group < ageGroupDescription.length; group++) {
       container.add(
         AgeGroupBySex(
-          ageGroup: ages[group],
+          ageGroup: ageGroupDescription[group],
           female: confirmedFemale[group].value,
           male: confirmedMale[group].value,
           order: group,
+        ),
+      );
+    }
+
+    return container;
+  }
+
+  List<SymptomsPercentage> _calculateSymptonsPercentages(
+      List<MapEntry<SymptomType, MapEntry<int, double>>> symptons) {
+    List<SymptomsPercentage> container = [];
+
+    for (var order = 0; order < symptons.length; order++) {
+      container.add(
+        SymptomsPercentage(
+          order: order,
+          symptom: symptons[order].key,
+          percentage: ((symptons[order].value).value * 100).truncate(),
         ),
       );
     }

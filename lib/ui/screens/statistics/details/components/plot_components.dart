@@ -15,6 +15,7 @@ import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/symptoms_naming.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -189,6 +190,31 @@ class Covid19DoubleBarChart extends BarChartData {
       : super(
           minY: 0,
           barGroups: parseDoubleBar(ageGroups),
+          barTouchData: Covid19BarTouchData(),
+          gridData: FlGridData(
+            verticalInterval: 0,
+            horizontalInterval: 1000,
+            drawHorizontalLine: true,
+            drawVerticalLine: false,
+            show: true,
+          ),
+          titlesData: FlTitlesData(
+            leftTitles: Covid19PlotLeftSideTitles(
+              interval: 1000,
+            ),
+            bottomTitles: SideTitles(
+              textStyle: TextStyles.statisticsPlotLabel(),
+              showTitles: true,
+              reservedSize: 5,
+              getTitles: (value) {
+                return ageGroupDescription[value.toInt()];
+              },
+            ),
+          ),
+          borderData: FlBorderData(
+            show: false,
+            border: Covid19PlotBorder(),
+          ),
         );
 
   static List<BarChartGroupData> parseDoubleBar(List<AgeGroupBySex> ageGroups) {
@@ -197,21 +223,83 @@ class Covid19DoubleBarChart extends BarChartData {
     for (var ageGroup in ageGroups) {
       groupedData.add(
         BarChartGroupData(
-            x: ageGroup.order,
-            barRods: [
-              BarChartRodData(
-                y: ageGroup.male,
-                color: Covid19Colors.green,
-              ),
-              BarChartRodData(
-                y: ageGroup.female,
-                color: Covid19Colors.lightGreen,
-              ),
-            ],
-            barsSpace: 4),
+          x: ageGroup.order,
+          barsSpace: 1,
+          barRods: [
+            BarChartRodData(
+              width: 15,
+              borderRadius: BorderRadius.circular(1),
+              y: ageGroup.male,
+              color: Covid19Colors.green,
+            ),
+            BarChartRodData(
+              width: 15,
+              borderRadius: BorderRadius.circular(1),
+              y: ageGroup.female,
+              color: Covid19Colors.lightGreen,
+            ),
+          ],
+        ),
       );
     }
 
+    return groupedData;
+  }
+}
+
+class Covid19BarSymptomsPercentageChart extends BarChartData {
+  Covid19BarSymptomsPercentageChart(
+    BuildContext context, {
+    @required List<SymptomsPercentage> symptomsPercentages,
+  }) : super(
+          minY: 0,
+          maxY: 110,
+          barGroups: parseBySymptons(symptomsPercentages),
+          barTouchData: Covid19BarTouchData(),
+          gridData: FlGridData(
+            verticalInterval: 0,
+            horizontalInterval: 20,
+            drawHorizontalLine: true,
+            drawVerticalLine: false,
+            show: true,
+          ),
+          titlesData: FlTitlesData(
+            leftTitles: Covid19PlotLeftSideTitles(
+              interval: 25,
+            ),
+            bottomTitles: SideTitles(
+              textStyle: TextStyles.statisticsPlotLabel(),
+              showTitles: true,
+              reservedSize: 15,
+              getTitles: (value) {
+                return symptomsPercentages[value.toInt()]
+                    .symptom
+                    .label(context);
+              },
+            ),
+          ),
+          borderData: FlBorderData(
+            show: false,
+            border: Covid19PlotBorder(),
+          ),
+        );
+
+  static List<BarChartGroupData> parseBySymptons(
+      List<SymptomsPercentage> symptomsPercentages) {
+    List<BarChartGroupData> groupedData = [];
+
+    for (var symptom in symptomsPercentages) {
+      groupedData.add(
+        BarChartGroupData(x: symptom.order, barsSpace: 4, barRods: [
+          BarChartRodData(
+            borderRadius: BorderRadius.circular(1),
+            y: symptom.percentage.toDouble(),
+            color: Covid19Colors.green,
+            width: 30,
+          ),
+        ]),
+      );
+    }
     return groupedData;
   }
 }

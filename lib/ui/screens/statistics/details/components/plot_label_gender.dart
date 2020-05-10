@@ -20,9 +20,10 @@ class PlotLabelGender extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 40,
       alignment: Alignment.center,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
             margin: EdgeInsets.symmetric(horizontal: 10.0),

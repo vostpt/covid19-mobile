@@ -157,7 +157,7 @@ class CovidStatusStatistics {
       status.deathsAge80PlusMale.entries.last
     ]);
 
-    // Recovered
+    // RECOVERED
     _recovered = status.recovered.values.last.toInt();
     _recoveredPercentageNew = _calculatePercentage(status.recovered);
     _recoveredAbsolutNew = _calculateAbsoluteNew(status.recovered);
@@ -232,6 +232,8 @@ class CovidStatusStatistics {
 
   /// Death absolute growth from previous day
   int get deathAbsolute => _deathAbsolutNew;
+
+  Map<int, double> get deathsPerDayAbsolut => _deathsPerDayAbsolut;
 
   /// Latest deaths by age group
   List<AgeGroupBySex> get deathRecentByAgeGroup => _deathRecentByAgeGroup;
@@ -317,10 +319,12 @@ class CovidStatusStatistics {
     _deathsPerDayAbsolut = <int, double>{};
     _deathsPerDayAbsolut.addEntries([map.entries.first]);
 
-    _deathsPerDayAbsolut.forEach(
+    map.forEach(
       (day, value) {
-        int nextDay = day + 1;
-        if (map.containsKey(nextDay)) {}
+        int previousDay = day - 1;
+        if (map.containsKey(previousDay)) {
+          _deathsPerDayAbsolut[day] = value - map[previousDay];
+        }
       },
     );
 

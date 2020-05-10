@@ -23,8 +23,14 @@ import 'package:fl_chart/fl_chart.dart';
 ///   useful for the YY axis in the plots
 ///
 double calculateDividerInterval(double input) {
-  int multipiler = math.pow(10, input.truncate().toString().length - 2);
-  return ((input ~/ multipiler) * multipiler ~/ 10).truncateToDouble();
+  int power = input.truncate().toString().length - 2;
+  power = power < 1 ? 1 : power;
+
+  int multipiler = math.pow(10, power);
+  multipiler = (multipiler.isNaN || multipiler.isInfinite) ? 1 : multipiler;
+  int result = ((input ~/ multipiler) * multipiler ~/ 10);
+
+  return result == 0 ? 1 : result.toDouble();
 }
 
 class PlotData {

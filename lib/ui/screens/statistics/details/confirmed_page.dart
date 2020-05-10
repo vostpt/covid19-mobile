@@ -31,6 +31,7 @@ import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistic
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart:math' as math;
 
 class StatisticsConfirmed extends BasePage {
   @override
@@ -47,7 +48,9 @@ class _StatisticsConfirmedState
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
       appBar: AppBar(
-        title: Text(S.of(context).statisticsConfirmedCases.toUpperCase()),
+        title: Text(
+          S.of(context).statisticsConfirmedCasesTitle.toUpperCase(),
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -76,6 +79,7 @@ class _StatisticsConfirmedState
                   child: ByAgeBarPlot(
                     plotDataCategory:
                         currentStatistics.confirmedRecentByAgeGroup,
+                    title: S.of(context).statisticsNewCasesByAgeGroupAndSex,
                   ),
                 ),
               ),
@@ -189,14 +193,10 @@ class DualTrendBarPlot extends StatefulWidget {
 }
 
 class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
-  StatisticsFilter currentStatisticsFilter;
-  bool showingLogaritmicStyle;
   Covid19PlotBars _plot;
 
   @override
   void initState() {
-    currentStatisticsFilter = StatisticsFilter.last30;
-    showingLogaritmicStyle = false;
     super.initState();
   }
 
@@ -213,10 +213,10 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
         /// --------------------------
         PlotHeader(
           header: S.of(context).statisticsNewCases,
-          dropdown: Covid19PlotDropdown(
-              onDropdownChanged: (StatisticsFilter updatedFilter) {
+          dropdown:
+              Covid19PlotDropdown(onDropdownChanged: (StatisticsFilter value) {
             setState(() {
-              currentStatisticsFilter = updatedFilter;
+              _plot.filter = value;
             });
           }),
         ),
@@ -249,20 +249,25 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
 
 class ByAgeBarPlot extends StatelessWidget {
   final List<AgeGroupBySex> plotDataCategory;
+  final String title;
 
   const ByAgeBarPlot({
     Key key,
     this.plotDataCategory,
+    this.title,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final double interval = calculateDividerInterval(
+      calculateMaxValue(plotDataCategory),
+    );
     return Column(
       children: <Widget>[
         /// --------------------------
         /// Header
         /// --------------------------
-        PlotHeader(header: S.of(context).statisticsNewCasesByAgeGroupAndSex),
+        PlotHeader(header: title),
 
         /// --------------------------
         Divider(
@@ -278,7 +283,8 @@ class ByAgeBarPlot extends StatelessWidget {
             margin: const EdgeInsets.only(top: 37.0),
             width: MediaQuery.of(context).size.width,
             child: BarChart(
-              Covid19DoubleBarChart(ageGroups: plotDataCategory),
+              Covid19DoubleBarChart(
+                  ageGroups: plotDataCategory, interval: interval),
               swapAnimationDuration: plotAnimationDuration,
             ),
           ),
@@ -290,6 +296,17 @@ class ByAgeBarPlot extends StatelessWidget {
         PlotLabelGender(),
       ],
     );
+  }
+
+  static double calculateMaxValue(List<AgeGroupBySex> groups) {
+    double max = 0;
+
+    for (var group in groups) {
+      max = math.max(max, group.female);
+      max = math.max(max, group.male);
+    }
+
+    return max;
   }
 }
 

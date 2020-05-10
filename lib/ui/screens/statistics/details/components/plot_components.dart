@@ -83,10 +83,11 @@ class Covid19PlotBottomSideTitles extends SideTitles {
           reservedSize: 10,
           getTitles: (double value) {
             //TODO: Improve on this part
-            if ((value != null || value % filter.intervalValue() == 0)) {
-              // if (days[value.toInt()] != null) {
-              //   return parseDateToReadable(days[value.toInt()].toInt());
-              // }
+
+            int currentDay = value.truncate();
+
+            if (isSunday(currentDay)) {
+              return parseDateToReadable(currentDay);
             }
             return "";
           },
@@ -102,6 +103,16 @@ class Covid19PlotBottomSideTitles extends SideTitles {
 
     return "${day.day} $month";
   }
+
+  static bool isSunday(int value) {
+    DateTime day = firstDayOfData.add(
+      Duration(
+        days: value,
+      ),
+    );
+
+    return day.weekday == 1;
+  }
 }
 
 class Covid19PlotLineChartBarData extends LineChartBarData {
@@ -115,8 +126,8 @@ class Covid19PlotLineChartBarData extends LineChartBarData {
             show: false,
           ),
           belowBarData: BarAreaData(
-            gradientFrom: Offset(0.5, 0.5),
-            gradientTo: Offset(1, 1),
+            gradientFrom: Offset(1, 1),
+            gradientTo: Offset(0, 0.5),
             gradientColorStops: [0, 0.95],
             show: true,
             colors: gradientColors
@@ -186,26 +197,27 @@ class Covid19BarChartData extends BarChartData {
 }
 
 class Covid19DoubleBarChart extends BarChartData {
-  Covid19DoubleBarChart({@required List<AgeGroupBySex> ageGroups})
+  Covid19DoubleBarChart(
+      {@required List<AgeGroupBySex> ageGroups, @required double interval})
       : super(
           minY: 0,
           barGroups: parseDoubleBar(ageGroups),
           barTouchData: Covid19BarTouchData(),
           gridData: FlGridData(
             verticalInterval: 0,
-            horizontalInterval: 1000,
+            horizontalInterval: interval,
             drawHorizontalLine: true,
             drawVerticalLine: false,
             show: true,
           ),
           titlesData: FlTitlesData(
             leftTitles: Covid19PlotLeftSideTitles(
-              interval: 1000,
+              interval: interval,
             ),
             bottomTitles: SideTitles(
               textStyle: TextStyles.statisticsPlotLabel(),
               showTitles: true,
-              reservedSize: 5,
+              reservedSize: 20,
               getTitles: (value) {
                 return ageGroupDescription[value.toInt()];
               },

@@ -25,6 +25,7 @@ import 'package:covid19mobile/ui/screens/statistics/details/components/plot_cons
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dropdown.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/confirmed_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -44,26 +45,38 @@ class _StatisticsDeathsState extends BaseState<StatisticsDeaths, AppBloc> {
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
       appBar: AppBar(
-        title: Text("MORTES CONFIRMADOS"),
+        title: Text(
+          S.of(context).statisticsDeathCasesTitle.toUpperCase(),
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              StatisticsContainer(
-                child: TrendPlot(
-                  plotData: currentStatistics.status.deaths,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: StatisticsContainer(
+                  child: TrendPlot(
+                    plotData: currentStatistics.status.deaths,
+                  ),
                 ),
               ),
-              StatisticsContainer(
-                child: DualTrendBarPlot(
-                  plotData: currentStatistics.status.deaths,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: StatisticsContainer(
+                  child: DualTrendBarPlot(
+                    plotData: currentStatistics.deathsPerDayAbsolut,
+                  ),
                 ),
               ),
-              StatisticsContainer(
-                child: DualTrendBarPlot(
-                  plotData: currentStatistics.status.deaths,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: StatisticsContainer(
+                  child: ByAgeBarPlot(
+                    plotDataCategory: currentStatistics.deathRecentByAgeGroup,
+                    title: S.of(context).statisticsNewDeathPerAge,
+                  ),
                 ),
               ),
               DataInformationFooter(
@@ -170,17 +183,18 @@ class DualTrendBarPlot extends StatefulWidget {
 }
 
 class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
-  StatisticsFilter currentStatisticsFilter;
+  Covid19PlotBars _plot;
 
   @override
   void initState() {
-    currentStatisticsFilter = StatisticsFilter.last30;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Covid19PlotBars _plot = Covid19PlotBars(data: widget.plotData);
+    if (_plot == null) {
+      _plot = Covid19PlotBars(data: widget.plotData);
+    }
 
     return Column(
       children: <Widget>[
@@ -188,11 +202,11 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
         /// Header
         /// --------------------------
         PlotHeader(
-          header: S.of(context).statisticsNewCases,
-          dropdown: Covid19PlotDropdown(
-              onDropdownChanged: (StatisticsFilter updatedFilter) {
+          header: S.of(context).statisticsNewDeathPerDay,
+          dropdown:
+              Covid19PlotDropdown(onDropdownChanged: (StatisticsFilter value) {
             setState(() {
-              currentStatisticsFilter = updatedFilter;
+              _plot.filter = value;
             });
           }),
         ),
@@ -218,12 +232,5 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
         ),
       ],
     );
-  }
-}
-
-class HorizontalBars extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

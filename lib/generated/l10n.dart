@@ -614,7 +614,7 @@ class S {
 
   String get lastMonth {
     return Intl.message(
-      'Ultimos 30 dias',
+      'Últimos 30 dias',
       name: 'lastMonth',
       desc: '',
       args: [],
@@ -623,7 +623,7 @@ class S {
 
   String get lastWeek {
     return Intl.message(
-      'Ultimos 7 dias',
+      'Últimos 7 dias',
       name: 'lastWeek',
       desc: '',
       args: [],
@@ -641,7 +641,7 @@ class S {
 
   String get statisticsNewCases {
     return Intl.message(
-      'Novos Casos',
+      'Casos por dia',
       name: 'statisticsNewCases',
       desc: '',
       args: [],
@@ -657,10 +657,19 @@ class S {
     );
   }
 
-  String get statisticsConfirmedCases {
+  String get statisticsConfirmedCasesTitle {
     return Intl.message(
       'Casos Confirmados',
-      name: 'statisticsConfirmedCases',
+      name: 'statisticsConfirmedCasesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsDeathCasesTitle {
+    return Intl.message(
+      'Óbitos Confirmados',
+      name: 'statisticsDeathCasesTitle',
       desc: '',
       args: [],
     );
@@ -751,6 +760,24 @@ class S {
     return Intl.message(
       'Fraqueza\ngeneralizada',
       name: 'symptomGenealizedWeakness',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsNewDeathPerDay {
+    return Intl.message(
+      'Óbitos por dia',
+      name: 'statisticsNewDeathPerDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsNewDeathPerAge {
+    return Intl.message(
+      'Óbitos por idade',
+      name: 'statisticsNewDeathPerAge',
       desc: '',
       args: [],
     );

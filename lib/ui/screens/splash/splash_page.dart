@@ -13,7 +13,10 @@
 
 import 'dart:async';
 
+import 'package:covid19mobile/bloc/app_bloc.dart';
+import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/providers/faq_category_provider.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/initiatives_provider.dart';
@@ -31,9 +34,6 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
-
-import '../../../bloc/app_bloc.dart';
-import '../../../bloc/base_bloc.dart';
 
 /// Creates an HomePage extending [BasePage]
 /// that is a StatefulWidget
@@ -136,13 +136,9 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
       ///
       bloc.bloc.getCovidStatus();
 
-      /// Get the Covid source server status
-      ///
-      bloc.bloc.getCovidStatus();
-
       /// Get Last update covid status
       ///
-      bloc.bloc.getCovidLastUpdate();
+      // bloc.bloc.getCovidLastUpdate();
     });
   }
 
@@ -189,6 +185,11 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
 
     if (result is FaqResultStream) {
       Provider.of<FaqProvider>(context, listen: false).setFaqs(result.model);
+    }
+
+    if (result is CovidStatusResultStream) {
+      Provider.of<CovidStatusProvider>(context, listen: false)
+          .setCovidStatus(result.model);
     }
   }
 

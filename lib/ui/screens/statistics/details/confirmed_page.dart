@@ -11,6 +11,7 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:math' as math;
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
@@ -31,7 +32,6 @@ import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistic
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'dart:math' as math;
 
 class StatisticsConfirmed extends BasePage {
   @override
@@ -61,8 +61,8 @@ class _StatisticsConfirmedState
                 padding: const EdgeInsets.all(8.0),
                 child: StatisticsContainer(
                   child: TrendPlot(
-                    plotData: currentStatistics.status.confirmed,
-                  ),
+                      plotData: currentStatistics.status.confirmed,
+                      title: S.of(context).statisticsTotalConfirmed),
                 ),
               ),
               Padding(
@@ -70,6 +70,7 @@ class _StatisticsConfirmedState
                 child: StatisticsContainer(
                   child: DualTrendBarPlot(
                     plotData: currentStatistics.status.confirmedNew,
+                    title: S.of(context).statisticsNewCases,
                   ),
                 ),
               ),
@@ -121,7 +122,13 @@ class _StatisticsConfirmedState
 class TrendPlot extends StatefulWidget {
   final Map<int, double> plotData;
 
-  TrendPlot({Key key, @required this.plotData}) : super(key: key);
+  final String title;
+
+  TrendPlot({
+    Key key,
+    @required this.plotData,
+    @required this.title,
+  }) : super(key: key);
 
   @override
   _TrendPlotState createState() => _TrendPlotState(plotData);
@@ -144,7 +151,7 @@ class _TrendPlotState extends State<TrendPlot> {
         /// Header
         /// --------------------------
         PlotHeader(
-          header: S.of(context).statisticsTotalConfirmed,
+          header: widget.title,
           dropdown:
               Covid19PlotDropdown(onDropdownChanged: (StatisticsFilter value) {
             setState(() {
@@ -185,8 +192,10 @@ class _TrendPlotState extends State<TrendPlot> {
 
 class DualTrendBarPlot extends StatefulWidget {
   final Map<int, double> plotData;
+  final String title;
 
-  DualTrendBarPlot({Key key, @required this.plotData}) : super(key: key);
+  DualTrendBarPlot({Key key, @required this.plotData, @required this.title})
+      : super(key: key);
 
   @override
   _DualTrendBarPlotState createState() => _DualTrendBarPlotState();
@@ -194,6 +203,8 @@ class DualTrendBarPlot extends StatefulWidget {
 
 class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
   Covid19PlotBars _plot;
+
+  _DualTrendBarPlotState();
 
   @override
   void initState() {
@@ -212,7 +223,7 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
         /// Header
         /// --------------------------
         PlotHeader(
-          header: S.of(context).statisticsNewCases,
+          header: widget.title,
           dropdown:
               Covid19PlotDropdown(onDropdownChanged: (StatisticsFilter value) {
             setState(() {

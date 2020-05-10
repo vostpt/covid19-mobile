@@ -43,6 +43,7 @@ final DateFormat formatDSSGDateTime = DateFormat("DD-MM-yyyy HH:mm");
 
 /// First day of DSSG Data - 26 February 2020
 final DateTime firstDayOfData = DateTime(2020, 2, 26);
+final String dssgSourceCode = "https://github.com/dssg-pt/covid19pt-data";
 
 /// Gradient for the Plots
 const List<Color> gradientColors = [

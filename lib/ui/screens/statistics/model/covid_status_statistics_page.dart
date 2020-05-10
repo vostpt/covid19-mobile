@@ -11,6 +11,7 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:math' as math;
 import 'package:covid19mobile/model/covid_status_model.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/symptoms_naming.dart';
@@ -74,14 +75,23 @@ class CovidStatusStatistics {
   /// Recovered absolute growth from previous day
   int _recoveredAbsolutNew;
 
+  /// Recovered per day
+  Map<int, double> _recoveredPerDay;
+
   /// Hospitalized UCI total cases
   int _hospitalizedUCI;
 
   /// Hospitalized percentage growth from previous day
   double _hospitalizedUCIPercentageNew;
 
-  /// Hospitalized absoulte growth from previous day
+  /// Hospitalized absolute growth from previous day
   int _hospitalizedUCIAbsolutGrowth;
+
+  /// Hospitalized UCI per day
+  Map<int, double> _hospitalizedUCIPerDayAbsolut;
+
+  /// Hospitalized per day
+  Map<int, double> _hospitalizedPerDayAbsolut;
 
   /// Suspected total cases;
   int _suspected;
@@ -161,13 +171,17 @@ class CovidStatusStatistics {
     _recovered = status.recovered.values.last.toInt();
     _recoveredPercentageNew = _calculatePercentage(status.recovered);
     _recoveredAbsolutNew = _calculateAbsoluteNew(status.recovered);
+    _recoveredPerDay = _calculateAbsolutePerDay(status.recovered);
 
-    // Hospitalized UCI
+    // HOSPITALIZED UCI
     _hospitalizedUCI = status.hospitalizedUCI.values.last.toInt();
     _hospitalizedUCIPercentageNew =
         _calculatePercentage(status.hospitalizedUCI);
     _hospitalizedUCIAbsolutGrowth =
         _calculateAbsoluteNew(status.hospitalizedUCI);
+    _hospitalizedUCIPerDayAbsolut =
+        _calculateAbsolutePerDay(status.hospitalizedUCI);
+    _hospitalizedPerDayAbsolut = _calculateAbsolutePerDay(status.hospitalized);
 
     // Suspected
     _suspected = status.suspects.values.last.toInt();
@@ -268,6 +282,17 @@ class CovidStatusStatistics {
   /// Latest Symptoms detected by percentaged
   List<SymptomsPercentage> get symptomsByPercentage => _symptomsPercentages;
 
+  /// Recovered per day
+  Map<int, double> get recoveredPerDay => _recoveredPerDay;
+
+  Map<int, double> get hospitalizedCompared {
+    return _hospitalizedUCIPerDayAbsolut.map(
+      (key, value) {
+        return MapEntry(key, value * 100 % _hospitalizedPerDayAbsolut[key]);
+      },
+    );
+  }
+
   ///
   /// Helping methods
   ///
@@ -314,21 +339,32 @@ class CovidStatusStatistics {
     }
   }
 
-  //TODO Create the map for all the absolut changes in deaths
+  //TODO Create the map for all the absolut changes
   Map<int, double> _calculateAbsolutePerDay(Map<int, double> map) {
-    _deathsPerDayAbsolut = <int, double>{};
-    _deathsPerDayAbsolut.addEntries([map.entries.first]);
+    Map<int, double> container = <int, double>{};
+
+    if (map != null && map.length > 0) {
+      container.addEntries([map.entries.first]);
+    }
 
     map.forEach(
       (day, value) {
-        int previousDay = day - 1;
-        if (map.containsKey(previousDay)) {
-          _deathsPerDayAbsolut[day] = value - map[previousDay];
+        if (value == null) {
+          container[day] = 0;
+        } else {
+          int previousDay = day - 1;
+          if (map.containsKey(previousDay)) {
+            if (map[previousDay] == null) {
+              container[day] = value;
+            } else {
+              container[day] = value - map[previousDay];
+            }
+          }
         }
       },
     );
 
-    return _deathsPerDayAbsolut;
+    return container;
   }
 
   // Given the male and female agegroups returns by a ordered values

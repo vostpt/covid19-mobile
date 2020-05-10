@@ -782,6 +782,42 @@ class S {
       args: [],
     );
   }
+
+  String get statisticsHospitalizedCasesTitle {
+    return Intl.message(
+      'Internados',
+      name: 'statisticsHospitalizedCasesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsRecoveredCasesTitle {
+    return Intl.message(
+      'Recuperados',
+      name: 'statisticsRecoveredCasesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsRecoveredPerDay {
+    return Intl.message(
+      'Recuperados por dia',
+      name: 'statisticsRecoveredPerDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsRecoveredCases {
+    return Intl.message(
+      'Total Recuperados',
+      name: 'statisticsRecoveredCases',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

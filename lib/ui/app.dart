@@ -41,6 +41,8 @@ import 'package:covid19mobile/ui/screens/remote_work_details/remote_work_details
 import 'package:covid19mobile/ui/screens/splash/splash_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/confirmed_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/deaths_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/hospitalized_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/recovered_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
 import 'package:covid19mobile/ui/screens/video_player/video_player_page.dart';
 import 'package:covid19mobile/ui/screens/videos/videos_page.dart';
@@ -183,10 +185,10 @@ class CovidApp extends StatelessWidget {
               page = StatisticsDeaths();
               break;
             case routeStatisticsRecovered:
-              page = StatisticsConfirmed();
+              page = StatisticsRecovered();
               break;
             case routeStatisticsHospitalized:
-              page = StatisticsConfirmed();
+              page = StatisticsHospitalized();
               break;
           }
           return CupertinoPageRoute(builder: (_) => page, settings: settings);

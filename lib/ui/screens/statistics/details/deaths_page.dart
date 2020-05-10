@@ -67,6 +67,7 @@ class _StatisticsDeathsState extends BaseState<StatisticsDeaths, AppBloc> {
                 child: StatisticsContainer(
                   child: DualTrendBarPlot(
                     plotData: currentStatistics.deathsPerDayAbsolut,
+                    title: S.of(context).statisticsNewDeathPerDay,
                   ),
                 ),
               ),
@@ -175,8 +176,9 @@ class _TrendPlotState extends State<TrendPlot> {
 
 class DualTrendBarPlot extends StatefulWidget {
   final Map<int, double> plotData;
+  final String title;
 
-  DualTrendBarPlot({@required this.plotData});
+  DualTrendBarPlot({@required this.plotData, @required this.title});
 
   @override
   _DualTrendBarPlotState createState() => _DualTrendBarPlotState();
@@ -202,7 +204,7 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
         /// Header
         /// --------------------------
         PlotHeader(
-          header: S.of(context).statisticsNewDeathPerDay,
+          header: widget.title,
           dropdown:
               Covid19PlotDropdown(onDropdownChanged: (StatisticsFilter value) {
             setState(() {

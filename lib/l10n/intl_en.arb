@@ -82,5 +82,9 @@
   "symptomMusclePain": "Dores\nmusculares",
   "symptomGenealizedWeakness": "Fraqueza\ngeneralizada",
   "statisticsNewDeathPerDay": "Óbitos por dia",
-  "statisticsNewDeathPerAge": "Óbitos por idade"
+  "statisticsNewDeathPerAge": "Óbitos por idade",
+  "statisticsHospitalizedCasesTitle": "Internados",
+  "statisticsRecoveredCasesTitle": "Recuperados",
+  "statisticsRecoveredPerDay": "Recuperados por dia",
+  "statisticsRecoveredCases": "Total Recuperados"
 }

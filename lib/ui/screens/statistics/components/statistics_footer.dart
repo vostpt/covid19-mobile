@@ -12,15 +12,25 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DataInformationFooter extends StatelessWidget {
   final CovidStatusStatistics currentStatistics;
 
   DataInformationFooter({@required this.currentStatistics});
+
+  _launchURL() async {
+    if (await canLaunch(dssgSourceCode)) {
+      await launch(dssgSourceCode);
+    } else {
+      throw 'Could not launch $dssgSourceCode';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +47,15 @@ class DataInformationFooter extends StatelessWidget {
         ),
 
         /// Data from...
-        Container(
-          margin: EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
-          child: Text(
-            S.of(context).statisticsPageDataLabel,
-            style: TextStyles.h3Regular(color: Covid19Colors.grey),
+        GestureDetector(
+          child: Container(
+            margin: EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
+            child: Text(
+              S.of(context).statisticsPageDataLabel,
+              style: TextStyles.h3Regular(color: Covid19Colors.grey),
+            ),
           ),
+          onTap: _launchURL,
         ),
       ],
     );

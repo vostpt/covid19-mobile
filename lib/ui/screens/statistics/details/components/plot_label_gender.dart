@@ -1,6 +1,3 @@
-import 'package:covid19mobile/resources/style/text_styles.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
-
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -15,8 +12,22 @@ import 'package:covid19mobile/ui/assets/colors.dart';
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:covid19mobile/resources/style/text_styles.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 
 class PlotLabelGender extends StatelessWidget {
+  final String leftLabel;
+  final Color leftColor;
+  final String rightLabel;
+  final Color rightColor;
+
+  PlotLabelGender({
+    @required this.leftLabel,
+    @required this.leftColor,
+    @required this.rightLabel,
+    @required this.rightColor,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,30 +37,30 @@ class PlotLabelGender extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0),
+            margin: const EdgeInsets.symmetric(horizontal: 10.0),
             width: 10,
             height: 10,
             child: CustomPaint(
-              painter: ColoredSquare(color: Covid19Colors.green),
+              painter: ColoredSquare(color: leftColor),
             ),
           ),
           Container(
             child: Text(
-              "Masculino",
+              leftLabel,
               style: TextStyles.h3Regular(color: Covid19Colors.grey),
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0),
+            margin: const EdgeInsets.symmetric(horizontal: 10.0),
             width: 10,
             height: 10,
             child: CustomPaint(
-              painter: ColoredSquare(color: Covid19Colors.lightGreen),
+              painter: ColoredSquare(color: rightColor),
             ),
           ),
           Container(
             child: Text(
-              "Feminino",
+              rightLabel,
               style: TextStyles.h3Regular(color: Covid19Colors.grey),
             ),
           )

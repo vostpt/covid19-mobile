@@ -11,11 +11,14 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:math' as math;
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_constants.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dropdown.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_label_gender.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
+import 'package:covid19mobile/ui/screens/statistics/utils/axis_util.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +28,7 @@ import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_container.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_footer.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
+import 'fl_flutter_extensions.dart';
 
 class StatisticsHospitalized extends StatefulWidget {
   @override
@@ -63,9 +67,9 @@ class _StatisticsHospitalizedState extends State<StatisticsHospitalized> {
                 padding: const EdgeInsets.all(8.0),
                 child: StatisticsContainer(
                   child: FullHospitalizedUCICompared(
-                    title: "Proporção de UCI",
                     hospitalizedUCIPercentageCompared:
                         currentStatistics.hospitalizedCompared,
+                    title: S.of(context).statisticsPageHospitalizedPorpositions,
                   ),
                 ),
               ),
@@ -99,6 +103,18 @@ class EvolutionTrendPlot extends StatefulWidget {
 }
 
 class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
+  StatisticsFilter filter;
+  double maxY = 1;
+  double intervalY = 1;
+
+  @override
+  void initState() {
+    filter = StatisticsFilter.last30;
+    maxY = calculateMaxValue(widget.hospitalized) * 1.2;
+    intervalY = calculateDividerInterval(maxY);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -108,15 +124,13 @@ class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
           dropdown:
               Covid19PlotDropdown(onDropdownChanged: (StatisticsFilter value) {
             setState(() {
-              // _plot.filter = value;
+              filter = value;
             });
           }),
         ),
         const SizedBox(
           height: 11.0,
         ),
-
-        /// --------------------------
         Container(
           child: Divider(
             height: 3,
@@ -124,22 +138,19 @@ class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
             color: Covid19Colors.lightGrey,
           ),
         ),
-
-        /// --------------------------
-        /// Plot
-        /// --------------------------
         SafeArea(
           child: Container(
             margin: const EdgeInsetsDirectional.only(top: 37.0),
             width: MediaQuery.of(context).size.width,
             child: LineChart(
               LineChartData(
-                lineTouchData: Covid19LineTouchData(),
+                maxY: maxY,
                 minY: 0,
+                lineTouchData: Covid19LineTouchData(),
                 borderData: FlBorderData(show: false),
                 gridData: FlGridData(
-                  verticalInterval: 100,
-                  horizontalInterval: 1000,
+                  verticalInterval: filter.intervalValue(),
+                  horizontalInterval: intervalY,
                   drawHorizontalLine: true,
                   drawVerticalLine: true,
                   show: true,
@@ -147,20 +158,22 @@ class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
                 titlesData: FlTitlesData(
                   bottomTitles: Covid19PlotBottomSideTitles(
                     days: widget.hospitalized,
-                    filter: StatisticsFilter.last30,
+                    filter: filter,
                   ),
                   leftTitles: SideTitles(
                       reservedSize: 30,
                       showTitles: true,
-                      interval: 1000,
+                      interval: intervalY,
                       getTitles: (value) {
-                        return (value % 1000 == 0) ? "${value.toInt()}" : "";
+                        return (value % intervalY == 0)
+                            ? "${value.toInt()}"
+                            : "";
                       }),
                 ),
                 lineBarsData: [
                   LineChartBarData(
-                    spots: parseDataToLine(widget.hospitalized),
-                    isCurved: true,
+                    spots: widget.hospitalized.filterToFlSpot(filter),
+                    isCurved: filter != StatisticsFilter.last7,
                     barWidth: 2,
                     colors: [Covid19Colors.lightGreen],
                     dotData: FlDotData(
@@ -168,8 +181,8 @@ class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
                     ),
                   ),
                   LineChartBarData(
-                    spots: parseDataToLine(widget.hospitalizedUCI),
-                    isCurved: true,
+                    spots: widget.hospitalizedUCI.filterToFlSpot(filter),
+                    isCurved: filter != StatisticsFilter.last7,
                     barWidth: 2,
                     colors: [Covid19Colors.green],
                     dotData: FlDotData(
@@ -182,23 +195,30 @@ class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
             ),
           ),
         ),
+        PlotLabelGender(
+          leftLabel: S.of(context).ucihospitalized,
+          leftColor: Covid19Colors.green,
+          rightLabel: S.of(context).hospitalized,
+          rightColor: Covid19Colors.lightGreen,
+        ),
       ],
     );
   }
 
-  List<FlSpot> parseDataToLine(Map<int, double> hospitalized) {
-    List<FlSpot> spots = <FlSpot>[];
+  static double calculateMaxValue(Map<int, double> map) {
+    double max = 0;
 
-    hospitalized.forEach((key, value) {
-      if (value == null || value < 0) {
-        value = 0;
+    if (map == null) {
+      return max;
+    }
+
+    map.forEach((_, value) {
+      if (value != null) {
+        max = math.max(max, value);
       }
-      spots.add(
-        FlSpot(key.toDouble(), value),
-      );
     });
 
-    return spots;
+    return max;
   }
 }
 
@@ -220,98 +240,104 @@ class FullHospitalizedUCICompared extends StatefulWidget {
 
 class _FullHospitalizedUCIComparedState
     extends State<FullHospitalizedUCICompared> {
+  StatisticsFilter filter;
+
+  @override
+  void initState() {
+    filter = StatisticsFilter.last30;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      PlotHeader(
-        header: widget.title,
-        dropdown:
-            Covid19PlotDropdown(onDropdownChanged: (StatisticsFilter value) {
-          setState(() {
-            // _plot.filter = value;
-          });
-        }),
-      ),
-      const SizedBox(
-        height: 11.0,
-      ),
+    List<FlSpot> currentlyShowingSpots =
+        widget.hospitalizedUCIPercentageCompared.filterToFlSpot(filter);
 
-      /// --------------------------
-      Container(
-        child: Divider(
-          height: 3,
-          thickness: 3,
-          color: Covid19Colors.lightGrey,
+    return Column(
+      children: <Widget>[
+        PlotHeader(
+          header: widget.title,
+          dropdown:
+              Covid19PlotDropdown(onDropdownChanged: (StatisticsFilter value) {
+            setState(() {
+              filter = value;
+            });
+          }),
         ),
-      ),
-
-      /// --------------------------
-      /// Plot
-      /// --------------------------
-      SafeArea(
-        child: Container(
-          margin: const EdgeInsetsDirectional.only(top: 37.0),
-          width: MediaQuery.of(context).size.width,
-          child: LineChart(
-            LineChartData(
-              maxY: 101,
-              minY: 0,
-              lineTouchData: Covid19LineTouchData(),
-              borderData: FlBorderData(show: false),
-              gridData: FlGridData(
-                verticalInterval: 7,
-                horizontalInterval: 25,
-                drawHorizontalLine: true,
-                drawVerticalLine: false,
-                show: true,
-              ),
-              titlesData: FlTitlesData(
-                bottomTitles: Covid19PlotBottomSideTitles(
-                  days: widget.hospitalizedUCIPercentageCompared,
-                  filter: StatisticsFilter.last30,
+        const SizedBox(
+          height: 11.0,
+        ),
+        Container(
+          child: Divider(
+            height: 3,
+            thickness: 3,
+            color: Covid19Colors.lightGrey,
+          ),
+        ),
+        SafeArea(
+          child: Container(
+            margin: const EdgeInsetsDirectional.only(top: 37.0),
+            width: MediaQuery.of(context).size.width,
+            child: LineChart(
+              LineChartData(
+                maxY: 101, // 101 to show the 100% value
+                minY: 0,
+                lineTouchData: Covid19LineTouchData(),
+                borderData: FlBorderData(show: false),
+                gridData: FlGridData(
+                  verticalInterval: filter.intervalValue(),
+                  horizontalInterval: 25,
+                  drawHorizontalLine: true,
+                  drawVerticalLine: true,
+                  show: true,
                 ),
-                leftTitles: SideTitles(
-                    reservedSize: 30,
-                    showTitles: true,
-                    interval: 25,
-                    getTitles: (value) {
-                      return (value % 25 == 0) ? "${value.toInt()}" : "";
-                    }),
-              ),
-              lineBarsData: [
-                LineChartBarData(
-                  isCurved: true,
-                  barWidth: 2,
-                  colors: [Covid19Colors.green],
-                  spots: parseSpots(widget.hospitalizedUCIPercentageCompared),
-                  dotData: FlDotData(
-                    show: false,
+                titlesData: FlTitlesData(
+                  bottomTitles: Covid19PlotBottomSideTitles(
+                    days: widget.hospitalizedUCIPercentageCompared,
+                    filter: filter,
                   ),
-                )
-              ],
+                  leftTitles: SideTitles(
+                      reservedSize: 30,
+                      showTitles: true,
+                      interval: 25,
+                      getTitles: (value) {
+                        return (value % 25 == 0) ? "${value.toInt()}%" : "";
+                      }),
+                ),
+                lineBarsData: [
+                  LineChartBarData(
+                    isCurved: filter != StatisticsFilter.last7,
+                    barWidth: 4,
+                    colors: [Covid19Colors.green],
+                    spots: List.generate(
+                      currentlyShowingSpots.length,
+                      (x) => FlSpot(currentlyShowingSpots[x].x, 100),
+                    ),
+                    dotData: FlDotData(
+                      show: false,
+                    ),
+                  ),
+                  LineChartBarData(
+                    isCurved: filter != StatisticsFilter.last7,
+                    barWidth: 2,
+                    colors: [Covid19Colors.lightGreen],
+                    spots: currentlyShowingSpots,
+                    dotData: FlDotData(
+                      show: false,
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
-      )
-    ]);
-  }
-
-  List<FlSpot> parseSpots(Map<int, double> percentages) {
-    List<FlSpot> spots = [];
-
-    percentages.forEach(
-      (key, value) {
-        double x = key.toDouble().isInfinite || key.toDouble().isNaN
-            ? 0
-            : key.toDouble();
-        double y = value.isInfinite || value.isNaN ? 0 : value;
-
-        spots.add(
-          FlSpot(x, y),
-        );
-      },
+        PlotLabelGender(
+          leftLabel: S.of(context).hospitalized,
+          leftColor: Covid19Colors.green,
+          rightLabel: S.of(context).ucihospitalized,
+          rightColor: Covid19Colors.lightGreen,
+        ),
+      ],
     );
-
-    return spots;
   }
 }

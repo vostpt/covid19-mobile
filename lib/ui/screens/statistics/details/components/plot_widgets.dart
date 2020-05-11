@@ -96,7 +96,7 @@ class PlotHeader extends StatelessWidget {
               header,
               style: TextStyles.h2(),
             ),
-            margin: EdgeInsets.all(10.0),
+            margin: const EdgeInsets.all(10.0),
           ),
         ),
         Expanded(

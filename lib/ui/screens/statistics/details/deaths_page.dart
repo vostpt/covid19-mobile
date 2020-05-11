@@ -91,9 +91,7 @@ class _StatisticsDeathsState extends BaseState<StatisticsDeaths, AppBloc> {
   }
 
   @override
-  void initBloc(AppBloc bloc) {
-    // bloc.getCovidStatus();
-  }
+  void initBloc(AppBloc bloc) {}
 
   @override
   Stream<ResultStream> get onStateListener => bloc.onListener;
@@ -134,9 +132,6 @@ class _TrendPlotState extends State<TrendPlot> {
 
     return Column(
       children: <Widget>[
-        /// --------------------------
-        /// Header
-        /// --------------------------
         PlotHeader(
           header: "Total de Óbitos",
           dropdown: Covid19PlotDropdown(
@@ -146,8 +141,6 @@ class _TrendPlotState extends State<TrendPlot> {
             });
           }),
         ),
-
-        /// --------------------------
         Container(
           child: Divider(
             height: 3,
@@ -155,10 +148,6 @@ class _TrendPlotState extends State<TrendPlot> {
             color: Covid19Colors.lightGrey,
           ),
         ),
-
-        /// --------------------------
-        /// Plot
-        /// --------------------------
         SafeArea(
           child: Container(
             margin: const EdgeInsetsDirectional.only(top: 37.0),
@@ -200,9 +189,6 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
 
     return Column(
       children: <Widget>[
-        /// --------------------------
-        /// Header
-        /// --------------------------
         PlotHeader(
           header: widget.title,
           dropdown:
@@ -212,16 +198,10 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
             });
           }),
         ),
-
-        /// --------------------------
         Divider(
           thickness: 3,
           color: Covid19Colors.lightGrey,
         ),
-
-        /// --------------------------
-        /// Plot
-        /// --------------------------
         SafeArea(
           child: Container(
             margin: const EdgeInsetsDirectional.only(top: 37.0),

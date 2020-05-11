@@ -77,18 +77,31 @@ class Covid19PlotBottomSideTitles extends SideTitles {
       {@required Map<int, double> days, @required StatisticsFilter filter})
       : super(
           showTitles: true,
-          rotateAngle: 25.0,
+          rotateAngle: (filter == StatisticsFilter.all) ? 25.0 : 0,
           textStyle: TextStyles.statisticsPlotLabel(),
           margin: 14,
           reservedSize: 10,
           getTitles: (double value) {
-            //TODO: Improve on this part
-
             int currentDay = value.truncate();
 
-            if (isSunday(currentDay)) {
-              return parseDateToReadable(currentDay);
+            switch (filter) {
+              case StatisticsFilter.last7:
+                return parseDateToReadable(currentDay);
+                break;
+              case StatisticsFilter.last30:
+                if (isSunday(currentDay)) {
+                  return parseDateToReadable(currentDay);
+                }
+                break;
+              case StatisticsFilter.all:
+                if (currentDay % 7 == 0) {
+                  return parseDateToReadable(currentDay);
+                }
+                break;
+              default:
+                return "";
             }
+
             return "";
           },
         );
@@ -116,10 +129,10 @@ class Covid19PlotBottomSideTitles extends SideTitles {
 }
 
 class Covid19PlotLineChartBarData extends LineChartBarData {
-  Covid19PlotLineChartBarData(List<FlSpot> spots)
+  Covid19PlotLineChartBarData(List<FlSpot> spots, StatisticsFilter filter)
       : super(
           spots: spots,
-          isCurved: true,
+          isCurved: filter != StatisticsFilter.last7,
           colors: <Color>[Covid19Colors.green],
           isStrokeCapRound: false,
           dotData: FlDotData(

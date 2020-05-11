@@ -13,6 +13,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:covid19mobile/model/base_post_model.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 part 'measure_model.g.dart';
 

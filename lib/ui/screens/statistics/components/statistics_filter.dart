@@ -28,6 +28,7 @@ extension StatisticsFilterExtension on StatisticsFilter {
   int value() => const {
         StatisticsFilter.last30: 30,
         StatisticsFilter.last7: 7,
+        StatisticsFilter.all: 0,
       }[this];
 
   /// Given the [StatisticFilter] what should be the plot XX interval
@@ -39,9 +40,8 @@ extension StatisticsFilterExtension on StatisticsFilter {
 
   /// Returns a [StatisticsFilter] given a string label
   static StatisticsFilter fromLabel(BuildContext context, String str) {
-    return StatisticsFilter.values
-        .firstWhere((StatisticsFilter test, {orElse = StatisticsFilter.all}) {
-      return test.label(context).compareTo(str) == 0;
-    });
+    return StatisticsFilter.values.firstWhere(
+        (test) => test.label(context) == str,
+        orElse: () => StatisticsFilter.all);
   }
 }

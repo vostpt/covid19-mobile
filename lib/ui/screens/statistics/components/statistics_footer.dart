@@ -39,7 +39,7 @@ class DataInformationFooter extends StatelessWidget {
       children: <Widget>[
         Container(
           alignment: Alignment.centerLeft,
-          margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+          margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
           child: Text(
             currentStatistics.getReadableLastUpdate(context),
             style: TextStyles.h3Regular(color: Covid19Colors.grey),
@@ -49,7 +49,7 @@ class DataInformationFooter extends StatelessWidget {
         /// Data from...
         GestureDetector(
           child: Container(
-            margin: EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
+            margin: const EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
             child: Text(
               S.of(context).statisticsPageDataLabel,
               style: TextStyles.h3Regular(color: Covid19Colors.grey),

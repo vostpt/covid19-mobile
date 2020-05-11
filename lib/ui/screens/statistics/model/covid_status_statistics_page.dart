@@ -288,7 +288,13 @@ class CovidStatusStatistics {
   Map<int, double> get hospitalizedCompared {
     return _hospitalizedUCIPerDayAbsolut.map(
       (key, value) {
-        return MapEntry(key, value * 100 % _hospitalizedPerDayAbsolut[key]);
+        double y = value * 100 % _hospitalizedPerDayAbsolut[key];
+
+        if (y.isInfinite || y.isNaN || y.isNegative) {
+          y = 0;
+        }
+
+        return MapEntry(key, y);
       },
     );
   }

@@ -10,19 +10,18 @@ import 'intl/messages_all.dart';
 
 class S {
   S();
-
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+  
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final String name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       return S();
     });
-  }
+  } 
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
@@ -815,6 +814,51 @@ class S {
     return Intl.message(
       'Total Recuperados',
       name: 'statisticsRecoveredCases',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageHospitalizedPorpositions {
+    return Intl.message(
+      'Proporção UCI',
+      name: 'statisticsPageHospitalizedPorpositions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get hospitalized {
+    return Intl.message(
+      'Internados',
+      name: 'hospitalized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get ucihospitalized {
+    return Intl.message(
+      'UCI',
+      name: 'ucihospitalized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get male {
+    return Intl.message(
+      'Masculino',
+      name: 'male',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get female {
+    return Intl.message(
+      'Feminino',
+      name: 'female',
       desc: '',
       args: [],
     );

@@ -14,24 +14,10 @@
 import 'dart:math' as math;
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
+import 'package:covid19mobile/ui/screens/statistics/utils/axis_util.dart';
 import 'package:flutter/material.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
-
-///
-/// Determines the best divider value,
-///   useful for the YY axis in the plots
-///
-double calculateDividerInterval(double input) {
-  int power = input.truncate().toString().length - 2;
-  power = power < 1 ? 1 : power;
-
-  int multipiler = math.pow(10, power);
-  multipiler = (multipiler.isNaN || multipiler.isInfinite) ? 1 : multipiler;
-  int result = ((input ~/ multipiler) * multipiler ~/ 10);
-
-  return result == 0 ? 1 : result.toDouble();
-}
 
 class PlotData {
   /// Max value of the YY axis
@@ -152,7 +138,7 @@ class Covid19PlotLines extends BasePlot {
         .toList();
 
     return <LineChartBarData>[
-      Covid19PlotLineChartBarData(spots),
+      Covid19PlotLineChartBarData(spots, filter),
     ];
   }
 }

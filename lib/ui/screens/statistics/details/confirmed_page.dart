@@ -29,6 +29,7 @@ import 'package:covid19mobile/ui/screens/statistics/details/components/plot_labe
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/utils/axis_util.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -103,9 +104,7 @@ class _StatisticsConfirmedState
   }
 
   @override
-  void initBloc(AppBloc bloc) {
-    // bloc.getCovidStatus();
-  }
+  void initBloc(AppBloc bloc) {}
 
   @override
   Stream<ResultStream> get onStateListener => bloc.onListener;
@@ -147,9 +146,6 @@ class _TrendPlotState extends State<TrendPlot> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        /// --------------------------
-        /// Header
-        /// --------------------------
         PlotHeader(
           header: widget.title,
           dropdown:
@@ -162,8 +158,6 @@ class _TrendPlotState extends State<TrendPlot> {
         const SizedBox(
           height: 11.0,
         ),
-
-        /// --------------------------
         Container(
           child: Divider(
             height: 3,
@@ -171,10 +165,6 @@ class _TrendPlotState extends State<TrendPlot> {
             color: Covid19Colors.lightGrey,
           ),
         ),
-
-        /// --------------------------
-        /// Plot
-        /// --------------------------
         SafeArea(
           child: Container(
             margin: const EdgeInsetsDirectional.only(top: 37.0),
@@ -219,9 +209,6 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
 
     return Column(
       children: <Widget>[
-        /// --------------------------
-        /// Header
-        /// --------------------------
         PlotHeader(
           header: widget.title,
           dropdown:
@@ -231,16 +218,10 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
             });
           }),
         ),
-
-        /// --------------------------
         Divider(
           thickness: 3,
           color: Covid19Colors.lightGrey,
         ),
-
-        /// --------------------------
-        /// Plot
-        /// --------------------------
         SafeArea(
           child: Container(
             margin: const EdgeInsets.only(top: 37.0),
@@ -275,36 +256,30 @@ class ByAgeBarPlot extends StatelessWidget {
     );
     return Column(
       children: <Widget>[
-        /// --------------------------
-        /// Header
-        /// --------------------------
         PlotHeader(header: title),
-
-        /// --------------------------
         Divider(
           thickness: 3,
           color: Covid19Colors.lightGrey,
         ),
-
-        /// --------------------------
-        /// Plot
-        /// --------------------------
         SafeArea(
           child: Container(
             margin: const EdgeInsets.only(top: 37.0),
             width: MediaQuery.of(context).size.width,
             child: BarChart(
               Covid19DoubleBarChart(
-                  ageGroups: plotDataCategory, interval: interval),
+                ageGroups: plotDataCategory,
+                interval: interval,
+              ),
               swapAnimationDuration: plotAnimationDuration,
             ),
           ),
         ),
-
-        /// --------------------------
-        /// Labels
-        /// --------------------------
-        PlotLabelGender(),
+        PlotLabelGender(
+          leftLabel: S.of(context).male,
+          leftColor: Covid19Colors.green,
+          rightLabel: S.of(context).female,
+          rightColor: Covid19Colors.lightGreen,
+        ),
       ],
     );
   }
@@ -330,20 +305,11 @@ class SymptomsBarPlot extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        /// --------------------------
-        /// Header
-        /// --------------------------
         PlotHeader(header: S.of(context).statisticsSymptoms),
-
-        /// --------------------------
         Divider(
           thickness: 3,
           color: Covid19Colors.lightGrey,
         ),
-
-        /// --------------------------
-        /// Plot
-        /// --------------------------
         SafeArea(
           child: Container(
             margin: const EdgeInsets.only(top: 37.0),

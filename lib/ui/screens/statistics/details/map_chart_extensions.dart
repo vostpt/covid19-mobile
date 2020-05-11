@@ -15,18 +15,22 @@ import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter
 import 'package:fl_chart/fl_chart.dart';
 
 FlSpot _parseMapEntryToFlSpot(MapEntry<int, double> element) {
-  return FlSpot(element.key.toDouble(), element.value);
+  //TODO Ideally it would never should exist from getto the value == null
+  // assert(element.value != null);
+
+  double value = element.value;
+  if (element.value == null) {
+    value = 0;
+  }
+
+  return FlSpot(element.key.toDouble(), value);
 }
 
 /// Filters a [Map<int, double>] to a [List<FlSpot>]
 ///   needed to used in the plots of [fl_flutter]
 extension FilterMap on Map<int, double> {
   List<FlSpot> filterToFlSpot(StatisticsFilter filter) {
-    assert(this != null);
     switch (filter) {
-      case StatisticsFilter.all:
-        return entries.map(_parseMapEntryToFlSpot).toList();
-        break;
       case StatisticsFilter.last30:
       case StatisticsFilter.last7:
         return entries

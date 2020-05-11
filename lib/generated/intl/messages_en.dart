@@ -96,6 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "statisticsPageDataLabel" : MessageLookupByLibrary.simpleMessage("Dados recolhidos por Data Science for Social Good Portugal, a partir do boletim diário da Direcção Geral de Saúde."),
     "statisticsPageDeaths" : MessageLookupByLibrary.simpleMessage("Óbitos"),
     "statisticsPageHospitalized" : MessageLookupByLibrary.simpleMessage("Hospitalizados"),
+    "statisticsPageHospitalizedEvolution" : MessageLookupByLibrary.simpleMessage("Evolução"),
     "statisticsPageHospitalizedPorpositions" : MessageLookupByLibrary.simpleMessage("Proporção UCI"),
     "statisticsPageHospitalizedUCI" : MessageLookupByLibrary.simpleMessage("Hospitalizados nos Cuidados Intensivos"),
     "statisticsPageRecovered" : MessageLookupByLibrary.simpleMessage("Recuperados"),

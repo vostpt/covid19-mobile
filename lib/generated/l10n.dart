@@ -863,6 +863,15 @@ class S {
       args: [],
     );
   }
+
+  String get statisticsPageHospitalizedEvolution {
+    return Intl.message(
+      'Evolução',
+      name: 'statisticsPageHospitalizedEvolution',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

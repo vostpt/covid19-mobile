@@ -91,5 +91,6 @@
   "hospitalized": "Internados",
   "ucihospitalized": "UCI",
   "male": "Masculino",
-  "female": "Feminino"
+  "female": "Feminino",
+  "statisticsPageHospitalizedEvolution": "Evolução"
 }

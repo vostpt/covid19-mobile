@@ -28,7 +28,7 @@ import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_container.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_footer.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
-import 'fl_flutter_extensions.dart';
+import 'map_chart_extensions.dart';
 
 class StatisticsHospitalized extends StatefulWidget {
   @override
@@ -59,7 +59,7 @@ class _StatisticsHospitalizedState extends State<StatisticsHospitalized> {
                   child: EvolutionTrendPlot(
                     hospitalized: currentStatistics.status.hospitalized,
                     hospitalizedUCI: currentStatistics.status.hospitalizedUCI,
-                    title: S.of(context).statisticsHospitalizedCasesTitle,
+                    title: S.of(context).statisticsPageHospitalizedEvolution,
                   ),
                 ),
               ),
@@ -171,24 +171,16 @@ class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
                       }),
                 ),
                 lineBarsData: [
-                  LineChartBarData(
+                  HospitalizedLineChartBarData(
                     spots: widget.hospitalized.filterToFlSpot(filter),
-                    isCurved: filter != StatisticsFilter.last7,
-                    barWidth: 2,
-                    colors: [Covid19Colors.lightGreen],
-                    dotData: FlDotData(
-                      show: false,
-                    ),
+                    color: Covid19Colors.lightGreen,
+                    filter: filter,
                   ),
-                  LineChartBarData(
+                  HospitalizedLineChartBarData(
                     spots: widget.hospitalizedUCI.filterToFlSpot(filter),
-                    isCurved: filter != StatisticsFilter.last7,
-                    barWidth: 2,
-                    colors: [Covid19Colors.green],
-                    dotData: FlDotData(
-                      show: false,
-                    ),
-                  ),
+                    color: Covid19Colors.green,
+                    filter: filter,
+                  )
                 ],
               ),
               swapAnimationDuration: plotAnimationDuration,
@@ -220,6 +212,20 @@ class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
 
     return max;
   }
+}
+
+class HospitalizedLineChartBarData extends LineChartBarData {
+  HospitalizedLineChartBarData(
+      {@required spots, @required color, @required filter})
+      : super(
+          isCurved: filter != StatisticsFilter.last7,
+          colors: [color],
+          spots: spots,
+          barWidth: 2,
+          dotData: FlDotData(
+            show: false,
+          ),
+        );
 }
 
 class FullHospitalizedUCICompared extends StatefulWidget {

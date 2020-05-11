@@ -14,9 +14,9 @@
 import 'package:covid19mobile/main_common.dart';
 
 /// Main Entry point for DEV
-/// 
-/// To run the dev configuration, please use the following command: 
-/// 
+///
+/// To run the dev configuration, please use the following command:
+///
 /// `flutter run`
 void main() async {
   mainCommon(AppConfig.prod);

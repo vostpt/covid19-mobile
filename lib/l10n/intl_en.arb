@@ -92,5 +92,6 @@
   "ucihospitalized": "UCI",
   "male": "Masculino",
   "female": "Feminino",
-  "statisticsPageHospitalizedEvolution": "Evolução"
+  "statisticsPageHospitalizedEvolution": "Evolução",
+  "statisticsDeathsTotalTitle": "Total de Óbitos"
 }

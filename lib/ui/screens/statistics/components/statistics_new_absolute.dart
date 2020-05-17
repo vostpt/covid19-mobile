@@ -24,7 +24,8 @@ class StatisticsNewAbsolute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: <Widget>[
         SquaredNumberWidget(
           value: value,

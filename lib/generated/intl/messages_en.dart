@@ -86,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "seeDetails" : MessageLookupByLibrary.simpleMessage("Ver Detalhes"),
     "statisticsConfirmedCasesTitle" : MessageLookupByLibrary.simpleMessage("Casos Confirmados"),
     "statisticsDeathCasesTitle" : MessageLookupByLibrary.simpleMessage("Óbitos Confirmados"),
+    "statisticsDeathsTotalTitle" : MessageLookupByLibrary.simpleMessage("Total de Óbitos"),
     "statisticsHospitalizedCasesTitle" : MessageLookupByLibrary.simpleMessage("Internados"),
     "statisticsNewCases" : MessageLookupByLibrary.simpleMessage("Casos por dia"),
     "statisticsNewCasesByAgeGroupAndSex" : MessageLookupByLibrary.simpleMessage("Casos por idade"),

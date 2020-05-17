@@ -47,24 +47,16 @@ class StatisticHorizontalWidget extends StatelessWidget {
             label,
             style: TextStyles.h3(),
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Wrap(
             children: <Widget>[
-              ConstrainedBox(
-                constraints: BoxConstraints(minWidth: 180),
-                child: NumberAndPercentageWidget(
-                  value: value,
-                  percentage: percentage,
-                ),
+              NumberAndPercentageWidget(
+                value: value,
+                percentage: percentage,
               ),
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                child: SizedBox(
-                  height: 40,
-                  child: VerticalDivider(
-                    thickness: 2,
-                    color: Covid19Colors.lightGrey,
-                  ),
+                child: VerticalDivider(
+                  thickness: 2,
+                  color: Covid19Colors.lightGrey,
                 ),
               ),
               StatisticsNewAbsolute(value: absolute)

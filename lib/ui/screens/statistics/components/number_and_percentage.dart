@@ -25,7 +25,8 @@ class NumberAndPercentageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: <Widget>[
         Container(
           margin: const EdgeInsets.all(4.0),
@@ -34,9 +35,11 @@ class NumberAndPercentageWidget extends StatelessWidget {
             style: TextStyles.statisticsBig(),
           ),
         ),
-        Text(
-          _showPercentage(percentage),
-          style: TextStyles.h3Regular(color: Covid19Colors.grey),
+        Container(
+          child: Text(
+            _showPercentage(percentage),
+            style: TextStyles.h3Regular(color: Covid19Colors.grey),
+          ),
         ),
       ],
     );

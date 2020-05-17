@@ -133,13 +133,16 @@ class _TrendPlotState extends State<TrendPlot> {
     return Column(
       children: <Widget>[
         PlotHeader(
-          header: "Total de Óbitos",
+          header: S.of(context).statisticsDeathsTotalTitle,
           dropdown: Covid19PlotDropdown(
               onDropdownChanged: (StatisticsFilter updatedFilter) {
             setState(() {
               _plot.filter = updatedFilter;
             });
           }),
+        ),
+        const SizedBox(
+          height: 11.0,
         ),
         Container(
           child: Divider(

@@ -47,7 +47,7 @@ dependencies:
 
 
   # Svg
-  flutter_svg: 0.13.0+2
+  flutter_svg: 0.17.4
 
 
 dev_dependencies:

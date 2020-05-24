@@ -49,7 +49,7 @@ matrix:
     - brew unlink usbmuxd
     - brew link usbmuxd
     - brew link --overwrite python
-    - brew install --HEAD libimobiledevice
+    - brew install libimobiledevice
     - brew install ideviceinstaller
     - brew install ios-deploy
     - git clone https://github.com/flutter/flutter.git -b stable --depth 1

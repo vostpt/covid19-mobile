@@ -35,7 +35,7 @@ class AboutPage extends StatelessWidget {
             S.of(context).screenAboutTitle.toUpperCase(),
             style: Theme.of(context)
                 .textTheme
-                .title
+                .headline6
                 .copyWith(color: Covid19Colors.darkGrey),
           ),
         ),
@@ -51,7 +51,7 @@ class AboutPage extends StatelessWidget {
                     S.of(context).screenAboutContent1,
                     style: Theme.of(context)
                         .textTheme
-                        .body1
+                        .bodyText2
                         .copyWith(color: Covid19Colors.darkGrey),
                     textAlign: TextAlign.left,
                   ),
@@ -60,7 +60,7 @@ class AboutPage extends StatelessWidget {
                     S.of(context).screenAboutContent2,
                     style: Theme.of(context)
                         .textTheme
-                        .body1
+                        .bodyText2
                         .copyWith(color: Covid19Colors.darkGrey),
                     textAlign: TextAlign.left,
                   ),
@@ -69,7 +69,7 @@ class AboutPage extends StatelessWidget {
                     S.of(context).screenAboutContent3,
                     style: Theme.of(context)
                         .textTheme
-                        .body1
+                        .bodyText2
                         .copyWith(color: Covid19Colors.darkGrey),
                     textAlign: TextAlign.left,
                   ),
@@ -78,7 +78,7 @@ class AboutPage extends StatelessWidget {
                     S.of(context).screenAboutContent4,
                     style: Theme.of(context)
                         .textTheme
-                        .body1
+                        .bodyText2
                         .copyWith(color: Covid19Colors.darkGrey),
                     textAlign: TextAlign.left,
                   ),
@@ -87,14 +87,14 @@ class AboutPage extends StatelessWidget {
                     S.of(context).screenAboutContent5,
                     style: Theme.of(context)
                         .textTheme
-                        .body1
+                        .bodyText2
                         .copyWith(color: Covid19Colors.darkGrey),
                     textAlign: TextAlign.left,
                   ),
                   const _TextMargin(),
                   Text(
                     S.of(context).screenAboutHashtag,
-                    style: Theme.of(context).textTheme.body1.copyWith(
+                    style: Theme.of(context).textTheme.bodyText2.copyWith(
                           color: Covid19Colors.darkGrey,
                           fontWeight: FontWeight.w900,
                         ),
@@ -103,7 +103,7 @@ class AboutPage extends StatelessWidget {
                   const _TextMargin(),
                   Text(
                     S.of(context).screenAboutBuilt,
-                    style: Theme.of(context).textTheme.body1.copyWith(
+                    style: Theme.of(context).textTheme.bodyText2.copyWith(
                           color: Covid19Colors.darkGrey,
                         ),
                     textAlign: TextAlign.left,
@@ -165,7 +165,7 @@ class AboutPage extends StatelessWidget {
                     const _FooterMargin(),
                     Text(
                       S.of(context).screenAboutFooter1,
-                      style: Theme.of(context).textTheme.subtitle.copyWith(
+                      style: Theme.of(context).textTheme.subtitle2.copyWith(
                             color: Covid19Colors.white,
                           ),
                       textAlign: TextAlign.left,

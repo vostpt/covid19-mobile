@@ -21,7 +21,7 @@ import 'package:flutter/material.dart';
 AppConfig appConfig;
 
 /// Common entrypoint for the COVID-19 App
-/// 
+///
 /// This will initialize the app given an [AppConfig] configuration
 void mainCommon(AppConfig appConfig) async {
   final WidgetsBinding binding = WidgetsFlutterBinding.ensureInitialized();
@@ -49,19 +49,24 @@ void mainCommon(AppConfig appConfig) async {
   /// Init Firebase messaging service
   await MessagingService.init();
 
-  runZoned<Future<void>>(() async {
-    /// Run main app
-    runApp(CovidApp());
-  }, onError: (e, s) {
-    /// Register and sends error
-    Crashlytics.instance.recordError(e, s);
+  runZoned<Future<void>>(
+    () async {
+      /// Run main app
+      runApp(CovidApp());
+    },
+    //TODO Remove deprecation, read about RunZoneGuarded
+    onError: (e, s) {
+      //
+      /// Register and sends error
+      Crashlytics.instance.recordError(e, s);
 
-    /// for debug:
-    if (enableInDevMode) {
-      logger.e('[Error]: ${e.toString()}');
-      logger.e('[Stacktrace]: ${s.toString()}');
-    }
-  });
+      /// for debug:
+      if (enableInDevMode) {
+        logger.e('[Error]: ${e.toString()}');
+        logger.e('[Stacktrace]: ${s.toString()}');
+      }
+    },
+  );
 }
 
 enum AppConfig {

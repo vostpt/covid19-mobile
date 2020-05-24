@@ -49,12 +49,13 @@ class TextStyles {
 
   static TextStyle h2({
     Color color = Covid19Colors.darkGrey,
+    FontWeight fontWeight = FontWeight.w900,
   }) =>
       GoogleFonts.lato(
         textStyle: TextStyle(
           color: color,
           fontSize: 18.0,
-          fontWeight: FontWeight.w900,
+          fontWeight: fontWeight,
         ),
       );
 
@@ -211,6 +212,16 @@ class TextStyles {
           fontSize: 16,
           fontWeight: FontWeight.w700,
         ),
+      );
+
+  static TextStyle statisticsPlotLabel({
+    Color color = Covid19Colors.grey,
+  }) =>
+      GoogleFonts.roboto(
+        textStyle: TextStyle(
+            color: Covid19Colors.grey,
+            fontWeight: FontWeight.bold,
+            fontSize: 12),
       );
 
   static TextStyle textCustom({

@@ -15,9 +15,10 @@ import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/covid_status_provider.dart';
-import 'package:covid19mobile/resources/style/text_styles.dart';
+import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_footer.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_horizontal.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_number_big.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_vertical.dart';
@@ -35,7 +36,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
   @override
   Widget build(BuildContext context) {
     CovidStatusStatistics currentStatistics =
-        Provider.of<CovidStatusProvider>(context).statisticsPage;
+        Provider.of<CovidStatusProvider>(context).statistics;
 
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
@@ -47,10 +48,9 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
           S.of(context).statisticsPageStatistics.toUpperCase(),
           style: Theme.of(context)
               .textTheme
-              .display2
+              .headline3
               .copyWith(color: Covid19Colors.darkGrey),
         ),
-        elevation: 0.0,
       ),
       body: currentStatistics.confirmed == null
           ? Loading()
@@ -65,6 +65,10 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                       label: S.of(context).statisticsPageConfirmed,
                       value: currentStatistics.confirmed,
                       percentage: currentStatistics.confirmedPercentage,
+                      absolute: currentStatistics.confirmedAbsolut,
+                      onTap: () {
+                        Navigator.pushNamed(context, routeStatisticsConfirmed);
+                      },
                     ),
 
                     /// Vertical Info - Deaths | Recovered
@@ -77,6 +81,10 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                             value: currentStatistics.death,
                             percentage: currentStatistics.deathPercentage,
                             valueDifference: currentStatistics.deathAbsolute,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, routeStatisticsDeaths);
+                            },
                           ),
                         ),
 
@@ -93,6 +101,10 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                             percentage: currentStatistics.recoveredPercentage,
                             valueDifference:
                                 currentStatistics.recoveredAbsolute,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, routeStatisticsRecovered);
+                            },
                           ),
                         ),
                       ],
@@ -103,6 +115,11 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                       label: S.of(context).statisticsPageHospitalizedUCI,
                       value: currentStatistics.hospitalizedUCI,
                       percentage: currentStatistics.hospitalizedUCIPercentage,
+                      absolute: currentStatistics.hospitalizedUCIAbsolute,
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, routeStatisticsHospitalized);
+                      },
                     ),
 
                     /// Big Numbers
@@ -125,24 +142,8 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                       value: currentStatistics.underSurveillance,
                     ),
 
-                    /// Last update
-                    Container(
-                      margin:
-                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-                      child: Text(
-                        currentStatistics.getReadableLastUpdate(context),
-                        style: TextStyles.h3Regular(color: Covid19Colors.grey),
-                      ),
-                    ),
-
-                    /// Data from...
-                    Container(
-                      margin:
-                          EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
-                      child: Text(
-                        S.of(context).statisticsPageDataLabel,
-                        style: TextStyles.h3Regular(color: Covid19Colors.grey),
-                      ),
+                    DataInformationFooter(
+                      currentStatistics: currentStatistics,
                     ),
                   ],
                 ),

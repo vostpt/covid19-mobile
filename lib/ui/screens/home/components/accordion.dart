@@ -1,3 +1,5 @@
+import 'package:covid19mobile/ui/widgets/border_decorator.dart';
+
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -53,20 +55,13 @@ class Accordion extends StatelessWidget {
       child: Container(
         padding: padding ?? const EdgeInsets.symmetric(horizontal: 15.0),
         margin: margin ?? const EdgeInsets.symmetric(horizontal: 15.0),
-        decoration: withBorder
-            ? BoxDecoration(
-                border: Border.all(
-                  color: Theme.of(context).primaryColor,
-                ),
-                borderRadius: BorderRadius.circular(3.0),
-              )
-            : null,
+        decoration: withBorder ? Covid19BorderDecorator() : null,
         child: ListTileTheme(
           contentPadding: contentPadding ?? EdgeInsets.zero,
           child: ExpansionTile(
             title: Text(
               title,
-              style: titleTextStyle ?? Theme.of(context).textTheme.display4,
+              style: titleTextStyle ?? Theme.of(context).textTheme.headline1,
             ),
             initiallyExpanded: initiallyExpanded,
             onExpansionChanged: onExpansionChanged,

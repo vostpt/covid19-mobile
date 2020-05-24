@@ -611,6 +611,276 @@ class S {
       args: [],
     );
   }
+
+  String get lastMonth {
+    return Intl.message(
+      'Últimos 30 dias',
+      name: 'lastMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get lastWeek {
+    return Intl.message(
+      'Últimos 7 dias',
+      name: 'lastWeek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get all {
+    return Intl.message(
+      'Tudo',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsNewCases {
+    return Intl.message(
+      'Casos por dia',
+      name: 'statisticsNewCases',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsTotalConfirmed {
+    return Intl.message(
+      'Total de Confirmados',
+      name: 'statisticsTotalConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsConfirmedCasesTitle {
+    return Intl.message(
+      'Casos Confirmados',
+      name: 'statisticsConfirmedCasesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsDeathCasesTitle {
+    return Intl.message(
+      'Óbitos Confirmados',
+      name: 'statisticsDeathCasesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get linear {
+    return Intl.message(
+      'Linear',
+      name: 'linear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get logaritmicShort {
+    return Intl.message(
+      'Log',
+      name: 'logaritmicShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsNewCasesByAgeGroupAndSex {
+    return Intl.message(
+      'Casos por idade',
+      name: 'statisticsNewCasesByAgeGroupAndSex',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsSymptoms {
+    return Intl.message(
+      'Sintomas',
+      name: 'statisticsSymptoms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomCough {
+    return Intl.message(
+      'Tosse',
+      name: 'symptomCough',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomFever {
+    return Intl.message(
+      'Febre',
+      name: 'symptomFever',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomBreathingDifficulties {
+    return Intl.message(
+      'Dificuldades\nrespiratórias',
+      name: 'symptomBreathingDifficulties',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomHeadache {
+    return Intl.message(
+      'Cefeleia',
+      name: 'symptomHeadache',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomMusclePain {
+    return Intl.message(
+      'Dores\nmusculares',
+      name: 'symptomMusclePain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomGenealizedWeakness {
+    return Intl.message(
+      'Fraqueza\ngeneralizada',
+      name: 'symptomGenealizedWeakness',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsNewDeathPerDay {
+    return Intl.message(
+      'Óbitos por dia',
+      name: 'statisticsNewDeathPerDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsNewDeathPerAge {
+    return Intl.message(
+      'Óbitos por idade',
+      name: 'statisticsNewDeathPerAge',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsHospitalizedCasesTitle {
+    return Intl.message(
+      'Internados',
+      name: 'statisticsHospitalizedCasesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsRecoveredCasesTitle {
+    return Intl.message(
+      'Recuperados',
+      name: 'statisticsRecoveredCasesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsRecoveredPerDay {
+    return Intl.message(
+      'Recuperados por dia',
+      name: 'statisticsRecoveredPerDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsRecoveredCases {
+    return Intl.message(
+      'Total Recuperados',
+      name: 'statisticsRecoveredCases',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageHospitalizedPorpositions {
+    return Intl.message(
+      'Proporção UCI',
+      name: 'statisticsPageHospitalizedPorpositions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get hospitalized {
+    return Intl.message(
+      'Internados',
+      name: 'hospitalized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get ucihospitalized {
+    return Intl.message(
+      'UCI',
+      name: 'ucihospitalized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get male {
+    return Intl.message(
+      'Masculino',
+      name: 'male',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get female {
+    return Intl.message(
+      'Feminino',
+      name: 'female',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageHospitalizedEvolution {
+    return Intl.message(
+      'Evolução',
+      name: 'statisticsPageHospitalizedEvolution',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsDeathsTotalTitle {
+    return Intl.message(
+      'Total de Óbitos',
+      name: 'statisticsDeathsTotalTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

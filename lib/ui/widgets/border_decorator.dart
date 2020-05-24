@@ -11,37 +11,17 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/ui/widgets/border_decorator.dart';
 import 'package:flutter/material.dart';
+import 'package:covid19mobile/ui/assets/colors.dart';
 
-class StatisticsContainer extends StatelessWidget {
-  final Widget child;
-  final VoidCallback onTap;
-
-  StatisticsContainer({
-    @required this.child,
-    this.onTap,
-  });
-
-  get margin => margin;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8.0),
-      child: Ink(
-        decoration: Covid19BorderDecorator(),
-        child: InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 16,
-            ),
-            child: child,
+class Covid19BorderDecorator extends BoxDecoration {
+  Covid19BorderDecorator()
+      : super(
+          color: Covid19Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            width: 2,
+            color: Covid19Colors.lightGrey,
           ),
-        ),
-      ),
-    );
-  }
+        );
 }

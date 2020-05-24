@@ -120,13 +120,13 @@ class _NotificationsPageState extends State<NotificationsPage>
                         S.of(context).notificationsPagePermissionsMissing,
                         style: Theme.of(context)
                             .textTheme
-                            .subtitle
+                            .subtitle2
                             .apply(color: Colors.deepOrange),
                       ),
                       CupertinoButton(
                         child: Text(
                           S.of(context).notificationsPageOpenSettings,
-                          style: Theme.of(context).textTheme.subtitle,
+                          style: Theme.of(context).textTheme.subtitle2,
                         ),
                         onPressed: AppSettings.openNotificationSettings,
                       ),

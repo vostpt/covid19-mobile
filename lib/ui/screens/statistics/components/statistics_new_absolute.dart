@@ -11,19 +11,31 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/resources/style/text_styles.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_squared_number.dart';
 import 'package:flutter/material.dart';
 
-class StatisticsDivider extends StatelessWidget {
+/// Statistics widget to show a squared new absolute values
+class StatisticsNewAbsolute extends StatelessWidget {
+  final int value;
+
+  StatisticsNewAbsolute({@required this.value});
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Divider(
-        thickness: 1.0,
-        height: 1,
-        color: Covid19Colors.lightGrey,
-      ),
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: <Widget>[
+        SquaredNumberWidget(
+          value: value,
+          style: TextStyles.h1(),
+        ),
+        Text(
+          S.of(context).newPlural,
+          style: TextStyles.h3Regular(),
+        )
+      ],
     );
   }
 }

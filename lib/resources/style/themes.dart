@@ -28,27 +28,27 @@ class Themes {
   static Color colorTextLight = Covid19Colors.grey;
 
   static TextTheme defaultTextTheme = TextTheme(
-      headline: TextStyles.h1(),
+      headline5: TextStyles.h1(),
       caption: TextStyles.paragraphSmall(),
-      body1: TextStyles.paragraphNormal(
+      bodyText2: TextStyles.paragraphNormal(
         color: colorText,
       ),
-      display1: TextStyles.h1(
+      headline4: TextStyles.h1(
         color: colorPrimary,
       ),
-      display2: TextStyles.h2(
+      headline3: TextStyles.h2(
         color: colorPrimary,
       ),
-      display3: TextStyles.h3(
+      headline2: TextStyles.h3(
         color: colorText,
       ),
-      display4: TextStyles.h4(
+      headline1: TextStyles.h4(
         color: colorPrimary,
       ),
-      title: TextStyles.h2(
+      headline6: TextStyles.h2(
         color: colorText,
       ),
-      subtitle: TextStyles.paragraphSmall(
+      subtitle2: TextStyles.paragraphSmall(
         color: colorTextLight,
       ),
       button: TextStyles.button(
@@ -82,5 +82,6 @@ class Themes {
             tabIndicatorMagin, 0, tabIndicatorMagin, 0),
       ),
     ),
+    canvasColor: Covid19Colors.white,
   );
 }

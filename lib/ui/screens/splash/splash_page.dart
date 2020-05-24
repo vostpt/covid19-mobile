@@ -13,14 +13,16 @@
 
 import 'dart:async';
 
+import 'package:covid19mobile/bloc/app_bloc.dart';
+import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/providers/faq_category_provider.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/initiatives_provider.dart';
 import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/slider_provider.dart';
-import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/icons_svg.dart';
@@ -32,9 +34,6 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
-
-import '../../../bloc/app_bloc.dart';
-import '../../../bloc/base_bloc.dart';
 
 /// Creates an HomePage extending [BasePage]
 /// that is a StatefulWidget
@@ -107,10 +106,6 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
 
   @override
   void initBloc(SplashBloc bloc) {
-    /// Get Case Stats
-    ///
-    bloc.bloc.getStats();
-
     /// Get Slider
     ///
     bloc.bloc.getSlider();
@@ -140,14 +135,6 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
       ///   gets all database
       ///
       bloc.bloc.getCovidStatus();
-
-      /// Get the Covid source server status
-      ///
-      bloc.bloc.getCovidStatus();
-
-      /// Get Last update covid status
-      ///
-      bloc.bloc.getCovidLastUpdate();
     });
   }
 
@@ -156,16 +143,6 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
 
   @override
   void onStateResultListener(ResultStream result) {
-    if (result is StatsResultStream) {
-      Provider.of<StatsProvider>(context, listen: false).setStats(result.model);
-
-      if (result.state == StateStream.success) {
-        _statsSubject.add(true);
-      } else if (result.state == StateStream.fail) {
-        _statsSubject.add(false);
-      }
-    }
-
     if (result is RemoteWorkResultStream) {
       Provider.of<RemoteWorkProvider>(context, listen: false)
           .setRemoteWork(result.model);
@@ -205,6 +182,11 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
     if (result is FaqResultStream) {
       Provider.of<FaqProvider>(context, listen: false).setFaqs(result.model);
     }
+
+    if (result is CovidStatusResultStream) {
+      Provider.of<CovidStatusProvider>(context, listen: false)
+          .setCovidStatus(result.model);
+    }
   }
 
   void _insertOverlay(BuildContext context) {
@@ -229,7 +211,7 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Text(S.of(context).noConnection,
-                          style: Theme.of(context).textTheme.display2.copyWith(
+                          style: Theme.of(context).textTheme.headline3.copyWith(
                                 color: Covid19Colors.darkGrey,
                               )),
                       const SizedBox(

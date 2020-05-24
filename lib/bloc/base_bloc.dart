@@ -23,7 +23,6 @@ import 'package:covid19mobile/model/faq_category_model.dart';
 import '../model/faq_model.dart';
 import '../model/measure_model.dart';
 import '../model/remote_work_model.dart';
-import '../model/stats_model.dart';
 import '../model/video_model.dart';
 
 abstract class Bloc {
@@ -56,22 +55,6 @@ class ResultStream<S, M> {
 /// [success] if request was successfully
 /// [fail] if request throw an exception
 enum StateStream { request, loading, success, fail }
-
-/// The ResultStream instance for requesting the case Stats
-///
-/// [StatsResultStream] is extended from [ResultStream]
-@deprecated
-class StatsResultStream extends ResultStream<StateStream, StatsModel> {
-  @override
-  StatsModel model;
-
-  @override
-  StateStream state;
-
-  /// Constructor to set the [state], a [StateStream] instance
-  /// and [model] a [StatsModel] instance
-  StatsResultStream({this.state, this.model});
-}
 
 /// The ResultStream instance for requesting the remote work posts
 ///

@@ -41,7 +41,7 @@ class _ContactsPageState extends State<ContactsPage> {
           S.of(context).contactsPageTitle.toUpperCase(),
           style: Theme.of(context)
               .textTheme
-              .display2
+              .headline3
               .copyWith(color: Covid19Colors.darkGreyLight),
         ),
         backgroundColor: Colors.white,

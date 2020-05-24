@@ -1,3 +1,5 @@
+import 'package:covid19mobile/ui/widgets/border_decorator.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -22,15 +24,7 @@ class StatisticsBorder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(4.0),
-        ),
-        border: Border.all(
-          color: color,
-          width: 2.0,
-        ),
-      ),
+      decoration: Covid19BorderDecorator(),
       padding: const EdgeInsets.all(4.0),
       child: text,
     );

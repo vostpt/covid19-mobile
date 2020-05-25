@@ -1,5 +1,3 @@
-import 'dart:io';
-
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -13,6 +11,7 @@ import 'dart:io';
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import 'dart:io';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/assets/dimensions.dart';
@@ -29,27 +28,27 @@ class Themes {
   static Color colorTextLight = Covid19Colors.grey;
 
   static TextTheme defaultTextTheme = TextTheme(
-      headline: TextStyles.h1(),
+      headline5: TextStyles.h1(),
       caption: TextStyles.paragraphSmall(),
-      body1: TextStyles.paragraphNormal(
+      bodyText2: TextStyles.paragraphNormal(
         color: colorText,
       ),
-      display1: TextStyles.h1(
+      headline4: TextStyles.h1(
         color: colorPrimary,
       ),
-      display2: TextStyles.h2(
+      headline3: TextStyles.h2(
         color: colorPrimary,
       ),
-      display3: TextStyles.h3(
+      headline2: TextStyles.h3(
         color: colorText,
       ),
-      display4: TextStyles.h4(
+      headline1: TextStyles.h4(
         color: colorPrimary,
       ),
-      title: TextStyles.h2(
+      headline6: TextStyles.h2(
         color: colorText,
       ),
-      subtitle: TextStyles.paragraphSmall(
+      subtitle2: TextStyles.paragraphSmall(
         color: colorTextLight,
       ),
       button: TextStyles.button(
@@ -79,8 +78,10 @@ class Themes {
       indicator: UnderlineTabIndicator(
         borderSide:
             BorderSide(width: tabIndicatorWeight, color: Covid19Colors.green),
-        insets: EdgeInsets.fromLTRB(tabIndicatorMagin, 0, tabIndicatorMagin, 0),
+        insets: const EdgeInsets.fromLTRB(
+            tabIndicatorMagin, 0, tabIndicatorMagin, 0),
       ),
     ),
+    canvasColor: Covid19Colors.white,
   );
 }

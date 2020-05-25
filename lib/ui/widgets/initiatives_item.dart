@@ -39,7 +39,7 @@ class InitiativesItem extends StatelessWidget {
       childrenPadding: const EdgeInsets.only(left: 12, right: 12),
       titleTextStyle: Theme.of(context)
           .textTheme
-          .display3
+          .headline2
           .copyWith(color: Covid19Colors.green),
       onExpansionChanged: onExpansionChanged,
       children: <Widget>[
@@ -47,11 +47,11 @@ class InitiativesItem extends StatelessWidget {
             useRichText: true,
             data: body.replaceAll("\\n", ""),
             backgroundColor: Colors.white,
-            defaultTextStyle: Theme.of(context).textTheme.body1,
+            defaultTextStyle: Theme.of(context).textTheme.bodyText2,
             onLinkTap: launchURL,
             linkStyle: Theme.of(context)
                 .textTheme
-                .body1
+                .bodyText2
                 .copyWith(color: Theme.of(context).primaryColor),
             customRender: (node, children) {
               if (node is dom.Element) {

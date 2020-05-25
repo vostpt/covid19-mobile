@@ -12,6 +12,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CardNext extends StatelessWidget {
@@ -38,9 +39,7 @@ class CardNext extends StatelessWidget {
                 Expanded(
                   child: Text(
                     text.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
+                    style: TextStyles.h2(),
                   ),
                 ),
                 Icon(

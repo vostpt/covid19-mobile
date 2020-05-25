@@ -9,26 +9,23 @@ import 'intl/messages_all.dart';
 // **************************************************************************
 
 class S {
-  S(this.localeName);
-
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+  S();
+  
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final String name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
-    final String localeName = Intl.canonicalizedLocale(name);
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return S(localeName);
+      return S();
     });
-  }
+  } 
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
-
-  final String localeName;
 
   String get checkDetails {
     return Intl.message(
@@ -365,7 +362,7 @@ class S {
 
   String get statisticsPageConfirmed {
     return Intl.message(
-      'Confirmados',
+      'Casos Confirmados',
       name: 'statisticsPageConfirmed',
       desc: '',
       args: [],
@@ -374,7 +371,7 @@ class S {
 
   String get statisticsPageDataLabel {
     return Intl.message(
-      'Dados DGS via ESRI Portugal',
+      'Dados recolhidos por Data Science for Social Good Portugal, a partir do boletim diário da Direcção Geral de Saúde.',
       name: 'statisticsPageDataLabel',
       desc: '',
       args: [],
@@ -408,6 +405,42 @@ class S {
     );
   }
 
+  String get statisticsPageDeaths {
+    return Intl.message(
+      'Óbitos',
+      name: 'statisticsPageDeaths',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageHospitalized {
+    return Intl.message(
+      'Hospitalizados',
+      name: 'statisticsPageHospitalized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageHospitalizedUCI {
+    return Intl.message(
+      'Hospitalizados nos Cuidados Intensivos',
+      name: 'statisticsPageHospitalizedUCI',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageUnderSurveillance {
+    return Intl.message(
+      'Em vigilância',
+      name: 'statisticsPageUnderSurveillance',
+      desc: '',
+      args: [],
+    );
+  }
+
   String get screenAboutButtonReport {
     return Intl.message(
       'Reportar Problema',
@@ -428,7 +461,7 @@ class S {
 
   String get homePageTitle {
     return Intl.message(
-      'Resposta de Portugal ao Covid-19',
+      'Resposta de Portugal à Covid-19',
       name: 'homePageTitle',
       desc: '',
       args: [],
@@ -455,7 +488,7 @@ class S {
 
   String get lastUpdated {
     return Intl.message(
-      'Última actualização: ',
+      'Última actualização',
       name: 'lastUpdated',
       desc: '',
       args: [],
@@ -542,6 +575,312 @@ class S {
       args: [],
     );
   }
+
+  String get newPlural {
+    return Intl.message(
+      'Novos',
+      name: 'newPlural',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get seeDetails {
+    return Intl.message(
+      'Ver Detalhes',
+      name: 'seeDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get publishedAt {
+    return Intl.message(
+      'Publicada às',
+      name: 'publishedAt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get dateOf {
+    return Intl.message(
+      'de',
+      name: 'dateOf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get lastMonth {
+    return Intl.message(
+      'Últimos 30 dias',
+      name: 'lastMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get lastWeek {
+    return Intl.message(
+      'Últimos 7 dias',
+      name: 'lastWeek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get all {
+    return Intl.message(
+      'Tudo',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsNewCases {
+    return Intl.message(
+      'Casos por dia',
+      name: 'statisticsNewCases',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsTotalConfirmed {
+    return Intl.message(
+      'Total de Confirmados',
+      name: 'statisticsTotalConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsConfirmedCasesTitle {
+    return Intl.message(
+      'Casos Confirmados',
+      name: 'statisticsConfirmedCasesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsDeathCasesTitle {
+    return Intl.message(
+      'Óbitos Confirmados',
+      name: 'statisticsDeathCasesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get linear {
+    return Intl.message(
+      'Linear',
+      name: 'linear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get logaritmicShort {
+    return Intl.message(
+      'Log',
+      name: 'logaritmicShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsNewCasesByAgeGroupAndSex {
+    return Intl.message(
+      'Casos por idade',
+      name: 'statisticsNewCasesByAgeGroupAndSex',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsSymptoms {
+    return Intl.message(
+      'Sintomas',
+      name: 'statisticsSymptoms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomCough {
+    return Intl.message(
+      'Tosse',
+      name: 'symptomCough',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomFever {
+    return Intl.message(
+      'Febre',
+      name: 'symptomFever',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomBreathingDifficulties {
+    return Intl.message(
+      'Dificuldades\nrespiratórias',
+      name: 'symptomBreathingDifficulties',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomHeadache {
+    return Intl.message(
+      'Cefeleia',
+      name: 'symptomHeadache',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomMusclePain {
+    return Intl.message(
+      'Dores\nmusculares',
+      name: 'symptomMusclePain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get symptomGenealizedWeakness {
+    return Intl.message(
+      'Fraqueza\ngeneralizada',
+      name: 'symptomGenealizedWeakness',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsNewDeathPerDay {
+    return Intl.message(
+      'Óbitos por dia',
+      name: 'statisticsNewDeathPerDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsNewDeathPerAge {
+    return Intl.message(
+      'Óbitos por idade',
+      name: 'statisticsNewDeathPerAge',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsHospitalizedCasesTitle {
+    return Intl.message(
+      'Internados',
+      name: 'statisticsHospitalizedCasesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsRecoveredCasesTitle {
+    return Intl.message(
+      'Recuperados',
+      name: 'statisticsRecoveredCasesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsRecoveredPerDay {
+    return Intl.message(
+      'Recuperados por dia',
+      name: 'statisticsRecoveredPerDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsRecoveredCases {
+    return Intl.message(
+      'Total Recuperados',
+      name: 'statisticsRecoveredCases',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageHospitalizedPorpositions {
+    return Intl.message(
+      'Proporção UCI',
+      name: 'statisticsPageHospitalizedPorpositions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get hospitalized {
+    return Intl.message(
+      'Internados',
+      name: 'hospitalized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get ucihospitalized {
+    return Intl.message(
+      'UCI',
+      name: 'ucihospitalized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get male {
+    return Intl.message(
+      'Masculino',
+      name: 'male',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get female {
+    return Intl.message(
+      'Feminino',
+      name: 'female',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsPageHospitalizedEvolution {
+    return Intl.message(
+      'Evolução',
+      name: 'statisticsPageHospitalizedEvolution',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get statisticsDeathsTotalTitle {
+    return Intl.message(
+      'Total de Óbitos',
+      name: 'statisticsDeathsTotalTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -562,7 +901,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   bool _isSupported(Locale locale) {
     if (locale != null) {
-      for (Locale supportedLocale in supportedLocales) {
+      for (var supportedLocale in supportedLocales) {
         if (supportedLocale.languageCode == locale.languageCode) {
           return true;
         }

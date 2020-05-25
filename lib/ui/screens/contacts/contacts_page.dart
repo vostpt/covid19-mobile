@@ -41,14 +41,14 @@ class _ContactsPageState extends State<ContactsPage> {
           S.of(context).contactsPageTitle.toUpperCase(),
           style: Theme.of(context)
               .textTheme
-              .display2
+              .headline3
               .copyWith(color: Covid19Colors.darkGreyLight),
         ),
         backgroundColor: Colors.white,
         elevation: 0.0,
       ),
       body: Container(
-        margin: EdgeInsets.all(12.0),
+        margin: const EdgeInsets.all(12.0),
         child: ListView.builder(
             itemCount: _contacts.length,
             itemBuilder: (context, index) {

@@ -35,7 +35,7 @@ class AboutPage extends StatelessWidget {
             S.of(context).screenAboutTitle.toUpperCase(),
             style: Theme.of(context)
                 .textTheme
-                .title
+                .headline6
                 .copyWith(color: Covid19Colors.darkGrey),
           ),
         ),
@@ -43,7 +43,7 @@ class AboutPage extends StatelessWidget {
           children: <Widget>[
             Container(
               color: Colors.white,
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
@@ -51,7 +51,7 @@ class AboutPage extends StatelessWidget {
                     S.of(context).screenAboutContent1,
                     style: Theme.of(context)
                         .textTheme
-                        .body1
+                        .bodyText2
                         .copyWith(color: Covid19Colors.darkGrey),
                     textAlign: TextAlign.left,
                   ),
@@ -60,7 +60,7 @@ class AboutPage extends StatelessWidget {
                     S.of(context).screenAboutContent2,
                     style: Theme.of(context)
                         .textTheme
-                        .body1
+                        .bodyText2
                         .copyWith(color: Covid19Colors.darkGrey),
                     textAlign: TextAlign.left,
                   ),
@@ -69,7 +69,7 @@ class AboutPage extends StatelessWidget {
                     S.of(context).screenAboutContent3,
                     style: Theme.of(context)
                         .textTheme
-                        .body1
+                        .bodyText2
                         .copyWith(color: Covid19Colors.darkGrey),
                     textAlign: TextAlign.left,
                   ),
@@ -78,7 +78,7 @@ class AboutPage extends StatelessWidget {
                     S.of(context).screenAboutContent4,
                     style: Theme.of(context)
                         .textTheme
-                        .body1
+                        .bodyText2
                         .copyWith(color: Covid19Colors.darkGrey),
                     textAlign: TextAlign.left,
                   ),
@@ -87,14 +87,14 @@ class AboutPage extends StatelessWidget {
                     S.of(context).screenAboutContent5,
                     style: Theme.of(context)
                         .textTheme
-                        .body1
+                        .bodyText2
                         .copyWith(color: Covid19Colors.darkGrey),
                     textAlign: TextAlign.left,
                   ),
                   const _TextMargin(),
                   Text(
                     S.of(context).screenAboutHashtag,
-                    style: Theme.of(context).textTheme.body1.copyWith(
+                    style: Theme.of(context).textTheme.bodyText2.copyWith(
                           color: Covid19Colors.darkGrey,
                           fontWeight: FontWeight.w900,
                         ),
@@ -103,7 +103,7 @@ class AboutPage extends StatelessWidget {
                   const _TextMargin(),
                   Text(
                     S.of(context).screenAboutBuilt,
-                    style: Theme.of(context).textTheme.body1.copyWith(
+                    style: Theme.of(context).textTheme.bodyText2.copyWith(
                           color: Covid19Colors.darkGrey,
                         ),
                     textAlign: TextAlign.left,
@@ -148,7 +148,7 @@ class AboutPage extends StatelessWidget {
                       children: <Widget>[
                         _SocialMediaImage(
                           assetName: socialYoutube,
-                          width: size.width * 0.125,
+                          width: size.width * 0.12,
                           url:
                               "https://www.youtube.com/channel/UCOE-JsBcVf4__OlrsiW59EQ",
                         ),
@@ -157,7 +157,7 @@ class AboutPage extends StatelessWidget {
                         ),
                         _SocialMediaImage(
                           assetName: socialTwitter,
-                          width: size.width * 0.125,
+                          width: size.width * 0.12,
                           url: "https://twitter.com/govpt",
                         ),
                       ],
@@ -165,23 +165,19 @@ class AboutPage extends StatelessWidget {
                     const _FooterMargin(),
                     Text(
                       S.of(context).screenAboutFooter1,
-                      style: Theme.of(context).textTheme.subtitle.copyWith(
-                            color: Covid19Colors.white,
-                          ),
-                      textAlign: TextAlign.left,
-                    ),
-                    const _TextMargin(),
-                    Text(
-                      S.of(context).screenAboutFooter2,
-                      style: Theme.of(context).textTheme.subtitle.copyWith(
+                      style: Theme.of(context).textTheme.subtitle2.copyWith(
                             color: Covid19Colors.white,
                           ),
                       textAlign: TextAlign.left,
                     ),
                     const _FooterMargin(),
-                    Image.asset(
-                      imageCcIcons,
-                      width: size.width * 0.4,
+                    GestureDetector(
+                      onTap: () => launchURL(
+                          "https://creativecommons.org/licenses/by-sa/4.0/legalcode.pt"),
+                      child: Image.asset(
+                        imageCcIcons,
+                        width: size.width * 0.25,
+                      ),
                     ),
                     const _FooterMargin(),
                   ],

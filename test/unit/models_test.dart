@@ -13,47 +13,12 @@
 
 import 'package:covid19mobile/model/remote_work_model.dart';
 import 'package:covid19mobile/model/slider_model.dart';
-import 'package:covid19mobile/model/stats_model.dart';
 import 'package:covid19mobile/model/faq_model.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Models Test', () {
-    test(' Stats Model', () async {
-      /// Create model
-      final statsModel = StatsModel("10", "1", "1", "5", "3", "5 Fev");
-
-      /// Validate properties
-      expect(statsModel.recovered, "10");
-      expect(statsModel.confirmed, "1");
-      expect(statsModel.suspected, "1");
-      expect(statsModel.awaitingResults, "5");
-      expect(statsModel.deaths, "3");
-      expect(statsModel.lastUpdated, "5 Fev");
-
-      /// Check Model instance and type
-      expect(statsModel, isNotNull);
-      expect(statsModel, isInstanceOf<StatsModel>());
-
-      /// Validate Model instance to Json
-      var toJson = statsModel.toJson();
-      expect(toJson, isNotNull);
-      expect(toJson, isInstanceOf<Map<String, dynamic>>());
-
-      /// Create from json
-      var json = {
-        "recuperados": "10",
-        "confirmados": "1",
-        "suspeitos": "1",
-        "aguardar_resultados": "5",
-        "obitos": "3"
-      };
-      final model = StatsModel.fromJson(json);
-      expect(model, isNotNull);
-      expect(model, isInstanceOf<StatsModel>());
-    });
-
     test(' Measures Model', () async {
       /// TODO: add model tests
     });

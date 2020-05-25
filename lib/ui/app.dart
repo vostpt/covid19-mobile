@@ -15,6 +15,7 @@ import 'dart:io';
 
 import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/providers/faq_category_provider.dart';
 import 'package:covid19mobile/providers/faq_provider.dart';
 import 'package:covid19mobile/providers/initiatives_provider.dart';
@@ -22,7 +23,6 @@ import 'package:covid19mobile/providers/measure_provider.dart';
 import 'package:covid19mobile/providers/notifications_provider.dart';
 import 'package:covid19mobile/providers/remote_work_provider.dart';
 import 'package:covid19mobile/providers/slider_provider.dart';
-import 'package:covid19mobile/providers/stats_provider.dart';
 import 'package:covid19mobile/providers/videos_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/custom_localization.dart';
@@ -39,6 +39,10 @@ import 'package:covid19mobile/ui/screens/notifications/notifications_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work/remote_work_page.dart';
 import 'package:covid19mobile/ui/screens/remote_work_details/remote_work_details.dart';
 import 'package:covid19mobile/ui/screens/splash/splash_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/confirmed_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/deaths_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/hospitalized_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/recovered_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/statistics_page.dart';
 import 'package:covid19mobile/ui/screens/video_player/video_player_page.dart';
 import 'package:covid19mobile/ui/screens/videos/videos_page.dart';
@@ -55,7 +59,6 @@ final Logger logger = Logger(printer: PrettyPrinter(methodCount: 0));
 /// Starting class for the project
 class CovidApp extends StatelessWidget {
   final AppBloc appBloc = AppBloc();
-  final statsProvider = StatsProvider();
   final remoteWorkProvider = RemoteWorkProvider();
   final faqProvider = FaqProvider();
   final videosProvider = VideosProvider();
@@ -64,6 +67,7 @@ class CovidApp extends StatelessWidget {
   final measuresProvider = MeasuresProvider();
   final sliderProvider = SliderProvider();
   final faqsCategoryProvider = FaqCategoryProvider();
+  final covidStatusProvider = CovidStatusProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +91,6 @@ class CovidApp extends StatelessWidget {
         ProxyProvider<AppBloc, SplashBloc>(
           update: (_, __, splashBloc) => SplashBloc(appBloc),
         ),
-        ChangeNotifierProvider<StatsProvider>.value(value: statsProvider),
         ChangeNotifierProvider<RemoteWorkProvider>.value(
             value: remoteWorkProvider),
         ChangeNotifierProvider<FaqProvider>.value(value: faqProvider),
@@ -108,6 +111,9 @@ class CovidApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<FaqCategoryProvider>.value(
           value: faqsCategoryProvider,
+        ),
+        ChangeNotifierProvider<CovidStatusProvider>.value(
+          value: covidStatusProvider,
         ),
       ],
       child: MaterialApp(
@@ -170,9 +176,19 @@ class CovidApp extends StatelessWidget {
               page = MeasureDetail(measure: settings.arguments);
               break;
             case routeLicences:
-              page = LicensePage(
-                applicationName: "Estamos ON - Covid19",
-              );
+              page = LicensePage(applicationName: "Estamos ON - Covid19");
+              break;
+            case routeStatisticsConfirmed:
+              page = StatisticsConfirmed();
+              break;
+            case routeStatisticsDeaths:
+              page = StatisticsDeaths();
+              break;
+            case routeStatisticsRecovered:
+              page = StatisticsRecovered();
+              break;
+            case routeStatisticsHospitalized:
+              page = StatisticsHospitalized();
               break;
           }
           return CupertinoPageRoute(builder: (_) => page, settings: settings);

@@ -10,6 +10,7 @@
 ///
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import 'package:json_annotation/json_annotation.dart';
 
 import 'base_post_model.dart';

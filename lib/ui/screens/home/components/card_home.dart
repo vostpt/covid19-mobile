@@ -45,7 +45,7 @@ class CardHome extends StatelessWidget {
                 text.toUpperCase(),
                 style: Theme.of(context)
                     .textTheme
-                    .display2
+                    .headline3
                     .copyWith(color: textColor),
               ),
             ),

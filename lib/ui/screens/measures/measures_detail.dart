@@ -35,15 +35,16 @@ class MeasureDetail extends StatelessWidget {
         ),
         body: SingleChildScrollView(
             child: Container(
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
                 height: 15,
               ),
-              Text(measure.postTitle, style: Themes.defaultTextTheme.title),
-              Text(measure.parseReadableDate(), style: TextStyles.smallCaps()),
+              Text(measure.postTitle, style: Themes.defaultTextTheme.headline6),
+              Text(measure.parseReadableDate(context),
+                  style: TextStyles.smallCaps()),
               Container(
                 height: 15,
               ),

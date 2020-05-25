@@ -73,14 +73,14 @@ class _FaqsPageState extends BaseState<FaqsPage, AppBloc> {
           S.of(context).faqPageTitle.toUpperCase(),
           style: Theme.of(context)
               .textTheme
-              .display2
+              .headline3
               .copyWith(color: Covid19Colors.darkGrey),
         ),
         backgroundColor: Colors.white,
         elevation: 0.0,
       ),
       body: Container(
-        margin: EdgeInsets.all(16.0),
+        margin: const EdgeInsets.all(16.0),
         child: hasData
             ? ListView.separated(
                 itemBuilder: (context, index) => CardBorderArrow(

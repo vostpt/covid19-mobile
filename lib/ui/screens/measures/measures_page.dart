@@ -48,6 +48,24 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
     super.initState();
   }
 
+  int sortMeasures(MeasureModel a, MeasureModel b) {
+    /*
+     * The topIds matches the first measures to show, "trabalhadores", 
+     * "empresas" and "serviços publicos" the others measures are sorted alphabetically
+     * We will return -1 if the value of a is ordered before b and 1 if the value  a is ordered after b
+     */
+    var topIds = [69, 148, 129];
+    for (var value in topIds) {
+      if (value == a.id) {
+        return -1;
+      } else if (value == b.id) {
+        return 1;
+      }
+    }
+
+    return a.postTitle.compareTo(b.postTitle);
+  }
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<MeasuresProvider>(context);
@@ -55,6 +73,7 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
 
     if (provider.measures != null) {
       measures = provider.measures;
+      measures.sort(sortMeasures);
     }
 
     /// Check if have any data to present, if not show [CircularProgressIndicator]
@@ -69,20 +88,22 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
           S.of(context).measuresPageMeasures.toUpperCase(),
           style: Theme.of(context)
               .textTheme
-              .display2
+              .headline3
               .copyWith(color: Covid19Colors.darkGrey),
         ),
         backgroundColor: Colors.white,
         elevation: 0.0,
       ),
       body: Container(
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         child: hasData
             ? ListView.separated(
                 itemCount: measures.length,
                 itemBuilder: (_, index) {
                   return CardBorderArrow(
                     text: measures[index].postTitle,
+                    color:
+                        index < 3 ? Covid19Colors.green : Covid19Colors.white,
                     callback: () {
                       if (measures != null) {
                         Navigator.of(context).pushNamed(
@@ -91,7 +112,8 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
                         );
                       }
                     },
-                    textColor: Themes.colorPrimary,
+                    textColor:
+                        index < 3 ? Covid19Colors.white : Themes.colorPrimary,
                   );
                 },
                 separatorBuilder: (_, __) {

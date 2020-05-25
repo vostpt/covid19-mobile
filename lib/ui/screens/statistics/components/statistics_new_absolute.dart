@@ -10,37 +10,30 @@
 ///
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+import 'package:covid19mobile/generated/l10n.dart';
+import 'package:covid19mobile/resources/style/text_styles.dart';
+import 'package:covid19mobile/ui/screens/statistics/components/statistics_squared_number.dart';
 import 'package:flutter/material.dart';
 
-class StatisticsNumberBig extends StatelessWidget {
+/// Statistics widget to show a squared new absolute values
+class StatisticsNewAbsolute extends StatelessWidget {
   final int value;
-  final String text;
 
-  StatisticsNumberBig(this.value, this.text);
+  StatisticsNewAbsolute({@required this.value});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: <Widget>[
-        Card(
-          color: Colors.black,
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.all(4),
-              child: Text(
-                value.toString().toUpperCase(),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 28,
-                ),
-              ),
-            ),
-          ),
+        SquaredNumberWidget(
+          value: value,
+          style: TextStyles.h1(),
         ),
         Text(
-          text,
-          style: TextStyle(fontSize: 18),
+          S.of(context).newPlural,
+          style: TextStyles.h3Regular(),
         )
       ],
     );

@@ -39,13 +39,13 @@ class ContactCard extends StatelessWidget {
         child: ListTileTheme(
           contentPadding: EdgeInsets.zero,
           child: ListTile(
-            contentPadding: EdgeInsets.all(16.0),
+            contentPadding: const EdgeInsets.all(16.0),
             onTap: () => onTap(contact),
             title: Padding(
               padding: const EdgeInsets.only(top: 4.0, bottom: 8.0),
               child: Text(
                 contact.title,
-                style: Theme.of(context).textTheme.display2.copyWith(
+                style: Theme.of(context).textTheme.headline3.copyWith(
                     fontSize: contact.textSize,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 0.35,
@@ -64,7 +64,7 @@ class ContactCard extends StatelessWidget {
                 Container(
                     padding: contact.contactType == ContactType.link
                         ? EdgeInsets.only(top: 8, right: 12)
-                        : EdgeInsets.only(top: 8),
+                        : const EdgeInsets.only(top: 8),
                     child: contact.icon),
               ],
             ),

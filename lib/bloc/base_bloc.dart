@@ -1,3 +1,7 @@
+import 'package:covid19mobile/model/covid_server_status.dart';
+import 'package:covid19mobile/model/covid_status_last_updated_model.dart';
+import 'package:covid19mobile/model/covid_status_model.dart';
+
 ///     This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -19,7 +23,6 @@ import 'package:covid19mobile/model/faq_category_model.dart';
 import '../model/faq_model.dart';
 import '../model/measure_model.dart';
 import '../model/remote_work_model.dart';
-import '../model/stats_model.dart';
 import '../model/video_model.dart';
 
 abstract class Bloc {
@@ -53,21 +56,6 @@ class ResultStream<S, M> {
 /// [fail] if request throw an exception
 enum StateStream { request, loading, success, fail }
 
-/// The ResultStream instance for requesting the case Stats
-///
-/// [StatsResultStream] is extended from [ResultStream]
-class StatsResultStream extends ResultStream<StateStream, StatsModel> {
-  @override
-  StatsModel model;
-
-  @override
-  StateStream state;
-
-  /// Constructor to set the [state], a [StateStream] instance
-  /// and [model] a [StatsModel] instance
-  StatsResultStream({this.state, this.model});
-}
-
 /// The ResultStream instance for requesting the remote work posts
 ///
 /// [RemoteWorkResultStream] is extended from [ResultStream]
@@ -97,6 +85,58 @@ class VideosResultStream extends ResultStream<StateStream, List<VideoModel>> {
   /// Constructor to set the [state], a [StateStream] instance
   /// and [model] a [List<VideoModel>] instance list
   VideosResultStream({this.state, this.model});
+}
+
+class CovidStatusResultStream
+    extends ResultStream<StateStream, CovidStatusModel> {
+  @override
+  CovidStatusModel model;
+
+  @override
+  StateStream state;
+
+  /// Constructor to set the [state], a [StateStream] instance
+  /// and [model] a [T] instance list
+  CovidStatusResultStream({this.state, this.model});
+}
+
+class CovidEntryStatusStream
+    extends ResultStream<StateStream, CovidStatusModel> {
+  @override
+  CovidStatusModel model;
+
+  @override
+  StateStream state;
+
+  /// Constructor to set the [state], a [StateStream] instance
+  /// and [model] a [T] instance list
+  CovidEntryStatusStream({this.state, this.model});
+}
+
+class CovidLastUpdatedStream
+    extends ResultStream<StateStream, CovidStatusLastUpdatedModel> {
+  @override
+  CovidStatusLastUpdatedModel model;
+
+  @override
+  StateStream state;
+
+  /// Constructor to set the [state], a [StateStream] instance
+  /// and [model] a [T] instance list
+  CovidLastUpdatedStream({this.state, this.model});
+}
+
+class CovidServerStatusStream
+    extends ResultStream<StateStream, CovidServerStatusModel> {
+  @override
+  CovidServerStatusModel model;
+
+  @override
+  StateStream state;
+
+  /// Constructor to set the [state], a [StateStream] instance
+  /// and [model] a [T] instance list
+  CovidServerStatusStream({this.state, this.model});
 }
 
 /// The ResultStream instance for requesting the remote work posts

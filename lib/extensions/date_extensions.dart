@@ -11,11 +11,21 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-/// Capitalize the first letter of a String
-/// Source:
-/// https://stackoverflow.com/questions/29628989/how-to-capitalize-the-first-letter-of-a-string-in-dart
-extension StringExtension on String {
-  String capitalize() {
-    return "${this[0].toUpperCase()}${substring(1)}";
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:covid19mobile/generated/l10n.dart';
+
+extension DateTimeExtensions on DateTime {
+  /// Parse date to reader friendly format
+  /// ex.: [Última atualização: 11 de Abril de 2020, 20:30]
+  String parseReadableLastUpdatedAtDate(BuildContext context) {
+    String month = DateFormat.MMMM('pt_PT').format(this);
+
+    String lastUpdated = S.of(context).lastUpdated;
+    String of = S.of(context).dateOf;
+
+    var hour = DateFormat('HH:mm').format(this);
+
+    return "$lastUpdated: $day $of ${toBeginningOfSentenceCase(month)} $of $year, $hour";
   }
 }

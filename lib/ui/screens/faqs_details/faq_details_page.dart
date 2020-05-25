@@ -107,7 +107,7 @@ class _FaqsPageState extends State<FaqsDetails> {
                     childrenPadding: const EdgeInsets.only(left: 12, right: 12),
                     titleTextStyle: Theme.of(context)
                         .textTheme
-                        .display3
+                        .headline2
                         .copyWith(
                             color: Covid19Colors.green, letterSpacing: 0.2),
                     children: <Widget>[
@@ -115,10 +115,10 @@ class _FaqsPageState extends State<FaqsDetails> {
                         data: widget.faqs[index].answer.replaceAll("\\n", ""),
                         backgroundColor: Colors.white,
                         onLinkTap: launchURL,
-                        defaultTextStyle: Theme.of(context).textTheme.body1,
+                        defaultTextStyle: Theme.of(context).textTheme.bodyText2,
                         linkStyle: Theme.of(context)
                             .textTheme
-                            .body1
+                            .bodyText2
                             .copyWith(color: Theme.of(context).primaryColor),
                         customTextStyle: (dom.Node node, TextStyle baseStyle) {
                           if (node is dom.Element) {
@@ -138,7 +138,7 @@ class _FaqsPageState extends State<FaqsDetails> {
                         children: <InlineSpan>[
                           TextSpan(
                             text: "${widget.faqs[index].responsableEntity}",
-                            style: TextStyles.texCustom(size: 16)
+                            style: TextStyles.textCustom(size: 16)
                                 .copyWith(fontWeight: FontWeight.w100),
                           ),
                         ],

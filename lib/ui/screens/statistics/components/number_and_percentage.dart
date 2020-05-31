@@ -38,7 +38,7 @@ class NumberAndPercentageWidget extends StatelessWidget {
         Container(
           child: Text(
             _showPercentage(percentage),
-            style: TextStyles.h3Regular(color: Covid19Colors.grey),
+            style: TextStyles.h3Number(color: Covid19Colors.grey),
           ),
         ),
       ],

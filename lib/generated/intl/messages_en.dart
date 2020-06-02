@@ -99,7 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "statisticsPageHospitalized" : MessageLookupByLibrary.simpleMessage("Hospitalizados"),
     "statisticsPageHospitalizedEvolution" : MessageLookupByLibrary.simpleMessage("Evolução"),
     "statisticsPageHospitalizedPorpositions" : MessageLookupByLibrary.simpleMessage("Proporção UCI"),
-    "statisticsPageHospitalizedUCI" : MessageLookupByLibrary.simpleMessage("Hospitalizados"),
+    "statisticsPageHospitalizedUCI" : MessageLookupByLibrary.simpleMessage("UCI"),
     "statisticsPageRecovered" : MessageLookupByLibrary.simpleMessage("Recuperados"),
     "statisticsPageStatistics" : MessageLookupByLibrary.simpleMessage("Estatísticas"),
     "statisticsPageSuspects" : MessageLookupByLibrary.simpleMessage("Suspeitos"),

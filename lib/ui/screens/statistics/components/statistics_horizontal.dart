@@ -25,6 +25,7 @@ class StatisticHorizontalWidget extends StatelessWidget {
   final int value;
   final double percentage;
   final int absolute;
+  final String absoluteLabel;
   final VoidCallback onTap;
 
   StatisticHorizontalWidget({
@@ -32,6 +33,7 @@ class StatisticHorizontalWidget extends StatelessWidget {
     @required this.value,
     @required this.percentage,
     @required this.absolute,
+    this.absoluteLabel,
     @required this.onTap,
   });
 
@@ -47,19 +49,24 @@ class StatisticHorizontalWidget extends StatelessWidget {
             label,
             style: TextStyles.h3(),
           ),
-          Wrap(
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              NumberAndPercentageWidget(
-                value: value,
-                percentage: percentage,
-              ),
               Container(
-                child: VerticalDivider(
-                  thickness: 2,
-                  color: Covid19Colors.lightGrey,
+                alignment: Alignment.centerLeft,
+                child: NumberAndPercentageWidget(
+                  value: value,
+                  percentage: percentage,
                 ),
               ),
-              StatisticsNewAbsolute(value: absolute)
+              Expanded(child: SizedBox()),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: StatisticsNewAbsolute(
+                    value: absolute, label: absoluteLabel),
+              ),
+              Expanded(child: SizedBox()),
             ],
           ),
           SeeDetailsWidget()

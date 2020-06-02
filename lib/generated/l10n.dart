@@ -425,7 +425,7 @@ class S {
 
   String get statisticsPageHospitalizedUCI {
     return Intl.message(
-      'Hospitalizados',
+      'UCI',
       name: 'statisticsPageHospitalizedUCI',
       desc: '',
       args: [],

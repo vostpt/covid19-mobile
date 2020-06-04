@@ -28,7 +28,7 @@ class TextStyles {
   static TextStyle statisticsBig({
     Color color = Covid19Colors.darkGrey,
   }) =>
-      GoogleFonts.lato(
+      GoogleFonts.robotoCondensed(
         textStyle: TextStyle(
           color: color,
           fontSize: 38.0,
@@ -59,6 +59,18 @@ class TextStyles {
         ),
       );
 
+  static TextStyle h2Number({
+    Color color = Covid19Colors.darkGrey,
+    FontWeight fontWeight = FontWeight.w900,
+  }) =>
+      GoogleFonts.robotoCondensed(
+        textStyle: TextStyle(
+          color: color,
+          fontSize: 18.0,
+          fontWeight: fontWeight,
+        ),
+      );
+
   static TextStyle h3({
     Color color = Covid19Colors.darkGrey,
   }) =>
@@ -74,6 +86,17 @@ class TextStyles {
     Color color = Covid19Colors.darkGrey,
   }) =>
       GoogleFonts.lato(
+        textStyle: TextStyle(
+          color: color,
+          fontSize: 16.0,
+          fontWeight: FontWeight.normal,
+        ),
+      );
+
+  static TextStyle h3Number({
+    Color color = Covid19Colors.darkGrey,
+  }) =>
+      GoogleFonts.robotoCondensed(
         textStyle: TextStyle(
           color: color,
           fontSize: 16.0,

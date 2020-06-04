@@ -1,7 +1,7 @@
 name: covid19mobile
 description: COVID19 App
 
-version: 1.0.2
+version: 1.0.2+11
 
 environment:
   sdk: ">=2.6.0 <3.0.0"

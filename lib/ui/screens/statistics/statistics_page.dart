@@ -110,12 +110,14 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                       ],
                     ),
 
-                    /// Horizontal - Hospitalized UCI
+                    /// Horizontal
                     StatisticHorizontalWidget(
-                      label: S.of(context).statisticsPageHospitalizedUCI,
-                      value: currentStatistics.hospitalizedUCI,
-                      percentage: currentStatistics.hospitalizedUCIPercentage,
-                      absolute: currentStatistics.hospitalizedUCIAbsolute,
+                      label: S.of(context).statisticsPageHospitalized,
+                      value: currentStatistics.hospitalized,
+                      percentage: currentStatistics.hospitalizedPercentage,
+                      absolute: currentStatistics.hospitalizedUCI,
+                      absoluteLabel:
+                          S.of(context).statisticsPageHospitalizedUCI,
                       onTap: () {
                         Navigator.pushNamed(
                             context, routeStatisticsHospitalized);

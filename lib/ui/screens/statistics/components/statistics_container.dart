@@ -30,16 +30,18 @@ class StatisticsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: Covid19StatsBorderDecorator(),
       margin: const EdgeInsets.only(bottom: 8.0),
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 12,
-            vertical: 16,
+      child: Ink(
+        decoration: Covid19StatsBorderDecorator(),
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 16,
+            ),
+            child: child,
           ),
-          child: child,
         ),
       ),
     );

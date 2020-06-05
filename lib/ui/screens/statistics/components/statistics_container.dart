@@ -1,3 +1,5 @@
+import 'package:covid19mobile/ui/assets/colors.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -30,7 +32,7 @@ class StatisticsContainer extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 8.0),
       child: Ink(
-        decoration: Covid19BorderDecorator(),
+        decoration: Covid19StatsBorderDecorator(),
         child: InkWell(
           onTap: onTap,
           child: Padding(

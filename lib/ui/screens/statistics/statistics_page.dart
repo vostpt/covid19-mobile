@@ -17,6 +17,7 @@ import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/covid_status_provider.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
+import 'package:covid19mobile/ui/assets/dimensions.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_footer.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_horizontal.dart';
@@ -56,7 +57,8 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
           ? Loading()
           : SingleChildScrollView(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
@@ -81,6 +83,8 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                             value: currentStatistics.death,
                             percentage: currentStatistics.deathPercentage,
                             valueDifference: currentStatistics.deathAbsolute,
+                            shouldWrapContent:
+                                _shouldWrapContentBasedOnScreenWith(context),
                             onTap: () {
                               Navigator.pushNamed(
                                   context, routeStatisticsDeaths);
@@ -101,6 +105,8 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                             percentage: currentStatistics.recoveredPercentage,
                             valueDifference:
                                 currentStatistics.recoveredAbsolute,
+                            shouldWrapContent:
+                                _shouldWrapContentBasedOnScreenWith(context),
                             onTap: () {
                               Navigator.pushNamed(
                                   context, routeStatisticsRecovered);
@@ -152,6 +158,20 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
               ),
             ),
     );
+  }
+
+  /// Check screen dimensions to wrap or not the content
+  /// using [devicePixelRatio] or [screenWidth]
+  bool _shouldWrapContentBasedOnScreenWith(BuildContext context) {
+    final double devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
+    final double screenWidth = MediaQuery.of(context).size.width;
+
+    if (devicePixelRatio < defaultDevicePixelRatio ||
+        screenWidth <= defaultMinimumScreenWidth) {
+      return true;
+    }
+
+    return false;
   }
 
   @override

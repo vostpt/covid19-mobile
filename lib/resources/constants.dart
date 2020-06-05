@@ -38,6 +38,9 @@ const String routeStatisticsDeaths = "statistics/deaths";
 const String routeStatisticsRecovered = "statistics/recovered";
 const String routeStatisticsHospitalized = "statistics/hospitalized";
 
+/// Default PT Locale
+const defaultLocal = "pt_PT";
+
 /// DSSG Source Date Time format
 final DateFormat formatDSSGDateTime = DateFormat("DD-MM-yyyy HH:mm");
 

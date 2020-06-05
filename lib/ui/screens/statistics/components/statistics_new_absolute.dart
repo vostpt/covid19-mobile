@@ -29,7 +29,10 @@ class StatisticsNewAbsolute extends StatelessWidget {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       children: <Widget>[
-        SquaredNumberWidget(value: value),
+        SquaredNumberWidget(
+          value: value,
+          style: TextStyles.statsNumber(),
+        ),
         SizedBox(
           width: 3,
         ),

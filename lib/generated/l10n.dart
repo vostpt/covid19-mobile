@@ -9,23 +9,26 @@ import 'intl/messages_all.dart';
 // **************************************************************************
 
 class S {
-  S();
-  
-  static const AppLocalizationDelegate delegate =
-    AppLocalizationDelegate();
+  S(this.localeName);
+
+  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
-    final localeName = Intl.canonicalizedLocale(name); 
+    final String name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
+    final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return S();
+      return S(localeName);
     });
-  } 
+  }
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  final String localeName;
 
   String get checkDetails {
     return Intl.message(
@@ -901,7 +904,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   bool _isSupported(Locale locale) {
     if (locale != null) {
-      for (var supportedLocale in supportedLocales) {
+      for (Locale supportedLocale in supportedLocales) {
         if (supportedLocale.languageCode == locale.languageCode) {
           return true;
         }

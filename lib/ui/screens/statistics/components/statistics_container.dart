@@ -1,3 +1,5 @@
+import 'package:covid19mobile/ui/assets/colors.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -28,18 +30,16 @@ class StatisticsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: Covid19StatsBorderDecorator(),
       margin: const EdgeInsets.only(bottom: 8.0),
-      child: Ink(
-        decoration: Covid19BorderDecorator(),
-        child: InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 16,
-            ),
-            child: child,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 12,
+            vertical: 16,
           ),
+          child: child,
         ),
       ),
     );

@@ -31,8 +31,8 @@ class TextStyles {
       GoogleFonts.robotoCondensed(
         textStyle: TextStyle(
           color: color,
-          fontSize: 38.0,
-          fontWeight: FontWeight.w900,
+          fontSize: 36.0,
+          fontWeight: FontWeight.w700,
         ),
       );
 
@@ -67,6 +67,18 @@ class TextStyles {
         textStyle: TextStyle(
           color: color,
           fontSize: 18.0,
+          fontWeight: fontWeight,
+        ),
+      );
+
+  static TextStyle statsNumber({
+    Color color = Covid19Colors.darkGrey,
+    FontWeight fontWeight = FontWeight.w700,
+  }) =>
+      GoogleFonts.robotoCondensed(
+        textStyle: TextStyle(
+          color: color,
+          fontSize: 20.0,
           fontWeight: fontWeight,
         ),
       );

@@ -25,3 +25,15 @@ class Covid19BorderDecorator extends BoxDecoration {
           ),
         );
 }
+
+class Covid19StatsBorderDecorator extends BoxDecoration {
+  Covid19StatsBorderDecorator()
+      : super(
+          color: Covid19Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+            width: 1,
+            color: Covid19Colors.statsGrey,
+          ),
+        );
+}

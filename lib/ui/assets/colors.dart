@@ -63,6 +63,9 @@ class Covid19Colors {
   /// Stats grey
   static const Color statsGrey = Color(0xffeceef0);
 
+  /// Stats Percentage Number Color
+  static const Color statsPercentageNumber = Color(0xff6d787e);
+
   /// Contact Card Background Color grey
   static const Color contactCardBackgroundGrey = Color(0xffeceef0);
 

@@ -80,10 +80,10 @@ class CovidStatusStatistics {
   int _hospitalizedUCIAbsolutGrowth;
 
   /// Hospitalized UCI per day
-  Map<int, double> _hospitalizedUCIPerDayAbsolut;
+  // Map<int, double> _hospitalizedUCIPerDayAbsolut;
 
   /// Hospitalized per day
-  Map<int, double> _hospitalizedPerDayAbsolut;
+  // Map<int, double> _hospitalizedPerDayAbsolut;
 
   /// Suspected total cases;
   int _suspected;
@@ -176,9 +176,9 @@ class CovidStatusStatistics {
         _calculatePercentage(status.hospitalizedUCI);
     _hospitalizedUCIAbsolutGrowth =
         _calculateAbsoluteNew(status.hospitalizedUCI);
-    _hospitalizedUCIPerDayAbsolut =
-        _calculateAbsolutePerDay(status.hospitalizedUCI);
-    _hospitalizedPerDayAbsolut = _calculateAbsolutePerDay(status.hospitalized);
+    // _hospitalizedUCIPerDayAbsolut =
+    //     _calculateAbsolutePerDay(status.hospitalizedUCI);
+    // _hospitalizedPerDayAbsolut = _calculateAbsolutePerDay(status.hospitalized);
 
     // Suspected
     _suspected = status.suspects.values.last.toInt();
@@ -289,13 +289,21 @@ class CovidStatusStatistics {
   Map<int, double> get recoveredPerDay => _recoveredPerDay;
 
   Map<int, double> get hospitalizedCompared {
-    return _hospitalizedUCIPerDayAbsolut.map(
+    return status.hospitalizedUCI.map(
       (key, value) {
-        double y = value * 100 % _hospitalizedPerDayAbsolut[key];
+        double uci = value == null ? 0 : value;
+        double hospitalized =
+            status.hospitalized[key] == null || status.hospitalized[key] < 1
+                ? 1
+                : status.hospitalized[key];
+
+        double y = ((uci * 100) / hospitalized).round().toDouble();
 
         if (y.isInfinite || y.isNaN || y.isNegative) {
           y = 0;
         }
+
+        assert(y <= 100);
 
         return MapEntry(key, y);
       },

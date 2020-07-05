@@ -11,7 +11,6 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'dart:math' as math;
 import 'package:covid19mobile/model/covid_status_model.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/symptoms_naming.dart';
@@ -77,6 +76,12 @@ class CovidStatusStatistics {
 
   /// Recovered per day
   Map<int, double> _recoveredPerDay;
+
+  /// Hospitalized total
+  int _hospitalized;
+
+  /// Hospitalized absolute growth from previous day
+  double _hospitalizedAbsolutGrowth;
 
   /// Hospitalized UCI total cases
   int _hospitalizedUCI;
@@ -173,6 +178,11 @@ class CovidStatusStatistics {
     _recoveredAbsolutNew = _calculateAbsoluteNew(status.recovered);
     _recoveredPerDay = _calculateAbsolutePerDay(status.recovered);
 
+    // HOSPITALIZED
+
+    _hospitalized = status.hospitalized.values.last.toInt();
+    _hospitalizedAbsolutGrowth = _calculatePercentage(status.hospitalized);
+
     // HOSPITALIZED UCI
     _hospitalizedUCI = status.hospitalizedUCI.values.last.toInt();
     _hospitalizedUCIPercentageNew =
@@ -260,6 +270,12 @@ class CovidStatusStatistics {
 
   /// Recovered absolute growth from previous day
   int get recoveredAbsolute => _recoveredAbsolutNew;
+
+  /// Hospitalized total cases
+  int get hospitalized => _hospitalized;
+
+  /// Hospitalized percentaged compared from previous day
+  double get hospitalizedPercentage => _hospitalizedAbsolutGrowth;
 
   /// Hospitalized UCI total cases
   int get hospitalizedUCI => _hospitalizedUCI;

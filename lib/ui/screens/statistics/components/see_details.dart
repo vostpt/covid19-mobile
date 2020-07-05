@@ -19,8 +19,8 @@ import 'package:flutter/material.dart';
 class SeeDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+    return Container(
+      padding: const EdgeInsets.only(top: 16.0),
       child: Text(
         S.of(context).seeDetails,
         style: TextStyles.h3Regular(color: Covid19Colors.green),

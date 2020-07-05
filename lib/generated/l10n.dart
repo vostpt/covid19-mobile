@@ -11,29 +11,46 @@ import 'intl/messages_all.dart';
 // ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
 
 class S {
+<<<<<<< HEAD
   S();
   
   static S current;
   
   static const AppLocalizationDelegate delegate =
     AppLocalizationDelegate();
+=======
+  S(this.localeName);
+
+  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+>>>>>>> 8b9922f9e81a94794fd2bc6d5a0c4292febeaa49
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
-    final localeName = Intl.canonicalizedLocale(name); 
+    final String name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
+    final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
+<<<<<<< HEAD
       S.current = S();
       
       return S.current;
+=======
+      return S(localeName);
+>>>>>>> 8b9922f9e81a94794fd2bc6d5a0c4292febeaa49
     });
-  } 
+  }
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
 
+<<<<<<< HEAD
   /// `Ver detalhes`
+=======
+  final String localeName;
+
+>>>>>>> 8b9922f9e81a94794fd2bc6d5a0c4292febeaa49
   String get checkDetails {
     return Intl.message(
       'Ver detalhes',
@@ -476,7 +493,7 @@ class S {
   /// `Hospitalizados nos Cuidados Intensivos`
   String get statisticsPageHospitalizedUCI {
     return Intl.message(
-      'Hospitalizados nos Cuidados Intensivos',
+      'UCI',
       name: 'statisticsPageHospitalizedUCI',
       desc: '',
       args: [],
@@ -1002,7 +1019,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   bool _isSupported(Locale locale) {
     if (locale != null) {
-      for (var supportedLocale in supportedLocales) {
+      for (Locale supportedLocale in supportedLocales) {
         if (supportedLocale.languageCode == locale.languageCode) {
           return true;
         }

@@ -20,11 +20,14 @@ import 'package:covid19mobile/ui/screens/statistics/components/statistics_new_ab
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'statistics_title.dart';
+
 class StatisticHorizontalWidget extends StatelessWidget {
   final String label;
   final int value;
   final double percentage;
   final int absolute;
+  final String absoluteLabel;
   final VoidCallback onTap;
 
   StatisticHorizontalWidget({
@@ -32,6 +35,7 @@ class StatisticHorizontalWidget extends StatelessWidget {
     @required this.value,
     @required this.percentage,
     @required this.absolute,
+    this.absoluteLabel,
     @required this.onTap,
   });
 
@@ -40,26 +44,35 @@ class StatisticHorizontalWidget extends StatelessWidget {
     return StatisticsContainer(
       onTap: onTap,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Text(
-            label,
-            style: TextStyles.h3(),
-          ),
-          Wrap(
+          StatisticsTitle(label: label),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              NumberAndPercentageWidget(
-                value: value,
-                percentage: percentage,
-              ),
-              Container(
-                child: VerticalDivider(
-                  thickness: 2,
-                  color: Covid19Colors.lightGrey,
+              Expanded(
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: NumberAndPercentageWidget(
+                    value: value,
+                    percentage: percentage,
+                  ),
                 ),
               ),
-              StatisticsNewAbsolute(value: absolute)
+              Container(
+                color: Covid19Colors.lightGreyLight,
+                height: 32.0,
+                width: 1.0,
+              ),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.only(left: 17.0),
+                  alignment: Alignment.centerLeft,
+                  child: StatisticsNewAbsolute(
+                      value: absolute, label: absoluteLabel),
+                ),
+              ),
             ],
           ),
           SeeDetailsWidget()

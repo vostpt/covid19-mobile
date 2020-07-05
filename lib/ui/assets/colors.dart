@@ -18,8 +18,8 @@ class Covid19Colors {
   /// Light green
   static const Color lightGreen = Color(0xffaddcdf);
 
-  /// Green is the main color for the ap
-  static const Color green = Color(0xff358f9a);
+  /// Green is the main color for the app
+  static const Color green = Color(0xff2B818C);
 
   /// Green with 50% Transparency
   static const Color green50 = Color(0x80358f9a);
@@ -62,6 +62,9 @@ class Covid19Colors {
 
   /// Stats grey
   static const Color statsGrey = Color(0xffeceef0);
+
+  /// Stats Percentage Number Color
+  static const Color statsPercentageNumber = Color(0xff6d787e);
 
   /// Contact Card Background Color grey
   static const Color contactCardBackgroundGrey = Color(0xffeceef0);

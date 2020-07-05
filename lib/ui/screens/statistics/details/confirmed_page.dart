@@ -28,6 +28,7 @@ import 'package:covid19mobile/ui/screens/statistics/details/components/plot_drop
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_label_gender.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
+import 'package:covid19mobile/ui/screens/statistics/model/age_group_by_sex.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/utils/axis_util.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -244,10 +245,9 @@ class ByAgeBarPlot extends StatelessWidget {
   final String title;
 
   const ByAgeBarPlot({
-    Key key,
     this.plotDataCategory,
     this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -14,7 +14,7 @@
 import 'dart:math' as math;
 
 ///Possible intervals
-List<int> intervals = [
+List<double> intervals = [
   0,
   10,
   100,
@@ -28,13 +28,13 @@ List<int> intervals = [
   1000000
 ];
 
-int findInterval(int value) {
+double findInterval(int value) {
   for (int i = 0; i < intervals.length - 1; i++) {
     if (intervals[i] < value && intervals[i + 1] > value) {
       return intervals[i + 1];
     }
   }
-  return 1;
+  return 1.0;
 }
 
 ///
@@ -76,5 +76,5 @@ double calculateDividerInterval(double maxValue) {
   int interval = ((maxValue ~/ multipiler) * multipiler ~/ 10);
 
   // checking == 0 since it can give NaN and Infinite double (?)
-  return findInterval(interval == 0 ? 1 : interval).toDouble();
+  return findInterval(interval == 0 ? 1 : interval);
 }

@@ -14,22 +14,9 @@
 import 'package:covid19mobile/model/covid_status_model.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/symptoms_naming.dart';
+import 'package:covid19mobile/ui/screens/statistics/model/age_group_by_sex.dart';
 import 'package:flutter/material.dart';
 import 'package:covid19mobile/extensions/date_extensions.dart';
-
-class AgeGroupBySex {
-  final int order;
-  final String ageGroup;
-  final double male;
-  final double female;
-
-  AgeGroupBySex({
-    @required this.order,
-    @required this.ageGroup,
-    @required this.male,
-    @required this.female,
-  });
-}
 
 class CovidStatusStatistics {
   /// Raw data, full database

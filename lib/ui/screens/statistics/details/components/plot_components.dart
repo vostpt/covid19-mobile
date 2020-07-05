@@ -17,7 +17,7 @@ import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/symptoms_naming.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
-import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/model/age_group_by_sex.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

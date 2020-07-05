@@ -228,7 +228,7 @@ class Covid19DoubleBarChart extends BarChartData {
           barGroups: parseDoubleBar(ageGroups),
           barTouchData: Covid19BarTouchData(),
           gridData: FlGridData(
-            verticalInterval: 0,
+            verticalInterval: 42, //This value will be updated
             horizontalInterval: interval,
             drawHorizontalLine: true,
             drawVerticalLine: false,
@@ -293,7 +293,7 @@ class Covid19BarSymptomsPercentageChart extends BarChartData {
           barGroups: parseBySymptons(symptomsPercentages),
           barTouchData: Covid19BarTouchData(),
           gridData: FlGridData(
-            verticalInterval: 0,
+            verticalInterval: 42, //This value will be updated
             horizontalInterval: 20,
             drawHorizontalLine: true,
             drawVerticalLine: false,

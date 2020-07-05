@@ -94,7 +94,7 @@ class Covid19PlotBottomSideTitles extends SideTitles {
                 }
                 break;
               case StatisticsFilter.all:
-                if (currentDay % 7 == 0) {
+                if (currentDay % 30 == 0) {
                   return parseDateToReadable(currentDay);
                 }
                 break;

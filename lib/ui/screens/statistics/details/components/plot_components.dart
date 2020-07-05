@@ -140,7 +140,7 @@ class Covid19PlotLineChartBarData extends LineChartBarData {
           ),
           belowBarData: BarAreaData(
             gradientFrom: Offset(1, 1),
-            gradientTo: Offset(0, 0.5),
+            gradientTo: Offset(0.5, 0),
             gradientColorStops: [0, 0.95],
             show: true,
             colors: gradientColors

@@ -16,6 +16,7 @@ import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/symptoms_naming.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_lines_functions.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/age_group_by_sex.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -161,12 +162,17 @@ class Covid19LineChartData extends LineChartData {
           lineBarsData: plotData.lineBarsData(),
           lineTouchData: Covid19LineTouchData(),
           gridData: FlGridData(
-            verticalInterval: plotData.filter.intervalValue(),
-            horizontalInterval: plotData.currentPlotData.interval,
-            drawHorizontalLine: true,
-            drawVerticalLine: true,
-            show: true,
-          ),
+              verticalInterval: plotData.filter.intervalValue(),
+              horizontalInterval: plotData.currentPlotData.interval,
+              drawHorizontalLine: true,
+              drawVerticalLine: true,
+              show: true,
+              getDrawingHorizontalLine: (_) {
+                return StandardHorizontalFlLine();
+              },
+              getDrawingVerticalLine: (_) {
+                return StandardVerticalFlLine();
+              }),
           titlesData: FlTitlesData(
             show: true,
             leftTitles: Covid19PlotLeftSideTitles(
@@ -187,12 +193,17 @@ class Covid19BarChartData extends BarChartData {
           barGroups: plotData.barsGroupData(),
           barTouchData: Covid19BarTouchData(),
           gridData: FlGridData(
-            verticalInterval: plotData.filter.intervalValue(),
-            horizontalInterval: plotData.currentPlotData.interval,
-            drawHorizontalLine: true,
-            drawVerticalLine: true,
-            show: true,
-          ),
+              verticalInterval: plotData.filter.intervalValue(),
+              horizontalInterval: plotData.currentPlotData.interval,
+              drawHorizontalLine: true,
+              drawVerticalLine: true,
+              show: true,
+              getDrawingHorizontalLine: (_) {
+                return StandardHorizontalFlLine();
+              },
+              getDrawingVerticalLine: (_) {
+                return StandardVerticalFlLine();
+              }),
           titlesData: FlTitlesData(
             leftTitles: Covid19PlotLeftSideTitles(
               interval: plotData.currentPlotData.interval,

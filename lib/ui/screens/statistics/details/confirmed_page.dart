@@ -68,7 +68,7 @@ class _StatisticsConfirmedState
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: StatisticsContainer(
                   child: DualTrendBarPlot(
                     plotData: currentStatistics.status.confirmedNew,

@@ -252,7 +252,7 @@ class TextStyles {
   static TextStyle statisticsPlotLabel({
     Color color = Covid19Colors.grey,
   }) =>
-      GoogleFonts.roboto(
+      GoogleFonts.robotoCondensed(
         textStyle: TextStyle(
             color: Covid19Colors.grey,
             fontWeight: FontWeight.bold,

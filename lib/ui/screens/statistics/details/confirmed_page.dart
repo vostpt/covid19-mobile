@@ -68,7 +68,7 @@ class _StatisticsConfirmedState
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(8.0),
                 child: StatisticsContainer(
                   child: DualTrendBarPlot(
                     plotData: currentStatistics.status.confirmedNew,
@@ -76,16 +76,19 @@ class _StatisticsConfirmedState
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: StatisticsContainer(
-                  child: ByAgeBarPlot(
-                    plotDataCategory:
-                        currentStatistics.confirmedRecentByAgeGroup,
-                    title: S.of(context).statisticsNewCasesByAgeGroupAndSex,
-                  ),
-                ),
-              ),
+              checkHasAgeGroupData(currentStatistics.confirmedRecentByAgeGroup)
+                  ? Container()
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: StatisticsContainer(
+                        child: ByAgeBarPlot(
+                          plotDataCategory:
+                              currentStatistics.confirmedRecentByAgeGroup,
+                          title:
+                              S.of(context).statisticsNewCasesByAgeGroupAndSex,
+                        ),
+                      ),
+                    ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: StatisticsContainer(
@@ -116,6 +119,13 @@ class _StatisticsConfirmedState
       Provider.of<CovidStatusProvider>(context, listen: false)
           .setCovidStatus(result.model);
     }
+  }
+
+  bool checkHasAgeGroupData(data) {
+    /// Checks for existing of data
+    /// TODO: Create a Widget that says : 'No data'
+    /// TODO: Create generic method to verify every time of data shwing
+    return (data.length > 0 && data.first != null);
   }
 }
 

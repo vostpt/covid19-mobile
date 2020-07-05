@@ -11,27 +11,29 @@ import 'intl/messages_all.dart';
 // ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
 
 class S {
-  S(this.localeName);
-
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+  S();
+  
+  static S current;
+  
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final String name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
-    final String localeName = Intl.canonicalizedLocale(name);
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return S(localeName);
+      S.current = S();
+      
+      return S.current;
     });
-  }
+  } 
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
 
-  final String localeName;
-
+  /// `Ver detalhes`
   String get checkDetails {
     return Intl.message(
       'Ver detalhes',
@@ -471,7 +473,7 @@ class S {
     );
   }
 
-  /// `Hospitalizados nos Cuidados Intensivos`
+  /// `UCI`
   String get statisticsPageHospitalizedUCI {
     return Intl.message(
       'UCI',
@@ -721,10 +723,10 @@ class S {
     );
   }
 
-  /// `Total de Confirmados`
+  /// `Total`
   String get statisticsTotalConfirmed {
     return Intl.message(
-      'Total de Confirmados',
+      'Total',
       name: 'statisticsTotalConfirmed',
       desc: '',
       args: [],
@@ -971,10 +973,10 @@ class S {
     );
   }
 
-  /// `Total de Óbitos`
+  /// `Total`
   String get statisticsDeathsTotalTitle {
     return Intl.message(
-      'Total de Óbitos',
+      'Total',
       name: 'statisticsDeathsTotalTitle',
       desc: '',
       args: [],
@@ -1000,7 +1002,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   bool _isSupported(Locale locale) {
     if (locale != null) {
-      for (Locale supportedLocale in supportedLocales) {
+      for (var supportedLocale in supportedLocales) {
         if (supportedLocale.languageCode == locale.languageCode) {
           return true;
         }

@@ -8,8 +8,12 @@ import 'intl/messages_all.dart';
 // Made by Localizely
 // **************************************************************************
 
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
+
 class S {
   S();
+  
+  static S current;
   
   static const AppLocalizationDelegate delegate =
     AppLocalizationDelegate();
@@ -19,7 +23,9 @@ class S {
     final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return S();
+      S.current = S();
+      
+      return S.current;
     });
   } 
 
@@ -27,6 +33,7 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Ver detalhes`
   String get checkDetails {
     return Intl.message(
       'Ver detalhes',
@@ -36,6 +43,7 @@ class S {
     );
   }
 
+  /// `covid19@mne.pt`
   String get contactsPageMNEEmail {
     return Intl.message(
       'covid19@mne.pt',
@@ -45,6 +53,7 @@ class S {
     );
   }
 
+  /// `Canal do Ministério dos Negócios Estrangeiros de emergência aos portugueses em viagem.`
   String get contactsPageMNEEmailText {
     return Intl.message(
       'Canal do Ministério dos Negócios Estrangeiros de emergência aos portugueses em viagem.',
@@ -54,6 +63,7 @@ class S {
     );
   }
 
+  /// `+351 217 929 755`
   String get contactsPageMNENumber {
     return Intl.message(
       '+351 217 929 755',
@@ -63,6 +73,7 @@ class S {
     );
   }
 
+  /// `Linha do Ministério dos Negócios Estrangeiros de emergência aos portugueses em viagem.`
   String get contactsPageMNENumberText {
     return Intl.message(
       'Linha do Ministério dos Negócios Estrangeiros de emergência aos portugueses em viagem.',
@@ -72,6 +83,7 @@ class S {
     );
   }
 
+  /// `covid19.min-saude.pt`
   String get contactsPageMSWeb {
     return Intl.message(
       'covid19.min-saude.pt',
@@ -81,6 +93,7 @@ class S {
     );
   }
 
+  /// `Plataforma da DGS para esclarecimentos sobre a COVID-19.`
   String get contactsPageMSWebText {
     return Intl.message(
       'Plataforma da DGS para esclarecimentos sobre a COVID-19.',
@@ -90,6 +103,7 @@ class S {
     );
   }
 
+  /// `atendimento@SNS24.gov.pt`
   String get contactsPageSNSEmail {
     return Intl.message(
       'atendimento@SNS24.gov.pt',
@@ -99,6 +113,7 @@ class S {
     );
   }
 
+  /// `Canal SNS 24 para esclarecimentos de dúvidas. Não utilizar para diagnóstico médico.`
   String get contactsPageSNSEmailText {
     return Intl.message(
       'Canal SNS 24 para esclarecimentos de dúvidas. Não utilizar para diagnóstico médico.',
@@ -108,6 +123,7 @@ class S {
     );
   }
 
+  /// `808 24 24 24`
   String get contactsPageSNSNumber {
     return Intl.message(
       '808 24 24 24',
@@ -117,6 +133,7 @@ class S {
     );
   }
 
+  /// `Linha SNS 24 para esclarecimentos de diagnóstico médico.`
   String get contactsPageSNSNumberText {
     return Intl.message(
       'Linha SNS 24 para esclarecimentos de diagnóstico médico.',
@@ -126,6 +143,7 @@ class S {
     );
   }
 
+  /// `300 502 502`
   String get contactsPageSSNumber {
     return Intl.message(
       '300 502 502',
@@ -135,6 +153,7 @@ class S {
     );
   }
 
+  /// `Linha Segurança Social para esclarecimentos sobre assistência a familiares, baixas e quarentena.`
   String get contactsPageSSNumberText {
     return Intl.message(
       'Linha Segurança Social para esclarecimentos sobre assistência a familiares, baixas e quarentena.',
@@ -144,6 +163,7 @@ class S {
     );
   }
 
+  /// `Contactos úteis`
   String get contactsPageTitle {
     return Intl.message(
       'Contactos úteis',
@@ -153,6 +173,7 @@ class S {
     );
   }
 
+  /// `An error has occurred`
   String get defaultError {
     return Intl.message(
       'An error has occurred',
@@ -162,6 +183,7 @@ class S {
     );
   }
 
+  /// `Entidade Responsável`
   String get faqPageResponsableEntity {
     return Intl.message(
       'Entidade Responsável',
@@ -171,6 +193,7 @@ class S {
     );
   }
 
+  /// `Perguntas Frequentes`
   String get faqPageTitle {
     return Intl.message(
       'Perguntas Frequentes',
@@ -180,6 +203,7 @@ class S {
     );
   }
 
+  /// `Que notificações vai receber?\nInformações importantes sobre atualização dos dados constantes nesta aplicação e avisos/alertas das entidades oficiais.`
   String get notificationsPageDescription {
     return Intl.message(
       'Que notificações vai receber?\nInformações importantes sobre atualização dos dados constantes nesta aplicação e avisos/alertas das entidades oficiais.',
@@ -189,6 +213,7 @@ class S {
     );
   }
 
+  /// `Notificações`
   String get notificationsPageReceiveNotifcations {
     return Intl.message(
       'Notificações',
@@ -198,6 +223,7 @@ class S {
     );
   }
 
+  /// `Estatísticas`
   String get notificationsPageReceiveStats {
     return Intl.message(
       'Estatísticas',
@@ -207,6 +233,7 @@ class S {
     );
   }
 
+  /// `Medidas do Governo`
   String get notificationsPageReceiveMeasures {
     return Intl.message(
       'Medidas do Governo',
@@ -216,6 +243,7 @@ class S {
     );
   }
 
+  /// `Perguntas Frequentes`
   String get notificationsPageReceiveQuestions {
     return Intl.message(
       'Perguntas Frequentes',
@@ -225,6 +253,7 @@ class S {
     );
   }
 
+  /// `Outras`
   String get notificationsPageReceiveOther {
     return Intl.message(
       'Outras',
@@ -234,6 +263,7 @@ class S {
     );
   }
 
+  /// `Por favor, conceda permissões de notificação.`
   String get notificationsPagePermissionsMissing {
     return Intl.message(
       'Por favor, conceda permissões de notificação.',
@@ -243,6 +273,7 @@ class S {
     );
   }
 
+  /// `Abrir definições`
   String get notificationsPageOpenSettings {
     return Intl.message(
       'Abrir definições',
@@ -252,6 +283,7 @@ class S {
     );
   }
 
+  /// `Esta app foi construída com o apoio da VOST PT e Flutter Portugal`
   String get screenAboutBuilt {
     return Intl.message(
       'Esta app foi construída com o apoio da VOST PT e Flutter Portugal',
@@ -261,6 +293,7 @@ class S {
     );
   }
 
+  /// `Esta App pretende ser um guia prático para apoiar cidadãos, famílias e empresas no combate aos efeitos causados pelo COVID-19. Aqui poderá encontrar toda a informação e conhecer os apoios a que tem direito.`
   String get screenAboutContent1 {
     return Intl.message(
       'Esta App pretende ser um guia prático para apoiar cidadãos, famílias e empresas no combate aos efeitos causados pelo COVID-19. Aqui poderá encontrar toda a informação e conhecer os apoios a que tem direito.',
@@ -270,6 +303,7 @@ class S {
     );
   }
 
+  /// `Consulte as boas práticas e as recomendações das autoridades de Saúde, conheça os melhores conselhos para trabalhar a partir de casa e saiba como recorrer aos serviços públicos sem ter de se deslocar.`
   String get screenAboutContent2 {
     return Intl.message(
       'Consulte as boas práticas e as recomendações das autoridades de Saúde, conheça os melhores conselhos para trabalhar a partir de casa e saiba como recorrer aos serviços públicos sem ter de se deslocar.',
@@ -279,6 +313,7 @@ class S {
     );
   }
 
+  /// `Poderá ainda ficar a conhecer as medidas excecionais adotadas pelo Governo em cada área governativa e acompanhar as evoluções do estado epidemiológico do País. Está também disponível para consulta a legislação especificamente aprovada, bem como as diferentes comunicações do Governo nesta matéria.`
   String get screenAboutContent3 {
     return Intl.message(
       'Poderá ainda ficar a conhecer as medidas excecionais adotadas pelo Governo em cada área governativa e acompanhar as evoluções do estado epidemiológico do País. Está também disponível para consulta a legislação especificamente aprovada, bem como as diferentes comunicações do Governo nesta matéria.',
@@ -288,6 +323,7 @@ class S {
     );
   }
 
+  /// `Além destas informações, pode aceder à lista completa dos contactos de emergência criados pelos diversos serviços públicos para que, de forma simples e eficiente, encontre a resposta que procura.`
   String get screenAboutContent4 {
     return Intl.message(
       'Além destas informações, pode aceder à lista completa dos contactos de emergência criados pelos diversos serviços públicos para que, de forma simples e eficiente, encontre a resposta que procura.',
@@ -297,6 +333,7 @@ class S {
     );
   }
 
+  /// `Juntos venceremos este vírus.`
   String get screenAboutContent5 {
     return Intl.message(
       'Juntos venceremos este vírus.',
@@ -306,6 +343,7 @@ class S {
     );
   }
 
+  /// `#COVID19PT - 2020 VOSTPT - Voluntários Digitais em Situações de Emergências para Portugal.`
   String get screenAboutFooter1 {
     return Intl.message(
       '#COVID19PT - 2020 VOSTPT - Voluntários Digitais em Situações de Emergências para Portugal.',
@@ -315,6 +353,7 @@ class S {
     );
   }
 
+  /// `Este site e seus materiais encontram-se sob uma licença Creative Commons CC BY-NC-SA: Atribuição-Não Comercial-Compartilha Igual.`
   String get screenAboutFooter2 {
     return Intl.message(
       'Este site e seus materiais encontram-se sob uma licença Creative Commons CC BY-NC-SA: Atribuição-Não Comercial-Compartilha Igual.',
@@ -324,6 +363,7 @@ class S {
     );
   }
 
+  /// `#EstamosOn`
   String get screenAboutHashtag {
     return Intl.message(
       '#EstamosOn',
@@ -333,6 +373,7 @@ class S {
     );
   }
 
+  /// `Sobre`
   String get screenAboutTitle {
     return Intl.message(
       'Sobre',
@@ -342,6 +383,7 @@ class S {
     );
   }
 
+  /// `Notificações`
   String get screenNotificationsTitle {
     return Intl.message(
       'Notificações',
@@ -351,6 +393,7 @@ class S {
     );
   }
 
+  /// `Aguardar Resultados`
   String get statisticsPageAwaitingResults {
     return Intl.message(
       'Aguardar Resultados',
@@ -360,6 +403,7 @@ class S {
     );
   }
 
+  /// `Casos Confirmados`
   String get statisticsPageConfirmed {
     return Intl.message(
       'Casos Confirmados',
@@ -369,6 +413,7 @@ class S {
     );
   }
 
+  /// `Dados recolhidos por Data Science for Social Good Portugal, a partir do boletim diário da Direcção Geral de Saúde.`
   String get statisticsPageDataLabel {
     return Intl.message(
       'Dados recolhidos por Data Science for Social Good Portugal, a partir do boletim diário da Direcção Geral de Saúde.',
@@ -378,6 +423,7 @@ class S {
     );
   }
 
+  /// `Recuperados`
   String get statisticsPageRecovered {
     return Intl.message(
       'Recuperados',
@@ -387,6 +433,7 @@ class S {
     );
   }
 
+  /// `Estatísticas`
   String get statisticsPageStatistics {
     return Intl.message(
       'Estatísticas',
@@ -396,6 +443,7 @@ class S {
     );
   }
 
+  /// `Suspeitos`
   String get statisticsPageSuspects {
     return Intl.message(
       'Suspeitos',
@@ -405,6 +453,7 @@ class S {
     );
   }
 
+  /// `Óbitos`
   String get statisticsPageDeaths {
     return Intl.message(
       'Óbitos',
@@ -414,6 +463,7 @@ class S {
     );
   }
 
+  /// `Hospitalizados`
   String get statisticsPageHospitalized {
     return Intl.message(
       'Hospitalizados',
@@ -423,6 +473,7 @@ class S {
     );
   }
 
+  /// `Hospitalizados nos Cuidados Intensivos`
   String get statisticsPageHospitalizedUCI {
     return Intl.message(
       'Hospitalizados nos Cuidados Intensivos',
@@ -432,6 +483,7 @@ class S {
     );
   }
 
+  /// `Em vigilância`
   String get statisticsPageUnderSurveillance {
     return Intl.message(
       'Em vigilância',
@@ -441,6 +493,7 @@ class S {
     );
   }
 
+  /// `Reportar Problema`
   String get screenAboutButtonReport {
     return Intl.message(
       'Reportar Problema',
@@ -450,6 +503,7 @@ class S {
     );
   }
 
+  /// `Licenças Open-Source`
   String get screenAboutButtonOpenSource {
     return Intl.message(
       'Licenças Open-Source',
@@ -459,6 +513,7 @@ class S {
     );
   }
 
+  /// `Resposta de Portugal à Covid-19`
   String get homePageTitle {
     return Intl.message(
       'Resposta de Portugal à Covid-19',
@@ -468,6 +523,7 @@ class S {
     );
   }
 
+  /// `Vídeos`
   String get screenVideosTitle {
     return Intl.message(
       'Vídeos',
@@ -477,6 +533,7 @@ class S {
     );
   }
 
+  /// `Teletrabalho`
   String get screenRemoteWorkTitle {
     return Intl.message(
       'Teletrabalho',
@@ -486,6 +543,7 @@ class S {
     );
   }
 
+  /// `Última actualização`
   String get lastUpdated {
     return Intl.message(
       'Última actualização',
@@ -495,6 +553,7 @@ class S {
     );
   }
 
+  /// `Casos confirmados de COVID-19 em Portugal`
   String get homePageConfirmedCases {
     return Intl.message(
       'Casos confirmados de COVID-19 em Portugal',
@@ -504,6 +563,7 @@ class S {
     );
   }
 
+  /// `Medidas Excecionais`
   String get measuresPageMeasures {
     return Intl.message(
       'Medidas Excecionais',
@@ -513,6 +573,7 @@ class S {
     );
   }
 
+  /// `Medidas excecionais de resposta À COVID-19`
   String get measuresHomepageButton {
     return Intl.message(
       'Medidas excecionais de resposta À COVID-19',
@@ -522,6 +583,7 @@ class S {
     );
   }
 
+  /// `Iniciativas`
   String get initiativesPageTitle {
     return Intl.message(
       'Iniciativas',
@@ -531,6 +593,7 @@ class S {
     );
   }
 
+  /// `Licenças Open-Source`
   String get licensesPageTitle {
     return Intl.message(
       'Licenças Open-Source',
@@ -540,6 +603,7 @@ class S {
     );
   }
 
+  /// `Licenças Open-Source`
   String get licencesPageTitle {
     return Intl.message(
       'Licenças Open-Source',
@@ -549,6 +613,7 @@ class S {
     );
   }
 
+  /// `Sem conexão`
   String get noConnection {
     return Intl.message(
       'Sem conexão',
@@ -558,6 +623,7 @@ class S {
     );
   }
 
+  /// `Tentar novamente`
   String get buttonTryAgain {
     return Intl.message(
       'Tentar novamente',
@@ -567,6 +633,7 @@ class S {
     );
   }
 
+  /// `Não conseguimos aceder à Internet para obter os dados mais recentes. Verifica a tua conexão.`
   String get cannotConnectInternetDescription {
     return Intl.message(
       'Não conseguimos aceder à Internet para obter os dados mais recentes. Verifica a tua conexão.',
@@ -576,6 +643,7 @@ class S {
     );
   }
 
+  /// `Novos`
   String get newPlural {
     return Intl.message(
       'Novos',
@@ -585,6 +653,7 @@ class S {
     );
   }
 
+  /// `Ver Detalhes`
   String get seeDetails {
     return Intl.message(
       'Ver Detalhes',
@@ -594,6 +663,7 @@ class S {
     );
   }
 
+  /// `Publicada às`
   String get publishedAt {
     return Intl.message(
       'Publicada às',
@@ -603,6 +673,7 @@ class S {
     );
   }
 
+  /// `de`
   String get dateOf {
     return Intl.message(
       'de',
@@ -612,6 +683,7 @@ class S {
     );
   }
 
+  /// `Últimos 30 dias`
   String get lastMonth {
     return Intl.message(
       'Últimos 30 dias',
@@ -621,6 +693,7 @@ class S {
     );
   }
 
+  /// `Últimos 7 dias`
   String get lastWeek {
     return Intl.message(
       'Últimos 7 dias',
@@ -630,6 +703,7 @@ class S {
     );
   }
 
+  /// `Tudo`
   String get all {
     return Intl.message(
       'Tudo',
@@ -639,6 +713,7 @@ class S {
     );
   }
 
+  /// `Casos por dia`
   String get statisticsNewCases {
     return Intl.message(
       'Casos por dia',
@@ -648,6 +723,7 @@ class S {
     );
   }
 
+  /// `Total de Confirmados`
   String get statisticsTotalConfirmed {
     return Intl.message(
       'Total de Confirmados',
@@ -657,6 +733,7 @@ class S {
     );
   }
 
+  /// `Casos Confirmados`
   String get statisticsConfirmedCasesTitle {
     return Intl.message(
       'Casos Confirmados',
@@ -666,6 +743,7 @@ class S {
     );
   }
 
+  /// `Óbitos Confirmados`
   String get statisticsDeathCasesTitle {
     return Intl.message(
       'Óbitos Confirmados',
@@ -675,6 +753,7 @@ class S {
     );
   }
 
+  /// `Linear`
   String get linear {
     return Intl.message(
       'Linear',
@@ -684,6 +763,7 @@ class S {
     );
   }
 
+  /// `Log`
   String get logaritmicShort {
     return Intl.message(
       'Log',
@@ -693,6 +773,7 @@ class S {
     );
   }
 
+  /// `Casos por idade`
   String get statisticsNewCasesByAgeGroupAndSex {
     return Intl.message(
       'Casos por idade',
@@ -702,6 +783,7 @@ class S {
     );
   }
 
+  /// `Sintomas`
   String get statisticsSymptoms {
     return Intl.message(
       'Sintomas',
@@ -711,6 +793,7 @@ class S {
     );
   }
 
+  /// `Tosse`
   String get symptomCough {
     return Intl.message(
       'Tosse',
@@ -720,6 +803,7 @@ class S {
     );
   }
 
+  /// `Febre`
   String get symptomFever {
     return Intl.message(
       'Febre',
@@ -729,6 +813,7 @@ class S {
     );
   }
 
+  /// `Dificuldades\nrespiratórias`
   String get symptomBreathingDifficulties {
     return Intl.message(
       'Dificuldades\nrespiratórias',
@@ -738,6 +823,7 @@ class S {
     );
   }
 
+  /// `Cefeleia`
   String get symptomHeadache {
     return Intl.message(
       'Cefeleia',
@@ -747,6 +833,7 @@ class S {
     );
   }
 
+  /// `Dores\nmusculares`
   String get symptomMusclePain {
     return Intl.message(
       'Dores\nmusculares',
@@ -756,6 +843,7 @@ class S {
     );
   }
 
+  /// `Fraqueza\ngeneralizada`
   String get symptomGenealizedWeakness {
     return Intl.message(
       'Fraqueza\ngeneralizada',
@@ -765,6 +853,7 @@ class S {
     );
   }
 
+  /// `Óbitos por dia`
   String get statisticsNewDeathPerDay {
     return Intl.message(
       'Óbitos por dia',
@@ -774,6 +863,7 @@ class S {
     );
   }
 
+  /// `Óbitos por idade`
   String get statisticsNewDeathPerAge {
     return Intl.message(
       'Óbitos por idade',
@@ -783,6 +873,7 @@ class S {
     );
   }
 
+  /// `Internados`
   String get statisticsHospitalizedCasesTitle {
     return Intl.message(
       'Internados',
@@ -792,6 +883,7 @@ class S {
     );
   }
 
+  /// `Recuperados`
   String get statisticsRecoveredCasesTitle {
     return Intl.message(
       'Recuperados',
@@ -801,6 +893,7 @@ class S {
     );
   }
 
+  /// `Recuperados por dia`
   String get statisticsRecoveredPerDay {
     return Intl.message(
       'Recuperados por dia',
@@ -810,6 +903,7 @@ class S {
     );
   }
 
+  /// `Total Recuperados`
   String get statisticsRecoveredCases {
     return Intl.message(
       'Total Recuperados',
@@ -819,6 +913,7 @@ class S {
     );
   }
 
+  /// `Proporção UCI`
   String get statisticsPageHospitalizedPorpositions {
     return Intl.message(
       'Proporção UCI',
@@ -828,6 +923,7 @@ class S {
     );
   }
 
+  /// `Internados`
   String get hospitalized {
     return Intl.message(
       'Internados',
@@ -837,6 +933,7 @@ class S {
     );
   }
 
+  /// `UCI`
   String get ucihospitalized {
     return Intl.message(
       'UCI',
@@ -846,6 +943,7 @@ class S {
     );
   }
 
+  /// `Masculino`
   String get male {
     return Intl.message(
       'Masculino',
@@ -855,6 +953,7 @@ class S {
     );
   }
 
+  /// `Feminino`
   String get female {
     return Intl.message(
       'Feminino',
@@ -864,6 +963,7 @@ class S {
     );
   }
 
+  /// `Evolução`
   String get statisticsPageHospitalizedEvolution {
     return Intl.message(
       'Evolução',
@@ -873,6 +973,7 @@ class S {
     );
   }
 
+  /// `Total de Óbitos`
   String get statisticsDeathsTotalTitle {
     return Intl.message(
       'Total de Óbitos',

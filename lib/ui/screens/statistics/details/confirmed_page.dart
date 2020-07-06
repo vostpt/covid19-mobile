@@ -76,19 +76,18 @@ class _StatisticsConfirmedState
                   ),
                 ),
               ),
-              checkHasAgeGroupData(currentStatistics.confirmedRecentByAgeGroup)
-                  ? Container()
-                  : Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: StatisticsContainer(
-                        child: ByAgeBarPlot(
-                          plotDataCategory:
-                              currentStatistics.confirmedRecentByAgeGroup,
-                          title:
-                              S.of(context).statisticsNewCasesByAgeGroupAndSex,
-                        ),
-                      ),
+              if (checkHasAgeGroupData(
+                  currentStatistics.confirmedRecentByAgeGroup))
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: StatisticsContainer(
+                    child: ByAgeBarPlot(
+                      plotDataCategory:
+                          currentStatistics.confirmedRecentByAgeGroup,
+                      title: S.of(context).statisticsNewCasesByAgeGroupAndSex,
                     ),
+                  ),
+                ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: StatisticsContainer(

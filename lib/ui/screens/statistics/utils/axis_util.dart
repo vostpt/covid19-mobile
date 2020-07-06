@@ -14,7 +14,7 @@
 import 'dart:math' as math;
 
 ///Possible intervals
-List<double> intervals = [
+const List<double> intervals = [
   1,
   5,
   10,

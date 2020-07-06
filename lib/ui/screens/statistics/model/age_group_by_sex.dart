@@ -16,16 +16,13 @@ import 'package:flutter/material.dart';
 class AgeGroupBySex {
   final int order;
   final String ageGroup;
-  double male;
-  double female;
+  final double male;
+  final double female;
 
   AgeGroupBySex({
     @required this.order,
     @required this.ageGroup,
-    male,
-    female,
-  }) {
-    this.male = male == null ? 0 : male;
-    this.female = female == null ? 0 : female;
-  }
+    @required this.male,
+    @required this.female,
+  });
 }

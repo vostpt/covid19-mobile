@@ -397,10 +397,10 @@ class CovidStatusStatistics {
     for (int group = 0; group < ageGroupDescription.length; group++) {
       container.add(
         AgeGroupBySex(
-          ageGroup: ageGroupDescription[group],
-          female: confirmedFemale[group].value,
-          male: confirmedMale[group].value,
-          order: group,
+          ageGroup: ageGroupDescription[group] ?? "",
+          female: confirmedFemale[group].value ?? 0,
+          male: confirmedMale[group].value ?? 0,
+          order: group ?? 0,
         ),
       );
     }

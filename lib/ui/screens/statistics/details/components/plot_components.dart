@@ -16,8 +16,9 @@ import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/symptoms_naming.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_lines_functions.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
-import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/model/age_group_by_sex.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -77,7 +78,6 @@ class Covid19PlotBottomSideTitles extends SideTitles {
       {@required Map<int, double> days, @required StatisticsFilter filter})
       : super(
           showTitles: true,
-          rotateAngle: (filter == StatisticsFilter.all) ? 25.0 : 0,
           textStyle: TextStyles.statisticsPlotLabel(),
           margin: 14,
           reservedSize: 10,
@@ -94,7 +94,7 @@ class Covid19PlotBottomSideTitles extends SideTitles {
                 }
                 break;
               case StatisticsFilter.all:
-                if (currentDay % 7 == 0) {
+                if (currentDay % 30 == 0) {
                   return parseDateToReadable(currentDay);
                 }
                 break;
@@ -140,7 +140,7 @@ class Covid19PlotLineChartBarData extends LineChartBarData {
           ),
           belowBarData: BarAreaData(
             gradientFrom: Offset(1, 1),
-            gradientTo: Offset(0, 0.5),
+            gradientTo: Offset(0.5, 0),
             gradientColorStops: [0, 0.95],
             show: true,
             colors: gradientColors
@@ -161,12 +161,17 @@ class Covid19LineChartData extends LineChartData {
           lineBarsData: plotData.lineBarsData(),
           lineTouchData: Covid19LineTouchData(),
           gridData: FlGridData(
-            verticalInterval: plotData.filter.intervalValue(),
-            horizontalInterval: plotData.currentPlotData.interval,
-            drawHorizontalLine: true,
-            drawVerticalLine: true,
-            show: true,
-          ),
+              verticalInterval: plotData.filter.intervalValue(),
+              horizontalInterval: plotData.currentPlotData.interval,
+              drawHorizontalLine: true,
+              drawVerticalLine: true,
+              show: true,
+              getDrawingHorizontalLine: (_) {
+                return StandardHorizontalFlLine();
+              },
+              getDrawingVerticalLine: (_) {
+                return StandardVerticalFlLine();
+              }),
           titlesData: FlTitlesData(
             show: true,
             leftTitles: Covid19PlotLeftSideTitles(
@@ -183,16 +188,20 @@ class Covid19LineChartData extends LineChartData {
 class Covid19BarChartData extends BarChartData {
   Covid19BarChartData({@required Covid19PlotBars plotData})
       : super(
-          minY: 0,
           barGroups: plotData.barsGroupData(),
           barTouchData: Covid19BarTouchData(),
           gridData: FlGridData(
-            verticalInterval: plotData.filter.intervalValue(),
-            horizontalInterval: plotData.currentPlotData.interval,
-            drawHorizontalLine: true,
-            drawVerticalLine: true,
-            show: true,
-          ),
+              horizontalInterval: 42,
+              verticalInterval: plotData.filter.intervalValue(),
+              drawHorizontalLine: true,
+              drawVerticalLine: true,
+              show: true,
+              getDrawingHorizontalLine: (_) {
+                return StandardHorizontalFlLine();
+              },
+              getDrawingVerticalLine: (_) {
+                return StandardVerticalFlLine();
+              }),
           titlesData: FlTitlesData(
             leftTitles: Covid19PlotLeftSideTitles(
               interval: plotData.currentPlotData.interval,
@@ -217,7 +226,7 @@ class Covid19DoubleBarChart extends BarChartData {
           barGroups: parseDoubleBar(ageGroups),
           barTouchData: Covid19BarTouchData(),
           gridData: FlGridData(
-            verticalInterval: 0,
+            verticalInterval: 42, //This value will be updated
             horizontalInterval: interval,
             drawHorizontalLine: true,
             drawVerticalLine: false,
@@ -282,7 +291,7 @@ class Covid19BarSymptomsPercentageChart extends BarChartData {
           barGroups: parseBySymptons(symptomsPercentages),
           barTouchData: Covid19BarTouchData(),
           gridData: FlGridData(
-            verticalInterval: 0,
+            verticalInterval: 42, //This value will be updated
             horizontalInterval: 20,
             drawHorizontalLine: true,
             drawVerticalLine: false,

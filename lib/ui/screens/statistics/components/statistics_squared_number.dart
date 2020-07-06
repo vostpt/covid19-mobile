@@ -17,8 +17,6 @@ import 'package:flutter/material.dart';
 
 class SquaredNumberWidget extends StatelessWidget {
   final int value;
-
-  //Default style: TextStyles.h3()
   final TextStyle style;
 
   SquaredNumberWidget({@required this.value, this.style});
@@ -34,7 +32,7 @@ class SquaredNumberWidget extends StatelessWidget {
       decoration: Covid19BorderDecorator(),
       child: Text(
         value.toString().toUpperCase(),
-        style: style == null ? TextStyles.h3() : style,
+        style: style == null ? TextStyles.h3Number() : style,
       ),
     );
   }

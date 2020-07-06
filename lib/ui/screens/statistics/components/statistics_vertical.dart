@@ -11,7 +11,6 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/number_and_percentage.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/see_details.dart';
@@ -20,12 +19,15 @@ import 'package:covid19mobile/ui/screens/statistics/components/statistics_new_ab
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'statistics_title.dart';
+
 class StatisticVerticalWidget extends StatelessWidget {
   final String label;
   final double percentage;
   final int value;
   final int valueDifference;
   final VoidCallback onTap;
+  final bool shouldWrapContent;
 
   StatisticVerticalWidget({
     ///Description label of the showing value
@@ -42,6 +44,9 @@ class StatisticVerticalWidget extends StatelessWidget {
 
     /// Adds a possible callback on tap
     this.onTap,
+
+    /// Flag if content should wrap in multi lines
+    this.shouldWrapContent = false,
   });
 
   @override
@@ -51,13 +56,16 @@ class StatisticVerticalWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(label, style: TextStyles.h3()),
-          NumberAndPercentageWidget(value: value, percentage: percentage),
-          SizedBox(
+          StatisticsTitle(label: label),
+          NumberAndPercentageWidget(
+              value: value,
+              percentage: percentage,
+              shouldWrapContent: shouldWrapContent),
+          const SizedBox(
             width: double.infinity,
             child: Divider(
-              thickness: 2,
-              color: Covid19Colors.lightGrey,
+              thickness: 1,
+              color: Covid19Colors.statsGrey,
             ),
           ),
           Container(

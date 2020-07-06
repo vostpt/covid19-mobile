@@ -30,7 +30,7 @@ class StatisticsContainer extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 8.0),
       child: Ink(
-        decoration: Covid19BorderDecorator(),
+        decoration: Covid19StatsBorderDecorator(),
         child: InkWell(
           onTap: onTap,
           child: Padding(

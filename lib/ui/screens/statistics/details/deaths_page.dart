@@ -210,7 +210,9 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
             margin: const EdgeInsetsDirectional.only(top: 37.0),
             width: MediaQuery.of(context).size.width,
             child: BarChart(
-              Covid19BarChartData(plotData: _plot),
+              Covid19BarChartData(
+                plotData: _plot,
+              ),
               swapAnimationDuration: plotAnimationDuration,
             ),
           ),

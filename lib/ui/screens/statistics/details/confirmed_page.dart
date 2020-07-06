@@ -28,6 +28,7 @@ import 'package:covid19mobile/ui/screens/statistics/details/components/plot_drop
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_label_gender.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
+import 'package:covid19mobile/ui/screens/statistics/model/age_group_by_sex.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/utils/axis_util.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -75,16 +76,18 @@ class _StatisticsConfirmedState
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: StatisticsContainer(
-                  child: ByAgeBarPlot(
-                    plotDataCategory:
-                        currentStatistics.confirmedRecentByAgeGroup,
-                    title: S.of(context).statisticsNewCasesByAgeGroupAndSex,
+              if (checkHasAgeGroupData(
+                  currentStatistics.confirmedRecentByAgeGroup))
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: StatisticsContainer(
+                    child: ByAgeBarPlot(
+                      plotDataCategory:
+                          currentStatistics.confirmedRecentByAgeGroup,
+                      title: S.of(context).statisticsNewCasesByAgeGroupAndSex,
+                    ),
                   ),
                 ),
-              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: StatisticsContainer(
@@ -115,6 +118,13 @@ class _StatisticsConfirmedState
       Provider.of<CovidStatusProvider>(context, listen: false)
           .setCovidStatus(result.model);
     }
+  }
+
+  bool checkHasAgeGroupData(data) {
+    /// Checks for existing of data
+    /// TODO: Create a Widget that says : 'No data'
+    /// TODO: Create generic method to verify every time of data shwing
+    return (data.length > 0 && data.first != null);
   }
 }
 
@@ -244,10 +254,9 @@ class ByAgeBarPlot extends StatelessWidget {
   final String title;
 
   const ByAgeBarPlot({
-    Key key,
     this.plotDataCategory,
     this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

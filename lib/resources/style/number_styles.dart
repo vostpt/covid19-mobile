@@ -1,4 +1,4 @@
-///     This program is free software: you can redistribute it and/or modify
+///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
 ///    (at your option) any later version.
@@ -11,10 +11,23 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-const identMargin = 10.0;
-const tabIndicatorMagin = 20.0;
-const tabIndicatorWeight = 4.0;
-const marginVidCloseBt = 10.0;
+import 'package:intl/intl.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:intl/number_symbols.dart';
 
-const defaultMinimumScreenWidth = 375;
-const defaultDevicePixelRatio = 2.0;
+///TODO: [WIP] User comma separated values instead of dot
+/// Helpful Links
+/// - https://stackoverflow.com/a/50142875/1199145
+///
+class NumberStyles {
+  NumberStyles() {
+    numberFormatSymbols['pt'] = NumberSymbols(
+      NAME: "pt",
+      DECIMAL_SEP: ',',
+    );
+  }
+
+  static String decimalFormat(decimal) {
+    return NumberFormat("pt").format(decimal);
+  }
+}

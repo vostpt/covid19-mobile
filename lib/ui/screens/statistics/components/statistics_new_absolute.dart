@@ -19,8 +19,9 @@ import 'package:flutter/material.dart';
 /// Statistics widget to show a squared new absolute values
 class StatisticsNewAbsolute extends StatelessWidget {
   final int value;
+  final String label;
 
-  StatisticsNewAbsolute({@required this.value});
+  StatisticsNewAbsolute({@required this.value, this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +30,14 @@ class StatisticsNewAbsolute extends StatelessWidget {
       children: <Widget>[
         SquaredNumberWidget(
           value: value,
-          style: TextStyles.h1(),
+          style: TextStyles.statsNumber(),
+        ),
+        SizedBox(
+          width: 3,
         ),
         Text(
-          S.of(context).newPlural,
-          style: TextStyles.h3Regular(),
+          (label == null) ? S.of(context).newPlural : label,
+          style: TextStyles.h3Number(),
         )
       ],
     );

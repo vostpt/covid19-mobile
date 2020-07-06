@@ -11,26 +11,12 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'dart:math' as math;
 import 'package:covid19mobile/model/covid_status_model.dart';
 import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/symptoms_naming.dart';
+import 'package:covid19mobile/ui/screens/statistics/model/age_group_by_sex.dart';
 import 'package:flutter/material.dart';
 import 'package:covid19mobile/extensions/date_extensions.dart';
-
-class AgeGroupBySex {
-  final int order;
-  final String ageGroup;
-  final double male;
-  final double female;
-
-  AgeGroupBySex({
-    @required this.order,
-    @required this.ageGroup,
-    @required this.male,
-    @required this.female,
-  });
-}
 
 class CovidStatusStatistics {
   /// Raw data, full database
@@ -78,6 +64,12 @@ class CovidStatusStatistics {
   /// Recovered per day
   Map<int, double> _recoveredPerDay;
 
+  /// Hospitalized total
+  int _hospitalized;
+
+  /// Hospitalized absolute growth from previous day
+  double _hospitalizedAbsolutGrowth;
+
   /// Hospitalized UCI total cases
   int _hospitalizedUCI;
 
@@ -88,10 +80,10 @@ class CovidStatusStatistics {
   int _hospitalizedUCIAbsolutGrowth;
 
   /// Hospitalized UCI per day
-  Map<int, double> _hospitalizedUCIPerDayAbsolut;
+  // Map<int, double> _hospitalizedUCIPerDayAbsolut;
 
   /// Hospitalized per day
-  Map<int, double> _hospitalizedPerDayAbsolut;
+  // Map<int, double> _hospitalizedPerDayAbsolut;
 
   /// Suspected total cases;
   int _suspected;
@@ -173,15 +165,20 @@ class CovidStatusStatistics {
     _recoveredAbsolutNew = _calculateAbsoluteNew(status.recovered);
     _recoveredPerDay = _calculateAbsolutePerDay(status.recovered);
 
+    // HOSPITALIZED
+
+    _hospitalized = status.hospitalized.values.last.toInt();
+    _hospitalizedAbsolutGrowth = _calculatePercentage(status.hospitalized);
+
     // HOSPITALIZED UCI
     _hospitalizedUCI = status.hospitalizedUCI.values.last.toInt();
     _hospitalizedUCIPercentageNew =
         _calculatePercentage(status.hospitalizedUCI);
     _hospitalizedUCIAbsolutGrowth =
         _calculateAbsoluteNew(status.hospitalizedUCI);
-    _hospitalizedUCIPerDayAbsolut =
-        _calculateAbsolutePerDay(status.hospitalizedUCI);
-    _hospitalizedPerDayAbsolut = _calculateAbsolutePerDay(status.hospitalized);
+    // _hospitalizedUCIPerDayAbsolut =
+    //     _calculateAbsolutePerDay(status.hospitalizedUCI);
+    // _hospitalizedPerDayAbsolut = _calculateAbsolutePerDay(status.hospitalized);
 
     // Suspected
     _suspected = status.suspects.values.last.toInt();
@@ -261,6 +258,12 @@ class CovidStatusStatistics {
   /// Recovered absolute growth from previous day
   int get recoveredAbsolute => _recoveredAbsolutNew;
 
+  /// Hospitalized total cases
+  int get hospitalized => _hospitalized;
+
+  /// Hospitalized percentaged compared from previous day
+  double get hospitalizedPercentage => _hospitalizedAbsolutGrowth;
+
   /// Hospitalized UCI total cases
   int get hospitalizedUCI => _hospitalizedUCI;
 
@@ -286,13 +289,21 @@ class CovidStatusStatistics {
   Map<int, double> get recoveredPerDay => _recoveredPerDay;
 
   Map<int, double> get hospitalizedCompared {
-    return _hospitalizedUCIPerDayAbsolut.map(
+    return status.hospitalizedUCI.map(
       (key, value) {
-        double y = value * 100 % _hospitalizedPerDayAbsolut[key];
+        double uci = value == null ? 0 : value;
+        double hospitalized =
+            status.hospitalized[key] == null || status.hospitalized[key] < 1
+                ? 1
+                : status.hospitalized[key];
+
+        double y = ((uci * 100) / hospitalized).round().toDouble();
 
         if (y.isInfinite || y.isNaN || y.isNegative) {
           y = 0;
         }
+
+        assert(y <= 100);
 
         return MapEntry(key, y);
       },
@@ -386,10 +397,10 @@ class CovidStatusStatistics {
     for (int group = 0; group < ageGroupDescription.length; group++) {
       container.add(
         AgeGroupBySex(
-          ageGroup: ageGroupDescription[group],
-          female: confirmedFemale[group].value,
-          male: confirmedMale[group].value,
-          order: group,
+          ageGroup: ageGroupDescription[group] ?? "",
+          female: confirmedFemale[group].value ?? 0,
+          male: confirmedMale[group].value ?? 0,
+          order: group ?? 0,
         ),
       );
     }

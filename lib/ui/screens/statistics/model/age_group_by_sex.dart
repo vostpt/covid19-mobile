@@ -1,4 +1,4 @@
-///     This program is free software: you can redistribute it and/or modify
+///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
 ///    (at your option) any later version.
@@ -11,10 +11,18 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-const identMargin = 10.0;
-const tabIndicatorMagin = 20.0;
-const tabIndicatorWeight = 4.0;
-const marginVidCloseBt = 10.0;
+import 'package:flutter/material.dart';
 
-const defaultMinimumScreenWidth = 375;
-const defaultDevicePixelRatio = 2.0;
+class AgeGroupBySex {
+  final int order;
+  final String ageGroup;
+  final double male;
+  final double female;
+
+  AgeGroupBySex({
+    @required this.order,
+    @required this.ageGroup,
+    @required this.male,
+    @required this.female,
+  });
+}

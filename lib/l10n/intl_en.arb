@@ -68,7 +68,7 @@
   "lastWeek": "Últimos 7 dias",
   "all": "Tudo",
   "statisticsNewCases": "Casos por dia",
-  "statisticsTotalConfirmed": "Total de Confirmados",
+  "statisticsTotalConfirmed": "Total",
   "statisticsConfirmedCasesTitle": "Casos Confirmados",
   "statisticsDeathCasesTitle": "Óbitos Confirmados",
   "linear": "Linear",
@@ -93,5 +93,5 @@
   "male": "Masculino",
   "female": "Feminino",
   "statisticsPageHospitalizedEvolution": "Evolução",
-  "statisticsDeathsTotalTitle": "Total de Óbitos"
+  "statisticsDeathsTotalTitle": "Total"
 }

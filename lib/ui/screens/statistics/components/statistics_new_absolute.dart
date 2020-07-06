@@ -13,7 +13,6 @@
 
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_squared_number.dart';
 import 'package:flutter/material.dart';
 

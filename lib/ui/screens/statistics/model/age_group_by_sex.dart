@@ -11,37 +11,18 @@
 ///    You should have received a copy of the GNU General Public License
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import 'package:covid19mobile/ui/widgets/border_decorator.dart';
 import 'package:flutter/material.dart';
 
-class StatisticsContainer extends StatelessWidget {
-  final Widget child;
-  final VoidCallback onTap;
+class AgeGroupBySex {
+  final int order;
+  final String ageGroup;
+  final double male;
+  final double female;
 
-  StatisticsContainer({
-    @required this.child,
-    this.onTap,
+  AgeGroupBySex({
+    @required this.order,
+    @required this.ageGroup,
+    @required this.male,
+    @required this.female,
   });
-
-  get margin => margin;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8.0),
-      child: Ink(
-        decoration: Covid19StatsBorderDecorator(),
-        child: InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 16,
-            ),
-            child: child,
-          ),
-        ),
-      ),
-    );
-  }
 }

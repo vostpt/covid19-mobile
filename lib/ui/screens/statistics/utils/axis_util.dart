@@ -13,6 +13,31 @@
 
 import 'dart:math' as math;
 
+///Possible intervals
+const List<double> intervals = [
+  1,
+  5,
+  10,
+  100,
+  500,
+  1000,
+  5000,
+  10000,
+  50000,
+  100000,
+  500000,
+  1000000
+];
+
+double findInterval(int value) {
+  for (int i = 0; i < intervals.length - 1; i++) {
+    if (intervals[i] < value && intervals[i + 1] > value) {
+      return intervals[i + 1];
+    }
+  }
+  return 1.0;
+}
+
 ///
 /// Determines the best divider value,
 ///   useful for the YY axis in the plots
@@ -34,8 +59,7 @@ double calculateDividerInterval(double maxValue) {
   /// Determine how many digits (non decimal) the max value has
   /// Substract 2 to have a better division
   ///
-  /// Example, if [maxValue] is 134402 we would get 100000
-  ///   with -2 we get 100000
+  /// Example, if [maxValue] is 134402 we would get 100000 with -1
   int power = maxValue.truncate().toString().length - 2;
   power = power < 1 ? 1 : power;
 
@@ -53,5 +77,5 @@ double calculateDividerInterval(double maxValue) {
   int interval = ((maxValue ~/ multipiler) * multipiler ~/ 10);
 
   // checking == 0 since it can give NaN and Infinite double (?)
-  return interval == 0 ? 1 : interval.toDouble();
+  return findInterval(interval == 0 ? 1 : interval);
 }

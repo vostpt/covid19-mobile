@@ -26,7 +26,8 @@ import 'package:covid19mobile/ui/screens/statistics/details/components/plot_comp
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_constants.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dropdown.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_label_gender.dart';
-import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types/plot_bars.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types/plot_lines.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/age_group_by_sex.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';

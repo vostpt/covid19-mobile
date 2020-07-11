@@ -13,36 +13,9 @@
 
 import 'dart:math' as math;
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
-import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_data.dart';
 import 'package:covid19mobile/ui/screens/statistics/utils/axis_util.dart';
 import 'package:flutter/material.dart';
-import 'package:covid19mobile/ui/assets/colors.dart';
-import 'package:fl_chart/fl_chart.dart';
-
-class PlotData {
-  /// Max value of the YY axis
-  final double maxValue;
-
-  /// Min value of the YY axis
-  final double minValue;
-
-  /// Min value of the XX axis
-  final int dayFirst;
-
-  /// Max value of the XX axis
-  final int dayLast;
-
-  /// Interval in which the plot should divide in the YY axis
-  final double interval;
-
-  PlotData(
-    this.maxValue,
-    this.minValue,
-    this.dayFirst,
-    this.dayLast,
-    this.interval,
-  );
-}
 
 class BasePlot {
   final Map<int, double> points;
@@ -108,70 +81,5 @@ class BasePlot {
     double interval = calculateDividerInterval(maxValue);
 
     return PlotData(maxValue, minValue, dayFirst, dayLast, interval);
-  }
-}
-
-/// Prepare data to show in lines
-class Covid19PlotLines extends BasePlot {
-  Covid19PlotLines({
-    @required Map<int, double> data,
-  }) : super(points: data) {
-    initializeData(
-      filter: filter,
-    );
-  }
-
-  List<LineChartBarData> lineBarsData() {
-    List<FlSpot> spots = filteredPlotData
-        .map(
-          (day, value) {
-            return MapEntry(
-              day,
-              FlSpot(
-                day.toDouble(),
-                value < 0 ? 0 : value, // Never show negative values,
-              ),
-            );
-          },
-        )
-        .values
-        .toList();
-
-    return <LineChartBarData>[
-      Covid19PlotLineChartBarData(spots, filter),
-    ];
-  }
-}
-
-/// Prepare data to show in Bar plot
-class Covid19PlotBars extends BasePlot {
-  Covid19PlotBars({@required data}) : super(points: data) {
-    initializeData(
-      filter: filter,
-    );
-  }
-
-  List<BarChartGroupData> barsGroupData() {
-    return filteredPlotData
-        .map(
-          (day, value) {
-            return MapEntry(
-              day,
-              BarChartGroupData(
-                x: day,
-                barRods: <BarChartRodData>[
-                  BarChartRodData(
-                    borderRadius: BorderRadius.all(Radius.circular(1)),
-                    width: 10.0,
-                    y: value < 0 ? 0 : value,
-                    color: Covid19Colors.lightGreen,
-                  )
-                ],
-              ),
-            );
-          },
-        )
-        .values
-        .toList();
   }
 }

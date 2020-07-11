@@ -49,24 +49,9 @@ void mainCommon(AppConfig appConfig) async {
   /// Init Firebase messaging service
   await MessagingService.init();
 
-  runZoned<Future<void>>(
-    () async {
-      /// Run main app
-      runApp(CovidApp());
-    },
-    //TODO Remove deprecation, read about RunZoneGuarded
-    onError: (e, s) {
-      //
-      /// Register and sends error
-      Crashlytics.instance.recordError(e, s);
-
-      /// for debug:
-      if (enableInDevMode) {
-        logger.e('[Error]: ${e.toString()}');
-        logger.e('[Stacktrace]: ${s.toString()}');
-      }
-    },
-  );
+  runZonedGuarded(() {
+    runApp(CovidApp());
+  }, Crashlytics.instance.recordError);
 }
 
 enum AppConfig {

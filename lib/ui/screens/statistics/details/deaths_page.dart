@@ -52,6 +52,7 @@ class _StatisticsDeathsState extends BaseState<StatisticsDeaths, AppBloc> {
                 child: StatisticsContainer(
                   child: TrendPlot(
                     plotData: currentStatistics.status.deaths,
+                    title: S.of(context).statisticsDeathCasesTitle,
                   ),
                 ),
               ),

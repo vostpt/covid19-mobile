@@ -21,6 +21,7 @@ import 'package:intl/number_symbols.dart';
 ///
 class NumberStyles {
   NumberStyles() {
+    // ignore: missing_required_param
     numberFormatSymbols['pt'] = NumberSymbols(
       NAME: "pt",
       DECIMAL_SEP: ',',

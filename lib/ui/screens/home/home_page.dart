@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(
                           height: 8,
                         ),
-                        CardHome(
+                         CardHome(
                           text: S
                               .of(context)
                               .measuresHomepageButton

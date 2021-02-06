@@ -160,7 +160,7 @@ class _HomeSliderState extends State<HomeSlider> {
       /// Get the current page
       /// If we are at the last page then animate to the
       /// first page and start over
-      var slideIndex = _controller.page.toInt();
+      var slideIndex = _controller.page?.toInt();
       if (slideIndex == sliderProvider.slider.length - 1) {
         _controller.animateToPage(0,
             duration: Duration(milliseconds: widget._sliderTransitionTimer),

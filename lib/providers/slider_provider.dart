@@ -26,7 +26,7 @@ class SliderProvider extends ChangeNotifier {
     _slider = values;
 
     /// Sort Slides by order
-    _slider.sort((s1, s2) => s1.order.toInt().compareTo(s2.order.toInt()));
+    _slider.sort((s1, s2) => s1.order?.toInt()?.compareTo(s2.order?.toInt()));
 
     notifyListeners();
   }

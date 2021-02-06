@@ -48,7 +48,7 @@ class CardHomeSliderIndicator extends AnimatedWidget {
     /// the [color] for the current index,
     /// rest will use the [Covid19Colors.grey]
     if ((controller.page == null && index == 0) ||
-        (controller.page != null && index == controller.page.toInt())) {
+        (controller.page != null && index == controller.page?.toInt())) {
       _color = color;
     }
 

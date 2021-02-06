@@ -76,10 +76,6 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     height: 16.0,
                   ),
-                  HomeSlider(),
-                  const SizedBox(
-                    height: 24.0,
-                  ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
@@ -98,49 +94,6 @@ class _HomePageState extends State<HomePage> {
                               .toUpperCase(),
                           callback: () =>
                               Navigator.of(context).pushNamed(routeMeasures),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        CardHome(
-                          text:
-                              S.of(context).screenRemoteWorkTitle.toUpperCase(),
-                          callback: () =>
-                              Navigator.of(context).pushNamed(routeRemoteWork),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        CardHome(
-                          text: S.of(context).initiativesPageTitle,
-                          callback: () =>
-                              Navigator.of(context).pushNamed(routeInitiatives),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        CardHome(
-                          text: S.of(context).faqPageTitle.toUpperCase(),
-                          callback: () =>
-                              Navigator.of(context).pushNamed(routeFaqs),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        CardHome(
-                          text: S.of(context).screenVideosTitle.toUpperCase(),
-                          callback: () =>
-                              Navigator.of(context).pushNamed(routeVideos),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        CardHome(
-                          text: S.of(context).contactsPageTitle,
-                          callback: () =>
-                              Navigator.of(context).pushNamed(routeContacts),
-                          backgroundColor: Covid19Colors.green,
-                          textColor: Covid19Colors.white,
                         ),
                         const SizedBox(
                           height: 8,

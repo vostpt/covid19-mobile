@@ -68,7 +68,7 @@ class Covid19PlotLeftSideTitles extends SideTitles {
             if (value.isNaN || value == 0) {
               return "";
             }
-            return "${value.toInt()}";
+            return "${value?.toInt()}";
           },
         );
 }
@@ -241,7 +241,7 @@ class Covid19DoubleBarChart extends BarChartData {
               showTitles: true,
               reservedSize: 20,
               getTitles: (value) {
-                return ageGroupDescription[value.toInt()];
+                return ageGroupDescription[value?.toInt()];
               },
             ),
           ),
@@ -306,7 +306,7 @@ class Covid19BarSymptomsPercentageChart extends BarChartData {
               showTitles: true,
               reservedSize: 15,
               getTitles: (value) {
-                return symptomsPercentages[value.toInt()]
+                return symptomsPercentages[value?.toInt()]
                     .symptom
                     .label(context);
               },

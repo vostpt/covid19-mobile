@@ -15,7 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_cupertino_localizations: 1.0.1
-  intl: 0.17.0-nullsafety.2
+  intl: 0.16.1 
 
   # Services
   dio: 3.0.9
@@ -48,12 +48,11 @@ dependencies:
 
 
   # Svg
-  flutter_svg: 0.20.0-nullsafety.3 
+  flutter_svg: 0.19.0
 
 dependency_overrides:
   firebase_core: 0.7.0
-  path_drawing: ^0.5.0-nullsafety.0
-
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

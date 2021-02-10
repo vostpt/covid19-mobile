@@ -34,11 +34,11 @@ dependencies:
 
 
   # Firebase
-  firebase_core: 0.7.0
+  firebase_core: ^0.5.0+1 
   # For the FlutterFire plugin for Google Analytics
-  firebase_analytics: 7.0.1
+  firebase_analytics: 6.1.0
   # Firebase Crashlytics  
-  firebase_crashlytics: 0.4.0+1
+  firebase_crashlytics: 0.2.2
   # Firebase Messaging 
   firebase_messaging: 7.0.3
 
@@ -49,9 +49,6 @@ dependencies:
 
   # Svg
   flutter_svg: 0.19.0
-
-dependency_overrides:
-  firebase_core: 0.7.0
   
 dev_dependencies:
   flutter_test:

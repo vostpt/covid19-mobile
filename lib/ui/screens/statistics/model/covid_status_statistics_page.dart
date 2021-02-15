@@ -105,7 +105,7 @@ class CovidStatusStatistics {
     _lastUpdatedData = formatDSSGDateTime.parse(status.datesData.values.last);
 
     // CONFIRMED
-    _confirmed = status.confirmed.values.last.toInt();
+    _confirmed = status.confirmed.values.last?.toInt() ?? 0;
     _confirmedPercentageNew = _calculatePercentage(status.confirmed);
     _confirmedAbsolutNew = _calculateAbsoluteNew(status.confirmed);
 
@@ -132,7 +132,7 @@ class CovidStatusStatistics {
     ]);
 
     // DEATHS
-    _death = status.deaths.values.last.toInt();
+    _death = status.deaths.values.last?.toInt() ?? 0;
     _deathPercentageNew = _calculatePercentage(status.deaths);
     _deathAbsolutNew = _calculateAbsoluteNew(status.deaths);
     _deathsPerDayAbsolut = _calculateAbsolutePerDay(status.deaths);
@@ -160,18 +160,18 @@ class CovidStatusStatistics {
     ]);
 
     // RECOVERED
-    _recovered = status.recovered.values.last.toInt();
+    _recovered = status.recovered.values.last?.toInt() ?? 0;
     _recoveredPercentageNew = _calculatePercentage(status.recovered);
     _recoveredAbsolutNew = _calculateAbsoluteNew(status.recovered);
     _recoveredPerDay = _calculateAbsolutePerDay(status.recovered);
 
     // HOSPITALIZED
 
-    _hospitalized = status.hospitalized.values.last.toInt();
+    _hospitalized = status.hospitalized.values.last?.toInt() ?? 0;
     _hospitalizedAbsolutGrowth = _calculatePercentage(status.hospitalized);
 
     // HOSPITALIZED UCI
-    _hospitalizedUCI = status.hospitalizedUCI.values.last.toInt();
+    _hospitalizedUCI = status.hospitalizedUCI.values.last?.toInt() ?? 0;
     _hospitalizedUCIPercentageNew =
         _calculatePercentage(status.hospitalizedUCI);
     _hospitalizedUCIAbsolutGrowth =
@@ -181,13 +181,13 @@ class CovidStatusStatistics {
     // _hospitalizedPerDayAbsolut = _calculateAbsolutePerDay(status.hospitalized);
 
     // Suspected
-    _suspected = status.suspects.values.last.toInt();
+    _suspected = status.suspects.values.last?.toInt() ?? 0;
 
     // Waiting results
-    _waitingResults = status.waitingResults.values.last.toInt();
+    _waitingResults = status.waitingResults.values.last?.toInt() ?? 0;
 
     // Under surveillance
-    _underSurveillance = status.surveillance.values.last.toInt();
+    _underSurveillance = status.surveillance.values.last?.toInt() ?? 0;
 
     // Latest Simptons division
     _symptomsPercentages = _calculateSymptonsPercentages([
@@ -345,8 +345,8 @@ class CovidStatusStatistics {
     var values = map.values;
 
     if (map != null && values.length > 1) {
-      int current = values.last.toInt();
-      int previous = values.elementAt(values.length - 2).toInt();
+      int current = values.last?.toInt();
+      int previous = values.elementAt(values.length - 2)?.toInt();
 
       int newCases = current - previous;
 
@@ -417,7 +417,7 @@ class CovidStatusStatistics {
         SymptomsPercentage(
           order: order,
           symptom: symptons[order].key,
-          percentage: ((symptons[order].value).value * 100).truncate(),
+          percentage: (((symptons[order].value).value ?? 0) * 100).truncate(),
         ),
       );
     }

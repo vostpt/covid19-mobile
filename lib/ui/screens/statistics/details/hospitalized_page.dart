@@ -166,7 +166,7 @@ class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
                       interval: intervalY,
                       getTitles: (value) {
                         return (value % intervalY == 0)
-                            ? "${value.toInt()}"
+                            ? "${value?.toInt()}"
                             : "";
                       }),
                 ),
@@ -307,7 +307,7 @@ class _FullHospitalizedUCIComparedState
                       showTitles: true,
                       interval: 25,
                       getTitles: (value) {
-                        return (value % 25 == 0) ? "${value.toInt()}%" : "";
+                        return (value % 25 == 0) ? "${value?.toInt()}%" : "";
                       }),
                 ),
                 lineBarsData: [

@@ -15,7 +15,9 @@ import 'dart:async';
 import 'dart:io';
 import 'package:covid19mobile/services/messaging_service.dart';
 import 'package:covid19mobile/ui/app.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 AppConfig appConfig;
@@ -26,11 +28,16 @@ AppConfig appConfig;
 void mainCommon(AppConfig appConfig) async {
   final WidgetsBinding binding = WidgetsFlutterBinding.ensureInitialized();
 
+  await Firebase.initializeApp();
+
   /// Override automaticSystemUiAdjustment auto UI color overlay adjustment
   /// on Android
   if (Platform.isAndroid) {
     binding.renderView.automaticSystemUiAdjustment = false;
   }
+
+  /// Sets appConfig globally
+  appConfig = AppConfig.dev;
 
   var enableInDevMode = true;
 
@@ -38,27 +45,24 @@ void mainCommon(AppConfig appConfig) async {
   /// This is only to be used for confirming that reports are being
   /// submitted as expected. It is not intended to be used for everyday
   /// development.
-  Crashlytics.instance.enableInDevMode = enableInDevMode;
+  FirebaseCrashlytics.instance
+      .setCrashlyticsCollectionEnabled(enableInDevMode || appConfig == AppConfig.prod);
 
   /// Pass all uncaught errors from the framework to Crashlytics.
-  FlutterError.onError = Crashlytics.instance.recordFlutterError;
-
-  /// Sets appConfig globally
-  appConfig = AppConfig.dev;
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
   /// Init Firebase messaging service
   await MessagingService.init();
 
-  runZoned<Future<void>>(
+  runZonedGuarded<Future<void>>(
     () async {
       /// Run main app
       runApp(CovidApp());
     },
-    //TODO Remove deprecation, read about RunZoneGuarded
-    onError: (e, s) {
+    (e, s) {
       //
       /// Register and sends error
-      Crashlytics.instance.recordError(e, s);
+      FirebaseCrashlytics.instance.recordError(e, s);
 
       /// for debug:
       if (enableInDevMode) {

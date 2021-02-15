@@ -19,6 +19,7 @@ import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/assets/images.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/home/components/card_home.dart';
+import 'package:covid19mobile/ui/screens/home/components/home_logo.dart';
 import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
 import 'package:flutter/material.dart';
 
@@ -44,60 +45,36 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          const SizedBox(
+            height: 16.0,
+          ),
+          SafeArea(
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: 24.0),
+              child: Center(
+                child: HomeLogo(),
+              ),
+            ),
+          ),
           Expanded(
-            child: SingleChildScrollView(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
+                  StatisticsButton(
+                    callback: () =>
+                        Navigator.of(context).pushNamed(routeStatistics),
+                  ),
                   const SizedBox(
-                    height: 16.0,
+                    height: 8,
+                  ),
+                  Spacer(
+                    flex: 1,
                   ),
                   SafeArea(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Image.asset(
-                        logoEstamosOn,
-                        width: MediaQuery.of(context).size.width * 0.4,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 8.0,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      S.of(context).homePageTitle.toUpperCase(),
-                      style: TextStyles.subtitle(
-                        color: Covid19Colors.red,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16.0,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
-                      children: <Widget>[
-                        StatisticsButton(
-                          callback: () =>
-                              Navigator.of(context).pushNamed(routeStatistics),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                         CardHome(
-                          text: S
-                              .of(context)
-                              .measuresHomepageButton
-                              .toUpperCase(),
-                          callback: () =>
-                              Navigator.of(context).pushNamed(routeMeasures),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
+                      children: [
                         CardBorderArrow(
                           text: S
                               .of(context)
@@ -117,16 +94,16 @@ class _HomePageState extends State<HomePage> {
                               Navigator.of(context).pushNamed(routeAbout),
                           textColor: Covid19Colors.darkGrey,
                           borderColor: Covid19Colors.lightGrey,
-                        ),
+                        )
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 8,
                   ),
                 ],
               ),
             ),
+          ),
+          const SizedBox(
+            height: 8,
           ),
         ],
       ),

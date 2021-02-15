@@ -27,11 +27,20 @@ mixin SvgIcons {
   );
 
   static Widget linkSvg(
-          {Color color = Covid19Colors.green, double size = 24.0}) =>
+          {Color color = Covid19Colors.green, double size = 18.0}) =>
       SvgPicture.asset(
         'assets/icon_action_link.svg',
         color: color,
         width: size,
         height: size,
+      );
+
+  static Widget logoVost(
+          {Color color = Covid19Colors.lightGrey, double width = 92.0, double height = 28.0}) =>
+      SvgPicture.asset(
+        'assets/logo_vost.svg',
+        color: color,
+        width: width,
+        height: height,
       );
 }

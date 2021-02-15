@@ -27,11 +27,7 @@ class ButtonBorderBackground extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.all(
-          Radius.circular(4.0),
-        ),
-        border: Border.all(
-          color: borderColor,
-          width: 2.0,
+          Radius.circular(16.0),
         ),
       ),
       padding: const EdgeInsets.all(16.0),

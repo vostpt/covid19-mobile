@@ -27,6 +27,8 @@ class Themes {
 
   static Color colorTextLight = Covid19Colors.grey;
 
+  static Color backgroundColor = Covid19Colors.paleGrey;
+
   static TextTheme defaultTextTheme = TextTheme(
       headline5: TextStyles.h1(),
       caption: TextStyles.paragraphSmall(),
@@ -71,7 +73,7 @@ class Themes {
     accentColor: colorPrimary,
     textTheme: defaultTextTheme,
     unselectedWidgetColor: colorPrimary,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: backgroundColor,
     tabBarTheme: TabBarTheme(
       labelColor: Covid19Colors.green,
       unselectedLabelColor: Covid19Colors.darkGrey,

@@ -46,7 +46,7 @@ class CardBorderArrow extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Text(
-                text.toUpperCase(),
+                text,
                 style: Theme.of(context)
                     .textTheme
                     .headline2

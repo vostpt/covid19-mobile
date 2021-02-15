@@ -84,13 +84,13 @@ class TextStyles {
       );
 
   static TextStyle h3({
-    Color color = Covid19Colors.darkGrey,
+    Color color = Covid19Colors.darkGrey, FontWeight fontWeight = FontWeight.w900
   }) =>
       GoogleFonts.lato(
         textStyle: TextStyle(
           color: color,
           fontSize: 16.0,
-          fontWeight: FontWeight.w900,
+          fontWeight: fontWeight,
         ),
       );
 

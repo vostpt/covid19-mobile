@@ -93,13 +93,13 @@ class _SplashPageState extends BaseState<SplashPage, SplashBloc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FlareActor(
-        "assets/estamos_on.flr",
-        alignment: Alignment.center,
-        animation: "in",
-        callback: (status) {
-          _animationComplete.add(true);
-        },
+      backgroundColor: Covid19Colors.blue,
+      body: Center(
+        child: Image.asset(
+          'assets/logo_splash.png',
+          width: 200.0,
+          height: 200.0,
+        ),
       ),
     );
   }

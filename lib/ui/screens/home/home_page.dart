@@ -13,6 +13,7 @@
 
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/resources/constants.dart';
+import 'package:covid19mobile/resources/icons_svg.dart';
 import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/screens/home/components/card_home_slider.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
@@ -23,7 +24,7 @@ import 'package:covid19mobile/ui/screens/home/components/home_logo.dart';
 import 'package:covid19mobile/ui/widgets/card_border_arrow.dart';
 import 'package:flutter/material.dart';
 
-import 'components/statistics_button.dart';
+import 'components/home_info_button.dart';
 
 /// Creates an HomePage extending [BasePage]
 /// that is a StatefulWidget
@@ -62,10 +63,28 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  StatisticsButton(
-                    callback: () =>
-                        Navigator.of(context).pushNamed(routeStatistics),
-                  ),
+                  HomeInfoButton(
+                          callback: () =>
+                              Navigator.of(context).pushNamed(routeStatistics),
+                          title: 'Estatísticas',
+                          subtitle: 'COVID-19',
+                          leftBackgroundColor: Covid19Colors.blueCovid,
+                          rightBackgroundColor: Covid19Colors.blueCovidLight,
+                          icon: SvgIcons.coronavirusSvg(),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        HomeInfoButton(
+                          callback: () =>
+                              // todo (GP) add callback
+                              print("Todo"),
+                          title: 'Avisos e Alertas',
+                          subtitle: 'Metereologia',
+                          leftBackgroundColor: Covid19Colors.blueMeteo,
+                          rightBackgroundColor: Covid19Colors.blueMeteoLight,
+                          icon: SvgIcons.meteoSvg(),
+                        ),
                   const SizedBox(
                     height: 8,
                   ),

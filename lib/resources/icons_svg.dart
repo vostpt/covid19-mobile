@@ -43,4 +43,22 @@ mixin SvgIcons {
         width: width,
         height: height,
       );
+      
+  static Widget meteoSvg(
+          {Color color = Covid19Colors.white, double size = 62.0}) =>
+      SvgPicture.asset(
+        'assets/icon_meteo.svg',
+        color: color,
+        width: size,
+        height: size,
+      );
+
+  static Widget coronavirusSvg(
+          {Color color = Covid19Colors.white, double size = 62.0}) =>
+      SvgPicture.asset(
+        'assets/icon_coronavirus.svg',
+        color: color,
+        width: size,
+        height: size,
+      );
 }

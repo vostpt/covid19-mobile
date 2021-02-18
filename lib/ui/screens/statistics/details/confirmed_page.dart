@@ -50,6 +50,7 @@ class _StatisticsConfirmedState
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
       appBar: AppBar(
+        backgroundColor: Covid19Colors.paleGrey,
         title: Text(
           S.of(context).statisticsConfirmedCasesTitle.toUpperCase(),
         ),

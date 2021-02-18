@@ -29,6 +29,8 @@ class Themes {
 
   static Color backgroundColor = Covid19Colors.paleGrey;
 
+  static Color vostBlue = Covid19Colors.vostBlue;
+
   static TextTheme defaultTextTheme = TextTheme(
       headline5: TextStyles.h1(),
       caption: TextStyles.paragraphSmall(),
@@ -54,7 +56,7 @@ class Themes {
         color: colorTextLight,
       ),
       button: TextStyles.button(
-        color: Colors.white,
+        color: vostBlue,
       ));
 
   static ThemeData defaultAppTheme = ThemeData(

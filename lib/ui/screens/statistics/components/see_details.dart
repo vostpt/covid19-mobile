@@ -23,7 +23,7 @@ class SeeDetailsWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 16.0),
       child: Text(
         S.of(context).seeDetails,
-        style: TextStyles.h3Regular(color: Covid19Colors.green),
+        style: TextStyles.h3Regular(color: Covid19Colors.vostBlue),
       ),
     );
   }

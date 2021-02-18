@@ -73,7 +73,7 @@ class StatisticsButton extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .button
-                      .copyWith(color: Covid19Colors.vostBlue),
+                      .copyWith(color: Colors.white),
                 ),
                 SvgIcons.linkSvg(
                   color: Colors.white,

@@ -44,6 +44,7 @@ class _StatisticsHospitalizedState extends State<StatisticsHospitalized> {
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
       appBar: AppBar(
+        backgroundColor: Covid19Colors.paleGrey,
         title: Text(
           S.of(context).statisticsHospitalizedCasesTitle.toUpperCase(),
         ),
@@ -173,12 +174,12 @@ class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
                 lineBarsData: [
                   HospitalizedLineChartBarData(
                     spots: widget.hospitalized.filterToFlSpot(filter),
-                    color: Covid19Colors.lightGreen,
+                    color: Covid19Colors.lightBlue,
                     filter: filter,
                   ),
                   HospitalizedLineChartBarData(
                     spots: widget.hospitalizedUCI.filterToFlSpot(filter),
-                    color: Covid19Colors.green,
+                    color: Covid19Colors.vostBlue,
                     filter: filter,
                   )
                 ],
@@ -189,9 +190,9 @@ class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
         ),
         PlotLabelGender(
           leftLabel: S.of(context).ucihospitalized,
-          leftColor: Covid19Colors.green,
+          leftColor: Covid19Colors.vostBlue,
           rightLabel: S.of(context).hospitalized,
-          rightColor: Covid19Colors.lightGreen,
+          rightColor: Covid19Colors.lightBlue,
         ),
       ],
     );
@@ -314,7 +315,7 @@ class _FullHospitalizedUCIComparedState
                   LineChartBarData(
                     isCurved: filter != StatisticsFilter.last7,
                     barWidth: 4,
-                    colors: [Covid19Colors.green],
+                    colors: [Covid19Colors.vostBlue],
                     spots: List.generate(
                       currentlyShowingSpots.length,
                       (x) => FlSpot(currentlyShowingSpots[x].x, 100),
@@ -326,7 +327,7 @@ class _FullHospitalizedUCIComparedState
                   LineChartBarData(
                     isCurved: filter != StatisticsFilter.last7,
                     barWidth: 2,
-                    colors: [Covid19Colors.lightGreen],
+                    colors: [Covid19Colors.lightBlue],
                     spots: currentlyShowingSpots,
                     dotData: FlDotData(
                       show: false,
@@ -339,9 +340,9 @@ class _FullHospitalizedUCIComparedState
         ),
         PlotLabelGender(
           leftLabel: S.of(context).hospitalized,
-          leftColor: Covid19Colors.green,
+          leftColor: Covid19Colors.vostBlue,
           rightLabel: S.of(context).ucihospitalized,
-          rightColor: Covid19Colors.lightGreen,
+          rightColor: Covid19Colors.lightBlue,
         ),
       ],
     );

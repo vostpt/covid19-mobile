@@ -27,7 +27,7 @@ class Brand extends StatelessWidget {
           ),
           TextSpan(
             text: 'PT',
-            style: TextStyles.h1(color: Covid19Colors.green),
+            style: TextStyles.h1(color: Covid19Colors.vostBlue),
           ),
         ],
       ),

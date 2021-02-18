@@ -19,7 +19,7 @@ import '../assets/colors.dart';
 
 class Separator extends StatelessWidget {
   Separator({Key key, Color color})
-      : _color = color ?? Covid19Colors.green,
+      : _color = color ?? Covid19Colors.vostBlue,
         super(key: key);
 
   final Color _color;
@@ -37,7 +37,7 @@ class Separator extends StatelessWidget {
 
 class ListSeparator extends StatelessWidget {
   ListSeparator({Key key, Color color})
-      : _color = color ?? Covid19Colors.green,
+      : _color = color ?? Covid19Colors.vostBlue,
         super(key: key);
 
   final Color _color;

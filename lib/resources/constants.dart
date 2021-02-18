@@ -51,7 +51,7 @@ const String dssgSourceCode = "https://github.com/dssg-pt/covid19pt-data";
 /// Gradient for the Plots
 const List<Color> gradientColors = [
   Covid19Colors.white,
-  Covid19Colors.green,
+  Covid19Colors.vostBlue,
 ];
 
 const List<String> ageGroupDescription = [

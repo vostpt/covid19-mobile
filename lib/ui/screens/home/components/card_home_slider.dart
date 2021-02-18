@@ -60,7 +60,7 @@ class _HomeSliderState extends State<HomeSlider> {
         child: CardHomeSliderIndicator(
           controller: _controller,
           itemCount: length,
-          color: Covid19Colors.green,
+          color: Covid19Colors.vostBlue,
           onPageSelected: (int page) {
             _controller.animateToPage(
               page,
@@ -248,13 +248,13 @@ class CardHomeSlide extends StatelessWidget {
                                     Text(
                                       secondaryLabel,
                                       style: TextStyles.subtitle(
-                                          color: Covid19Colors.green),
+                                          color: Covid19Colors.vostBlue),
                                     ),
                                     SizedBox(width: 7),
                                     Icon(
                                       Icons.arrow_forward,
                                       size: 16,
-                                      color: Covid19Colors.green,
+                                      color: Covid19Colors.vostBlue,
                                     )
                                   ],
                                 ),

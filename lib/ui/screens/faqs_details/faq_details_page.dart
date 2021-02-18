@@ -109,7 +109,7 @@ class _FaqsPageState extends State<FaqsDetails> {
                         .textTheme
                         .headline2
                         .copyWith(
-                            color: Covid19Colors.green, letterSpacing: 0.2),
+                            color: Covid19Colors.vostBlue, letterSpacing: 0.2),
                     children: <Widget>[
                       Html(
                         data: widget.faqs[index].answer.replaceAll("\\n", ""),

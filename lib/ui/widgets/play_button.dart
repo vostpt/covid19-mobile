@@ -34,7 +34,7 @@ class PlayButton extends StatelessWidget {
           right: 26.88525390625,
         ),
         decoration: BoxDecoration(
-          color: Covid19Colors.green,
+          color: Covid19Colors.vostBlue,
           borderRadius: BorderRadius.circular(1),
         ),
       ),

@@ -164,7 +164,7 @@ class Covid19PlotBars extends BasePlot {
                     borderRadius: BorderRadius.all(Radius.circular(1)),
                     width: 10.0,
                     y: value < 0 ? 0 : value,
-                    color: Covid19Colors.lightGreen,
+                    color: Covid19Colors.lightBlue,
                   )
                 ],
               ),

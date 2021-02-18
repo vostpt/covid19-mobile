@@ -16,10 +16,10 @@ import 'package:flutter/widgets.dart';
 /// Style colors for this project, to be use widely in the project
 class Covid19Colors {
   /// Light green
-  static const Color lightGreen = Color(0xffaddcdf);
+  static const Color lightBlue = Color(0xFFD3E1F8);
 
-  /// Green is the main color for the app
-  static const Color green = Color(0xff2B818C);
+  /// VOST blue color
+  static const Color vostBlue = Color(0xFF1E66DE);
 
   /// Green with 50% Transparency
   static const Color green50 = Color(0x80358f9a);
@@ -48,18 +48,6 @@ class Covid19Colors {
   /// Used less but equaly importante
   static const Color blue = Color(0xff1e66de);
 
-  /// Stats blue
-  static const Color statsBlue = Color(0xffd7e5fa);
-
-  /// Stats green
-  static const Color statsGreen = Color(0xffe5f5e3);
-
-  /// Stats red
-  static const Color statsRed = Color(0xfff9e8e6);
-
-  /// Stats yellow
-  static const Color statsYellow = Color(0xfffaecd8);
-
   /// Stats grey
   static const Color statsGrey = Color(0xffeceef0);
 
@@ -77,7 +65,4 @@ class Covid19Colors {
 
   /// For use in overalaus
   static const Color black50 = Color(0x80000000);
-
-  /// VOST Blue
-  static const Color vostBlue = Color(0xFF1E66DE);
 }

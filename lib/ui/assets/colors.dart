@@ -63,6 +63,18 @@ class Covid19Colors {
   /// For use in shadows
   static const Color black65 = Color(0xA6000000);
 
-  /// For use in overalaus
+  /// For use in overalas
+
+  /// For use in the Covid button gradient - LEFT
+  static const Color blueCovid = Color(0xfFF205DF8);
+
+  /// For use in the Covid button gradient - RIGHT
+  static const Color blueCovidLight = Color(0xFF079DBE);
+
+  /// For use in the Meteo button gradient - LEFT
+  static const Color blueMeteo = Color(0xfFF5B41FA);
+
+  /// For use in the Meteo button gradient - RIGHT
+  static const Color blueMeteoLight = Color(0xFF037FF1);
   static const Color black50 = Color(0x80000000);
 }

@@ -29,7 +29,7 @@ class CardFilesLink extends StatelessWidget {
         _launchUrl(link);
       },
       child: Card(
-        color: Covid19Colors.green,
+        color: Covid19Colors.vostBlue,
         child: Card(
           color: Colors.white,
           child: Padding(
@@ -40,13 +40,13 @@ class CardFilesLink extends StatelessWidget {
                 Expanded(
                   child: Text(
                     text,
-                    style: TextStyles.h2(color: Covid19Colors.green),
+                    style: TextStyles.h2(color: Covid19Colors.vostBlue),
                   ),
                 ),
                 Icon(
                   Icons.arrow_forward,
                   size: 30,
-                  color: Covid19Colors.green,
+                  color: Covid19Colors.vostBlue,
                 )
               ],
             ),

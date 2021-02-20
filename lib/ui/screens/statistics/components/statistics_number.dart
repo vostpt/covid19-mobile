@@ -31,11 +31,11 @@ class StatisticNumberWidget extends StatelessWidget {
         children: <Widget>[
           Text(
             label,
-            style: TextStyles.h3(color: Covid19Colors.green),
+            style: TextStyles.h3(color: Covid19Colors.vostBlue),
           ),
           Text(
             value.toString().toUpperCase(),
-            style: TextStyles.h1(color: Covid19Colors.green),
+            style: TextStyles.h1(color: Covid19Colors.vostBlue),
           ),
         ],
       ),

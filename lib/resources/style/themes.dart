@@ -19,7 +19,7 @@ import 'package:flutter/material.dart';
 
 /// List of ThemeData and TextTheme to be used in the app
 class Themes {
-  static Color colorPrimary = Covid19Colors.green;
+  static Color colorPrimary = Covid19Colors.vostBlue;
 
   static Color colorAccent = Covid19Colors.blue;
 
@@ -28,6 +28,8 @@ class Themes {
   static Color colorTextLight = Covid19Colors.grey;
 
   static Color backgroundColor = Covid19Colors.paleGrey;
+
+  static Color vostBlue = Covid19Colors.vostBlue;
 
   static TextTheme defaultTextTheme = TextTheme(
       headline5: TextStyles.h1(),
@@ -54,7 +56,7 @@ class Themes {
         color: colorTextLight,
       ),
       button: TextStyles.button(
-        color: Colors.white,
+        color: vostBlue,
       ));
 
   static ThemeData defaultAppTheme = ThemeData(
@@ -75,11 +77,11 @@ class Themes {
     unselectedWidgetColor: colorPrimary,
     scaffoldBackgroundColor: backgroundColor,
     tabBarTheme: TabBarTheme(
-      labelColor: Covid19Colors.green,
+      labelColor: Covid19Colors.vostBlue,
       unselectedLabelColor: Covid19Colors.darkGrey,
       indicator: UnderlineTabIndicator(
-        borderSide:
-            BorderSide(width: tabIndicatorWeight, color: Covid19Colors.green),
+        borderSide: BorderSide(
+            width: tabIndicatorWeight, color: Covid19Colors.vostBlue),
         insets: const EdgeInsets.fromLTRB(
             tabIndicatorMagin, 0, tabIndicatorMagin, 0),
       ),

@@ -102,8 +102,9 @@ class _MeasuresPageState extends BaseState<MeasuresPage, AppBloc> {
                 itemBuilder: (_, index) {
                   return CardBorderArrow(
                     text: measures[index].postTitle,
-                    color:
-                        index < 3 ? Covid19Colors.green : Covid19Colors.white,
+                    color: index < 3
+                        ? Covid19Colors.vostBlue
+                        : Covid19Colors.white,
                     callback: () {
                       if (measures != null) {
                         Navigator.of(context).pushNamed(

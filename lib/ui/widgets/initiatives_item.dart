@@ -40,7 +40,7 @@ class InitiativesItem extends StatelessWidget {
       titleTextStyle: Theme.of(context)
           .textTheme
           .headline2
-          .copyWith(color: Covid19Colors.green),
+          .copyWith(color: Covid19Colors.vostBlue),
       onExpansionChanged: onExpansionChanged,
       children: <Widget>[
         Html(

@@ -50,6 +50,7 @@ class _StatisticsConfirmedState
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
       appBar: AppBar(
+        backgroundColor: Covid19Colors.paleGrey,
         title: Text(
           S.of(context).statisticsConfirmedCasesTitle.toUpperCase(),
         ),
@@ -288,9 +289,9 @@ class ByAgeBarPlot extends StatelessWidget {
         ),
         PlotLabelGender(
           leftLabel: S.of(context).male,
-          leftColor: Covid19Colors.green,
+          leftColor: Covid19Colors.vostBlue,
           rightLabel: S.of(context).female,
-          rightColor: Covid19Colors.lightGreen,
+          rightColor: Covid19Colors.lightBlue,
         ),
       ],
     );

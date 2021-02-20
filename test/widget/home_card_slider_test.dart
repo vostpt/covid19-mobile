@@ -98,7 +98,7 @@ void main() {
 
       /// Check if Slide have indicator color: Covid19Colors.green
       var slider1MaterialWidget = getSliderWidget(tester, slider1);
-      expect(slider1MaterialWidget.color, Covid19Colors.green);
+      expect(slider1MaterialWidget.color, Covid19Colors.vostBlue);
 
       /// Check if other slides have indicator color: Covid19Colors.grey
       var slider2MaterialWidget = getSliderWidget(tester, slider2);
@@ -122,7 +122,7 @@ void main() {
 
       /// Now Slide 2 Line Indicator should be green
       slider2MaterialWidget = getSliderWidget(tester, slider2);
-      expect(slider2MaterialWidget.color, Covid19Colors.green);
+      expect(slider2MaterialWidget.color, Covid19Colors.vostBlue);
     });
   });
 }

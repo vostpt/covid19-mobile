@@ -18,16 +18,16 @@ import 'package:covid19mobile/ui/assets/colors.dart';
 mixin SvgIcons {
   static Widget phoneSvg = SvgPicture.asset(
     'assets/icon_action_phone.svg',
-    color: Covid19Colors.green,
+    color: Covid19Colors.vostBlue,
   );
 
   static Widget emailSvg = SvgPicture.asset(
     'assets/icon_action_email.svg',
-    color: Covid19Colors.green,
+    color: Covid19Colors.vostBlue,
   );
 
   static Widget linkSvg(
-          {Color color = Covid19Colors.green, double size = 18.0}) =>
+          {Color color = Covid19Colors.vostBlue, double size = 18.0}) =>
       SvgPicture.asset(
         'assets/icon_action_link.svg',
         color: color,
@@ -36,7 +36,9 @@ mixin SvgIcons {
       );
 
   static Widget logoVost(
-          {Color color = Covid19Colors.lightGrey, double width = 92.0, double height = 28.0}) =>
+          {Color color = Covid19Colors.lightGrey,
+          double width = 92.0,
+          double height = 28.0}) =>
       SvgPicture.asset(
         'assets/logo_vost.svg',
         color: color,

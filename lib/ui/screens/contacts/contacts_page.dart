@@ -44,7 +44,7 @@ class _ContactsPageState extends State<ContactsPage> {
               .headline3
               .copyWith(color: Covid19Colors.darkGreyLight),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey,
         elevation: 0.0,
       ),
       body: Container(

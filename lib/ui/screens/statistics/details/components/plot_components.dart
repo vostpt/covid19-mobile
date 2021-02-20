@@ -133,7 +133,7 @@ class Covid19PlotLineChartBarData extends LineChartBarData {
       : super(
           spots: spots,
           isCurved: filter != StatisticsFilter.last7,
-          colors: <Color>[Covid19Colors.green],
+          colors: <Color>[Covid19Colors.vostBlue],
           isStrokeCapRound: false,
           dotData: FlDotData(
             show: false,
@@ -264,13 +264,13 @@ class Covid19DoubleBarChart extends BarChartData {
               width: 15,
               borderRadius: BorderRadius.circular(1),
               y: ageGroup.male,
-              color: Covid19Colors.green,
+              color: Covid19Colors.vostBlue,
             ),
             BarChartRodData(
               width: 15,
               borderRadius: BorderRadius.circular(1),
               y: ageGroup.female,
-              color: Covid19Colors.lightGreen,
+              color: Covid19Colors.lightBlue,
             ),
           ],
         ),
@@ -328,7 +328,7 @@ class Covid19BarSymptomsPercentageChart extends BarChartData {
           BarChartRodData(
             borderRadius: BorderRadius.circular(1),
             y: symptom.percentage.toDouble(),
-            color: Covid19Colors.green,
+            color: Covid19Colors.vostBlue,
             width: 30,
           ),
         ]),

@@ -35,6 +35,7 @@ class _StatisticsRecoveredState extends State<StatisticsRecovered> {
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
       appBar: AppBar(
+        backgroundColor: Covid19Colors.paleGrey,
         title: Text(
           S.of(context).statisticsRecoveredCasesTitle.toUpperCase(),
         ),

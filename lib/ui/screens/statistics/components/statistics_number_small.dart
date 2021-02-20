@@ -33,7 +33,7 @@ class StatisticsNumberSmall extends StatelessWidget {
               padding: const EdgeInsets.all(4),
               child: Text(
                 value.toString().toUpperCase(),
-                style: TextStyles.h2Number(color: Covid19Colors.green),
+                style: TextStyles.h2Number(color: Covid19Colors.vostBlue),
               ),
             ),
           ),

@@ -1,3 +1,5 @@
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dual_trend_bar_plot.dart';
+
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or

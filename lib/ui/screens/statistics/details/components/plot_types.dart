@@ -45,14 +45,14 @@ class PlotData {
 }
 
 class BasePlot {
-  final Map<int, double> points;
+  Map<int, double> points;
 
   PlotData linearData;
 
   /// Data is Filtered by what days
-  StatisticsFilter filter = StatisticsFilter.last30;
+  StatisticsFilter filter;
 
-  BasePlot({@required this.points, filter = StatisticsFilter.last30});
+  BasePlot({@required this.points, @required this.filter});
 
   /// Returns the current filtered and selected plot data
   PlotData get currentPlotData => linearData;
@@ -86,9 +86,7 @@ class BasePlot {
   Map<int, double> days() => points;
 
   /// Returns the data already formatted and filtered
-  void initializeData({
-    StatisticsFilter filter,
-  }) {
+  void initializeData() {
     linearData = calculateValues();
   }
 
@@ -96,18 +94,34 @@ class BasePlot {
     int dayFirst = points.entries.first.key;
     int dayLast = points.entries.last.key;
 
+    int day = dayLast - (filter?.value() ?? 0);
+
+    if (filter != StatisticsFilter.all && day > 0) {
+      dayFirst = points.entries.elementAt(day).key;
+    }
+
     double maxValue = double.minPositive;
     double minValue = double.maxFinite;
 
     // Determine wht are the min and max values of YY axis
+
     points.forEach((day, value) {
-      maxValue = math.max(value, maxValue);
-      minValue = math.min(value, minValue);
+      if (day >= dayFirst) {
+        minValue = math.min(value, minValue);
+        maxValue = math.max(value, maxValue);
+      }
     });
 
-    double interval = calculateDividerInterval(maxValue);
+    double interval = calculateDividerInterval(minValue, maxValue);
 
-    return PlotData(maxValue, minValue, dayFirst, dayLast, interval);
+    // round minValue to the closest to the interval
+    final roundDownMinValue = roundToNearestIntervalValue(interval, minValue);
+
+    double up = maxValue + interval;
+    final roundDownMaxValue = roundToNearestIntervalValue(interval, up);
+
+    return PlotData(
+        roundDownMaxValue, roundDownMinValue, dayFirst, dayLast, interval);
   }
 }
 
@@ -115,10 +129,9 @@ class BasePlot {
 class Covid19PlotLines extends BasePlot {
   Covid19PlotLines({
     @required Map<int, double> data,
-  }) : super(points: data) {
-    initializeData(
-      filter: filter,
-    );
+    StatisticsFilter filter,
+  }) : super(points: data, filter: filter) {
+    initializeData();
   }
 
   List<LineChartBarData> lineBarsData() {
@@ -145,10 +158,12 @@ class Covid19PlotLines extends BasePlot {
 
 /// Prepare data to show in Bar plot
 class Covid19PlotBars extends BasePlot {
-  Covid19PlotBars({@required data}) : super(points: data) {
-    initializeData(
-      filter: filter,
-    );
+  Covid19PlotBars({@required data, @required StatisticsFilter filter})
+      : super(
+          points: data,
+          filter: filter,
+        ) {
+    initializeData();
   }
 
   List<BarChartGroupData> barsGroupData() {

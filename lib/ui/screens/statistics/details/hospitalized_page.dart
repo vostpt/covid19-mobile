@@ -105,14 +105,16 @@ class EvolutionTrendPlot extends StatefulWidget {
 
 class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
   StatisticsFilter filter;
+  double minY = 0;
   double maxY = 1;
   double intervalY = 1;
 
   @override
   void initState() {
     filter = StatisticsFilter.last30;
+    minY = calculateMinValue(widget.hospitalized);
     maxY = calculateMaxValue(widget.hospitalized) * 1.2;
-    intervalY = calculateDividerInterval(maxY);
+    intervalY = calculateDividerInterval(minY, maxY);
     super.initState();
   }
 
@@ -196,6 +198,22 @@ class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
         ),
       ],
     );
+  }
+
+  static double calculateMinValue(Map<int, double> map) {
+    double min = 0;
+
+    if (map == null) {
+      return min;
+    }
+
+    map.forEach((_, value) {
+      if (value != null) {
+        min = math.min(min, value);
+      }
+    });
+
+    return min;
   }
 
   static double calculateMaxValue(Map<int, double> map) {

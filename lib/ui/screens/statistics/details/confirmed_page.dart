@@ -25,6 +25,7 @@ import 'package:covid19mobile/ui/screens/statistics/components/symptoms_naming.d
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_constants.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dropdown.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dual_trend_bar_plot.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_label_gender.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
@@ -64,8 +65,9 @@ class _StatisticsConfirmedState
                 padding: const EdgeInsets.all(8.0),
                 child: StatisticsContainer(
                   child: TrendPlot(
-                      plotData: currentStatistics.status.confirmed,
-                      title: S.of(context).statisticsTotalConfirmed),
+                    plotData: currentStatistics.status.confirmed,
+                    title: S.of(context).statisticsTotalConfirmed,
+                  ),
                 ),
               ),
               Padding(
@@ -144,15 +146,31 @@ class TrendPlot extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _TrendPlotState createState() => _TrendPlotState(plotData);
+  _TrendPlotState createState() => _TrendPlotState();
 }
 
 class _TrendPlotState extends State<TrendPlot> {
-  Covid19PlotLines _plot;
+  Covid19PlotLines _plotAll;
+  Covid19PlotLines _plot30Days;
+  Covid19PlotLines _plot7Days;
 
-  _TrendPlotState(plotData) {
-    _plot = Covid19PlotLines(
-      data: plotData,
+  StatisticsFilter currentFilter;
+
+  @override
+  void initState() {
+    super.initState();
+    currentFilter = StatisticsFilter.last30;
+    _plotAll = Covid19PlotLines(
+      data: widget.plotData,
+      filter: StatisticsFilter.all,
+    );
+    _plot30Days = Covid19PlotLines(
+      data: widget.plotData,
+      filter: StatisticsFilter.last30,
+    );
+    _plot7Days = Covid19PlotLines(
+      data: widget.plotData,
+      filter: StatisticsFilter.last7,
     );
   }
 
@@ -165,7 +183,7 @@ class _TrendPlotState extends State<TrendPlot> {
           dropdown:
               Covid19PlotDropdown(onDropdownChanged: (StatisticsFilter value) {
             setState(() {
-              _plot.filter = value;
+              currentFilter = value;
             });
           }),
         ),
@@ -179,75 +197,39 @@ class _TrendPlotState extends State<TrendPlot> {
             color: Covid19Colors.lightGrey,
           ),
         ),
-        SafeArea(
-          child: Container(
-            margin: const EdgeInsetsDirectional.only(top: 37.0),
-            width: MediaQuery.of(context).size.width,
-            child: LineChart(
-              Covid19LineChartData(plotData: _plot),
-              swapAnimationDuration: plotAnimationDuration,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class DualTrendBarPlot extends StatefulWidget {
-  final Map<int, double> plotData;
-  final String title;
-
-  DualTrendBarPlot({Key key, @required this.plotData, @required this.title})
-      : super(key: key);
-
-  @override
-  _DualTrendBarPlotState createState() => _DualTrendBarPlotState();
-}
-
-class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
-  Covid19PlotBars _plot;
-
-  _DualTrendBarPlotState();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_plot == null) {
-      _plot = Covid19PlotBars(data: widget.plotData);
-    }
-
-    return Column(
-      children: <Widget>[
-        PlotHeader(
-          header: widget.title,
-          dropdown:
-              Covid19PlotDropdown(onDropdownChanged: (StatisticsFilter value) {
-            setState(() {
-              _plot.filter = value;
-            });
-          }),
-        ),
-        Divider(
-          thickness: 3,
-          color: Covid19Colors.lightGrey,
-        ),
-        SafeArea(
-          child: Container(
-            margin: const EdgeInsets.only(top: 37.0),
-            width: MediaQuery.of(context).size.width,
-            child: BarChart(
-              Covid19BarChartData(
-                plotData: _plot,
+        if (currentFilter == StatisticsFilter.all)
+          SafeArea(
+            child: Container(
+              margin: const EdgeInsetsDirectional.only(top: 37.0),
+              width: MediaQuery.of(context).size.width,
+              child: LineChart(
+                Covid19LineChartData(plotData: _plotAll),
+                swapAnimationDuration: plotAnimationDuration,
               ),
-              swapAnimationDuration: plotAnimationDuration,
             ),
           ),
-        ),
+        if (currentFilter == StatisticsFilter.last30)
+          SafeArea(
+            child: Container(
+              margin: const EdgeInsetsDirectional.only(top: 37.0),
+              width: MediaQuery.of(context).size.width,
+              child: LineChart(
+                Covid19LineChartData(plotData: _plot30Days),
+                swapAnimationDuration: plotAnimationDuration,
+              ),
+            ),
+          ),
+        if (currentFilter == StatisticsFilter.last7)
+          SafeArea(
+            child: Container(
+              margin: const EdgeInsetsDirectional.only(top: 37.0),
+              width: MediaQuery.of(context).size.width,
+              child: LineChart(
+                Covid19LineChartData(plotData: _plot7Days),
+                swapAnimationDuration: plotAnimationDuration,
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -265,6 +247,7 @@ class ByAgeBarPlot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double interval = calculateDividerInterval(
+      calculateMinValue(plotDataCategory),
       calculateMaxValue(plotDataCategory),
     );
     return Column(
@@ -295,6 +278,17 @@ class ByAgeBarPlot extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  static double calculateMinValue(List<AgeGroupBySex> groups) {
+    double min = 0;
+
+    for (var group in groups) {
+      min = math.min(min, group.female);
+      min = math.min(min, group.male);
+    }
+
+    return min;
   }
 
   static double calculateMaxValue(List<AgeGroupBySex> groups) {

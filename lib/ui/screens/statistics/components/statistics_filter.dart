@@ -35,13 +35,14 @@ extension StatisticsFilterExtension on StatisticsFilter {
   double intervalValue() => const {
         StatisticsFilter.last7: 1.0,
         StatisticsFilter.last30: 7.0,
-        StatisticsFilter.all: 7.0,
+        StatisticsFilter.all: 30.0,
       }[this];
 
   /// Returns a [StatisticsFilter] given a string label
   static StatisticsFilter fromLabel(BuildContext context, String str) {
     return StatisticsFilter.values.firstWhere(
-        (test) => test.label(context) == str,
-        orElse: () => StatisticsFilter.all);
+      (test) => test.label(context) == str,
+      orElse: () => StatisticsFilter.all,
+    );
   }
 }

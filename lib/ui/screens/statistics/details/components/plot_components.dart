@@ -77,6 +77,7 @@ class Covid19PlotBottomSideTitles extends SideTitles {
   Covid19PlotBottomSideTitles(
       {@required Map<int, double> days, @required StatisticsFilter filter})
       : super(
+          rotateAngle: filter == StatisticsFilter.all ? 45 : null,
           showTitles: true,
           textStyle: TextStyles.statisticsPlotLabel(),
           margin: 14,
@@ -156,8 +157,8 @@ class Covid19LineChartData extends LineChartData {
   Covid19LineChartData({
     @required Covid19PlotLines plotData,
   }) : super(
-          minY: 0,
-          maxY: plotData.currentPlotData.maxValue * 1.20,
+          minY: plotData.currentPlotData.minValue,
+          maxY: plotData.currentPlotData.maxValue,
           lineBarsData: plotData.lineBarsData(),
           lineTouchData: Covid19LineTouchData(),
           gridData: FlGridData(
@@ -191,7 +192,6 @@ class Covid19BarChartData extends BarChartData {
           barGroups: plotData.barsGroupData(),
           barTouchData: Covid19BarTouchData(),
           gridData: FlGridData(
-              horizontalInterval: 42,
               verticalInterval: plotData.filter.intervalValue(),
               drawHorizontalLine: true,
               drawVerticalLine: true,

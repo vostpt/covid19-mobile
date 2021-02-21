@@ -29,6 +29,7 @@ import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dual
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_label_gender.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/map_portugal.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/age_group_by_sex.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/utils/axis_util.dart';
@@ -47,7 +48,7 @@ class _StatisticsConfirmedState
   Widget build(BuildContext context) {
     CovidStatusStatistics currentStatistics =
         Provider.of<CovidStatusProvider>(context).statistics;
-
+    var status = Provider.of<CovidStatusProvider>(context).status;
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
       appBar: AppBar(
@@ -78,6 +79,15 @@ class _StatisticsConfirmedState
                     title: S.of(context).statisticsNewCases,
                   ),
                 ),
+              ),
+              PortugalMapStatistics(
+                acores: getTotalConfirmed(status.confirmedAcores),
+                madeira: getTotalConfirmed(status.confirmedMadeira),
+                north: getTotalConfirmed(status.confirmedARSNorth),
+                center: getTotalConfirmed(status.confirmedARSCenter),
+                lvt: getTotalConfirmed(status.confirmedARSLVT),
+                alentejo: getTotalConfirmed(status.confirmedAlentejo),
+                algarve: getTotalConfirmed(status.confirmedARSAlgarve),
               ),
               if (checkHasAgeGroupData(
                   currentStatistics.confirmedRecentByAgeGroup))

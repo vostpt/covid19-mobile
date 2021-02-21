@@ -42,6 +42,8 @@ class Covid19Colors {
   /// Mostly used in backgrounds
   static const Color grey = Color(0xffbcbcbc);
 
+  static const Color textGrey = Color(0xff5C666C);
+
   /// White color, plane and FFF
   static const Color white = Color(0xffffffff);
 

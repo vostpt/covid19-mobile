@@ -45,7 +45,7 @@ mixin SvgIcons {
         width: width,
         height: height,
       );
-      
+
   static Widget meteoSvg(
           {Color color = Covid19Colors.white, double size = 62.0}) =>
       SvgPicture.asset(
@@ -62,5 +62,19 @@ mixin SvgIcons {
         color: color,
         width: size,
         height: size,
+      );
+
+  static Widget portugalContinental() => SvgPicture.asset(
+        'assets/portugal_continental.svg',
+      );
+
+  static Widget portugalAcores() => SvgPicture.asset(
+        'assets/portugal_acores.svg',
+        height: 60,
+      );
+
+  static Widget portugalMadeira() => SvgPicture.asset(
+        'assets/portugal_madeira.svg',
+        height: 60,
       );
 }

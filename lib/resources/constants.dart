@@ -37,6 +37,7 @@ const String routeStatisticsConfirmed = "statistics/confirmed";
 const String routeStatisticsDeaths = "statistics/deaths";
 const String routeStatisticsRecovered = "statistics/recovered";
 const String routeStatisticsHospitalized = "statistics/hospitalized";
+const String routeMeteorologicalWarnings = "warnings/meteorological";
 
 /// Default PT Locale
 const defaultLocal = "pt_PT";

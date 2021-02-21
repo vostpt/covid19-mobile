@@ -72,9 +72,8 @@ class _HomePageState extends State<HomePage> {
                     height: 8,
                   ),
                   HomeInfoButton(
-                    callback: () =>
-                        // todo (GP) add callback
-                        print("Todo"),
+                    callback: () => Navigator.of(context)
+                        .pushNamed(routeMeteorologicalWarnings),
                     title: 'Avisos e Alertas',
                     subtitle: 'Metereologia',
                     leftBackgroundColor: Covid19Colors.blueMeteo,

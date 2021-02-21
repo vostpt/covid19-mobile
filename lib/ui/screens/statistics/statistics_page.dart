@@ -131,18 +131,6 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                     ),
 
                     /// Big Numbers
-                    ///
-                    /// Suspected
-                    StatisticsNumberBig(
-                      label: S.of(context).statisticsPageSuspects,
-                      value: currentStatistics.suspected,
-                    ),
-
-                    /// Waiting results
-                    StatisticsNumberBig(
-                      label: S.of(context).statisticsPageAwaitingResults,
-                      value: currentStatistics.waitingResults,
-                    ),
 
                     /// Under surveillance
                     StatisticsNumberBig(

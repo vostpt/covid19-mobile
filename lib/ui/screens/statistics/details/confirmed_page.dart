@@ -91,17 +91,6 @@ class _StatisticsConfirmedState
                     ),
                   ),
                 ),
-
-              /// TODO(FB) this plot doesn't have any data.
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: StatisticsContainer(
-              //     child: SymptomsBarPlot(
-              //       symptomsPercentages: currentStatistics.symptomsByPercentage,
-              //     ),
-              //   ),
-              // )
-              //,
               DataInformationFooter(
                 currentStatistics: currentStatistics,
               )

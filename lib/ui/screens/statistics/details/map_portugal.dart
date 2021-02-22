@@ -1,4 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/resources/icons_svg.dart';
+import 'package:covid19mobile/resources/style/text_styles.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_container.dart';
 import 'package:covid19mobile/ui/widgets/border_decorator.dart';
@@ -27,77 +30,98 @@ class PortugalMapStatistics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StatisticsContainer(
-      child: Row(
+      header: Column(
         children: [
-          Expanded(
-            flex: 5,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _PortugalIslandsStatistics(
-                  island: SvgIcons.portugalAcores(),
-                  name: "Açores",
-                  number: acores,
-                ),
-                _PortugalIslandsStatistics(
-                  island: SvgIcons.portugalMadeira(),
-                  name: "Madeira",
-                  number: madeira,
-                ),
-              ],
+          Padding(
+            padding: EdgeInsets.only(),
+            child: Text(
+              'Casos por região',
+              style: TextStyles.h2(),
             ),
           ),
-          SizedBox(width: 38),
-          Expanded(
-            flex: 6,
-            child: Stack(
-              children: <Widget>[
-                SvgIcons.portugalContinental(),
-                // Norte
-                Positioned(
-                  top: 22.0,
-                  left: 35.0,
-                  child: _StatisticsLabel(
-                    number: north,
-                  ),
-                ),
-                // Centro Norte
-                Positioned(
-                  top: 68.0,
-                  left: 32.0,
-                  child: _StatisticsLabel(
-                    number: center,
-                  ),
-                ),
-                // Lisboa
-                Positioned(
-                  top: 118.0,
-                  left: 6.0,
-                  child: _StatisticsLabel(
-                    number: lvt,
-                  ),
-                ),
-                // Alentejo
-                Positioned(
-                  top: 152.0,
-                  left: 32.0,
-                  child: _StatisticsLabel(
-                    number: alentejo,
-                  ),
-                ),
-                // Algarve
-                Positioned(
-                  top: 193.0,
-                  left: 24.0,
-                  child: _StatisticsLabel(
-                    number: algarve,
-                  ),
-                ),
-              ],
+          Container(
+            child: Divider(
+              thickness: dividerTickness,
+              color: Covid19Colors.lightGrey,
             ),
-          )
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                flex: 5,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _PortugalIslandsStatistics(
+                      island: SvgIcons.portugalAcores(),
+                      name: "Açores",
+                      number: acores,
+                    ),
+                    _PortugalIslandsStatistics(
+                      island: SvgIcons.portugalMadeira(),
+                      name: "Madeira",
+                      number: madeira,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 38),
+              Expanded(
+                flex: 6,
+                child: Stack(
+                  children: <Widget>[
+                    SvgIcons.portugalContinental(),
+                    // Norte
+                    Positioned(
+                      top: 22.0,
+                      left: 35.0,
+                      child: _StatisticsLabel(
+                        number: north,
+                      ),
+                    ),
+                    // Centro Norte
+                    Positioned(
+                      top: 68.0,
+                      left: 32.0,
+                      child: _StatisticsLabel(
+                        number: center,
+                      ),
+                    ),
+                    // Lisboa
+                    Positioned(
+                      top: 118.0,
+                      left: 6.0,
+                      child: _StatisticsLabel(
+                        number: lvt,
+                      ),
+                    ),
+                    // Alentejo
+                    Positioned(
+                      top: 152.0,
+                      left: 32.0,
+                      child: _StatisticsLabel(
+                        number: alentejo,
+                      ),
+                    ),
+                    // Algarve
+                    Positioned(
+                      top: 193.0,
+                      left: 24.0,
+                      child: _StatisticsLabel(
+                        number: algarve,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
@@ -129,8 +153,13 @@ class _PortugalIslandsStatistics extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Text(
+                child: AutoSizeText(
                   name,
+                  stepGranularity: 1.0,
+                  maxLines: 1,
+                  maxFontSize: Theme.of(context).textTheme.bodyText2.fontSize,
+                  minFontSize:
+                      Theme.of(context).textTheme.bodyText2.fontSize - 4.0,
                   style: Theme.of(context)
                       .textTheme
                       .bodyText2

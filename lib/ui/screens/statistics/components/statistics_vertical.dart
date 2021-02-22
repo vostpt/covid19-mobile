@@ -1,3 +1,4 @@
+import 'package:covid19mobile/resources/constants.dart';
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -64,7 +65,7 @@ class StatisticVerticalWidget extends StatelessWidget {
           const SizedBox(
             width: double.infinity,
             child: Divider(
-              thickness: 1,
+              thickness: dividerTickness,
               color: Covid19Colors.statsGrey,
             ),
           ),

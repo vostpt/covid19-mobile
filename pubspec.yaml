@@ -45,6 +45,7 @@ dependencies:
   # UI
   google_fonts: 0.3.10
   flare_flutter: 2.0.1
+  auto_size_text: ^2.1.0
 
 
   # Svg

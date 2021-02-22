@@ -35,7 +35,7 @@ class CovidStatusLastUpdatedModel {
   @JsonKey(name: 'confirmados_arslvt')
   final double confirmedARSLVT;
 
-  @JsonKey(name: 'confirmados_alentejo')
+  @JsonKey(name: 'confirmados_arsalentejo')
   final double confirmedAlentejo;
 
   @JsonKey(name: 'confirmados_arsalgarve')
@@ -170,7 +170,7 @@ class CovidStatusLastUpdatedModel {
   @JsonKey(name: 'obitos_arslvt')
   final double deathsARSLVT;
 
-  @JsonKey(name: 'obitos_alentejo')
+  @JsonKey(name: 'obitos_arsalentejo')
   final double deathsARSAlentejo;
 
   @JsonKey(name: 'obitos_arsalgarve')
@@ -194,7 +194,7 @@ class CovidStatusLastUpdatedModel {
   @JsonKey(name: 'recuperados_arslvt')
   final double recoveredARSLVT;
 
-  @JsonKey(name: 'recuperados_alentejo')
+  @JsonKey(name: 'recuperados_arsalentejo')
   final double recoveredARSAlentejo;
 
   @JsonKey(name: 'recuperados_arsalgarve')

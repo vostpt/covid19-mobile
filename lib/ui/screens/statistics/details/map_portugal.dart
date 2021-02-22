@@ -15,9 +15,11 @@ class PortugalMapStatistics extends StatelessWidget {
   final int lvt;
   final int alentejo;
   final int algarve;
+  final String title;
 
   const PortugalMapStatistics({
     Key key,
+    @required this.title,
     this.acores,
     this.madeira,
     this.north,
@@ -31,11 +33,12 @@ class PortugalMapStatistics extends StatelessWidget {
   Widget build(BuildContext context) {
     return StatisticsContainer(
       header: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(),
+            padding: EdgeInsets.all(12.0),
             child: Text(
-              'Casos por região',
+              title,
               style: TextStyles.h2(),
             ),
           ),
@@ -226,9 +229,26 @@ class _StatisticsLabel extends StatelessWidget {
   }
 }
 
-int getTotalConfirmed(Map<int, double> map) {
+int getTotalNumber(Map<int, double> map) {
   if (map == null) {
     return 0;
   }
-  return map.values.last.toInt();
+  return map.values.last?.toInt() ?? 0;
+}
+
+int getLastResult(Map<int, double> map) {
+  if (map == null) {
+    return 0;
+  }
+
+  if (map.values.length == 1) {
+    return map.values.last?.toInt() ?? 0;
+  }
+
+
+
+  var lastValue = map.values.last?.toInt() ?? 0;
+  var previousValue = map.values.toList()[map.values.length-1]?.toInt() ?? 0;
+  
+  return lastValue - previousValue;
 }

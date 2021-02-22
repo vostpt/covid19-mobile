@@ -26,7 +26,7 @@ CovidStatusModel _$CovidStatusModelFromJson(Map<String, dynamic> json) {
     (json['confirmados_arslvt'] as Map<String, dynamic>)?.map(
       (k, e) => MapEntry(int.parse(k), (e as num)?.toDouble()),
     ),
-    (json['confirmados_alentejo'] as Map<String, dynamic>)?.map(
+    (json['confirmados_arsalentejo'] as Map<String, dynamic>)?.map(
       (k, e) => MapEntry(int.parse(k), (e as num)?.toDouble()),
     ),
     (json['confirmados_arsalgarve'] as Map<String, dynamic>)?.map(
@@ -161,7 +161,7 @@ CovidStatusModel _$CovidStatusModelFromJson(Map<String, dynamic> json) {
     (json['obitos_arslvt'] as Map<String, dynamic>)?.map(
       (k, e) => MapEntry(int.parse(k), (e as num)?.toDouble()),
     ),
-    (json['obitos_alentejo'] as Map<String, dynamic>)?.map(
+    (json['obitos_arsalentejo'] as Map<String, dynamic>)?.map(
       (k, e) => MapEntry(int.parse(k), (e as num)?.toDouble()),
     ),
     (json['obitos_arsalgarve'] as Map<String, dynamic>)?.map(
@@ -185,7 +185,7 @@ CovidStatusModel _$CovidStatusModelFromJson(Map<String, dynamic> json) {
     (json['recuperados_arslvt'] as Map<String, dynamic>)?.map(
       (k, e) => MapEntry(int.parse(k), (e as num)?.toDouble()),
     ),
-    (json['recuperados_alentejo'] as Map<String, dynamic>)?.map(
+    (json['recuperados_arsalentejo'] as Map<String, dynamic>)?.map(
       (k, e) => MapEntry(int.parse(k), (e as num)?.toDouble()),
     ),
     (json['recuperados_arsalgarve'] as Map<String, dynamic>)?.map(
@@ -284,7 +284,7 @@ Map<String, dynamic> _$CovidStatusModelToJson(CovidStatusModel instance) {
       instance.confirmedARSCenter?.map((k, e) => MapEntry(k.toString(), e)));
   writeNotNull('confirmados_arslvt',
       instance.confirmedARSLVT?.map((k, e) => MapEntry(k.toString(), e)));
-  writeNotNull('confirmados_alentejo',
+  writeNotNull('confirmados_arsalentejo',
       instance.confirmedAlentejo?.map((k, e) => MapEntry(k.toString(), e)));
   writeNotNull('confirmados_arsalgarve',
       instance.confirmedARSAlgarve?.map((k, e) => MapEntry(k.toString(), e)));
@@ -416,7 +416,7 @@ Map<String, dynamic> _$CovidStatusModelToJson(CovidStatusModel instance) {
       instance.deathsARSCenter?.map((k, e) => MapEntry(k.toString(), e)));
   writeNotNull('obitos_arslvt',
       instance.deathsARSLVT?.map((k, e) => MapEntry(k.toString(), e)));
-  writeNotNull('obitos_alentejo',
+  writeNotNull('obitos_arsalentejo',
       instance.deathsARSAlentejo?.map((k, e) => MapEntry(k.toString(), e)));
   writeNotNull('obitos_arsalgarve',
       instance.deathsARSAlgarve?.map((k, e) => MapEntry(k.toString(), e)));
@@ -432,7 +432,7 @@ Map<String, dynamic> _$CovidStatusModelToJson(CovidStatusModel instance) {
       instance.recoveredARSCenter?.map((k, e) => MapEntry(k.toString(), e)));
   writeNotNull('recuperados_arslvt',
       instance.recoveredARSLVT?.map((k, e) => MapEntry(k.toString(), e)));
-  writeNotNull('recuperados_alentejo',
+  writeNotNull('recuperados_arsalentejo',
       instance.recoveredARSAlentejo?.map((k, e) => MapEntry(k.toString(), e)));
   writeNotNull('recuperados_arsalgarve',
       instance.recoveredARSAlgarve?.map((k, e) => MapEntry(k.toString(), e)));

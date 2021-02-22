@@ -15,7 +15,7 @@ CovidStatusLastUpdatedModel _$CovidStatusLastUpdatedModelFromJson(
     (json['confirmados_arsnorte'] as num)?.toDouble(),
     (json['confirmados_arscentro'] as num)?.toDouble(),
     (json['confirmados_arslvt'] as num)?.toDouble(),
-    (json['confirmados_alentejo'] as num)?.toDouble(),
+    (json['confirmados_arsalentejo'] as num)?.toDouble(),
     (json['confirmados_arsalgarve'] as num)?.toDouble(),
     (json['confirmados_acores'] as num)?.toDouble(),
     (json['confirmados_madeira'] as num)?.toDouble(),
@@ -60,7 +60,7 @@ CovidStatusLastUpdatedModel _$CovidStatusLastUpdatedModelFromJson(
     (json['obitos_arsnorte'] as num)?.toDouble(),
     (json['obitos_arscentro'] as num)?.toDouble(),
     (json['obitos_arslvt'] as num)?.toDouble(),
-    (json['obitos_alentejo'] as num)?.toDouble(),
+    (json['obitos_arsalentejo'] as num)?.toDouble(),
     (json['obitos_arsalgarve'] as num)?.toDouble(),
     (json['obitos_acores'] as num)?.toDouble(),
     (json['obitos_madeira'] as num)?.toDouble(),
@@ -68,7 +68,7 @@ CovidStatusLastUpdatedModel _$CovidStatusLastUpdatedModelFromJson(
     (json['recuperados_arsnorte'] as num)?.toDouble(),
     (json['recuperados_arscentro'] as num)?.toDouble(),
     (json['recuperados_arslvt'] as num)?.toDouble(),
-    (json['recuperados_alentejo'] as num)?.toDouble(),
+    (json['recuperados_arsalentejo'] as num)?.toDouble(),
     (json['recuperados_arsalgarve'] as num)?.toDouble(),
     (json['recuperados_acores'] as num)?.toDouble(),
     (json['recuperados_madeira'] as num)?.toDouble(),
@@ -112,7 +112,7 @@ Map<String, dynamic> _$CovidStatusLastUpdatedModelToJson(
   writeNotNull('confirmados_arsnorte', instance.confirmedARSNorth);
   writeNotNull('confirmados_arscentro', instance.confirmedARSCenter);
   writeNotNull('confirmados_arslvt', instance.confirmedARSLVT);
-  writeNotNull('confirmados_alentejo', instance.confirmedAlentejo);
+  writeNotNull('confirmados_arsalentejo', instance.confirmedAlentejo);
   writeNotNull('confirmados_arsalgarve', instance.confirmedARSAlgarve);
   writeNotNull('confirmados_acores', instance.confirmedAcores);
   writeNotNull('confirmados_madeira', instance.confirmedMadeira);
@@ -159,7 +159,7 @@ Map<String, dynamic> _$CovidStatusLastUpdatedModelToJson(
   writeNotNull('obitos_arsnorte', instance.deathsARSNorth);
   writeNotNull('obitos_arscentro', instance.deathsARSCenter);
   writeNotNull('obitos_arslvt', instance.deathsARSLVT);
-  writeNotNull('obitos_alentejo', instance.deathsARSAlentejo);
+  writeNotNull('obitos_arsalentejo', instance.deathsARSAlentejo);
   writeNotNull('obitos_arsalgarve', instance.deathsARSAlgarve);
   writeNotNull('obitos_acores', instance.deathsARSAcores);
   writeNotNull('obitos_madeira', instance.deathsARSMadeira);
@@ -167,7 +167,7 @@ Map<String, dynamic> _$CovidStatusLastUpdatedModelToJson(
   writeNotNull('recuperados_arsnorte', instance.recoveredARSNorth);
   writeNotNull('recuperados_arscentro', instance.recoveredARSCenter);
   writeNotNull('recuperados_arslvt', instance.recoveredARSLVT);
-  writeNotNull('recuperados_alentejo', instance.recoveredARSAlentejo);
+  writeNotNull('recuperados_arsalentejo', instance.recoveredARSAlentejo);
   writeNotNull('recuperados_arsalgarve', instance.recoveredARSAlgarve);
   writeNotNull('recuperados_acores', instance.recoveredARSAcores);
   writeNotNull('recuperados_madeira', instance.recoveredARSMadeira);

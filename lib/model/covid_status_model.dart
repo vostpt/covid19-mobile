@@ -35,7 +35,7 @@ class CovidStatusModel {
   @JsonKey(name: 'confirmados_arslvt')
   final Map<int, double> confirmedARSLVT;
 
-  @JsonKey(name: 'confirmados_alentejo')
+  @JsonKey(name: 'confirmados_arsalentejo')
   final Map<int, double> confirmedAlentejo;
 
   @JsonKey(name: 'confirmados_arsalgarve')
@@ -170,7 +170,7 @@ class CovidStatusModel {
   @JsonKey(name: 'obitos_arslvt')
   final Map<int, double> deathsARSLVT;
 
-  @JsonKey(name: 'obitos_alentejo')
+  @JsonKey(name: 'obitos_arsalentejo')
   final Map<int, double> deathsARSAlentejo;
 
   @JsonKey(name: 'obitos_arsalgarve')
@@ -194,7 +194,7 @@ class CovidStatusModel {
   @JsonKey(name: 'recuperados_arslvt')
   final Map<int, double> recoveredARSLVT;
 
-  @JsonKey(name: 'recuperados_alentejo')
+  @JsonKey(name: 'recuperados_arsalentejo')
   final Map<int, double> recoveredARSAlentejo;
 
   @JsonKey(name: 'recuperados_arsalgarve')

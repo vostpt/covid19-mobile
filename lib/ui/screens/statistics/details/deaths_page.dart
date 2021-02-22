@@ -20,6 +20,7 @@ import 'package:covid19mobile/ui/screens/statistics/components/statistics_contai
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_footer.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dual_trend_bar_plot.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/confirmed_page.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/map_portugal.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,7 @@ class _StatisticsDeathsState extends BaseState<StatisticsDeaths, AppBloc> {
   Widget build(BuildContext context) {
     CovidStatusStatistics currentStatistics =
         Provider.of<CovidStatusProvider>(context).statistics;
-
+    var status = Provider.of<CovidStatusProvider>(context).status;
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
       appBar: AppBar(
@@ -50,29 +51,47 @@ class _StatisticsDeathsState extends BaseState<StatisticsDeaths, AppBloc> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: StatisticsContainer(
-                  child: TrendPlot(
-                    title: S.of(context).statisticsDeathsTotalTitle,
-                    plotData: currentStatistics.status.deaths,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: StatisticsContainer(
-                  child: DualTrendBarPlot(
-                    plotData: currentStatistics.deathsPerDayAbsolut,
-                    title: S.of(context).statisticsNewDeathPerDay,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: StatisticsContainer(
-                  child: ByAgeBarPlot(
-                    plotDataCategory: currentStatistics.deathRecentByAgeGroup,
-                    title: S.of(context).statisticsNewDeathPerAge,
-                  ),
+                child: Column(
+                  children: [
+                    StatisticsContainer(
+                      child: TrendPlot(
+                        title: S.of(context).statisticsDeathsTotalTitle,
+                        plotData: currentStatistics.status.deaths,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    StatisticsContainer(
+                      child: DualTrendBarPlot(
+                        plotData: currentStatistics.deathsPerDayAbsolut,
+                        title: S.of(context).statisticsNewDeathPerDay,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    PortugalMapStatistics(
+                      title: 'Óbitos por região',
+                      acores: getTotalNumber(status.deathsARSAcores),
+                      madeira: getTotalNumber(status.deathsARSMadeira),
+                      north: getTotalNumber(status.deathsARSNorth),
+                      center: getTotalNumber(status.deathsARSCenter),
+                      lvt: getTotalNumber(status.deathsARSLVT),
+                      alentejo: getTotalNumber(status.deathsARSAlentejo),
+                      algarve: getTotalNumber(status.deathsARSAlgarve),
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    StatisticsContainer(
+                      child: ByAgeBarPlot(
+                        plotDataCategory:
+                            currentStatistics.deathRecentByAgeGroup,
+                        title: S.of(context).statisticsNewDeathPerAge,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               DataInformationFooter(

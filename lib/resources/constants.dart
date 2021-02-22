@@ -65,3 +65,5 @@ const List<String> ageGroupDescription = [
   "70-79",
   "80+",
 ];
+
+const double dividerTickness = 1.0;

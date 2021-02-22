@@ -12,6 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'dart:math' as math;
+import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_filter.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_components.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_constants.dart';
@@ -136,8 +137,7 @@ class _EvolutionTrendPlotState extends State<EvolutionTrendPlot> {
         ),
         Container(
           child: Divider(
-            height: 3,
-            thickness: 3,
+            thickness: dividerTickness,
             color: Covid19Colors.lightGrey,
           ),
         ),
@@ -294,8 +294,7 @@ class _FullHospitalizedUCIComparedState
         ),
         Container(
           child: Divider(
-            height: 3,
-            thickness: 3,
+            thickness: dividerTickness,
             color: Covid19Colors.lightGrey,
           ),
         ),

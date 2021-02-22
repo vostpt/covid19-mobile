@@ -1,3 +1,4 @@
+import 'package:covid19mobile/resources/constants.dart';
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
 ///    the Free Software Foundation, either version 3 of the License, or
@@ -75,7 +76,7 @@ class _DualTrendBarPlotState extends State<DualTrendBarPlot> {
           }),
         ),
         Divider(
-          thickness: 3,
+          thickness: dividerTickness,
           color: Covid19Colors.lightGrey,
         ),
         if (currentFilter == StatisticsFilter.all)

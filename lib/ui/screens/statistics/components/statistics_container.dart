@@ -16,11 +16,15 @@ import 'package:flutter/material.dart';
 
 class StatisticsContainer extends StatelessWidget {
   final Widget child;
+  final Widget header;
   final VoidCallback onTap;
+  final EdgeInsets margins;
 
   StatisticsContainer({
     @required this.child,
+    this.header = const SizedBox(),
     this.onTap,
+    this.margins = const EdgeInsets.only(bottom: 8.0),
   });
 
   get margin => margin;
@@ -28,17 +32,22 @@ class StatisticsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 8.0),
+      margin: margins,
       child: Ink(
         decoration: Covid19StatsBorderDecorator(),
         child: InkWell(
           onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 16,
-            ),
-            child: child,
+          child: Column(
+            children: [
+              header,
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 16,
+                ),
+                child: child,
+              ),
+            ],
           ),
         ),
       ),

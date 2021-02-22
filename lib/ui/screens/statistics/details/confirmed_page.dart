@@ -16,6 +16,7 @@ import 'package:covid19mobile/bloc/app_bloc.dart';
 import 'package:covid19mobile/bloc/base_bloc.dart';
 import 'package:covid19mobile/generated/l10n.dart';
 import 'package:covid19mobile/providers/covid_status_provider.dart';
+import 'package:covid19mobile/resources/constants.dart';
 import 'package:covid19mobile/ui/assets/colors.dart';
 import 'package:covid19mobile/ui/core/base_stream_service_screen_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/components/statistics_container.dart';
@@ -29,6 +30,7 @@ import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dual
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_label_gender.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_types.dart';
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_widgets.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/map_portugal.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/age_group_by_sex.dart';
 import 'package:covid19mobile/ui/screens/statistics/model/covid_status_statistics_page.dart';
 import 'package:covid19mobile/ui/screens/statistics/utils/axis_util.dart';
@@ -47,7 +49,7 @@ class _StatisticsConfirmedState
   Widget build(BuildContext context) {
     CovidStatusStatistics currentStatistics =
         Provider.of<CovidStatusProvider>(context).statistics;
-
+    var status = Provider.of<CovidStatusProvider>(context).status;
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
       appBar: AppBar(
@@ -57,45 +59,64 @@ class _StatisticsConfirmedState
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: StatisticsContainer(
-                  child: TrendPlot(
-                    plotData: currentStatistics.status.confirmed,
-                    title: S.of(context).statisticsTotalConfirmed,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: StatisticsContainer(
-                  child: DualTrendBarPlot(
-                    plotData: currentStatistics.status.confirmedNew,
-                    title: S.of(context).statisticsNewCases,
-                  ),
-                ),
-              ),
-              if (checkHasAgeGroupData(
-                  currentStatistics.confirmedRecentByAgeGroup))
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: StatisticsContainer(
-                    child: ByAgeBarPlot(
-                      plotDataCategory:
-                          currentStatistics.confirmedRecentByAgeGroup,
-                      title: S.of(context).statisticsNewCasesByAgeGroupAndSex,
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  StatisticsContainer(
+                    child: TrendPlot(
+                      plotData: currentStatistics.status.confirmed,
+                      title: S.of(context).statisticsTotalConfirmed,
                     ),
                   ),
-                ),
-              DataInformationFooter(
-                currentStatistics: currentStatistics,
-              )
-            ],
-          ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  StatisticsContainer(
+                    child: DualTrendBarPlot(
+                      plotData: currentStatistics.status.confirmedNew,
+                      title: S.of(context).statisticsNewCases,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  PortugalMapStatistics(
+                    title: 'Casos por região',
+                    acores: getTotalNumber(status.confirmedAcores),
+                    madeira: getTotalNumber(status.confirmedMadeira),
+                    north: getTotalNumber(status.confirmedARSNorth),
+                    center: getTotalNumber(status.confirmedARSCenter),
+                    lvt: getTotalNumber(status.confirmedARSLVT),
+                    alentejo: getTotalNumber(status.confirmedAlentejo),
+                    algarve: getTotalNumber(status.confirmedARSAlgarve),
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  if (checkHasAgeGroupData(
+                      currentStatistics.confirmedRecentByAgeGroup))
+                    Container(
+                      margin: EdgeInsets.only(bottom: 8.0),
+                      child: StatisticsContainer(
+                        child: ByAgeBarPlot(
+                          plotDataCategory:
+                              currentStatistics.confirmedRecentByAgeGroup,
+                          title:
+                              S.of(context).statisticsNewCasesByAgeGroupAndSex,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            DataInformationFooter(
+              currentStatistics: currentStatistics,
+            )
+          ],
         ),
       ),
     );
@@ -181,8 +202,8 @@ class _TrendPlotState extends State<TrendPlot> {
         ),
         Container(
           child: Divider(
-            height: 3,
-            thickness: 3,
+            height: 1,
+            thickness: dividerTickness,
             color: Covid19Colors.lightGrey,
           ),
         ),
@@ -243,7 +264,7 @@ class ByAgeBarPlot extends StatelessWidget {
       children: <Widget>[
         PlotHeader(header: title),
         Divider(
-          thickness: 3,
+          thickness: dividerTickness,
           color: Covid19Colors.lightGrey,
         ),
         SafeArea(
@@ -303,7 +324,7 @@ class SymptomsBarPlot extends StatelessWidget {
       children: <Widget>[
         PlotHeader(header: S.of(context).statisticsSymptoms),
         Divider(
-          thickness: 3,
+          thickness: dividerTickness,
           color: Covid19Colors.lightGrey,
         ),
         SafeArea(

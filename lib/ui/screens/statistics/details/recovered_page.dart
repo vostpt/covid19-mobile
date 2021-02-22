@@ -1,4 +1,5 @@
 import 'package:covid19mobile/ui/screens/statistics/details/components/plot_dual_trend_bar_plot.dart';
+import 'package:covid19mobile/ui/screens/statistics/details/map_portugal.dart';
 
 ///    This program is free software: you can redistribute it and/or modify
 ///    it under the terms of the GNU General Public License as published by
@@ -33,7 +34,7 @@ class _StatisticsRecoveredState extends State<StatisticsRecovered> {
   Widget build(BuildContext context) {
     CovidStatusStatistics currentStatistics =
         Provider.of<CovidStatusProvider>(context).statistics;
-
+    var status = Provider.of<CovidStatusProvider>(context).status;
     return Scaffold(
       backgroundColor: Covid19Colors.paleGrey,
       appBar: AppBar(
@@ -49,20 +50,38 @@ class _StatisticsRecoveredState extends State<StatisticsRecovered> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: StatisticsContainer(
-                  child: TrendPlot(
-                    plotData: currentStatistics.status.recovered,
-                    title: S.of(context).statisticsRecoveredCases,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: StatisticsContainer(
-                  child: DualTrendBarPlot(
-                    plotData: currentStatistics.recoveredPerDay,
-                    title: S.of(context).statisticsRecoveredPerDay,
-                  ),
+                child: Column(
+                  children: [
+                    StatisticsContainer(
+                      child: TrendPlot(
+                        plotData: currentStatistics.status.recovered,
+                        title: S.of(context).statisticsRecoveredCases,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    // TODO(GP): The api doesn't have information about this one
+                    // PortugalMapStatistics(
+                    //   title: 'Recuperados por região',
+                    //   acores: getTotalNumber(status.recoveredARSAcores),
+                    //   madeira: getTotalNumber(status.recoveredARSMadeira),
+                    //   north: getTotalNumber(status.recoveredARSNorth),
+                    //   center: getTotalNumber(status.recoveredARSCenter),
+                    //   lvt: getTotalNumber(status.recoveredARSLVT),
+                    //   alentejo: getTotalNumber(status.recoveredARSAlentejo),
+                    //   algarve: getTotalNumber(status.recoveredARSAlgarve),
+                    // ),
+                    // const SizedBox(
+                    //   height: 8.0,
+                    // ),
+                    StatisticsContainer(
+                      child: DualTrendBarPlot(
+                        plotData: currentStatistics.recoveredPerDay,
+                        title: S.of(context).statisticsRecoveredPerDay,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               DataInformationFooter(

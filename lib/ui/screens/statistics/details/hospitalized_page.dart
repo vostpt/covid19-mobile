@@ -306,7 +306,7 @@ class _FullHospitalizedUCIComparedState
               LineChartData(
                 maxY: 101, // 101 to show the 100% value
                 minY: 0,
-                lineTouchData: Covid19LineTouchData(),
+                lineTouchData: Covid19PercentageLineTouchData(),
                 borderData: FlBorderData(show: false),
                 gridData: FlGridData(
                   verticalInterval: filter.intervalValue(),
@@ -332,7 +332,7 @@ class _FullHospitalizedUCIComparedState
                   LineChartBarData(
                     isCurved: filter != StatisticsFilter.last7,
                     barWidth: 4,
-                    colors: [Covid19Colors.vostBlue],
+                    colors: [Colors.transparent],
                     spots: List.generate(
                       currentlyShowingSpots.length,
                       (x) => FlSpot(currentlyShowingSpots[x].x, 100),
@@ -340,14 +340,29 @@ class _FullHospitalizedUCIComparedState
                     dotData: FlDotData(
                       show: false,
                     ),
+                    belowBarData: BarAreaData(
+                      gradientFrom: Offset(1, 1),
+                      gradientTo: Offset(1, 0),
+                      gradientColorStops: [0, 0.95],
+                      show: true,
+                      colors: gradientColors
+                        .map(
+                          (color) => color.withOpacity(0.5),
+                        )
+                        .toList(),
+                    ),
                   ),
                   LineChartBarData(
                     isCurved: filter != StatisticsFilter.last7,
                     barWidth: 2,
-                    colors: [Covid19Colors.lightBlue],
+                    colors: [Covid19Colors.vostBlue],
                     spots: currentlyShowingSpots,
                     dotData: FlDotData(
                       show: false,
+                    ),
+                    belowBarData: BarAreaData(
+                      show: true,
+                      colors: [Covid19Colors.vostBlue.withOpacity(0.5)],
                     ),
                   )
                 ],
@@ -357,9 +372,9 @@ class _FullHospitalizedUCIComparedState
         ),
         PlotLabelGender(
           leftLabel: S.of(context).hospitalized,
-          leftColor: Covid19Colors.vostBlue,
+          leftColor: Covid19Colors.lightBlue,
           rightLabel: S.of(context).ucihospitalized,
-          rightColor: Covid19Colors.lightBlue,
+          rightColor: Covid19Colors.vostBlue,
         ),
       ],
     );

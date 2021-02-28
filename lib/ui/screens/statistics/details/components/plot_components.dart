@@ -34,6 +34,43 @@ class Covid19LineTouchData extends LineTouchData {
         );
 }
 
+class Covid19PercentageLineTouchData extends LineTouchData {
+  Covid19PercentageLineTouchData()
+      : super(
+          touchTooltipData: LineTouchTooltipData(
+            tooltipBgColor: Colors.white,
+            getTooltipItems: _lineTooltipItem,
+            fitInsideVertically: true,
+            fitInsideHorizontally: true,
+          ),
+          touchCallback: (LineTouchResponse touchResponse) {},
+          handleBuiltInTouches: true,
+        );
+
+  static List<LineTooltipItem> _lineTooltipItem(List<LineBarSpot> touchedSpots) {
+    if (touchedSpots == null || touchedSpots.length < 2) {
+      return null;
+    }
+
+    final int day = touchedSpots[0].x.truncate();
+    final String dayText = Covid19PlotBottomSideTitles.parseDateToReadable(day);
+    final TextStyle dayStyle = TextStyle(
+      color: Colors.black,
+      fontSize: 14,
+    );
+
+    final String percentageText = "${touchedSpots[1].y}%";
+    final TextStyle percentageStyle = dayStyle.copyWith(
+      fontWeight: FontWeight.bold
+    );
+
+    return [
+      LineTooltipItem(dayText, dayStyle),
+      LineTooltipItem(percentageText, percentageStyle),
+    ];
+  }
+}
+
 class Covid19BarTouchData extends BarTouchData {
   Covid19BarTouchData()
       : super(

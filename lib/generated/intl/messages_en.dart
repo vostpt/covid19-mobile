@@ -57,7 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "male" : MessageLookupByLibrary.simpleMessage("Masculino"),
     "measuresHomepageButton" : MessageLookupByLibrary.simpleMessage("Medidas excecionais de resposta À COVID-19"),
     "measuresPageMeasures" : MessageLookupByLibrary.simpleMessage("Medidas Excecionais"),
-    "newPlural" : MessageLookupByLibrary.simpleMessage("Novos"),
+    "newPlural" : MessageLookupByLibrary.simpleMessage("Total"),
     "noConnection" : MessageLookupByLibrary.simpleMessage("Sem conexão"),
     "notificationsPageDescription" : MessageLookupByLibrary.simpleMessage("Que notificações vai receber?\nInformações importantes sobre atualização dos dados constantes nesta aplicação e avisos/alertas das entidades oficiais."),
     "notificationsPageOpenSettings" : MessageLookupByLibrary.simpleMessage("Abrir definições"),

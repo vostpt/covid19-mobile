@@ -17,11 +17,11 @@ import 'package:covid19mobile/ui/screens/statistics/components/statistics_square
 import 'package:flutter/material.dart';
 
 /// Statistics widget to show a squared new absolute values
-class StatisticsNewAbsolute extends StatelessWidget {
+class StatisticsTotal extends StatelessWidget {
   final int value;
   final String label;
 
-  StatisticsNewAbsolute({@required this.value, this.label});
+  StatisticsTotal({@required this.value, this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class StatisticsNewAbsolute extends StatelessWidget {
           width: 3,
         ),
         Text(
-          (label == null) ? S.of(context).newPlural : label,
+          (label == null) ? S.of(context).total : label,
           style: TextStyles.h3Number(),
         )
       ],

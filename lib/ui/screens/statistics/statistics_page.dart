@@ -65,9 +65,9 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                     // Horizontal - Confirmed Cases
                     StatisticHorizontalWidget(
                       label: S.of(context).statisticsPageConfirmed,
-                      value: currentStatistics.confirmed,
+                      value: currentStatistics.confirmedAbsolut,
                       percentage: currentStatistics.confirmedPercentage,
-                      absolute: currentStatistics.confirmedAbsolut,
+                      secondaryValue: currentStatistics.confirmed,
                       onTap: () {
                         Navigator.pushNamed(context, routeStatisticsConfirmed);
                       },
@@ -80,9 +80,9 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                         Expanded(
                           child: StatisticVerticalWidget(
                             label: S.of(context).statisticsPageDeaths,
-                            value: currentStatistics.death,
+                            value: currentStatistics.deathAbsolute,
                             percentage: currentStatistics.deathPercentage,
-                            valueDifference: currentStatistics.deathAbsolute,
+                            secondaryValue: currentStatistics.death,
                             shouldWrapContent:
                                 _shouldWrapContentBasedOnScreenWith(context),
                             onTap: () {
@@ -103,7 +103,7 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                             label: S.of(context).statisticsPageRecovered,
                             value: currentStatistics.recovered,
                             percentage: currentStatistics.recoveredPercentage,
-                            valueDifference:
+                            secondaryValue:
                                 currentStatistics.recoveredAbsolute,
                             shouldWrapContent:
                                 _shouldWrapContentBasedOnScreenWith(context),
@@ -121,8 +121,8 @@ class _StatisticsPageState extends BaseState<StatisticsPage, AppBloc> {
                       label: S.of(context).statisticsPageHospitalized,
                       value: currentStatistics.hospitalized,
                       percentage: currentStatistics.hospitalizedPercentage,
-                      absolute: currentStatistics.hospitalizedUCI,
-                      absoluteLabel:
+                      secondaryValue: currentStatistics.hospitalizedUCI,
+                      secondaryValueLabel:
                           S.of(context).statisticsPageHospitalizedUCI,
                       onTap: () {
                         Navigator.pushNamed(

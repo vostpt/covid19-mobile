@@ -25,16 +25,16 @@ class StatisticHorizontalWidget extends StatelessWidget {
   final String label;
   final int value;
   final double percentage;
-  final int absolute;
-  final String absoluteLabel;
+  final int secondaryValue;
+  final String secondaryValueLabel;
   final VoidCallback onTap;
 
   StatisticHorizontalWidget({
     @required this.label,
     @required this.value,
     @required this.percentage,
-    @required this.absolute,
-    this.absoluteLabel,
+    @required this.secondaryValue,
+    this.secondaryValueLabel,
     @required this.onTap,
   });
 
@@ -68,8 +68,8 @@ class StatisticHorizontalWidget extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.only(left: 17.0),
                   alignment: Alignment.centerLeft,
-                  child: StatisticsNewAbsolute(
-                      value: absolute, label: absoluteLabel),
+                  child: StatisticsTotal(
+                      value: secondaryValue, label: secondaryValueLabel),
                 ),
               ),
             ],

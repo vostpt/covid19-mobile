@@ -26,7 +26,7 @@ class StatisticVerticalWidget extends StatelessWidget {
   final String label;
   final double percentage;
   final int value;
-  final int valueDifference;
+  final int secondaryValue;
   final VoidCallback onTap;
   final bool shouldWrapContent;
 
@@ -41,7 +41,7 @@ class StatisticVerticalWidget extends StatelessWidget {
     @required this.value,
 
     ///Absolute different of the value with the previous day
-    @required this.valueDifference,
+    @required this.secondaryValue,
 
     /// Adds a possible callback on tap
     this.onTap,
@@ -71,7 +71,7 @@ class StatisticVerticalWidget extends StatelessWidget {
           ),
           Container(
               margin: const EdgeInsets.only(bottom: 8.0),
-              child: StatisticsNewAbsolute(value: valueDifference)),
+              child: StatisticsTotal(value: secondaryValue)),
           SeeDetailsWidget()
         ],
       ),

@@ -645,11 +645,11 @@ class S {
     );
   }
 
-  /// `Novos`
-  String get newPlural {
+  /// `Total`
+  String get total {
     return Intl.message(
-      'Novos',
-      name: 'newPlural',
+      'Total',
+      name: 'total',
       desc: '',
       args: [],
     );

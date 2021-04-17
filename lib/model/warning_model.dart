@@ -12,7 +12,7 @@
 ///    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:covid19mobile/model/warning_local_model.dart';
+import 'warning_local_model.dart';
 
 part 'warning_model.g.dart';
 

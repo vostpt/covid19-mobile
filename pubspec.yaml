@@ -48,6 +48,7 @@ dependencies:
   google_fonts: 0.3.10
   flare_flutter: 2.0.1
 
+  json_annotation: ^3.0.0
 
   # Svg
   flutter_svg: 0.20.0-nullsafety.3
@@ -56,15 +57,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: 4.1.1
-  build_runner: 1.8.0
-  json_serializable: 3.2.5
-  built_value_generator: ^7.0.4
+  build_runner: ^1.10.0
+  built_value_generator: ^8.0.4
   flutter_native_splash: ^0.3.0
 
 dependency_overrides:
   intl: 0.17.0
   path_drawing: ^0.5.0-nullsafety.0
   xml: ^5.0.0-nullsafety.0
+  # analyzer: 0.39.14 
+
 
 flutter:
   uses-material-design: true
